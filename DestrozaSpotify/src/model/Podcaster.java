@@ -6,6 +6,10 @@ public class Podcaster extends Artista {
 
 	private String genero;
 
+	public Podcaster() {
+		
+	}
+	
 	public Podcaster(String nombre, ImageIcon imagen, String descripcion, String genero) {
 		super(nombre, imagen, descripcion);
 		this.genero = genero;

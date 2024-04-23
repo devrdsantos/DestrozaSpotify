@@ -6,6 +6,10 @@ public class Cancion extends Audio {
 
 	private String colaboradores;
 
+	public Cancion() {
+		
+	}
+	
 	public Cancion(String nombre, int duracion, ImageIcon imagen, String colaboradores) {
 		super(nombre, duracion, imagen);
 		this.colaboradores = colaboradores;
