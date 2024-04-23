@@ -7,7 +7,8 @@ public abstract class Audio {
 	private String nombre;
 	private int duracion;
 	private ImageIcon imagen;
-
+	private boolean reproduciendo;
+	
 	public Audio() {
 
 	}
@@ -42,4 +43,12 @@ public abstract class Audio {
 		this.imagen = imagen;
 	}
 
+	public boolean sonando() {
+		if (!reproduciendo) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

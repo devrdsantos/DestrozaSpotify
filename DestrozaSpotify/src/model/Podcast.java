@@ -5,7 +5,8 @@ import javax.swing.ImageIcon;
 public class Podcast extends Audio {
 
 	private String descripcion;
-
+	private boolean reproduciendo;
+	
 	public Podcast() {
 
 	}
@@ -21,6 +22,14 @@ public class Podcast extends Audio {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public boolean sonando() {
+		if (!reproduciendo) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
