@@ -18,7 +18,7 @@ public class GestionBD {
 
 	private Connection conexion;
 	private GestionDeLaInformacion gestionINF;
-	private ControladorDeEntrada controlador;
+//	private ControladorDeEntrada controlador;
 
 	public GestionBD() {
 		iniciarConexion();

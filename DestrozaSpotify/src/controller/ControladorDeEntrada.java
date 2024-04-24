@@ -5,22 +5,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.JOptionPane;
-
-import model.Cliente;
 import view.VistaPrincipal;
 
 public class ControladorDeEntrada {
 
 	private ArrayList<String> datosUsuario;
-	private ArrayList<Cliente> usuario;
+//	private ArrayList<Cliente> usuario;
 	private GestionBD gestionBD;
 	
 	public ControladorDeEntrada() {
 		datosUsuario = new ArrayList<String>();
 		gestionBD = new GestionBD();
-		usuario = new ArrayList<Cliente>();
+//		usuario = new ArrayList<Cliente>();
 	}
 	
 	public void validarInformacionFormulario(String usuarioFormulario, String passFormulario, String nombreFormulario,

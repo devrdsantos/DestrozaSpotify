@@ -8,11 +8,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class GestionDeLaInformacion {
 
-	private GestionBD gestionBD;
+//	private GestionBD gestionBD;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 	
 	public GestionDeLaInformacion() {
-		gestionBD = new GestionBD();
+//		gestionBD = new GestionBD();
 	}
 	
 	public String desencriptar(String mensajeEncriptado) throws Exception {

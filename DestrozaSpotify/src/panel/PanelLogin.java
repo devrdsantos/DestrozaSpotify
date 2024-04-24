@@ -65,10 +65,11 @@ public class PanelLogin extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String usuario = textFieldUsuario.getText();
-				System.out.println(usuario);
+//				System.out.println(usuario);
 //				@SuppressWarnings("deprecation")
+				@SuppressWarnings("deprecation")
 				String pass = passwordField.getText();
-				System.out.println(pass);
+//				System.out.println(pass);
 //				gestionINF.recogerDNI(usuario);
 				
 				try {

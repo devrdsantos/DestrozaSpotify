@@ -12,7 +12,7 @@ public class Cliente {
 	private String rol;
 	private String apellido;
 	private String fechaRegistro;
-	private boolean isPremium = false;
+	private boolean isPremiun = false;
 	private String idioma;
 	private String fechaNacimiento;
 	private String fechaPremiumAlta;
@@ -31,7 +31,7 @@ public class Cliente {
 		this.rol = rol;
 		this.apellido = apellido;
 		this.fechaRegistro = fechaRegistro;
-		this.isPremium = isPremium;
+		this.isPremiun = isPremium;
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
 		this.favoritos = favoritos;
@@ -100,11 +100,11 @@ public class Cliente {
 	}
 
 	public boolean isPremium() {
-		return isPremium;
+		return isPremiun;
 	}
 
 	public void setPremium(boolean isPremium) {
-		this.isPremium = isPremium;
+		this.isPremiun = isPremium;
 	}
 
 	public String getIdioma() {

@@ -7,11 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -147,7 +144,7 @@ public class PanelRegistro extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 	
 				String usuarioFormulario = textFieldUsuario.getText();
-//				@SuppressWarnings("deprecation")
+				@SuppressWarnings("deprecation")
 				String passFormulario =  passwordField.getText();
 				String nombreFormulario = textFieldNombre.getText();
 				String apelldioFormulario = textFieldApellido.getText();
