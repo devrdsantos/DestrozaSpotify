@@ -24,9 +24,9 @@ public class ControladorDeEntrada {
 	}
 	
 	public void validarInformacionFormulario(String usuarioFormulario, String passFormulario, String nombreFormulario,
-			String apellidoFormulario, String idioma ,String fechaNacFormulario, VistaPrincipal v) {
+			String apellidoFormulario, String idioma ,String fechaNacFormulario, boolean premiun, VistaPrincipal v) {
 
-		String usuarioDB, passDB, nombreDB, apellidoDB;
+//		String usuarioDB, passDB, nombreDB, apellidoDB;
 		
 		String textoUsuario = usuarioFormulario;
 		Pattern patron = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
@@ -85,7 +85,13 @@ public class ControladorDeEntrada {
 		String rol = "Cliente";
 		datosUsuario.add(rol);
 	
-		datosUsuario.add("0");
+		if (premiun == false) {
+			datosUsuario.add("0");
+		} else {
+			datosUsuario.add("1");
+		}
+		
+		
 		
 		datosUsuario.add(idioma);
 		

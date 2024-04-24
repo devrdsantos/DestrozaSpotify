@@ -39,11 +39,11 @@ public class PanelLogin extends JPanel {
 		mensajeBienvenida.setBounds(371, 169, 515, 78);
 		add(mensajeBienvenida);
 
-		JLabel lblDNI = new JLabel("Ingresa tu DNI:");
-		lblDNI.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblDNI.setBounds(406, 300, 150, 28);
-		lblDNI.setForeground(Color.decode("#FFFFFF"));
-		add(lblDNI);
+		JLabel lblUsuario = new JLabel("Ingresa su usuario:");
+		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblUsuario.setBounds(376, 300, 180, 28);
+		lblUsuario.setForeground(Color.decode("#FFFFFF"));
+		add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Ingresa tu contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
@@ -65,9 +65,10 @@ public class PanelLogin extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String usuario = textFieldUsuario.getText();
-				
-				@SuppressWarnings("deprecation")
+				System.out.println(usuario);
+//				@SuppressWarnings("deprecation")
 				String pass = passwordField.getText();
+				System.out.println(pass);
 //				gestionINF.recogerDNI(usuario);
 				
 				try {

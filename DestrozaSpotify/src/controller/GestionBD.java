@@ -28,7 +28,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -57,7 +57,7 @@ public class GestionBD {
 			// System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
 			// parámetros
-			String query = "SELECT Usuario, contraseña FROM usuario WHERE Usuario = ?";
+			String query = "SELECT Usuario, Contraseña, Rol FROM cliente WHERE Usuario = ?";
 
 			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
 			// DNI
@@ -75,9 +75,17 @@ public class GestionBD {
 			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && usuario.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
-				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
-				v.cambiarDePanel(3);
-				verificarLogin = true;
+				if (resultadoConsulta.getString(3).equals("Cliente")) {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
+//					v.cambiarDePanel(3);
+					verificarLogin = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
+//					v.cambiarDePanel(3);
+					verificarLogin = true;
+				}
+				
+				
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
@@ -97,7 +105,7 @@ public class GestionBD {
 		String passDesencriptada = "";
 		try {
 			// System.out.println("Iniciando consulta sacarPasswordEncriptada...");
-			String query = "SELECT contraseña FROM usuario WHERE Usuario = ?";
+			String query = "SELECT Contraseña FROM cliente WHERE Usuario = ?";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, usuario);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
@@ -140,8 +148,8 @@ public class GestionBD {
 				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
 
 			} else {
-				fechaAlta = null;
-				fechaBaja = "0000-00-00";
+				fechaAlta = "";
+				fechaBaja = "";
 			}
 
 			System.out.println(datosUsuario);
@@ -168,5 +176,7 @@ public class GestionBD {
 		}
 
 	}
+	
+	
 
 }
