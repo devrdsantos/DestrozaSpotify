@@ -38,12 +38,12 @@ public class Cliente {
 
 		if (!isPremium) {
 			LocalDate fechaSinFormatoAlta = LocalDate.now();
-			DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			String fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
 			this.fechaPremiumAlta = fechaAlta;
 
 			LocalDate fechaSinFormatoBaja = LocalDate.now();
-			DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-yyyy");
+			DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
 			String fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
 			this.fechaPreiumBaja = fechaBaja;
 

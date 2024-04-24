@@ -30,4 +30,14 @@ public class GestionDeLaInformacion {
 		return desencriptado;
 	}
 	
+	public String encriptar(String mensaje) throws Exception {
+		Key claveAES = new SecretKeySpec(CLAVE_ENCRIPTADA.getBytes(), "AES");
+		Cipher cipher = Cipher.getInstance("AES");
+		cipher.init(Cipher.ENCRYPT_MODE, claveAES);
+
+		byte[] mensajeEncriptado = cipher.doFinal(mensaje.getBytes());
+
+		return Base64.getEncoder().encodeToString(mensajeEncriptado);
+	}
+	
 }

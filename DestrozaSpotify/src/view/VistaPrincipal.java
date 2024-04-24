@@ -2,9 +2,11 @@ package view;
 
 import javax.swing.JFrame;
 
+import controller.ControladorDeEntrada;
 import controller.GestionDeLaInformacion;
 import panel.PanelBienvenida;
 import panel.PanelLogin;
+import panel.PanelRegistro;
 
 public class VistaPrincipal extends JFrame {
 
@@ -13,9 +15,11 @@ public class VistaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private GestionDeLaInformacion gestionINF;
+	private ControladorDeEntrada controlador;
 	
 	public VistaPrincipal() {
 		gestionINF =  new GestionDeLaInformacion();
+		controlador =  new ControladorDeEntrada();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -34,7 +38,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelLogin(this, this.gestionINF));
 			break;
 		case 2:
-
+			setContentPane(new PanelRegistro(this, this.controlador));
 			break;
 
 		case 3:
