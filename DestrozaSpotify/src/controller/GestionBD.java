@@ -142,17 +142,19 @@ public class GestionBD {
 				LocalDate fechaSinFormatoAlta = LocalDate.now();
 				DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
-
+				
+				
+				
 				LocalDate fechaSinFormatoBaja = LocalDate.now();
 				DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
 				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
-
+				JOptionPane.showMessageDialog(null, "La fecha de caducidad del Premiun termina el " + fechaBaja);
 			} else {
 				fechaAlta = "";
 				fechaBaja = "";
 			}
 
-			System.out.println(datosUsuario);
+//			System.out.println(datosUsuario);
 
 			// TO DO --> cambiarlo
 			String insert = "INSERT INTO cliente VALUES ('"
@@ -165,6 +167,8 @@ public class GestionBD {
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
+			
+			
 			v.cambiarDePanel(1);
 			// Cierra la consulta
 			consulta.close();
