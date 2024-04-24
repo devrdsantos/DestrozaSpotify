@@ -73,6 +73,8 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 		v.cambiarDePanel(0);
+		
+		System.out.println("Hola, tenia que hacer un cambio para commitear mi rama! SRY");
 
 	}
 
