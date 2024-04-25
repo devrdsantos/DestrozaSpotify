@@ -130,7 +130,9 @@ public class PanelRegistro extends JPanel {
 		add(calendarNacimiento);
 		
 		JRadioButton rdbtnPremiun = new JRadioButton("Premiun");
+		rdbtnPremiun.setOpaque(false);
 		rdbtnPremiun.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnPremiun.setForeground(Color.decode("#FFFFFF"));
 		rdbtnPremiun.setBounds(690, 518, 109, 23);
 		add(rdbtnPremiun);
 		
