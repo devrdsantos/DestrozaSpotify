@@ -18,7 +18,7 @@ public class GestionBD {
 
 	private Connection conexion;
 	private GestionDeLaInformacion gestionINF;
-	private ControladorDeEntrada controlador;
+//	private ControladorDeEntrada controlador;
 
 	public GestionBD() {
 		iniciarConexion();
@@ -57,7 +57,7 @@ public class GestionBD {
 			// System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
 			// parámetros
-			String query = "SELECT Usuario, contraseña FROM usuario WHERE Usuario = ?";
+			String query = "SELECT Usuario, Contraseña, Rol FROM cliente WHERE Usuario = ?";
 
 			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
 			// DNI
@@ -75,9 +75,17 @@ public class GestionBD {
 			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && usuario.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
-				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
-				v.cambiarDePanel(3);
-				verificarLogin = true;
+				if (resultadoConsulta.getString(3).equals("Cliente")) {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
+//					v.cambiarDePanel(3);
+					verificarLogin = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
+//					v.cambiarDePanel(3);
+					verificarLogin = true;
+				}
+				
+				
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
@@ -97,7 +105,7 @@ public class GestionBD {
 		String passDesencriptada = "";
 		try {
 			// System.out.println("Iniciando consulta sacarPasswordEncriptada...");
-			String query = "SELECT contraseña FROM usuario WHERE Usuario = ?";
+			String query = "SELECT Contraseña FROM cliente WHERE Usuario = ?";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, usuario);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
@@ -134,17 +142,19 @@ public class GestionBD {
 				LocalDate fechaSinFormatoAlta = LocalDate.now();
 				DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
-
+				
+				
+				
 				LocalDate fechaSinFormatoBaja = LocalDate.now();
 				DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
 				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
-
+				JOptionPane.showMessageDialog(null, "La fecha de caducidad del Premiun termina el " + fechaBaja);
 			} else {
-				fechaAlta = null;
-				fechaBaja = "0000-00-00";
+				fechaAlta = "";
+				fechaBaja = "";
 			}
 
-			System.out.println(datosUsuario);
+//			System.out.println(datosUsuario);
 
 			// TO DO --> cambiarlo
 			String insert = "INSERT INTO cliente VALUES ('"
@@ -157,6 +167,8 @@ public class GestionBD {
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
+			
+			
 			v.cambiarDePanel(1);
 			// Cierra la consulta
 			consulta.close();
@@ -168,5 +180,7 @@ public class GestionBD {
 		}
 
 	}
+	
+	
 
 }

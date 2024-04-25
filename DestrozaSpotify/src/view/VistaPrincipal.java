@@ -40,7 +40,6 @@ public class VistaPrincipal extends JFrame {
 		case 2:
 			setContentPane(new PanelRegistro(this, this.controlador));
 			break;
-
 		case 3:
 
 			break;
