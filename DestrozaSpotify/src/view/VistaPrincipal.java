@@ -20,6 +20,8 @@ public class VistaPrincipal extends JFrame {
 	
 	/**
 	 * [CONSTRUCTOR]
+	 * Inicializa el ControladorDeEntrada y GestionDeLaInformacion
+	 * Le otorga valores al Frame en donde se mostrará nuestro programa.
 	 */
 	public VistaPrincipal() {
 		gestionINF =  new GestionDeLaInformacion();
@@ -28,7 +30,7 @@ public class VistaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
 		setVisible(true);
-		setTitle("Cines ESA");
+		setTitle("Destruye Spotify");
 		setResizable(false);
 	}
 
