@@ -11,12 +11,16 @@ import panel.PanelRegistro;
 public class VistaPrincipal extends JFrame {
 
 	/**
-	 * 
+	 * [VARIABLES]
 	 */
 	private static final long serialVersionUID = 1L;
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
 	
+	
+	/**
+	 * [CONSTRUCTOR]
+	 */
 	public VistaPrincipal() {
 		gestionINF =  new GestionDeLaInformacion();
 		controlador =  new ControladorDeEntrada();
@@ -28,6 +32,10 @@ public class VistaPrincipal extends JFrame {
 		setResizable(false);
 	}
 
+	/**
+	 * [FUNCIÓN] cambiarDePanel(int i)
+	 * @param i -> Recibe el número del Panel que va a mostrar
+	 */
 	public void cambiarDePanel(int i) {
 
 		switch (i) {
@@ -66,14 +74,19 @@ public class VistaPrincipal extends JFrame {
 		}
 	}
 
+	
+	/**
+	 * [FUNCIÓN] main()
+	 * @param args
+	 * Aquí se ejecuta nuestro programa. Se muestra el Frame y se ejecuta cambiarDePanel(int i)
+	 */
 	public static void main(String[] args) {
 		VistaPrincipal v = new VistaPrincipal();
 		
 		v.setVisible(true);
 
 		v.cambiarDePanel(0);
-		
-		System.out.println("Hola, tenia que hacer un cambio para commitear mi rama! SRY");
+
 
 	}
 
