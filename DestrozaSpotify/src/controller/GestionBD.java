@@ -81,7 +81,7 @@ public class GestionBD {
 					verificarLogin = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
-//					v.cambiarDePanel(3);
+					v.cambiarDePanel(4);
 					verificarLogin = true;
 				}
 				
