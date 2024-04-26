@@ -9,12 +9,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.GestionBD;
+import model.Artista;
+import model.Musico;
 import view.VistaPrincipal;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,6 +33,8 @@ public class PanelGestionMusica extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private GestionBD gestionBD;
+	
+	private ArrayList<Musico> artistas;
 	
 	private JPanel panelAñadirMusica;
 	private JPanel panelEliminarMusica;
@@ -47,6 +52,7 @@ public class PanelGestionMusica extends JPanel{
 	
 	public PanelGestionMusica(VistaPrincipal v) {
 		gestionBD = new GestionBD();
+		artistas = new ArrayList<Musico>();
 	
 		setSize(1200, 720);
 		setVisible(true);
@@ -280,7 +286,10 @@ public class PanelGestionMusica extends JPanel{
 		lblArtista.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirMusica.add(lblArtista);
 		
-		JComboBox comboBoxArtistas = new JComboBox();
+		JComboBox<String> comboBoxArtistas = new JComboBox<String>();
+		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
+			comboBoxArtistas.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
+		}
 		comboBoxArtistas.setBounds(248, 212, 288, 30);
 		panelAñadirMusica.add(comboBoxArtistas);
 		
@@ -290,7 +299,10 @@ public class PanelGestionMusica extends JPanel{
 		lblAlbum.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirMusica.add(lblAlbum);
 		
-		JComboBox comboBoxAlbum = new JComboBox();
+		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
+		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
+			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
+		}
 		comboBoxAlbum.setBounds(248, 260, 288, 30);
 		panelAñadirMusica.add(comboBoxAlbum);
 		
@@ -337,6 +349,23 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadir = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textFieldNombreCancion.getText();
+				textFieldDuracion.getText();
+				textFieldColaboradores.getText();
+				comboBoxArtistas.getSelectedItem();
+				comboBoxAlbum.getSelectedItem();
+				
+//				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
+				
+				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), (String) comboBoxAlbum.getSelectedItem());
+				gestionBD.insertAudio(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
+				
+				textFieldNombreCancion.setText("");
+				textFieldDuracion.setText("");
+				textFieldColaboradores.setText("");
+				textFieldAudio.setText("");
+				textFieldPortada.setText("");
+				
 			}
 		});
 		btnAñadir.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -458,30 +487,38 @@ public class PanelGestionMusica extends JPanel{
 		textFieldDescripcion.setColumns(10);
 		panelAñadirArtista.add(textFieldDescripcion);
 
-		JLabel lblAlbumAr = new JLabel("Album:");
-		lblAlbumAr.setBounds(163, 172, 75, 48);
-		lblAlbumAr.setForeground(Color.decode("#ffffff"));
-		lblAlbumAr.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirArtista.add(lblAlbumAr);
-
-		JComboBox comboBoxAlbumAr = new JComboBox();
-		comboBoxAlbumAr.setBounds(248, 180, 288, 30);
-		panelAñadirArtista.add(comboBoxAlbumAr);
+//		JLabel lblAlbumAr = new JLabel("Album:");
+//		lblAlbumAr.setBounds(163, 172, 75, 48);
+//		lblAlbumAr.setForeground(Color.decode("#ffffff"));
+//		lblAlbumAr.setFont(new Font("Verdana", Font.PLAIN, 18));
+//		panelAñadirArtista.add(lblAlbumAr);
+//
+//		JComboBox comboBoxAlbumAr = new JComboBox();
+//		comboBoxAlbumAr.setBounds(248, 180, 288, 30);
+//		panelAñadirArtista.add(comboBoxAlbumAr);
 		
 		JLabel lblCaracteristicas = new JLabel("Caracteristicas:");
-		lblCaracteristicas.setBounds(86, 222, 150, 48);
+		lblCaracteristicas.setBounds(86, 172, 150, 48);
 		lblCaracteristicas.setForeground(Color.decode("#ffffff"));
 		lblCaracteristicas.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirArtista.add(lblCaracteristicas);
 		
 		JTextField textFieldCaracteristicas = new JTextField();
-		textFieldCaracteristicas.setBounds(248, 232, 288, 30);
+		textFieldCaracteristicas.setBounds(248, 180, 288, 30);
 		textFieldCaracteristicas.setColumns(10);
 		panelAñadirArtista.add(textFieldCaracteristicas);
 		
 		JButton btnAñadirAr = new JButton("Añadir");
-		btnAñadir.addActionListener(new ActionListener() {
+		btnAñadirAr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
+				gestionBD.insertMusico(textFieldCaracteristicas.getText(), textFieldNombreArtista.getText());
+				
+				textFieldNombreArtista.setText("");
+				textFieldDescripcion.setText("");
+				textFieldCaracteristicas.setText("");
+				textFieldImagen.setText("");
 			}
 		});
 		btnAñadirAr.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -573,9 +610,12 @@ public class PanelGestionMusica extends JPanel{
 		lblArtistaAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirAlbum.add(lblArtistaAlb);
 		
-		JComboBox comboBoxAlbumAlb = new JComboBox();
-		comboBoxAlbumAlb.setBounds(248, 164, 288, 30);
-		panelAñadirAlbum.add(comboBoxAlbumAlb);
+		JComboBox<String> comboBoxArtistaAlb = new JComboBox<String>();
+		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
+			comboBoxArtistaAlb.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
+		}
+		comboBoxArtistaAlb.setBounds(248, 164, 288, 30);
+		panelAñadirAlbum.add(comboBoxArtistaAlb);
 		
 		JLabel lblGenero = new JLabel("Genero:");
 		lblGenero.setBounds(154, 200, 85, 48);
@@ -591,6 +631,13 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirAlb = new JButton("Añadir");
 		btnAñadirAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText(), (String) comboBoxArtistaAlb.getSelectedItem());
+				
+				textFieldNombreAlbum.setText("");
+				textFieldFecha.setText("");
+				textFieldPortadaAlb.setText("");
+				textFieldGenero.setText("");
 			}
 		});
 		btnAñadirAlb.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -640,7 +687,7 @@ public class PanelGestionMusica extends JPanel{
 		
 /* ---------------------------------------------------------------------------------------------------------------------------- */
 		
-/* ---- Panel eliminar album --------------------------------------------------------------------------------------------------- */
+/* ---- Panel eliminar artista --------------------------------------------------------------------------------------------------- */
 		
 		panelEliminarArtista = new JPanel();
 		panelEliminarArtista.setBounds(275, 175, 880, 500);
