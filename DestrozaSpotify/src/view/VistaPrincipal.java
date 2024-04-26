@@ -5,7 +5,9 @@ import javax.swing.JFrame;
 import controller.ControladorDeEntrada;
 import controller.GestionDeLaInformacion;
 import panel.PanelBienvenida;
+import panel.PanelGestionMusica;
 import panel.PanelLogin;
+import panel.PanelMenuAdministrador;
 import panel.PanelRegistro;
 
 public class VistaPrincipal extends JFrame {
@@ -53,13 +55,13 @@ public class VistaPrincipal extends JFrame {
 		case 3:
 
 			break;
-
+			
 		case 4:
-
+			setContentPane(new PanelMenuAdministrador(this));
 			break;
 
 		case 5:
-
+			setContentPane(new PanelGestionMusica(this));
 			break;
 
 		case 6:
@@ -87,7 +89,7 @@ public class VistaPrincipal extends JFrame {
 		
 		v.setVisible(true);
 
-		v.cambiarDePanel(0);
+		v.cambiarDePanel(5);
 
 
 	}

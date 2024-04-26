@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,8 +13,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import model.Album;
+import model.Artista;
+import model.Cancion;
+import model.Musico;
 import view.VistaPrincipal;
 
 public class GestionBD {
@@ -81,11 +89,9 @@ public class GestionBD {
 					verificarLogin = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
-//					v.cambiarDePanel(3);
+					v.cambiarDePanel(4);
 					verificarLogin = true;
 				}
-				
-				
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
@@ -142,9 +148,7 @@ public class GestionBD {
 				LocalDate fechaSinFormatoAlta = LocalDate.now();
 				DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
-				
-				
-				
+
 				LocalDate fechaSinFormatoBaja = LocalDate.now();
 				DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
 				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
@@ -157,18 +161,16 @@ public class GestionBD {
 //			System.out.println(datosUsuario);
 
 			// TO DO --> cambiarlo
-			String insert = "INSERT INTO cliente VALUES ('"
-					+ datosUsuario.get(0) + "','" + passEncriptada + "','" + datosUsuario.get(2) + "','"
-					+ datosUsuario.get(6) + "', '" + datosUsuario.get(3) + "', '" + datosUsuario.get(5) + "', '"
-					+ datosUsuario.get(7) + "', '" + datosUsuario.get(8) + "', '" + datosUsuario.get(4) + "', '"
-					+ fechaAlta + "', '" + fechaBaja + "')";
+			String insert = "INSERT INTO cliente VALUES ('" + datosUsuario.get(0) + "','" + passEncriptada + "','"
+					+ datosUsuario.get(2) + "','" + datosUsuario.get(6) + "', '" + datosUsuario.get(3) + "', '"
+					+ datosUsuario.get(5) + "', '" + datosUsuario.get(7) + "', '" + datosUsuario.get(8) + "', '"
+					+ datosUsuario.get(4) + "', '" + fechaAlta + "', '" + fechaBaja + "')";
 
 			// Ejecución del INSERT
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
-			
-			
+
 			v.cambiarDePanel(1);
 			// Cierra la consulta
 			consulta.close();
@@ -180,7 +182,161 @@ public class GestionBD {
 		}
 
 	}
-	
-	
 
+	public void insertArtista(String nombre, String imagenArt, String descripcion) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO artista VALUES (?,?,?)");
+			consulta.setString(1, nombre);
+			InputStream imagen = new FileInputStream("imagenes/imagenArt/" + imagenArt + ".jpg");
+			consulta.setBlob(2, imagen);
+			consulta.setString(3, descripcion);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Artista creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public void insertMusico(String caracteristicas, String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO musico VALUES (?,?)");
+			consulta.setString(1, caracteristicas);
+			consulta.setString(2, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Musico creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public ArrayList<Musico> sacarArtistasInformacion() {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Musico> artistas = new ArrayList<Musico>();
+
+		try {
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT * FROM Artista Ar join musico Mu on Ar.Nombre = Mu.Artista;");
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(2);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				artistas.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
+						resultadoConsulta.getString(4)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return artistas;
+	}
+
+	public void insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, String nombreArt) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"INSERT INTO album VALUES (?,?,?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, nombre);
+			consulta.setString(3, fechaPub);
+			consulta.setString(4, genero);
+			InputStream imagen = new FileInputStream("imagenes/portadasAlb/" + imagenAlb + ".jpg");
+			consulta.setBlob(5, imagen);
+			consulta.setString(6, nombreArt);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Album creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+	
+	public ArrayList<Album> sacarAlbumInformacion() {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Album> albums = new ArrayList<Album>();
+		try {
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT * FROM album;");
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(5);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), resultadoConsulta.getString(3) ,resultadoConsulta.getString(4), imagen, resultadoConsulta.getString(6)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return albums;
+	}
+	
+	public void insertCancion(String colaboradores, String nombreCancion, String album) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"INSERT INTO cancion VALUES (?,?,?)");
+			consulta.setString(1, colaboradores);
+			consulta.setString(2, nombreCancion);
+			consulta.setString(3, album);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Cancion creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public void insertAudio(String nombre, int duracion, String imagenMu) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"INSERT INTO audio VALUES (?,?,?)");
+			consulta.setString(1, nombre);
+			consulta.setInt(2, duracion);
+			InputStream imagen = new FileInputStream("imagenes/portadasMu/" + imagenMu + ".jpg");
+			consulta.setBlob(3, imagen);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+	
 }
