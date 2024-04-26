@@ -9,23 +9,24 @@ public class Album {
 
 	private int idAlbum;
 	private String nombre;
-	private Date fechaPublicacion;
-	private ArrayList<Cancion> canciones;
+	private String fechaPublicacion;
+//	private ArrayList<Cancion> canciones;
 	private String genero;
 	private ImageIcon imagen;
+	private String nombreArtista;
 
 	public Album() {
 
 	}
 
-	public Album(int idAlbum, String nombre, Date fechaPublicacion, ArrayList<Cancion> canciones, String genero,
-			ImageIcon imagen) {
+	public Album(int idAlbum, String nombre, String fechaPublicacion, String genero, ImageIcon imagen, String nombreArtista) {
 		this.idAlbum = idAlbum;
 		this.nombre = nombre;
 		this.fechaPublicacion = fechaPublicacion;
-		this.canciones = canciones;
+//		this.canciones = canciones;
 		this.genero = genero;
 		this.imagen = imagen;
+		this.nombreArtista = nombreArtista;
 	}
 
 	public int getIdAlbum() {
@@ -44,21 +45,21 @@ public class Album {
 		this.nombre = nombre;
 	}
 
-	public Date getFechaPublicacion() {
+	public String getFechaPublicacion() {
 		return fechaPublicacion;
 	}
 
-	public void setFechaPublicacion(Date fechaPublicacion) {
+	public void setFechaPublicacion(String fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public ArrayList<Cancion> getCanciones() {
-		return canciones;
-	}
-
-	public void setCanciones(ArrayList<Cancion> canciones) {
-		this.canciones = canciones;
-	}
+//	public ArrayList<Cancion> getCanciones() {
+//		return canciones;
+//	}
+//
+//	public void setCanciones(ArrayList<Cancion> canciones) {
+//		this.canciones = canciones;
+//	}
 
 	public String getGenero() {
 		return genero;
@@ -76,4 +77,12 @@ public class Album {
 		this.imagen = imagen;
 	}
 
+	public String getNombreArtista() {
+		return nombreArtista;
+	}
+
+	public void setNombreArtista(String nombreArtista) {
+		this.nombreArtista = nombreArtista;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
@@ -38,6 +39,11 @@ public class GestionDeLaInformacion {
 		byte[] mensajeEncriptado = cipher.doFinal(mensaje.getBytes());
 
 		return Base64.getEncoder().encodeToString(mensajeEncriptado);
+	}
+	
+	public ArrayList<String> mostrarGeneros (){
+		
+		return gestionBD.sacarGeneros();
 	}
 	
 }

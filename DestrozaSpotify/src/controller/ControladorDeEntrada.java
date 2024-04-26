@@ -5,29 +5,44 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.JOptionPane;
-
-import model.Cliente;
 import view.VistaPrincipal;
 
 public class ControladorDeEntrada {
 
+	/**
+	 * [VARIABLES]
+	 */
 	private ArrayList<String> datosUsuario;
-	private ArrayList<Cliente> usuario;
+//	private ArrayList<Cliente> usuario;
 	private GestionBD gestionBD;
-	
+
+	/**
+	 *  [CONSTRUCTOR]
+	 *  Inicializa el ArrayList de los Datos del usuario y GestionBD
+	 */
 	public ControladorDeEntrada() {
 		datosUsuario = new ArrayList<String>();
 		gestionBD = new GestionBD();
-		usuario = new ArrayList<Cliente>();
+//		usuario = new ArrayList<Cliente>();
 	}
-	
+
+	/**
+	 * [FUNCIÓN] validarInformacionFormulario()
+	 * @param usuarioFormulario
+	 * @param passFormulario
+	 * @param nombreFormulario
+	 * @param apellidoFormulario
+	 * @param idioma
+	 * @param fechaNacFormulario
+	 * @param premiun
+	 * @param v
+	 */
 	public void validarInformacionFormulario(String usuarioFormulario, String passFormulario, String nombreFormulario,
-			String apellidoFormulario, String idioma ,String fechaNacFormulario, boolean premiun, VistaPrincipal v) {
+			String apellidoFormulario, String idioma, String fechaNacFormulario, boolean premiun, VistaPrincipal v) {
 
 //		String usuarioDB, passDB, nombreDB, apellidoDB;
-		
+
 		String textoUsuario = usuarioFormulario;
 		Pattern patron = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
 		Matcher usuario = patron.matcher(textoUsuario);
@@ -71,34 +86,29 @@ public class ControladorDeEntrada {
 //			apellidoDB = apellido.group();
 			datosUsuario.add(apellido.group());
 		}
-		
-		
-		
+
 		datosUsuario.add(fechaNacFormulario);
-		
+
 		LocalDate fechaSinFormato = LocalDate.now();
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String fechaRegistro = formato.format(fechaSinFormato);
-		
+
 		datosUsuario.add(fechaRegistro);
-		
+
 		String rol = "Cliente";
 		datosUsuario.add(rol);
-	
+
 		if (premiun == false) {
 			datosUsuario.add("0");
 		} else {
 			datosUsuario.add("1");
 		}
-		
-		
-		
+
 		datosUsuario.add(idioma);
-		
+
 //		usuario.add(new Cliente(usuarioDB, passDB, nombreDB, rol, apellidoDB, fechaRegistro, false, idioma, fechaNacFormulario, null));
-		
+
 		gestionBD.insertUsuario(datosUsuario, v);
 	}
 
-	
 }

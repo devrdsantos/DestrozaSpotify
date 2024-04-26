@@ -7,11 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -133,7 +130,9 @@ public class PanelRegistro extends JPanel {
 		add(calendarNacimiento);
 		
 		JRadioButton rdbtnPremiun = new JRadioButton("Premiun");
+		rdbtnPremiun.setOpaque(false);
 		rdbtnPremiun.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnPremiun.setForeground(Color.decode("#FFFFFF"));
 		rdbtnPremiun.setBounds(690, 518, 109, 23);
 		add(rdbtnPremiun);
 		
@@ -147,7 +146,7 @@ public class PanelRegistro extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 	
 				String usuarioFormulario = textFieldUsuario.getText();
-//				@SuppressWarnings("deprecation")
+				@SuppressWarnings("deprecation")
 				String passFormulario =  passwordField.getText();
 				String nombreFormulario = textFieldNombre.getText();
 				String apelldioFormulario = textFieldApellido.getText();
