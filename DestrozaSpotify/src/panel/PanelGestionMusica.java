@@ -4,9 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.GestionBD;
 import view.VistaPrincipal;
@@ -14,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 
 public class PanelGestionMusica extends JPanel{
 
@@ -31,6 +38,11 @@ public class PanelGestionMusica extends JPanel{
 	private JPanel panelAñadirAlbum;
 	private JPanel panelEliminarAlbum;
 	private JPanel panelEliminarArtista;
+	
+	private String archivoMusica;
+	private String archivoPortadaMu;
+	private String archivoImagenArt;
+	private String archivoPortadaAlb;
 	
 	
 	public PanelGestionMusica(VistaPrincipal v) {
@@ -224,6 +236,26 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnSubirPortada = new JButton("Subir .jpg");
 		btnSubirPortada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoPortadaMu = selectedFile.getName();
+					textFieldPortada.setText(archivoPortadaMu);
+					Path sourcePath = selectedFile.toPath();
+					Path destinationPath = new File("imagenes/portadasMu", archivoPortadaMu).toPath();
+					
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasMu'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 				
 			}
 		});
@@ -276,7 +308,26 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnSubirWav = new JButton("Subir .wav");
 		btnSubirWav.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .wav");
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoMusica = selectedFile.getName();
+					textFieldAudio.setText(archivoMusica);
+					Path sourcePath = selectedFile.toPath();
+					Path destinationPath = new File("musica", archivoMusica).toPath();
+					
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 			}
 		});
 		btnSubirWav.setBounds(555, 306, 111, 33);
@@ -356,7 +407,7 @@ public class PanelGestionMusica extends JPanel{
 		panelAñadirArtista.add(textFieldNombreArtista);
 
 		JLabel lblImagenAr = new JLabel("Imagen:");
-		lblImagenAr.setBounds(145, 68, 85, 48);
+		lblImagenAr.setBounds(145, 61, 85, 48);
 		lblImagenAr.setForeground(Color.decode("#ffffff"));
 		lblImagenAr.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirArtista.add(lblImagenAr);
@@ -369,6 +420,26 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnSubirImagen = new JButton("Subir .jpg");
 		btnSubirImagen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoImagenArt = selectedFile.getName();
+					textFieldImagen.setText(archivoImagenArt);
+					Path sourcePath = selectedFile.toPath();
+					Path destinationPath = new File("imagenes/imagenArt", archivoImagenArt).toPath();
+					
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/imagenArt'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 				
 			}
 		});
@@ -469,6 +540,26 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnSubirPortadaAlb = new JButton("Subir .jpg");
 		btnSubirPortadaAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoPortadaAlb = selectedFile.getName();
+					textFieldPortadaAlb.setText(archivoPortadaAlb);
+					Path sourcePath = selectedFile.toPath();
+					Path destinationPath = new File("imagenes/portadasAlb", archivoPortadaAlb).toPath();
+					
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasAlb'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 				
 			}
 		});
