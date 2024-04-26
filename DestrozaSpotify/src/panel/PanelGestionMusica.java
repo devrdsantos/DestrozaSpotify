@@ -397,6 +397,17 @@ public class PanelGestionMusica extends JPanel{
 		comboBoxAlbumAr.setBounds(248, 180, 288, 30);
 		panelAñadirArtista.add(comboBoxAlbumAr);
 		
+		JLabel lblCaracteristicas = new JLabel("Caracteristicas:");
+		lblCaracteristicas.setBounds(86, 222, 150, 48);
+		lblCaracteristicas.setForeground(Color.decode("#ffffff"));
+		lblCaracteristicas.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirArtista.add(lblCaracteristicas);
+		
+		JTextField textFieldCaracteristicas = new JTextField();
+		textFieldCaracteristicas.setBounds(248, 232, 288, 30);
+		textFieldCaracteristicas.setColumns(10);
+		panelAñadirArtista.add(textFieldCaracteristicas);
+		
 		JButton btnAñadirAr = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -474,6 +485,17 @@ public class PanelGestionMusica extends JPanel{
 		JComboBox comboBoxAlbumAlb = new JComboBox();
 		comboBoxAlbumAlb.setBounds(248, 164, 288, 30);
 		panelAñadirAlbum.add(comboBoxAlbumAlb);
+		
+		JLabel lblGenero = new JLabel("Genero:");
+		lblGenero.setBounds(154, 200, 85, 48);
+		lblGenero.setForeground(Color.decode("#ffffff"));
+		lblGenero.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirAlbum.add(lblGenero);
+		
+		JTextField textFieldGenero = new JTextField();
+		textFieldGenero.setBounds(248, 210, 288, 30);
+		textFieldGenero.setColumns(10);
+		panelAñadirAlbum.add(textFieldGenero);
 		
 		JButton btnAñadirAlb = new JButton("Añadir");
 		btnAñadirAlb.addActionListener(new ActionListener() {
