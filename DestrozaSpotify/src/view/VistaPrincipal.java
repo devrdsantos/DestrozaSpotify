@@ -5,7 +5,11 @@ import javax.swing.JFrame;
 import controller.ControladorDeEntrada;
 import controller.GestionDeLaInformacion;
 import panel.PanelBienvenida;
+import panel.PanelDescubrirMusica;
+import panel.PanelDescubrirPodcast;
 import panel.PanelLogin;
+import panel.PanelMenuCliente;
+import panel.PanelMiBiblioteca;
 import panel.PanelRegistro;
 
 public class VistaPrincipal extends JFrame {
@@ -40,9 +44,8 @@ public class VistaPrincipal extends JFrame {
 		case 2:
 			setContentPane(new PanelRegistro(this, this.controlador));
 			break;
-
 		case 3:
-
+			setContentPane(new PanelMenuCliente(this, this.gestionINF));
 			break;
 
 		case 4:
@@ -61,7 +64,13 @@ public class VistaPrincipal extends JFrame {
 			break;
 
 		case 8:
-
+			setContentPane(new PanelDescubrirMusica(this, this.gestionINF));
+			break;
+		case 9:
+			setContentPane(new PanelDescubrirPodcast(this, this.gestionINF));
+			break;
+		case 10:
+			setContentPane(new PanelMiBiblioteca(this, this.gestionINF));
 			break;
 
 		}
@@ -72,10 +81,7 @@ public class VistaPrincipal extends JFrame {
 		
 		v.setVisible(true);
 
-		v.cambiarDePanel(0);
-		
-		System.out.println("Hola, tenia que hacer un cambio para commitear mi rama! SRY");
-
+		v.cambiarDePanel(3);
 	}
 
 }

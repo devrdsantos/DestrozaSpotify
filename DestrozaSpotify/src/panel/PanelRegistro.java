@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -20,6 +18,7 @@ import javax.swing.SwingConstants;
 import controller.ControladorDeEntrada;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import view.VistaPrincipal;
+import javax.swing.JRadioButton;
 
 public class PanelRegistro extends JPanel {
 	
@@ -32,6 +31,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private SimpleDateFormat formato;
+	private boolean premiun = false;
 	
 	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador) {
 		
@@ -79,7 +79,7 @@ public class PanelRegistro extends JPanel {
 			}
 		});
 		lblTienesCuenta.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTienesCuenta.setBounds(639, 599, 211, 20);
+		lblTienesCuenta.setBounds(639, 592, 211, 20);
 		lblTienesCuenta.setForeground(Color.decode("#BE6DB7"));
 		add(lblTienesCuenta);
 		
@@ -129,6 +129,11 @@ public class PanelRegistro extends JPanel {
 		calendarNacimiento.setBounds(507, 458, 266, 35);
 		add(calendarNacimiento);
 		
+		JRadioButton rdbtnPremiun = new JRadioButton("Premiun");
+		rdbtnPremiun.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnPremiun.setBounds(690, 518, 109, 23);
+		add(rdbtnPremiun);
+		
 		JButton btnCrearCuenta = new JButton("Crear cuenta");
 		btnCrearCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,15 +144,19 @@ public class PanelRegistro extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 	
 				String usuarioFormulario = textFieldUsuario.getText();
-//				@SuppressWarnings("deprecation")
+				@SuppressWarnings("deprecation")
 				String passFormulario =  passwordField.getText();
 				String nombreFormulario = textFieldNombre.getText();
 				String apelldioFormulario = textFieldApellido.getText();
 				String idioma = (String) comboBoxIdioma.getSelectedItem();
-					
+				
+				if (rdbtnPremiun.isSelected()) {
+					premiun = true;
+				}
+				
 				String fechaNac = formato.format(calendarNacimiento.getDate());
 				
-				controlador.validarInformacionFormulario(usuarioFormulario, passFormulario, nombreFormulario, apelldioFormulario, idioma, fechaNac, v);
+				controlador.validarInformacionFormulario(usuarioFormulario, passFormulario, nombreFormulario, apelldioFormulario, idioma, fechaNac, premiun, v);
 					
 			}
 		});
@@ -157,8 +166,10 @@ public class PanelRegistro extends JPanel {
 		btnCrearCuenta.setForeground(Color.decode("#FFFFFF"));
 		btnCrearCuenta.setBorderPainted(false);
 		btnCrearCuenta.setBackground(Color.decode("#C67ACE"));
-		btnCrearCuenta.setBounds(464, 589, 150, 39);
+		btnCrearCuenta.setBounds(465, 582, 150, 39);
 		add(btnCrearCuenta);
+		
+		
 		
 		
 		
