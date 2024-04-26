@@ -17,7 +17,7 @@ public class PanelMenuCliente extends JPanel {
 
 	
 	
-	public PanelMenuCliente(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
+	public PanelMenuCliente(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 	setSize(1200, 720);
 	setVisible(true);
 	setLayout(null);
