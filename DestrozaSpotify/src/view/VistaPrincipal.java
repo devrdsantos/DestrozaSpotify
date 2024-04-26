@@ -32,7 +32,7 @@ public class VistaPrincipal extends JFrame {
 		controlador =  new ControladorDeEntrada();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1200, 720);
+		setSize(1600, 900);
 		setVisible(true);
 		setTitle("Destruye Spotify");
 		setResizable(false);

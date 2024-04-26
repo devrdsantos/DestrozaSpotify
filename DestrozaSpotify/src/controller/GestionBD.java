@@ -200,12 +200,8 @@ public class GestionBD {
 				ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 
 				// Agrega los generos que tiene la tabla album al ArrayList generos donde
-				// 1 -> IDCine
-				// 2 -> nombreCine
-				// 3 -> Localidad
-				// 4 -> Dirección
 				while (resultadoConsulta.next()) {
-					generos.add((resultadoConsulta.getString(0)
+					generos.add((resultadoConsulta.getString(1)
 							));
 				}
 				// System.out.println("Cerrando Consulta a la tabla album..");

@@ -21,7 +21,7 @@ import view.VistaPrincipal;
 public class PanelDescubrirMusica extends JPanel {
 
 	public PanelDescubrirMusica (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
-		setSize(1200, 720);
+		setSize(1600, 900);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
