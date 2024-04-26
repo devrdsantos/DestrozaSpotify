@@ -28,7 +28,7 @@ public class VistaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
 		setVisible(true);
-		setTitle("Cines ESA");
+		setTitle("Destroza Spotify");
 		setResizable(false);
 	}
 
