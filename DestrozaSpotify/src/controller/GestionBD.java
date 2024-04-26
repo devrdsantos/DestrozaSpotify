@@ -85,7 +85,7 @@ public class GestionBD {
 					&& pass.equals(passDesencriptada)) {
 				if (resultadoConsulta.getString(3).equals("Cliente")) {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
-//					v.cambiarDePanel(3);
+					v.cambiarDePanel(3);
 					verificarLogin = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
@@ -182,6 +182,41 @@ public class GestionBD {
 		}
 
 	}
+
+	
+	/**
+	 *  [MÉTODO] sacarGeneros() trabaja con un ArrayList de objetos de tipo Album - - -
+	 * @return generos
+	 */
+		// - - - - - - - - - - - - - -
+		public ArrayList<String> sacarGeneros() {
+			// Crea el ArrayList
+			ArrayList<String> generos = new ArrayList<String>();
+			try {
+				// System.out.println("Iniciando consulta..");
+				// QUERY que selecciona todo de la tabla CINE
+				String query = "SELECT DISTINCT Genero FROM album;";
+				// Prepara la consulta para mandarla a la BD
+				PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+				// Ejecuta la consulta
+				ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+				// Agrega los generos que tiene la tabla album al ArrayList generos donde
+				while (resultadoConsulta.next()) {
+					generos.add((resultadoConsulta.getString(1)
+							));
+				}
+				// System.out.println("Cerrando Consulta a la tabla album..");
+				consultaPreparada.close();
+			} catch (SQLException e) {
+				// System.out.println("Conexion incorrecta con la tabla Album");
+				e.printStackTrace();
+			}
+			// Devuelve los generos
+			return generos;
+		}
+	
+
 
 	public void insertArtista(String nombre, String imagenArt, String descripcion) {
 		try {
