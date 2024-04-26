@@ -15,23 +15,33 @@ import panel.PanelRegistro;
 public class VistaPrincipal extends JFrame {
 
 	/**
-	 * 
+	 * [VARIABLES]
 	 */
 	private static final long serialVersionUID = 1L;
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
 	
+	
+	/**
+	 * [CONSTRUCTOR]
+	 * Inicializa el ControladorDeEntrada y GestionDeLaInformacion
+	 * Le otorga valores al Frame en donde se mostrará nuestro programa.
+	 */
 	public VistaPrincipal() {
 		gestionINF =  new GestionDeLaInformacion();
 		controlador =  new ControladorDeEntrada();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1200, 720);
+		setSize(1600, 900);
 		setVisible(true);
-		setTitle("Cines ESA");
+		setTitle("Destruye Spotify");
 		setResizable(false);
 	}
 
+	/**
+	 * [FUNCIÓN] cambiarDePanel(int i)
+	 * @param i -> Recibe el número del Panel que va a mostrar
+	 */
 	public void cambiarDePanel(int i) {
 
 		switch (i) {
@@ -76,12 +86,20 @@ public class VistaPrincipal extends JFrame {
 		}
 	}
 
+	
+	/**
+	 * [FUNCIÓN] main()
+	 * @param args
+	 * Aquí se ejecuta nuestro programa. Se muestra el Frame y se ejecuta cambiarDePanel(int i)
+	 */
 	public static void main(String[] args) {
 		VistaPrincipal v = new VistaPrincipal();
 		
 		v.setVisible(true);
 
+
 		v.cambiarDePanel(3);
+
 	}
 
 }

@@ -17,8 +17,8 @@ public class PanelMenuCliente extends JPanel {
 
 	
 	
-	public PanelMenuCliente(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
-	setSize(1200, 720);
+	public PanelMenuCliente(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+	setSize(1600, 900);
 	setVisible(true);
 	setLayout(null);
 	setFont(new Font("Tahoma", Font.BOLD, 11));
