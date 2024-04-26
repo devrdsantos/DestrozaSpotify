@@ -63,7 +63,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(1);
+				v.cambiarDePanel(4);
 			}
 		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -360,6 +360,8 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), (String) comboBoxAlbum.getSelectedItem());
 				gestionBD.insertAudio(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
 				
+				v.cambiarDePanel(5);
+				
 				textFieldNombreCancion.setText("");
 				textFieldDuracion.setText("");
 				textFieldColaboradores.setText("");
@@ -515,6 +517,8 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
 				gestionBD.insertMusico(textFieldCaracteristicas.getText(), textFieldNombreArtista.getText());
 				
+				v.cambiarDePanel(5);
+				
 				textFieldNombreArtista.setText("");
 				textFieldDescripcion.setText("");
 				textFieldCaracteristicas.setText("");
@@ -632,7 +636,9 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText(), (String) comboBoxArtistaAlb.getSelectedItem());
+				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), (String) comboBoxArtistaAlb.getSelectedItem());
+				
+				v.cambiarDePanel(5);
 				
 				textFieldNombreAlbum.setText("");
 				textFieldFecha.setText("");
