@@ -9,15 +9,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.GestionBD;
-import model.Artista;
-import model.Musico;
 import view.VistaPrincipal;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -33,9 +30,7 @@ public class PanelGestionMusica extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private GestionBD gestionBD;
-	
-	private ArrayList<Musico> artistas;
-	
+
 	private JPanel panelAñadirMusica;
 	private JPanel panelEliminarMusica;
 	private JPanel panelModificarMusica;
@@ -52,7 +47,6 @@ public class PanelGestionMusica extends JPanel{
 	
 	public PanelGestionMusica(VistaPrincipal v) {
 		gestionBD = new GestionBD();
-		artistas = new ArrayList<Musico>();
 	
 		setSize(1200, 720);
 		setVisible(true);
@@ -404,6 +398,21 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestionBD.deleteCancion(textFieldEliminarCancion.getText());
+				gestionBD.deleteAudio(textFieldEliminarCancion.getText());
+				
+				File f = new File("imagenes/portadasMu/" + textFieldEliminarCancion.getText().replace(" ", "") + ".jpg"); 
+				File f1 = new File("musica/" + textFieldEliminarCancion.getText().replace(" ", "") + ".wav");
+				
+				f.delete();
+				f1.delete();
+				
+				v.cambiarDePanel(5);
+				
+				textFieldEliminarCancion.setText("");
+				
+			
 			}
 		});
 		btnEliminar.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -680,6 +689,17 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarAlb = new JButton("Eliminar");
 		btnEliminarAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestionBD.deleteAlbum(textFieldEliminarAlbum.getText());
+				
+				File f = new File("imagenes/portadasAlb/"+ textFieldEliminarAlbum.getText().replace(" ", "") + ".jpg");
+				
+				f.delete();
+				
+				textFieldEliminarAlbum.setText("");
+				
+				v.cambiarDePanel(5);
+				
 			}
 		});
 		btnEliminarAlb.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -716,6 +736,16 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarArt = new JButton("Eliminar");
 		btnEliminarArt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestionBD.deleteArtista(textFieldEliminarArtista.getText());
+				gestionBD.deleteMusico(textFieldEliminarArtista.getText());
+				
+				File f = new File("imagenes/imagenArt/" + textFieldEliminarArtista + ".pgj");
+				
+				f.delete();
+				
+				textFieldEliminarArtista.setText("");
+				
 			}
 		});
 		btnEliminarArt.setFont(new Font("Verdana", Font.BOLD, 16));

@@ -183,40 +183,38 @@ public class GestionBD {
 
 	}
 
-	
 	/**
-	 *  [MÉTODO] sacarGeneros() trabaja con un ArrayList de objetos de tipo Album - - -
+	 * [MÉTODO] sacarGeneros() trabaja con un ArrayList de objetos de tipo Album - -
+	 * -
+	 * 
 	 * @return generos
 	 */
-		// - - - - - - - - - - - - - -
-		public ArrayList<String> sacarGeneros() {
-			// Crea el ArrayList
-			ArrayList<String> generos = new ArrayList<String>();
-			try {
-				// System.out.println("Iniciando consulta..");
-				// QUERY que selecciona todo de la tabla CINE
-				String query = "SELECT DISTINCT Genero FROM album;";
-				// Prepara la consulta para mandarla a la BD
-				PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-				// Ejecuta la consulta
-				ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+	// - - - - - - - - - - - - - -
+	public ArrayList<String> sacarGeneros() {
+		// Crea el ArrayList
+		ArrayList<String> generos = new ArrayList<String>();
+		try {
+			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
+			String query = "SELECT DISTINCT Genero FROM album;";
+			// Prepara la consulta para mandarla a la BD
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			// Ejecuta la consulta
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 
-				// Agrega los generos que tiene la tabla album al ArrayList generos donde
-				while (resultadoConsulta.next()) {
-					generos.add((resultadoConsulta.getString(1)
-							));
-				}
-				// System.out.println("Cerrando Consulta a la tabla album..");
-				consultaPreparada.close();
-			} catch (SQLException e) {
-				// System.out.println("Conexion incorrecta con la tabla Album");
-				e.printStackTrace();
+			// Agrega los generos que tiene la tabla album al ArrayList generos donde
+			while (resultadoConsulta.next()) {
+				generos.add((resultadoConsulta.getString(1)));
 			}
-			// Devuelve los generos
-			return generos;
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
 		}
-	
-
+		// Devuelve los generos
+		return generos;
+	}
 
 	public void insertArtista(String nombre, String imagenArt, String descripcion) {
 		try {
@@ -285,8 +283,7 @@ public class GestionBD {
 
 	public void insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, String nombreArt) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"INSERT INTO album VALUES (?,?,?,?,?,?)");
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO album VALUES (?,?,?,?,?,?)");
 			consulta.setString(1, null);
 			consulta.setString(2, nombre);
 			consulta.setString(3, fechaPub);
@@ -307,20 +304,21 @@ public class GestionBD {
 		}
 
 	}
-	
+
 	public ArrayList<Album> sacarAlbumInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT * FROM album;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM album;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Blob imagenBlob = resultadoConsulta.getBlob(5);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), resultadoConsulta.getString(3) ,resultadoConsulta.getString(4), imagen, resultadoConsulta.getString(6)));
+				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4), imagen,
+						resultadoConsulta.getString(6)));
 
 			}
 
@@ -330,11 +328,10 @@ public class GestionBD {
 		}
 		return albums;
 	}
-	
+
 	public void insertCancion(String colaboradores, String nombreCancion, String album) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"INSERT INTO cancion VALUES (?,?,?)");
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cancion VALUES (?,?,?)");
 			consulta.setString(1, colaboradores);
 			consulta.setString(2, nombreCancion);
 			consulta.setString(3, album);
@@ -354,8 +351,7 @@ public class GestionBD {
 
 	public void insertAudio(String nombre, int duracion, String imagenMu) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"INSERT INTO audio VALUES (?,?,?)");
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
 			consulta.setString(1, nombre);
 			consulta.setInt(2, duracion);
 			InputStream imagen = new FileInputStream("imagenes/portadasMu/" + imagenMu + ".jpg");
@@ -373,5 +369,94 @@ public class GestionBD {
 		}
 
 	}
+
+	public void deleteCancion(String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `cancion` WHERE `NombreCancion` = ? ");
+			consulta.setString(1, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "La cancion " + nombre + " eliminada correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public void deleteAudio(String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `audio` WHERE `Nombre` = ? ");
+			consulta.setString(1, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El audio " + nombre + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public void deleteAlbum(String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Nombre` = ? ");
+			consulta.setString(1, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El album " + nombre + " eliminada correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
+	public void deleteArtista(String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `artista` WHERE `Nombre` = ? ");
+			consulta.setString(1, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El artista " + nombre + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
 	
+	public void deleteMusico(String nombre) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `Nombre` = ? ");
+			consulta.setString(1, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El musico " + nombre + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
 }
