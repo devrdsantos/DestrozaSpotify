@@ -13,6 +13,11 @@ import view.VistaPrincipal;
 
 public class PanelDescubrirPodcast extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PanelDescubrirPodcast(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);

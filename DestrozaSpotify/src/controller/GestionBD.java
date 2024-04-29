@@ -20,6 +20,7 @@ import model.Album;
 import model.Artista;
 import model.Cancion;
 import model.Musico;
+import model.Podcaster;
 import view.VistaPrincipal;
 
 public class GestionBD {
@@ -261,8 +262,8 @@ public class GestionBD {
 		ArrayList<Musico> artistas = new ArrayList<Musico>();
 
 		try {
-			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT * FROM Artista Ar join musico Mu on Ar.Nombre = Mu.Artista;");
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Ar.Nombre, Ar.Imagen, Ar.descripcion, Mu.Caracteristicas FROM Artista Ar join musico Mu on Ar.Nombre = Mu.Artista;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -349,12 +350,33 @@ public class GestionBD {
 
 	}
 
-	public void insertAudio(String nombre, int duracion, String imagenMu) {
+	public void insertAudioMu(String nombre, int duracion, String imagenMu) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
 			consulta.setString(1, nombre);
 			consulta.setInt(2, duracion);
 			InputStream imagen = new FileInputStream("imagenes/portadasMu/" + imagenMu + ".jpg");
+			consulta.setBlob(3, imagen);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+	
+	public void insertAudioPodc(String nombre, int duracion, String imagenPodc) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
+			consulta.setString(1, nombre);
+			consulta.setInt(2, duracion);
+			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodc + ".jpg");
 			consulta.setBlob(3, imagen);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
@@ -440,7 +462,7 @@ public class GestionBD {
 		}
 
 	}
-	
+
 	public void deleteMusico(String nombre) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `Nombre` = ? ");
@@ -455,6 +477,70 @@ public class GestionBD {
 		} catch (Exception e) {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public void insertPodcaster(String nombrePodcaster, String genero) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?)");
+			consulta.setString(1, genero);
+			consulta.setString(2, nombrePodcaster);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Podcaster creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public ArrayList<Podcaster> sacarPodcasterInformacion() {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Podcaster> podcasters = new ArrayList<Podcaster>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Po.Genero, Ar.Nombre, Ar.Imagen, Ar.descripcion FROM podcaster Po \r\n"
+					+ "join artista Ar on Po.Podcaster = Ar.Nombre;");
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				podcasters.add(new Podcaster(resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
+						resultadoConsulta.getString(2)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return podcasters;
+	}
+
+	public void insertPodcast(String descripcion, String nombrePodcast, String podcaster) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?)");
+			consulta.setString(1, descripcion);
+			consulta.setString(2, nombrePodcast);
+			consulta.setString(3, podcaster);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Podcast creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
 
 	}

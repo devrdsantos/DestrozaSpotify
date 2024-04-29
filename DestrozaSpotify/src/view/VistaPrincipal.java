@@ -6,6 +6,7 @@ import controller.ControladorDeEntrada;
 import controller.GestionDeLaInformacion;
 import panel.PanelBienvenida;
 import panel.PanelGestionMusica;
+import panel.PanelGestionPodcast;
 import panel.PanelDescubrirMusica;
 import panel.PanelDescubrirPodcast;
 import panel.PanelLogin;
@@ -70,7 +71,7 @@ public class VistaPrincipal extends JFrame {
 			break;
 
 		case 6:
-
+			setContentPane(new PanelGestionPodcast(this));
 			break;
 		case 7:
 
@@ -100,7 +101,7 @@ public class VistaPrincipal extends JFrame {
 		
 		v.setVisible(true);
 
-		v.cambiarDePanel(3);
+		v.cambiarDePanel(6);
 
 
 	}

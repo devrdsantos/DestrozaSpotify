@@ -10,14 +10,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JSeparator;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class PanelDePrueba extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PanelDePrueba () {
 	setSize(1600, 900);
 	setVisible(true);

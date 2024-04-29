@@ -13,6 +13,11 @@ import view.VistaPrincipal;
 
 public class PanelMiBiblioteca extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PanelMiBiblioteca(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);

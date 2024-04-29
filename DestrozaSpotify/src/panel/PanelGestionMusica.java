@@ -48,7 +48,7 @@ public class PanelGestionMusica extends JPanel{
 	public PanelGestionMusica(VistaPrincipal v) {
 		gestionBD = new GestionBD();
 	
-		setSize(1200, 720);
+		setSize(1600, 900);
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#142850"));
@@ -352,7 +352,7 @@ public class PanelGestionMusica extends JPanel{
 //				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
 				
 				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), (String) comboBoxAlbum.getSelectedItem());
-				gestionBD.insertAudio(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
+				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
 				
 				v.cambiarDePanel(5);
 				
