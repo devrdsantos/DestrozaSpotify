@@ -31,7 +31,7 @@ public class PanelAlbum extends JPanel{
 			duracionMax = duracionMax + gestionINF.mostrarCancion().get(i).getDuracion();
 		}
 		
-		setSize(1600, 900);
+		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));;
