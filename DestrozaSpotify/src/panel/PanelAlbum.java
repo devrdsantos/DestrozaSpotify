@@ -66,6 +66,7 @@ public class PanelAlbum extends JPanel{
 		JList<String> listAlbums = new JList<String>();
 		listAlbums.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
 				v.cambiarDePanel(12);
 			}
 		});
