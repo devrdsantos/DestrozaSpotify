@@ -18,6 +18,7 @@ public class GestionDeLaInformacion {
 	
 	private String artista;
 	private String album;
+	private int posicion;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -81,9 +82,19 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarCancionPorArtista(album);
 	}
 	
+
 	public ArrayList<Album> mostrarArtistas(){
 		return gestionBD.sacarAlbumInformacion();
 	}
 	
+
+	public void indiceDeLaCancion(int posicion) {
+		this.posicion = posicion;
+	}
+
+	public int devolcerIndiceDeLaCancion() {
+		return posicion;
+	}
+
 	
 }

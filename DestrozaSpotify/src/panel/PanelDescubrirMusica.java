@@ -111,7 +111,8 @@ public class PanelDescubrirMusica extends JPanel {
 		JList<String> listaArtistasPorGenero = new JList<String>();
 		listaArtistasPorGenero.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				
+				gestionINF.artistaSeleccionado(listaArtistasPorGenero.getSelectedValue());
+				v.cambiarDePanel(7);
 			}
 		});
 		DefaultListModel<String> artistaPorGenero = new DefaultListModel<String>();
