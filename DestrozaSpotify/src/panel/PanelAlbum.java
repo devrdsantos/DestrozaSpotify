@@ -85,18 +85,18 @@ public class PanelAlbum extends JPanel{
 		modeloArtista.addElement("Canciones: " + gestionINF.mostrarCancion().size());
 		modeloArtista.addElement("Duracion: " + duracionMax + " segundos");
 		listArtista.setModel(modeloArtista);
-		listArtista.setBounds(1025, 230, 400, 200);
+		listArtista.setBounds(855, 230, 400, 200);
 		add(listArtista);
 		
 		JLabel lblInformacion = new JLabel("Informacion :");
 		lblInformacion.setForeground(Color.WHITE);
 		lblInformacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInformacion.setBounds(1025, 179, 350, 40);
+		lblInformacion.setBounds(855, 179, 350, 40);
 		add(lblInformacion);
 		
 		JLabel lblImagenArtista = new JLabel("");
 		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(0).getImagen());
-		lblImagenArtista.setBounds(1125, 480, 200, 200);
+		lblImagenArtista.setBounds(965, 480, 200, 200);
 		add(lblImagenArtista);
 		
 		

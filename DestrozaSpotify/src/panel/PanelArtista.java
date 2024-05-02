@@ -32,8 +32,8 @@ public class PanelArtista extends JPanel{
 	public PanelArtista(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 	//ELIMINARME!!!
-	gestionINF.artistaSeleccionado("Neoni");
-	gestionINF.albumSeleccionado("Neoni Collection");
+	gestionINF.artistaSeleccionado("Artemas");
+	gestionINF.albumSeleccionado("Pretty");
 	
 	
 	setSize(1600, 900);
@@ -96,18 +96,18 @@ public class PanelArtista extends JPanel{
 	modeloArtista.addElement("Genero: \n" + gestionINF.mostrarAlbums().get(0).getGenero());
 	modeloArtista.addElement("Descripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
 	listArtista.setModel(modeloArtista);
-	listArtista.setBounds(1025, 230, 400, 200);
+	listArtista.setBounds(855, 230, 400, 200);
 	add(listArtista);
 	
 	JLabel lblInformacion = new JLabel("Informacion :");
 	lblInformacion.setForeground(Color.WHITE);
 	lblInformacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	lblInformacion.setBounds(1025, 201, 130, 20);
+	lblInformacion.setBounds(855, 201, 130, 20);
 	add(lblInformacion);
 	
 	JLabel lblImagenArtista = new JLabel("");
 	lblImagenArtista.setIcon(gestionINF.mostrarArtista().get(0).getImagen());
-	lblImagenArtista.setBounds(1125, 480, 200, 200);
+	lblImagenArtista.setBounds(965, 480, 200, 200);
 	add(lblImagenArtista);
 	
 	

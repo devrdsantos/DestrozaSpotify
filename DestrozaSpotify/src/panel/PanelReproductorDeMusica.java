@@ -108,8 +108,6 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!random) {
-//					System.out.println("no estoy en ramdom");
-
 					// Para que vuelva atras sin dar errores
 					if (intinerador == 0) {
 						intinerador = gestionINF.mostrarCancion().size() - 1;
@@ -118,33 +116,21 @@ public class PanelReproductorDeMusica extends JPanel {
 					}
 
 					sonido.setCancionEnReproduccion(intinerador);
-//					estadoBoton = false;
+
 					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
 					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-//					lblArtista.setText("<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
+
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
-//					random = false;
+
 					btnPlay.setVisible(true);
 					btnPlay2.setVisible(false);
 				} else {
-//					System.out.println("estoy en ramdom");
-//					numeroRandom = controladorDeSonido.ramdom();
-//					controladorDeSonido.setCancionEnReproduccion(numeroRandom);
-//					controladorDeSonido.reproducir(numeroRandom);
-//					estadoBoton = false;
-//					lblPortada.setIcon(gestion.lecturaImagenEnBD().get(numeroRandom).getPortada());
-//					lblTitulo.setText("<html>" + gestion.lecturaImagenEnBD().get(numeroRandom).getTitulo()+ "</html>");
-//					lblAutor.setText("<html>" + gestion.lecturaImagenEnBD().get(numeroRandom).getAutor() + "</html>");
-//					btnBucle.setForeground(new Color(0, 0, 0));
-//					btnPlay.setVisible(true);
-//					btnPlay2.setVisible(false);
 
-//					System.out.println("estoy en ramdom");
 					intinerador = sonido.ramdom();
-//					controladorDeSonido.setCancionEnReproduccion(numeroRandom);
+
 					sonido.reproducir(intinerador);
-//					estadoBoton = false;
+
 					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
 					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
 					lblArtista.setText("<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
@@ -171,8 +157,6 @@ public class PanelReproductorDeMusica extends JPanel {
 					sonido.setCancionEnReproduccion(intinerador);
 					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
 					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-//					lblArtista.setText(
-//							"<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(true);
@@ -210,11 +194,8 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnAleatorio.setForeground(new Color(255, 170, 67));
 					random = false;
 				} else {
-
-//					controladorDeSonido.ramdom();
 					btnAleatorio.setForeground(new Color(0, 255, 0));
 					sonido.reproducir(intinerador);
-//					System.out.println("ramdom activo");
 					random = true;
 				}
 			}
@@ -233,8 +214,6 @@ public class PanelReproductorDeMusica extends JPanel {
 				if (bucle) {
 					btnPlay.setVisible(true);
 					btnPlay2.setVisible(false);
-//					System.out.println(bucle);
-//					System.out.println("bucle no activo");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 
@@ -243,8 +222,6 @@ public class PanelReproductorDeMusica extends JPanel {
 				} else {
 					btnPlay.setVisible(false);
 					btnPlay2.setVisible(true);
-//					System.out.println(bucle);
-//					System.out.println("bucle activo");
 					btnBucle.setForeground(new Color(0, 255, 0));
 					bucle = true;
 					sonido.bucle(bucle, intinerador);
@@ -261,14 +238,14 @@ public class PanelReproductorDeMusica extends JPanel {
 		add(btnBucle);
 
 		lblCancion = new JLabel("Pruebas");
-		lblCancion.setText(gestionINF.mostrarCancion().get(intinerador).getNombre());
+		lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
 		lblCancion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCancion.setForeground(new Color(255, 255, 255));
 		lblCancion.setBounds(270, 140, 240, 50);
 		add(lblCancion);
 
 		lblArtista = new JLabel("Pruebas");
-		lblArtista.setText(gestionINF.devolverArtista());
+		lblArtista.setText("<html>" +gestionINF.devolverArtista() + "</html>");
 		lblArtista.setForeground(new Color(255, 255, 255));
 		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblArtista.setBounds(270, 188, 240, 30);
