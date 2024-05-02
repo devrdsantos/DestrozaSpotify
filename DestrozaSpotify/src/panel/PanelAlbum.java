@@ -37,7 +37,7 @@ public class PanelAlbum extends JPanel{
 		setBackground(Color.decode("#222222"));;
 		
 		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(74, 32, 137, 52);
+		btnAtras.setBounds(32, 32, 137, 52);
 		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
 		
 			/**

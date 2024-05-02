@@ -43,14 +43,14 @@ public class PanelReproductorDeMusica extends JPanel {
 
 		intinerador = gestionINF.devolcerIndiceDeLaCancion();
 		
-		setSize(1600, 900);
+		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
 
 		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(74, 32, 137, 52);
+		btnAtras.setBounds(32, 32, 137, 52);
 		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
 
 		/**
@@ -70,7 +70,7 @@ public class PanelReproductorDeMusica extends JPanel {
 
 		lblPortada = new JLabel();
 		lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-		lblPortada.setBounds(550, 140, 500, 500);
+		lblPortada.setBounds(450, 126, 325, 375);
 		add(lblPortada);
 
 		btnPlay = new JButton("Play");
@@ -86,7 +86,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnPlay.setBorderPainted(false);
 		btnPlay.setBackground(new Color(63, 61, 61));
-		btnPlay.setBounds(735, 678, 130, 52);
+		btnPlay.setBounds(569, 542, 130, 52);
 		add(btnPlay);
 
 		btnPlay2 = new JButton("Stop");
@@ -101,7 +101,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay2.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnPlay2.setBorderPainted(false);
 		btnPlay2.setBackground(new Color(63, 61, 61));
-		btnPlay2.setBounds(735, 678, 130, 52);
+		btnPlay2.setBounds(569, 542, 130, 52);
 		add(btnPlay2);
 
 		btnAnterior = new JButton("<");
@@ -146,7 +146,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAnterior.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAnterior.setBorderPainted(false);
 		btnAnterior.setBackground(new Color(63, 61, 61));
-		btnAnterior.setBounds(550, 678, 130, 52);
+		btnAnterior.setBounds(384, 542, 130, 52);
 		add(btnAnterior);
 
 		btnSiguente = new JButton(">");
@@ -184,7 +184,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnSiguente.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnSiguente.setBorderPainted(false);
 		btnSiguente.setBackground(new Color(63, 61, 61));
-		btnSiguente.setBounds(920, 678, 130, 52);
+		btnSiguente.setBounds(754, 542, 130, 52);
 		add(btnSiguente);
 
 		btnAleatorio = new JButton("Aleatorio");
@@ -205,7 +205,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAleatorio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAleatorio.setBorderPainted(false);
 		btnAleatorio.setBackground(new Color(63, 61, 61));
-		btnAleatorio.setBounds(360, 678, 130, 52);
+		btnAleatorio.setBounds(194, 542, 130, 52);
 		add(btnAleatorio);
 
 		btnBucle = new JButton("Bucle");
@@ -234,21 +234,21 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnBucle.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnBucle.setBorderPainted(false);
 		btnBucle.setBackground(new Color(63, 61, 61));
-		btnBucle.setBounds(1110, 678, 130, 52);
+		btnBucle.setBounds(944, 542, 130, 52);
 		add(btnBucle);
 
 		lblCancion = new JLabel("Pruebas");
 		lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
 		lblCancion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCancion.setForeground(new Color(255, 255, 255));
-		lblCancion.setBounds(270, 140, 240, 50);
+		lblCancion.setBounds(168, 139, 240, 50);
 		add(lblCancion);
 
 		lblArtista = new JLabel("Pruebas");
 		lblArtista.setText("<html>" +gestionINF.devolverArtista() + "</html>");
 		lblArtista.setForeground(new Color(255, 255, 255));
 		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblArtista.setBounds(270, 188, 240, 30);
+		lblArtista.setBounds(168, 190, 240, 30);
 		add(lblArtista);
 
 	}
