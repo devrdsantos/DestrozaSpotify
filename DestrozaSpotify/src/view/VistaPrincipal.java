@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 import controller.ControladorDeEntrada;
 import controller.GestionDeLaInformacion;
+import panel.PanelAlbum;
+import panel.PanelArtista;
 import panel.PanelBienvenida;
 import panel.PanelGestionMusica;
 import panel.PanelGestionPodcast;
@@ -15,6 +17,7 @@ import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
 
 import panel.PanelRegistro;
+import panel.PanelReproductorDeMusica;
 
 public class VistaPrincipal extends JFrame {
 
@@ -24,17 +27,15 @@ public class VistaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
-	
-	
+
 	/**
-	 * [CONSTRUCTOR]
-	 * Inicializa el ControladorDeEntrada y GestionDeLaInformacion
-	 * Le otorga valores al Frame en donde se mostrará nuestro programa.
+	 * [CONSTRUCTOR] Inicializa el ControladorDeEntrada y GestionDeLaInformacion Le
+	 * otorga valores al Frame en donde se mostrará nuestro programa.
 	 */
 	public VistaPrincipal() {
-		gestionINF =  new GestionDeLaInformacion();
-		controlador =  new ControladorDeEntrada();
-		
+		gestionINF = new GestionDeLaInformacion();
+		controlador = new ControladorDeEntrada();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1600, 900);
 		setVisible(true);
@@ -44,6 +45,7 @@ public class VistaPrincipal extends JFrame {
 
 	/**
 	 * [FUNCIÓN] cambiarDePanel(int i)
+	 * 
 	 * @param i -> Recibe el número del Panel que va a mostrar
 	 */
 	public void cambiarDePanel(int i) {
@@ -61,7 +63,7 @@ public class VistaPrincipal extends JFrame {
 		case 3:
 			setContentPane(new PanelMenuCliente(this, this.gestionINF));
 			break;
-			
+
 		case 4:
 			setContentPane(new PanelMenuAdministrador(this));
 			break;
@@ -74,9 +76,8 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelGestionPodcast(this));
 			break;
 		case 7:
-
+			setContentPane(new PanelArtista(this, this.gestionINF));
 			break;
-
 		case 8:
 			setContentPane(new PanelDescubrirMusica(this, this.gestionINF));
 			break;
@@ -86,23 +87,28 @@ public class VistaPrincipal extends JFrame {
 		case 10:
 			setContentPane(new PanelMiBiblioteca(this, this.gestionINF));
 			break;
+		case 11:
+			setContentPane(new PanelAlbum(this, this.gestionINF));
+			break;
+		case 12:
+			setContentPane(new PanelReproductorDeMusica(this, this.gestionINF));
+			break;
 
 		}
 	}
 
-	
 	/**
 	 * [FUNCIÓN] main()
-	 * @param args
-	 * Aquí se ejecuta nuestro programa. Se muestra el Frame y se ejecuta cambiarDePanel(int i)
+	 * 
+	 * @param args Aquí se ejecuta nuestro programa. Se muestra el Frame y se
+	 *             ejecuta cambiarDePanel(int i)
 	 */
 	public static void main(String[] args) {
 		VistaPrincipal v = new VistaPrincipal();
-		
+
 		v.setVisible(true);
 
-		v.cambiarDePanel(6);
-
+		v.cambiarDePanel(7);
 
 	}
 

@@ -9,12 +9,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
 
-import model.Audio;
+import model.Cancion;
 
 public class ControladorDeSonido {
 
-	private ArrayList<Audio> canciones;
+	private ArrayList<Cancion> canciones;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -22,7 +23,7 @@ public class ControladorDeSonido {
 	private long continuar = 0;
 	private boolean enReproduccion = true;
 
-	public ControladorDeSonido(ArrayList<Audio> canciones) {
+	public ControladorDeSonido(ArrayList<Cancion> canciones) {
 		this.canciones = canciones;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
@@ -50,7 +51,7 @@ public class ControladorDeSonido {
 				cancionEnCurso.close();
 			}
 			cancionEnCurso.open(
-					AudioSystem.getAudioInputStream(new File("canciones/" + canciones.get(cola).getNombre() + ".wav")));
+					AudioSystem.getAudioInputStream(new File("musica/" + canciones.get(cola).getNombre().replace(" ", "") + ".wav")));
 			cancionEnCurso.start();
 			enReproduccion = false;
 
@@ -101,15 +102,17 @@ public class ControladorDeSonido {
 		return cancionEnCurso.getMicrosecondPosition();
 	}
 
-	public void continuarCancion() {
+	public void continuarCancion(JButton play2) {
 
 		if (!enReproduccion) {
 			continuar = cancionEnCurso.getMicrosecondPosition();
 			cancionEnCurso.stop();
+			play2.setText("Play");
 			enReproduccion = true;
 		} else {
 			cancionEnCurso.setMicrosecondPosition(continuar);
 			cancionEnCurso.start();
+			play2.setText("Stop");
 			enReproduccion = false;
 		}
 
