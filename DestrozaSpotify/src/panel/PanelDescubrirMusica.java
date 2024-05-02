@@ -6,14 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
@@ -25,6 +29,8 @@ public class PanelDescubrirMusica extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String generoSeleccionado;
+	
 	public PanelDescubrirMusica (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
@@ -76,6 +82,13 @@ public class PanelDescubrirMusica extends JPanel {
 		
 		JComboBox comboBoxGeneros = new JComboBox();
 		comboBoxGeneros.setBounds(550, 150, 417, 33);
+		comboBoxGeneros.addActionListener(new ActionListener() {//add actionlistner to listen for change
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	generoSeleccionado = comboBoxGeneros.getSelectedItem().toString();
+	            }
+		});
+		
 		for (int i = 0; i < gestionINF.mostrarGeneros().size(); i++) {
 			comboBoxGeneros.addItem(gestionINF.mostrarGeneros().get(i));
 		}
@@ -95,21 +108,39 @@ public class PanelDescubrirMusica extends JPanel {
 		lblNewLabel.setFont(new Font("Open Sans", Font.PLAIN, 18));
 		add(lblNewLabel);
 		
-		JPanel panel = new JPanel(); 
-	    panel.setLayout(null); 
-	    
-	    for (int i = 1; i <= 50; i++) {   
-	    JLabel label = new JLabel("Label " + i);
-	    panel.add(label);
-	    
-     } 
+		JList<String> listaArtistasPorGenero = new JList<String>();
+		listaArtistasPorGenero.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				
+			}
+		});
+		DefaultListModel<String> artistaPorGenero = new DefaultListModel<String>();
+		for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
+			if(gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)){
+			artistaPorGenero.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
+		}}
+		listaArtistasPorGenero.setModel(artistaPorGenero);
+		listaArtistasPorGenero.setBounds(100, 300, 1000, 313);
+		add(listaArtistasPorGenero);
 		
-		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setBounds(100, 300, 1000, 313);
-		scrollPane.setToolTipText("");
-		scrollPane.setLayout(null);
-		add(scrollPane);
-		setVisible(true);
-
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(700, 200, 137, 52);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				artistaPorGenero.removeAllElements();
+				for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
+					if(gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)){
+					artistaPorGenero.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
+				}}
+			}
+		});
+		btnBuscar.setOpaque(true);
+		btnBuscar.setForeground(new Color(255, 170, 67));
+		btnBuscar.setFont(new Font("Open Sans", Font.BOLD, 16));
+		btnBuscar.setBorderPainted(false);
+		btnBuscar.setBackground(new Color(63, 61, 61));
+		add(btnBuscar);
 	}
+	
+	
 		}

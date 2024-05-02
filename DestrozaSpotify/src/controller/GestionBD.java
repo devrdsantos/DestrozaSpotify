@@ -37,7 +37,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -659,4 +659,25 @@ public class GestionBD {
 
 	}
 
+	public ArrayList<String> sacarArtistaPorGenero(String genero) {
+		
+		ArrayList<String> artistas = new ArrayList<String>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT NombreArtista FROM album WHERE genero = ?");
+			consulta.setString(1, genero);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				artistas.add(new String(resultadoConsulta.getString(1)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return artistas;
+
+	}
+	
 }

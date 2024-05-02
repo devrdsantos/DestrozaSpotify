@@ -81,5 +81,9 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarCancionPorArtista(album);
 	}
 	
+	public ArrayList<Album> mostrarArtistas(){
+		return gestionBD.sacarAlbumInformacion();
+	}
+	
 	
 }

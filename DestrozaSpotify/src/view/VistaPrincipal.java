@@ -3,17 +3,17 @@ package view;
 import javax.swing.JFrame;
 
 import controller.ControladorDeEntrada;
+import controller.GestionBD;
 import controller.GestionDeLaInformacion;
 import panel.PanelBienvenida;
-import panel.PanelGestionMusica;
-import panel.PanelGestionPodcast;
 import panel.PanelDescubrirMusica;
 import panel.PanelDescubrirPodcast;
+import panel.PanelGestionMusica;
+import panel.PanelGestionPodcast;
 import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
-
 import panel.PanelRegistro;
 
 public class VistaPrincipal extends JFrame {
@@ -24,6 +24,7 @@ public class VistaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
+	private GestionBD gestionBD;
 	
 	
 	/**
@@ -34,6 +35,7 @@ public class VistaPrincipal extends JFrame {
 	public VistaPrincipal() {
 		gestionINF =  new GestionDeLaInformacion();
 		controlador =  new ControladorDeEntrada();
+		gestionBD = new GestionBD();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -102,6 +104,9 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 		v.cambiarDePanel(8);
+		
+		v.gestionBD.sacarArtistaPorGenero("Indie");
+		
 
 
 	}
