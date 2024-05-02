@@ -42,8 +42,8 @@ public class PanelRegistro extends JPanel {
 		setLayout(null);
 		
 		setFont(new Font("Tahoma", Font.BOLD, 11));
-		setBackground(Color.decode("#142850"));
-		JLabel mensajeRegistro = new JLabel("Regístrate en Cines ESA");
+		setBackground(Color.decode("#222222"));
+		JLabel mensajeRegistro = new JLabel("Registrate");
 		mensajeRegistro.setForeground(Color.decode("#ffffff"));
 		mensajeRegistro.setHorizontalAlignment(SwingConstants.CENTER);
 		mensajeRegistro.setFont(new Font("Malgun Gothic", Font.BOLD, 32));
@@ -130,7 +130,9 @@ public class PanelRegistro extends JPanel {
 		add(calendarNacimiento);
 		
 		JRadioButton rdbtnPremiun = new JRadioButton("Premiun");
+		rdbtnPremiun.setOpaque(false);
 		rdbtnPremiun.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnPremiun.setForeground(Color.decode("#FFFFFF"));
 		rdbtnPremiun.setBounds(690, 518, 109, 23);
 		add(rdbtnPremiun);
 		

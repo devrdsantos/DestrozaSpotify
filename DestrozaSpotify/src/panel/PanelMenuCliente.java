@@ -2,8 +2,6 @@ package panel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,12 +15,17 @@ public class PanelMenuCliente extends JPanel {
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PanelMenuCliente(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
-	setSize(1600, 900);
+	setSize(1200, 720);
 	setVisible(true);
 	setLayout(null);
 	setFont(new Font("Tahoma", Font.BOLD, 11));
-	setBackground(Color.decode("#142850"));
+	setBackground(Color.decode("#222222"));
 	
 	
 	/**

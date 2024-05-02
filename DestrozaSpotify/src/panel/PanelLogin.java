@@ -31,8 +31,8 @@ public class PanelLogin extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
-		setBackground(Color.decode("#142850"));
-		JLabel mensajeBienvenida = new JLabel("Inicia sesión en Cines ESA");
+		setBackground(Color.decode("#222222"));
+		JLabel mensajeBienvenida = new JLabel("Inicia sesión");
 		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
 		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
 		mensajeBienvenida.setFont(new Font("Malgun Gothic", Font.BOLD, 32));
