@@ -544,5 +544,119 @@ public class GestionBD {
 		}
 
 	}
+	
+	public void deletePodcast(String podcast) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `NombrePodcast` = ? ");
+			consulta.setString(1, podcast);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El podcast " + podcast + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
+	public void deletePodcaster(String podcaster) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcaster` WHERE `Podcaster` = ? ");
+			consulta.setString(1, podcaster);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El podcaster " + podcaster + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
+	public ArrayList<Musico> sacarMusicoPorArtista(String artista) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Musico> musicos = new ArrayList<Musico>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Ar.Nombre, Ar.Imagen, Ar.descripcion, Mu.Caracteristicas FROM `artista` Ar \r\n"
+							+ "join musico Mu on Ar.Nombre = Mu.Artista\r\n" + "WHERE Ar.Nombre = ?");
+			consulta.setString(1, artista);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(2);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				musicos.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
+						resultadoConsulta.getString(4)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return musicos;
+
+	}
+
+	public ArrayList<Album> sacarAlbumPorArtista(String artista) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Album> albums = new ArrayList<Album>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `album` WHERE `NombreArtista` = ?;");
+			consulta.setString(1, artista);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(5);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4), imagen,
+						resultadoConsulta.getString(6)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return albums;
+
+	}
+
+	public ArrayList<Cancion> sacarCancionPorArtista(String album) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Au.Nombre, Au.Duracion, Au.Imagen, Ca.Colaboradores FROM `cancion` Ca \r\n"
+							+ "join audio Au on Ca.NombreCancion = Au.Nombre\r\n" + "WHERE Ca.Album = ?;");
+			consulta.setString(1, album);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				canciones.add(new Cancion(resultadoConsulta.getString(1), resultadoConsulta.getInt(2), imagen,
+						resultadoConsulta.getString(4)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return canciones;
+
+	}
 
 }

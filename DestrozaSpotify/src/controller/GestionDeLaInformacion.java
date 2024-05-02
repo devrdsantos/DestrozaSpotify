@@ -7,10 +7,17 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import model.Album;
+import model.Cancion;
+import model.Musico;
+
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
+	
+	private String artista;
+	private String album;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -45,5 +52,34 @@ public class GestionDeLaInformacion {
 		
 		return gestionBD.sacarGeneros();
 	}
+	
+	public void artistaSeleccionado(String artista) {
+		this.artista = artista;
+	}
+	
+	public String devolverArtista() {
+		return artista;
+	}
+	
+	public void albumSeleccionado(String album) {
+		this.album = album;
+	}
+	
+	public String devolerAlbum() {
+		return album;
+	}
+	
+	public ArrayList<Musico> mostrarArtista() {
+		return gestionBD.sacarMusicoPorArtista(artista);
+	}
+	
+	public ArrayList<Album> mostrarAlbums() {
+		return gestionBD.sacarAlbumPorArtista(artista);
+	}
+	
+	public ArrayList<Cancion> mostrarCancion() {
+		return gestionBD.sacarCancionPorArtista(album);
+	}
+	
 	
 }
