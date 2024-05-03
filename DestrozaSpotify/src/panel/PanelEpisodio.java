@@ -75,12 +75,12 @@ public class PanelEpisodio extends JPanel {
 				v.cambiarDePanel(7);
 			}
 		});
-		DefaultListModel<String> artistaPorGenero = new DefaultListModel<String>();
+		DefaultListModel<String> EpisodiosPorPodcast = new DefaultListModel<String>();
 		for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
 			if(gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)){
-			artistaPorGenero.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
+				EpisodiosPorPodcast.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
 		}}
-		listaEpisodios.setModel(artistaPorGenero);
+		listaEpisodios.setModel(EpisodiosPorPodcast);
 		listaEpisodios.setBounds(100, 300, 1000, 313);
 		add(listaEpisodios);
 		

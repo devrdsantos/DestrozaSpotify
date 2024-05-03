@@ -89,8 +89,8 @@ public class PanelPodcast extends JPanel {
 	            }
 		});
 		
-		for (int i = 0; i < gestionINF.mostrarPodcast(gestionINF.mostrarPodcaster()).size(); i++) {
-			comboBoxPodcast.addItem(gestionINF.mostrarPodcast(gestionINF.mostrarPodcaster()).get(i));
+		for (int i = 0; i < gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).size(); i++) {
+			comboBoxPodcast.addItem(gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).get(i));
 		}
 		add(comboBoxPodcast);
 		

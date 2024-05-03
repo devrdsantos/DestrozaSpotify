@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import model.Album;
 import model.Cancion;
 import model.Musico;
-import model.Podcast;
 import model.Podcaster;
 import view.VistaPrincipal;
 
@@ -37,7 +36,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -728,6 +727,27 @@ public class GestionBD {
 
 	}
 	
+	public ArrayList<String> sacarEpisodiosPorPodcast(String podcast) {
+		ArrayList<String> episodios = new ArrayList<String>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Descripcion FROM podcast WHERE NombrePodcast = ?");
+			consulta.setString(1, podcast);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				episodios.add(new String(resultadoConsulta.getString(1)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
+
+	}
+		
+		
+	}
 	
-	
-}
+
