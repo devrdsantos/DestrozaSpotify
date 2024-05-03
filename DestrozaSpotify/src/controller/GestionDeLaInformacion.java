@@ -18,6 +18,7 @@ public class GestionDeLaInformacion {
 	
 	private String artista;
 	private String album;
+	private String podcaster;
 	private int posicion;
 	
 	public GestionDeLaInformacion() {
@@ -87,7 +88,23 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarAlbumInformacion();
 	}
 	
-
+	public ArrayList<String> mostrarPodcasters(){
+		return gestionBD.sacarPodcasters();
+	}
+	
+	public void almacenarPodcaster(String podcaster) {
+		this.podcaster = podcaster;
+	}
+	
+	public String mostrarPodcaster() {
+		return this.podcaster;
+	}
+	
+	public ArrayList<String> mostrarPodcast(String podcaster){
+		return gestionBD.sacarPodcastPorPodcaster(podcaster);
+	}
+	
+	
 	public void indiceDeLaCancion(int posicion) {
 		this.posicion = posicion;
 	}
@@ -95,6 +112,7 @@ public class GestionDeLaInformacion {
 	public int devolcerIndiceDeLaCancion() {
 		return posicion;
 	}
+	
 
 	
 }

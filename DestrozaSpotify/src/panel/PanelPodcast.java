@@ -22,16 +22,16 @@ import javax.swing.event.ListSelectionListener;
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
 
-public class PanelDescubrirPodcast extends JPanel {
+public class PanelPodcast extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String podcasterSeleccionado;
+	private String podcastSeleccionado;
 	
-	public PanelDescubrirPodcast (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+	public PanelPodcast (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
@@ -50,7 +50,7 @@ public class PanelDescubrirPodcast extends JPanel {
 			 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(3);
+				v.cambiarDePanel(9);
 			}
 		});
 		setLayout(null);
@@ -60,7 +60,7 @@ public class PanelDescubrirPodcast extends JPanel {
 		btnAtras.setBorderPainted(false);
 		add(btnAtras);
 		
-		JLabel lblTitulo = new JLabel("Descubrir Podcaster");
+		JLabel lblTitulo = new JLabel("Descubrir PODCAST");
 		lblTitulo.setBounds(325, 50, 524, 74);
 		lblTitulo.setForeground(new Color(255, 255, 255));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -80,21 +80,21 @@ public class PanelDescubrirPodcast extends JPanel {
 		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
 		
-		JComboBox comboBoxPodcasters = new JComboBox();
-		comboBoxPodcasters.setBounds(550, 150, 417, 33);
-		comboBoxPodcasters.addActionListener(new ActionListener() {//add actionlistner to listen for change
+		JComboBox comboBoxPodcast = new JComboBox();
+		comboBoxPodcast.setBounds(550, 150, 417, 33);
+		comboBoxPodcast.addActionListener(new ActionListener() {//add actionlistner to listen for change
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	podcasterSeleccionado = comboBoxPodcasters.getSelectedItem().toString();
+	            	podcastSeleccionado = comboBoxPodcast.getSelectedItem().toString();
 	            }
 		});
 		
-		for (int i = 0; i < gestionINF.mostrarPodcasters().size(); i++) {
-			comboBoxPodcasters.addItem(gestionINF.mostrarPodcasters().get(i));
+		for (int i = 0; i < gestionINF.mostrarPodcast(gestionINF.mostrarPodcaster()).size(); i++) {
+			comboBoxPodcast.addItem(gestionINF.mostrarPodcast(gestionINF.mostrarPodcaster()).get(i));
 		}
-		add(comboBoxPodcasters);
+		add(comboBoxPodcast);
 		
-		JLabel lblArtistasXGenero = new JLabel("Escoge el podcaster:");
+		JLabel lblArtistasXGenero = new JLabel("Escoge el podcast:");
 		lblArtistasXGenero.setBounds(300, 150, 224, 41);
 		lblArtistasXGenero.setForeground(new Color(255, 255, 255));
 		lblArtistasXGenero.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -102,13 +102,12 @@ public class PanelDescubrirPodcast extends JPanel {
 		add(lblArtistasXGenero);
 	
 		
-		JButton btnBuscar = new JButton("Descubrir");
+		JButton btnBuscar = new JButton("Ver episodios");
 		btnBuscar.setBounds(700, 200, 137, 52);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			gestionINF.almacenarPodcaster(podcasterSeleccionado);
-			v.cambiarDePanel(13);
-			
+			v.cambiarDePanel(14);
+				
 			}
 		});
 		btnBuscar.setOpaque(true);

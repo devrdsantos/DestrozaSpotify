@@ -67,7 +67,7 @@ public class PanelDescubrirMusica extends JPanel {
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
 		add(lblTitulo);
 		
-		JButton btnPerfil = new JButton("Perfil");
+		JButton btnPerfil = new JButton("Mi Perfil");
 		btnPerfil.setBounds(1000, 32, 137, 52);
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -17,9 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import model.Album;
-import model.Artista;
 import model.Cancion;
 import model.Musico;
+import model.Podcast;
 import model.Podcaster;
 import view.VistaPrincipal;
 
@@ -37,7 +37,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -215,6 +215,32 @@ public class GestionBD {
 		}
 		// Devuelve los generos
 		return generos;
+	}
+	
+	public ArrayList<String> sacarPodcasters() {
+		// Crea el ArrayList
+		ArrayList<String> podcasters = new ArrayList<String>();
+		try {
+			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
+			String query = "SELECT DISTINCT Podcaster FROM podcaster;";
+			// Prepara la consulta para mandarla a la BD
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			// Ejecuta la consulta
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			// Agrega los generos que tiene la tabla album al ArrayList generos donde
+			while (resultadoConsulta.next()) {
+				podcasters.add((resultadoConsulta.getString(1)));
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return podcasters;
 	}
 
 	public void insertArtista(String nombre, String imagenArt, String descripcion) {
@@ -524,7 +550,8 @@ public class GestionBD {
 		}
 		return podcasters;
 	}
-
+	
+	
 	public void insertPodcast(String descripcion, String nombrePodcast, String podcaster) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?)");
@@ -679,5 +706,28 @@ public class GestionBD {
 		return artistas;
 
 	}
+	
+	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
+		
+		ArrayList<String> podcasts = new ArrayList<String>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT NombrePodcast FROM podcast WHERE Podcaster = ?");
+			consulta.setString(1, podcaster);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				podcasts.add(new String(resultadoConsulta.getString(1)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return podcasts;
+
+	}
+	
+	
 	
 }
