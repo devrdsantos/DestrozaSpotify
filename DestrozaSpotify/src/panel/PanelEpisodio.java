@@ -30,6 +30,7 @@ public class PanelEpisodio extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private String generoSeleccionado;
+	private String podcastSeleccionado;
 	
 	public PanelEpisodio (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
@@ -76,10 +77,10 @@ public class PanelEpisodio extends JPanel {
 			}
 		});
 		DefaultListModel<String> EpisodiosPorPodcast = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
-			if(gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)){
-				EpisodiosPorPodcast.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
-		}}
+		for (int i = 0; i < gestionINF.mostrarEpisodiosPorPodcast(gestionINF.mostrarPodcast()).size(); i++) {
+			
+				EpisodiosPorPodcast.addElement(gestionINF.mostrarEpisodiosPorPodcast(gestionINF.mostrarPodcast()).get(i));
+		}
 		listaEpisodios.setModel(EpisodiosPorPodcast);
 		listaEpisodios.setBounds(100, 300, 1000, 313);
 		add(listaEpisodios);

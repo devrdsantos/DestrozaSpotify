@@ -106,6 +106,7 @@ public class PanelPodcast extends JPanel {
 		btnBuscar.setBounds(700, 200, 137, 52);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			gestionINF.almacenarPodcast(podcastSeleccionado);
 			v.cambiarDePanel(14);
 				
 			}
