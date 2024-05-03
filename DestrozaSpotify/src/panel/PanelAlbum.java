@@ -45,7 +45,7 @@ public class PanelAlbum extends JPanel{
 			 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(6);
+				v.cambiarDePanel(8);
 			}
 		});
 		setLayout(null);

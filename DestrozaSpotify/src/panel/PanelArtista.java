@@ -50,7 +50,7 @@ public class PanelArtista extends JPanel{
 		 */
 	btnAtras.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			v.cambiarDePanel(3);
+			v.cambiarDePanel(11);
 		}
 	});
 	setLayout(null);

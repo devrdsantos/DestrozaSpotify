@@ -37,7 +37,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -678,6 +678,33 @@ public class GestionBD {
 		}
 		return artistas;
 
+	}
+	
+	public boolean sacarPremiun(String usuario) {
+		// Crea el ArrayList
+		boolean premiun = false;
+		try {
+			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
+			PreparedStatement consulta = conexion.prepareStatement("SELECT IsPremiun FROM cliente where Usuario = ?;");
+			consulta.setString(1, usuario);
+			// Prepara la consulta para mandarla a la BD
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			// Agrega los generos que tiene la tabla album al ArrayList generos donde
+			while (resultadoConsulta.next()) {
+				if (resultadoConsulta.getString(1).equals("1")) {
+					premiun = true;
+				}
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return premiun;
 	}
 	
 }
