@@ -18,7 +18,10 @@ public class GestionDeLaInformacion {
 	
 	private String artista;
 	private String album;
+	private String podcaster;
+	private String podcast;
 	private int posicion;
+	private boolean premiun;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -71,6 +74,7 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
+		System.out.println(artista);
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
@@ -87,13 +91,48 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarAlbumInformacion();
 	}
 	
-
+	public ArrayList<String> mostrarPodcasters(){
+		return gestionBD.sacarPodcasters();
+	}
+	
+	public void almacenarPodcaster(String podcaster) {
+		this.podcaster = podcaster;
+	}
+	
+	public String mostrarPodcaster() {
+		return this.podcaster;
+	}
+	
+	public ArrayList<String> mostrarPodcastPorPodcaster(String podcaster){
+		return gestionBD.sacarPodcastPorPodcaster(podcaster);
+	}
+	
+	public void almacenarPodcast(String podcast) {
+		this.podcast = podcast;
+	}
+	
+	public String mostrarPodcast() {
+		return this.podcast;
+	}
+	
+	public ArrayList<String> mostrarEpisodiosPorPodcast(String podcast){
+		return gestionBD.sacarEpisodiosPorPodcast(podcast);
+	}
+	
 	public void indiceDeLaCancion(int posicion) {
 		this.posicion = posicion;
 	}
 
 	public int devolcerIndiceDeLaCancion() {
 		return posicion;
+	}
+	
+	public void sacarPremiun(String usuario) {
+		premiun = gestionBD.sacarPremiun(usuario);
+	}
+	
+	public boolean devolverPremiun() {
+		return premiun;
 	}
 
 	

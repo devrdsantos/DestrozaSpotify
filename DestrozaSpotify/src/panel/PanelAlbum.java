@@ -45,7 +45,7 @@ public class PanelAlbum extends JPanel{
 			 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(6);
+				v.cambiarDePanel(8);
 			}
 		});
 		setLayout(null);
@@ -75,7 +75,7 @@ public class PanelAlbum extends JPanel{
 			modeloAlbums.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- " + gestionINF.mostrarCancion().get(i).getDuracion() + " segundos");
 		}
 		listAlbums.setModel(modeloAlbums);
-		listAlbums.setBounds(125, 230, 400, 450);
+		listAlbums.setBounds(125, 230, 400, 400);
 		add(listAlbums);
 		
 		JList<String> listArtista = new JList<String>();
@@ -85,18 +85,18 @@ public class PanelAlbum extends JPanel{
 		modeloArtista.addElement("Canciones: " + gestionINF.mostrarCancion().size());
 		modeloArtista.addElement("Duracion: " + duracionMax + " segundos");
 		listArtista.setModel(modeloArtista);
-		listArtista.setBounds(855, 230, 400, 200);
+		listArtista.setBounds(720, 230, 400, 200);
 		add(listArtista);
 		
 		JLabel lblInformacion = new JLabel("Informacion :");
 		lblInformacion.setForeground(Color.WHITE);
 		lblInformacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInformacion.setBounds(855, 179, 350, 40);
+		lblInformacion.setBounds(720, 180, 350, 40);
 		add(lblInformacion);
 		
 		JLabel lblImagenArtista = new JLabel("");
 		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(0).getImagen());
-		lblImagenArtista.setBounds(965, 480, 200, 200);
+		lblImagenArtista.setBounds(820, 450, 200, 200);
 		add(lblImagenArtista);
 		
 		

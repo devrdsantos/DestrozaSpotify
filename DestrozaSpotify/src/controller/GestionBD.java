@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import model.Album;
-import model.Artista;
 import model.Cancion;
 import model.Musico;
 import model.Podcaster;
@@ -215,6 +214,32 @@ public class GestionBD {
 		}
 		// Devuelve los generos
 		return generos;
+	}
+	
+	public ArrayList<String> sacarPodcasters() {
+		// Crea el ArrayList
+		ArrayList<String> podcasters = new ArrayList<String>();
+		try {
+			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
+			String query = "SELECT DISTINCT Podcaster FROM podcaster;";
+			// Prepara la consulta para mandarla a la BD
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			// Ejecuta la consulta
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			// Agrega los generos que tiene la tabla album al ArrayList generos donde
+			while (resultadoConsulta.next()) {
+				podcasters.add((resultadoConsulta.getString(1)));
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return podcasters;
 	}
 
 	public void insertArtista(String nombre, String imagenArt, String descripcion) {
@@ -524,7 +549,8 @@ public class GestionBD {
 		}
 		return podcasters;
 	}
-
+	
+	
 	public void insertPodcast(String descripcion, String nombrePodcast, String podcaster) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?)");
@@ -680,4 +706,73 @@ public class GestionBD {
 
 	}
 	
+	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
+		
+		ArrayList<String> podcasts = new ArrayList<String>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT NombrePodcast FROM podcast WHERE Podcaster = ?");
+			consulta.setString(1, podcaster);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				podcasts.add(new String(resultadoConsulta.getString(1)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return podcasts;
+
+	}
+	
+	public ArrayList<String> sacarEpisodiosPorPodcast(String podcast) {
+		ArrayList<String> episodios = new ArrayList<String>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Descripcion FROM podcast WHERE NombrePodcast = ?");
+			consulta.setString(1, podcast);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				episodios.add(new String(resultadoConsulta.getString(1)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
+
+	}
+
+	public boolean sacarPremiun(String usuario) {
+		// Crea el ArrayList
+		boolean premiun = false;
+		try {
+			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
+			PreparedStatement consulta = conexion.prepareStatement("SELECT IsPremiun FROM cliente where Usuario = ?;");
+			consulta.setString(1, usuario);
+			// Prepara la consulta para mandarla a la BD
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			// Agrega los generos que tiene la tabla album al ArrayList generos donde
+			while (resultadoConsulta.next()) {
+				if (resultadoConsulta.getString(1).equals("1")) {
+					premiun = true;
+				}
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return premiun;
+	}
+	
 }
+
