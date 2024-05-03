@@ -10,11 +10,8 @@ import panel.PanelDescubrirMusica;
 import panel.PanelDescubrirPodcast;
 import panel.PanelAlbum;
 import panel.PanelArtista;
-import panel.PanelBienvenida;
 import panel.PanelGestionMusica;
 import panel.PanelGestionPodcast;
-import panel.PanelDescubrirMusica;
-import panel.PanelDescubrirPodcast;
 import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
@@ -69,15 +66,12 @@ public class VistaPrincipal extends JFrame {
 		case 3:
 			setContentPane(new PanelMenuCliente(this, this.gestionINF));
 			break;
-
 		case 4:
 			setContentPane(new PanelMenuAdministrador(this));
 			break;
-
 		case 5:
 			setContentPane(new PanelGestionMusica(this));
 			break;
-
 		case 6:
 			setContentPane(new PanelGestionPodcast(this));
 			break;

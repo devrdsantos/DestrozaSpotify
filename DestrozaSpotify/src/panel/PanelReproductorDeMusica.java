@@ -251,7 +251,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnBucle.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnBucle.setBorderPainted(false);
 		btnBucle.setBackground(new Color(63, 61, 61));
-		btnBucle.setBounds(1025, 570, 130, 52);
+		btnBucle.setBounds(125, 315, 180, 40);
 		add(btnBucle);
 
 		lblCancion = new JLabel("Pruebas");
@@ -267,6 +267,32 @@ public class PanelReproductorDeMusica extends JPanel {
 		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblArtista.setBounds(125, 185, 240, 30);
 		add(lblArtista);
+		
+		JButton btnMenu = new JButton("Menu");
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMenu.setOpaque(true);
+		btnMenu.setForeground(new Color(255, 170, 67));
+		btnMenu.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnMenu.setBorderPainted(false);
+		btnMenu.setBackground(new Color(63, 61, 61));
+		btnMenu.setBounds(125, 366, 180, 40);
+		add(btnMenu);
+		
+		JButton btnFavoritos = new JButton("Favoritos");
+		btnFavoritos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnFavoritos.setOpaque(true);
+		btnFavoritos.setForeground(new Color(255, 170, 67));
+		btnFavoritos.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnFavoritos.setBorderPainted(false);
+		btnFavoritos.setBackground(new Color(63, 61, 61));
+		btnFavoritos.setBounds(125, 417, 180, 40);
+		add(btnFavoritos);
 
 	}
 }
