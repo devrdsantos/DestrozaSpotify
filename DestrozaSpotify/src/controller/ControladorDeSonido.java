@@ -22,6 +22,7 @@ public class ControladorDeSonido {
 	private int numeroAleatorioAnterior = -1;
 	private long continuar = 0;
 	private boolean enReproduccion = true;
+	boolean anuncion = false;
 
 	public ControladorDeSonido(ArrayList<Cancion> canciones) {
 		this.canciones = canciones;
@@ -50,8 +51,9 @@ public class ControladorDeSonido {
 				cancionEnCurso.stop();
 				cancionEnCurso.close();
 			}
-			cancionEnCurso.open(
-					AudioSystem.getAudioInputStream(new File("musica/" + canciones.get(cola).getNombre().replace(" ", "") + ".wav")));
+
+			cancionEnCurso.open(AudioSystem.getAudioInputStream(
+					new File("musica/" + canciones.get(cola).getNombre().replace(" ", "") + ".wav")));
 			cancionEnCurso.start();
 			enReproduccion = false;
 
@@ -116,6 +118,21 @@ public class ControladorDeSonido {
 			enReproduccion = false;
 		}
 
+	}
+
+	public void anuncio() {
+		try {
+			cancionEnCurso.open(AudioSystem.getAudioInputStream(new File("anuncio/Anuncio.wav")));
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cancionEnCurso.start();
+	}
+	
+	public void parar() {
+		cancionEnCurso.stop();
+		cancionEnCurso.close();
 	}
 
 }
