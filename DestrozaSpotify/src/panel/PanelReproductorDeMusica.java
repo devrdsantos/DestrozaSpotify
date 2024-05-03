@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 
 import controller.ControladorDeSonido;
 import controller.GestionDeLaInformacion;
-import model.Artista;
 import model.Cancion;
 import model.Musico;
 import view.VistaPrincipal;
