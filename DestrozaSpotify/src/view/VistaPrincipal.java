@@ -5,20 +5,22 @@ import javax.swing.JFrame;
 import controller.ControladorDeEntrada;
 import controller.GestionBD;
 import controller.GestionDeLaInformacion;
-import panel.PanelBienvenida;
-import panel.PanelDescubrirMusica;
-import panel.PanelDescubrirPodcast;
 import panel.PanelAlbum;
 import panel.PanelArtista;
 import panel.PanelBienvenida;
-import panel.PanelGestionMusica;
-import panel.PanelGestionPodcast;
 import panel.PanelDescubrirMusica;
 import panel.PanelDescubrirPodcast;
+import panel.PanelEpisodio;
+import panel.PanelGestionMusica;
+import panel.PanelGestionPodcast;
+import panel.PanelArtista;
+import panel.PanelGestionMusica;
+import panel.PanelGestionPodcast;
 import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
+import panel.PanelPodcast;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
 
@@ -69,15 +71,12 @@ public class VistaPrincipal extends JFrame {
 		case 3:
 			setContentPane(new PanelMenuCliente(this, this.gestionINF));
 			break;
-
 		case 4:
 			setContentPane(new PanelMenuAdministrador(this));
 			break;
-
 		case 5:
 			setContentPane(new PanelGestionMusica(this));
 			break;
-
 		case 6:
 			setContentPane(new PanelGestionPodcast(this));
 			break;
@@ -99,6 +98,13 @@ public class VistaPrincipal extends JFrame {
 		case 12:
 			setContentPane(new PanelReproductorDeMusica(this, this.gestionINF));
 			break;
+		case 13:
+			setContentPane(new PanelPodcast(this, this.gestionINF));
+			break;
+		case 14:
+			setContentPane(new PanelEpisodio(this, this.gestionINF));
+			break;
+			
 
 		}
 	}
@@ -114,7 +120,7 @@ public class VistaPrincipal extends JFrame {
 		
 		v.setVisible(true);
 
-		v.cambiarDePanel(8);
+		v.cambiarDePanel(9);
 		
 	
 		

@@ -4,17 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -32,6 +27,9 @@ public class PanelDescubrirMusica extends JPanel {
 	private String generoSeleccionado;
 	
 	public PanelDescubrirMusica (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
+		gestionINF.mostrarCancion();
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
@@ -67,7 +65,7 @@ public class PanelDescubrirMusica extends JPanel {
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
 		add(lblTitulo);
 		
-		JButton btnPerfil = new JButton("Perfil");
+		JButton btnPerfil = new JButton("Mi Perfil");
 		btnPerfil.setBounds(1000, 32, 137, 52);
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,7 +78,7 @@ public class PanelDescubrirMusica extends JPanel {
 		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
 		
-		JComboBox comboBoxGeneros = new JComboBox();
+		JComboBox<String> comboBoxGeneros = new JComboBox<String>();
 		comboBoxGeneros.setBounds(550, 150, 417, 33);
 		comboBoxGeneros.addActionListener(new ActionListener() {//add actionlistner to listen for change
 	            @Override

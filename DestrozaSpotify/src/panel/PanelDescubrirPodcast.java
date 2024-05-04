@@ -2,11 +2,22 @@ package panel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
@@ -18,30 +29,95 @@ public class PanelDescubrirPodcast extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelDescubrirPodcast(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
+	private String podcasterSeleccionado;
+	
+	public PanelDescubrirPodcast (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
-		setLayout(null);
-		setFont(new Font("Tahoma", Font.BOLD, 11));
+		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		
+		
 		/**
-		 * Boton Volver
+		 *  BTN - Ir atrás 
 		 */
-		JButton btnVolver = new JButton("<html><u>Volver<u><html>");
-		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnVolver.setOpaque(true);
-		btnVolver.setContentAreaFilled(true);
-		btnVolver.setForeground(Color.decode("#C67ACE"));
-		btnVolver.setBorderPainted(false);
-		btnVolver.setBackground(Color.decode("#142850"));
-		btnVolver.setBounds(21, 23, 254, 39);
-		btnVolver.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton btnAtras = new JButton("Ir atrás");
+		btnAtras.setBounds(32, 32, 137, 52);
+		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
+		
+			/**
+			 *  ACCION DEL BOTON
+			 */
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		add(btnVolver);
-}
-}
+		setLayout(null);
+		btnAtras.setBackground(Color.decode("#3f3d3d"));
+		btnAtras.setForeground(Color.decode("#ffaa43"));
+		btnAtras.setOpaque(true);
+		btnAtras.setBorderPainted(false);
+		add(btnAtras);
+		
+		JLabel lblTitulo = new JLabel("Descubrir Podcaster");
+		lblTitulo.setBounds(325, 50, 524, 74);
+		lblTitulo.setForeground(new Color(255, 255, 255));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
+		add(lblTitulo);
+		
+		JButton btnPerfil = new JButton("Mi Perfil");
+		btnPerfil.setBounds(1000, 32, 137, 52);
+		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(new Color(255, 170, 67));
+		btnPerfil.setFont(new Font("Open Sans", Font.BOLD, 16));
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(63, 61, 61));
+		add(btnPerfil);
+		
+		JComboBox comboBoxPodcasters = new JComboBox();
+		comboBoxPodcasters.setBounds(550, 150, 417, 33);
+		comboBoxPodcasters.addActionListener(new ActionListener() {//add actionlistner to listen for change
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	podcasterSeleccionado = comboBoxPodcasters.getSelectedItem().toString();
+	            }
+		});
+		
+		for (int i = 0; i < gestionINF.mostrarPodcasters().size(); i++) {
+			comboBoxPodcasters.addItem(gestionINF.mostrarPodcasters().get(i));
+		}
+		add(comboBoxPodcasters);
+		
+		JLabel lblArtistasXGenero = new JLabel("Escoge el podcaster:");
+		lblArtistasXGenero.setBounds(300, 150, 224, 41);
+		lblArtistasXGenero.setForeground(new Color(255, 255, 255));
+		lblArtistasXGenero.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblArtistasXGenero.setFont(new Font("Open Sans", Font.PLAIN, 20));
+		add(lblArtistasXGenero);
+	
+		
+		JButton btnBuscar = new JButton("Descubrir");
+		btnBuscar.setBounds(700, 200, 137, 52);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			gestionINF.almacenarPodcaster(podcasterSeleccionado);
+			v.cambiarDePanel(13);
+			
+			}
+		});
+		btnBuscar.setOpaque(true);
+		btnBuscar.setForeground(new Color(255, 170, 67));
+		btnBuscar.setFont(new Font("Open Sans", Font.BOLD, 16));
+		btnBuscar.setBorderPainted(false);
+		btnBuscar.setBackground(new Color(63, 61, 61));
+		add(btnBuscar);
+	}
+	
+	
+		}

@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.ControladorDeSonido;
 import controller.GestionDeLaInformacion;
+import model.Cancion;
+import model.Musico;
 import view.VistaPrincipal;
-import javax.swing.ImageIcon;
 
 public class PanelReproductorDeMusica extends JPanel {
 
@@ -25,9 +28,12 @@ public class PanelReproductorDeMusica extends JPanel {
 
 	private int intinerador = 0;
 	private boolean bucle = false;
-	private boolean random = false;
+	private boolean anuncio = false;
 
-	private JButton btnAleatorio;
+	private ArrayList<Cancion> canciones;
+	private ArrayList<Musico> artistas;
+
+//	private JButton btnAleatorio;
 	private JButton btnAnterior;
 	private JButton btnPlay;
 	private JButton btnSiguente;
@@ -39,10 +45,13 @@ public class PanelReproductorDeMusica extends JPanel {
 
 	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
-		sonido = new ControladorDeSonido(gestionINF.mostrarCancion());
+		canciones = gestionINF.mostrarCancion();
+		artistas = gestionINF.mostrarArtista();
+
+		sonido = new ControladorDeSonido(canciones);
 
 		intinerador = gestionINF.devolcerIndiceDeLaCancion();
-		
+
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
@@ -50,7 +59,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		;
 
 		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(32, 32, 137, 52);
+		btnAtras.setBounds(74, 32, 137, 52);
 		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
 
 		/**
@@ -58,7 +67,8 @@ public class PanelReproductorDeMusica extends JPanel {
 		 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(3);
+				v.cambiarDePanel(8);
+				sonido.pausar();
 			}
 		});
 		setLayout(null);
@@ -70,15 +80,24 @@ public class PanelReproductorDeMusica extends JPanel {
 
 		lblPortada = new JLabel();
 		lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-		lblPortada.setBounds(450, 126, 325, 375);
+		lblPortada.setBounds(480, 50, 500, 500);
 		add(lblPortada);
 
 		btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sonido.reproducir(intinerador);
-				btnPlay.setVisible(false);
-				btnPlay2.setVisible(true);
+				
+				if (anuncio) {
+					sonido.anuncio();
+					btnPlay.setVisible(false);
+					btnPlay2.setVisible(true);
+				} else {
+					sonido.reproducir(intinerador);
+					btnPlay.setVisible(false);
+					btnPlay2.setVisible(true);
+				}
+				
+			
 			}
 		});
 		btnPlay.setOpaque(true);
@@ -86,7 +105,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnPlay.setBorderPainted(false);
 		btnPlay.setBackground(new Color(63, 61, 61));
-		btnPlay.setBounds(569, 542, 130, 52);
+		btnPlay.setBounds(665, 570, 130, 52);
 		add(btnPlay);
 
 		btnPlay2 = new JButton("Stop");
@@ -101,24 +120,26 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay2.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnPlay2.setBorderPainted(false);
 		btnPlay2.setBackground(new Color(63, 61, 61));
-		btnPlay2.setBounds(569, 542, 130, 52);
+		btnPlay2.setBounds(665, 570, 130, 52);
 		add(btnPlay2);
 
 		btnAnterior = new JButton("<");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!random) {
-					// Para que vuelva atras sin dar errores
-					if (intinerador == 0) {
-						intinerador = gestionINF.mostrarCancion().size() - 1;
-					} else {
-						intinerador = (intinerador - 1) % gestionINF.mostrarCancion().size();
-					}
+				// Para que vuelva atras sin dar errores
+				if (intinerador == 0) {
+					intinerador = canciones.size() - 1;
+				} else {
+					intinerador = (intinerador - 1) % gestionINF.mostrarCancion().size();
+				}
+
+				if (gestionINF.devolverPremiun() == true) {
+					System.out.println("Premiun");
 
 					sonido.setCancionEnReproduccion(intinerador);
 
-					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
+					lblPortada.setIcon(canciones.get(intinerador).getImagen());
+					lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
@@ -127,18 +148,34 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnPlay2.setVisible(false);
 				} else {
 
-					intinerador = sonido.ramdom();
+					if (!anuncio) {
+						System.out.println("anuncio");
+						sonido.parar();
+						sonido.anuncio();
+						lblPortada.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
+						lblCancion.setText("");
+						lblArtista.setText("");
+						anuncio = true;
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(true);
+					} else {
+						System.out.println("no anuncio");
+						intinerador = sonido.ramdom();
 
-					sonido.reproducir(intinerador);
+						sonido.reproducir(intinerador);
 
-					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-					lblArtista.setText("<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
-					btnBucle.setForeground(new Color(255, 170, 67));
-					bucle = false;
-					btnPlay.setVisible(false);
-					btnPlay2.setVisible(true);
+						lblPortada.setIcon(canciones.get(intinerador).getImagen());
+						lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+						lblArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+						btnBucle.setForeground(new Color(255, 170, 67));
+						bucle = false;
+						anuncio = false;
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(true);
+					}
+
 				}
+
 			}
 		});
 		btnAnterior.setOpaque(true);
@@ -146,30 +183,31 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAnterior.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAnterior.setBorderPainted(false);
 		btnAnterior.setBackground(new Color(63, 61, 61));
-		btnAnterior.setBounds(384, 542, 130, 52);
+		btnAnterior.setBounds(480, 570, 130, 52);
 		add(btnAnterior);
 
 		btnSiguente = new JButton(">");
 		btnSiguente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!random) {
-					intinerador = (intinerador + 1) % gestionINF.mostrarCancion().size();
+				if (gestionINF.devolverPremiun() == true) {
+					System.out.println("Premiun");
+
+					intinerador = (intinerador + 1) % canciones.size();
 					sonido.setCancionEnReproduccion(intinerador);
-					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
+					lblPortada.setIcon(canciones.get(intinerador).getImagen());
+					lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(true);
 					btnPlay2.setVisible(false);
 
 				} else {
-
+					System.out.println("No Premiun");
 					intinerador = sonido.ramdom();
 					sonido.reproducir(intinerador);
-					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-					lblArtista.setText(
-							"<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
+					lblPortada.setIcon(canciones.get(intinerador).getImagen());
+					lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+					lblArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(false);
@@ -184,29 +222,8 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnSiguente.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnSiguente.setBorderPainted(false);
 		btnSiguente.setBackground(new Color(63, 61, 61));
-		btnSiguente.setBounds(754, 542, 130, 52);
+		btnSiguente.setBounds(850, 570, 130, 52);
 		add(btnSiguente);
-
-		btnAleatorio = new JButton("Aleatorio");
-		btnAleatorio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (random) {
-					btnAleatorio.setForeground(new Color(255, 170, 67));
-					random = false;
-				} else {
-					btnAleatorio.setForeground(new Color(0, 255, 0));
-					sonido.reproducir(intinerador);
-					random = true;
-				}
-			}
-		});
-		btnAleatorio.setOpaque(true);
-		btnAleatorio.setForeground(new Color(255, 170, 67));
-		btnAleatorio.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnAleatorio.setBorderPainted(false);
-		btnAleatorio.setBackground(new Color(63, 61, 61));
-		btnAleatorio.setBounds(194, 542, 130, 52);
-		add(btnAleatorio);
 
 		btnBucle = new JButton("Bucle");
 		btnBucle.addActionListener(new ActionListener() {
@@ -234,22 +251,48 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnBucle.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnBucle.setBorderPainted(false);
 		btnBucle.setBackground(new Color(63, 61, 61));
-		btnBucle.setBounds(944, 542, 130, 52);
+		btnBucle.setBounds(125, 315, 180, 40);
 		add(btnBucle);
 
 		lblCancion = new JLabel("Pruebas");
-		lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
+		lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 		lblCancion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCancion.setForeground(new Color(255, 255, 255));
-		lblCancion.setBounds(168, 139, 240, 50);
+		lblCancion.setBounds(125, 140, 350, 50);
 		add(lblCancion);
 
 		lblArtista = new JLabel("Pruebas");
-		lblArtista.setText("<html>" +gestionINF.devolverArtista() + "</html>");
+		lblArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
 		lblArtista.setForeground(new Color(255, 255, 255));
 		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblArtista.setBounds(168, 190, 240, 30);
+		lblArtista.setBounds(125, 185, 240, 30);
 		add(lblArtista);
+		
+		JButton btnMenu = new JButton("Menu");
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMenu.setOpaque(true);
+		btnMenu.setForeground(new Color(255, 170, 67));
+		btnMenu.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnMenu.setBorderPainted(false);
+		btnMenu.setBackground(new Color(63, 61, 61));
+		btnMenu.setBounds(125, 366, 180, 40);
+		add(btnMenu);
+		
+		JButton btnFavoritos = new JButton("Favoritos");
+		btnFavoritos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnFavoritos.setOpaque(true);
+		btnFavoritos.setForeground(new Color(255, 170, 67));
+		btnFavoritos.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnFavoritos.setBorderPainted(false);
+		btnFavoritos.setBackground(new Color(63, 61, 61));
+		btnFavoritos.setBounds(125, 417, 180, 40);
+		add(btnFavoritos);
 
 	}
 }
