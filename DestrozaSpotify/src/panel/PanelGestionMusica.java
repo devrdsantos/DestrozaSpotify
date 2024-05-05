@@ -29,7 +29,7 @@ public class PanelGestionMusica extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private GestionBD gestionBD;
+//	private GestionBD gestionBD;
 
 	private JPanel panelAñadirMusica;
 	private JPanel panelEliminarMusica;
@@ -45,8 +45,8 @@ public class PanelGestionMusica extends JPanel{
 	private String archivoPortadaAlb;
 	
 	
-	public PanelGestionMusica(VistaPrincipal v) {
-		gestionBD = new GestionBD();
+	public PanelGestionMusica(VistaPrincipal v, GestionBD gestionBD) {
+//		gestionBD = new GestionBD();
 	
 		setSize(1200, 720);
 		setVisible(true);
@@ -54,6 +54,9 @@ public class PanelGestionMusica extends JPanel{
 		setBackground(Color.decode("#222222"));
 		setLayout(null);
 		
+		/**
+		 * Boton para volver atras
+		 */
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +86,9 @@ public class PanelGestionMusica extends JPanel{
 		add(MenuBotones);
 		MenuBotones.setLayout(null);
 		
+		/**
+		 * Boton para mostrar el panel de eliminar Artistas
+		 */
 		JButton btnEliminarArtista = new JButton("Eliminar artista");
 		btnEliminarArtista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,6 +104,9 @@ public class PanelGestionMusica extends JPanel{
 		btnEliminarArtista.setBounds(10, 130, 160, 30);
 		MenuBotones.add(btnEliminarArtista);
 		
+		/**
+		 * Boton para mostrar el panel de añadir Artistas
+		 */
 		JButton btnAñadirArtista = new JButton("Añadir artista");
 		btnAñadirArtista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,11 +123,17 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirArtista.setBounds(10, 10, 160, 30);
 		MenuBotones.add(btnAñadirArtista);
 		
+		/**
+		 * Boton para mostrar el panel de modificar Artistas
+		 */
 		JButton btnModificarArtista = new JButton("Modificar artista");
 		btnModificarArtista.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnModificarArtista.setBounds(10, 250, 160, 30);
 		MenuBotones.add(btnModificarArtista);
 		
+		/**
+		 * Boton para mostrar el panel de eliminar Albums
+		 */
 		JButton btnEliminarAlbum = new JButton("Eliminar album");
 		btnEliminarAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,6 +149,9 @@ public class PanelGestionMusica extends JPanel{
 		btnEliminarAlbum.setBounds(10, 170, 160, 30);
 		MenuBotones.add(btnEliminarAlbum);
 		
+		/**
+		 * Boton para mostrar el panel de añadir Albums
+		 */
 		JButton btnAñadirAlbum = new JButton("Añadir album");
 		btnAñadirAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,11 +167,17 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAlbum.setBounds(10, 50, 160, 30);
 		MenuBotones.add(btnAñadirAlbum);
 		
+		/**
+		 * Boton para mostrar el panel de modificar albums
+		 */
 		JButton btnModificarAlbum = new JButton("Modificar album");
 		btnModificarAlbum.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnModificarAlbum.setBounds(10, 290, 160, 30);
 		MenuBotones.add(btnModificarAlbum);
 		
+		/**
+		 * Boton para mostrar el panel de añadir Canciones
+		 */
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,11 +193,17 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirCancion.setBounds(10, 90, 160, 30);
 		MenuBotones.add(btnAñadirCancion);
 		
+		/**
+		 * Boton para mostrar el panel de modificar las Canciones
+		 */
 		JButton btnModificarCancion = new JButton("Modificar cancion");
 		btnModificarCancion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnModificarCancion.setBounds(10, 330, 160, 30);
 		MenuBotones.add(btnModificarCancion);
 		
+		/**
+		 * Boton para mostrar el panel de eliminar las Canciones
+		 */
 		JButton btnEliminarCancion = new JButton("Eliminar cancion");
 		btnEliminarCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,11 +263,20 @@ public class PanelGestionMusica extends JPanel{
 		textFieldPortada.setColumns(10);
 		panelAñadirMusica.add(textFieldPortada);
 		
+		/**
+		 * Boton para subir la portada de la Cancion
+		 */
 		JButton btnSubirPortada = new JButton("Subir .jpg");
 		btnSubirPortada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -247,6 +286,9 @@ public class PanelGestionMusica extends JPanel{
 					archivoPortadaMu = selectedFile.getName();
 					textFieldPortada.setText(archivoPortadaMu);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("imagenes/portadasMu", archivoPortadaMu.replace(" ", "")).toPath();
 					
 					try {
@@ -280,6 +322,9 @@ public class PanelGestionMusica extends JPanel{
 		lblArtista.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirMusica.add(lblArtista);
 		
+		/**
+		 * ComboBox para mostrar todos los Artistas
+		 */
 		JComboBox<String> comboBoxArtistas = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
 			comboBoxArtistas.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
@@ -293,6 +338,9 @@ public class PanelGestionMusica extends JPanel{
 		lblAlbum.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirMusica.add(lblAlbum);
 		
+		/**
+		 * ComboBox para mostrar todos los Albums
+		 */
 		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
 			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
@@ -311,11 +359,20 @@ public class PanelGestionMusica extends JPanel{
 		textFieldAudio.setColumns(10);
 		panelAñadirMusica.add(textFieldAudio);
 		
+		/**
+		 * Boton para subir el wav de la Cancion
+		 */
 		JButton btnSubirWav = new JButton("Subir .wav");
 		btnSubirWav.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .wav");
+				/**
+				 * Filtro para solo elegir archivos .wav
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -325,6 +382,9 @@ public class PanelGestionMusica extends JPanel{
 					archivoMusica = selectedFile.getName();
 					textFieldAudio.setText(archivoMusica);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("musica", archivoMusica.replace(" ", "")).toPath();
 					
 					try {
@@ -340,6 +400,9 @@ public class PanelGestionMusica extends JPanel{
 		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panelAñadirMusica.add(btnSubirWav);
 		
+		/**
+		 * Boton para subir la Cancion
+		 */
 		JButton btnAñadir = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -389,6 +452,9 @@ public class PanelGestionMusica extends JPanel{
 		textFieldEliminarCancion.setColumns(10);
 		panelEliminarMusica.add(textFieldEliminarCancion);
 		
+		/**
+		 * Boton para eliminar la Cancion
+		 */
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -396,13 +462,14 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.deleteCancion(textFieldEliminarCancion.getText());
 				gestionBD.deleteAudio(textFieldEliminarCancion.getText());
 				
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
 				File f = new File("imagenes/portadasMu/" + textFieldEliminarCancion.getText().replace(" ", "") + ".jpg"); 
 				File f1 = new File("musica/" + textFieldEliminarCancion.getText().replace(" ", "") + ".wav");
 				
 				f.delete();
 				f1.delete();
-							
-				textFieldEliminarCancion.setText("");
 				
 				v.cambiarDePanel(5);
 				
@@ -450,11 +517,20 @@ public class PanelGestionMusica extends JPanel{
 		textFieldImagen.setColumns(10);
 		panelAñadirArtista.add(textFieldImagen);
 
+		/**
+		 * Boton para subir la imagen del Artista
+		 */
 		JButton btnSubirImagen = new JButton("Subir .jpg");
 		btnSubirImagen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -464,6 +540,9 @@ public class PanelGestionMusica extends JPanel{
 					archivoImagenArt = selectedFile.getName();
 					textFieldImagen.setText(archivoImagenArt);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("imagenes/imagenArt", archivoImagenArt).toPath();
 					
 					try {
@@ -512,6 +591,9 @@ public class PanelGestionMusica extends JPanel{
 		textFieldCaracteristicas.setColumns(10);
 		panelAñadirArtista.add(textFieldCaracteristicas);
 		
+		/**
+		 * Boton para subir el Artista
+		 */
 		JButton btnAñadirAr = new JButton("Añadir");
 		btnAñadirAr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -576,11 +658,20 @@ public class PanelGestionMusica extends JPanel{
 		textFieldPortadaAlb.setColumns(10);
 		panelAñadirAlbum.add(textFieldPortadaAlb);
 		
+		/**
+		 * Boton para subir la portada del Album
+		 */
 		JButton btnSubirPortadaAlb = new JButton("Subir .jpg");
 		btnSubirPortadaAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -590,6 +681,9 @@ public class PanelGestionMusica extends JPanel{
 					archivoPortadaAlb = selectedFile.getName();
 					textFieldPortadaAlb.setText(archivoPortadaAlb);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("imagenes/portadasAlb", archivoPortadaAlb.replace(" ", "")).toPath();
 					
 					try {
@@ -612,6 +706,9 @@ public class PanelGestionMusica extends JPanel{
 		lblArtistaAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirAlbum.add(lblArtistaAlb);
 		
+		/**
+		 * ComboBox para enseñar los Artistas
+		 */
 		JComboBox<String> comboBoxArtistaAlb = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
 			comboBoxArtistaAlb.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
@@ -630,6 +727,9 @@ public class PanelGestionMusica extends JPanel{
 		textFieldGenero.setColumns(10);
 		panelAñadirAlbum.add(textFieldGenero);
 		
+		/**
+		 * Boton para añadir el Album
+		 */
 		JButton btnAñadirAlb = new JButton("Añadir");
 		btnAñadirAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -671,17 +771,21 @@ public class PanelGestionMusica extends JPanel{
 		textFieldEliminarAlbum.setColumns(10);
 		panelEliminarAlbum.add(textFieldEliminarAlbum);
 		
+		/**
+		 * Boton para eliminar el Album
+		 */
 		JButton btnEliminarAlb = new JButton("Eliminar");
 		btnEliminarAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				gestionBD.deleteAlbum(textFieldEliminarAlbum.getText());
 				
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
 				File f = new File("imagenes/portadasAlb/"+ textFieldEliminarAlbum.getText().replace(" ", "") + ".jpg");
 				
 				f.delete();
-				
-				textFieldEliminarAlbum.setText("");
 				
 				v.cambiarDePanel(5);
 				
@@ -718,6 +822,9 @@ public class PanelGestionMusica extends JPanel{
 		textFieldEliminarArtista.setColumns(10);
 		panelEliminarArtista.add(textFieldEliminarArtista);
 		
+		/**
+		 * Boton para eliminar el Artista
+		 */
 		JButton btnEliminarArt = new JButton("Eliminar");
 		btnEliminarArt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -725,6 +832,9 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.deleteArtista(textFieldEliminarArtista.getText());
 				gestionBD.deleteMusico(textFieldEliminarArtista.getText());
 				
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
 				File f = new File("imagenes/imagenArt/" + textFieldEliminarArtista + ".pgj");
 				
 				f.delete();

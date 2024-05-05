@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import model.Album;
-import model.Artista;
 import model.Cancion;
 import model.Musico;
 import model.Podcaster;
@@ -370,7 +369,7 @@ public class GestionBD {
 		}
 
 	}
-	
+
 	public void insertAudioPodc(String nombre, int duracion, String imagenPodc) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
@@ -504,8 +503,9 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Podcaster> podcasters = new ArrayList<Podcaster>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT Po.Genero, Ar.Nombre, Ar.Imagen, Ar.descripcion FROM podcaster Po "
-					+ "join artista Ar on Po.Podcaster = Ar.Nombre;");
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT Po.Genero, Ar.Nombre, Ar.Imagen, Ar.descripcion FROM podcaster Po "
+							+ "join artista Ar on Po.Podcaster = Ar.Nombre;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -544,7 +544,7 @@ public class GestionBD {
 		}
 
 	}
-	
+
 	public void deletePodcast(String podcast) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `NombrePodcast` = ? ");
@@ -610,7 +610,8 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT Al.IdAlbum, Al.Nombre,Al.FechaPublicacion,Al.Genero,Al.Imagen, Al.NombreArtista, COUNT(Ca.Album) as Cantidad FROM `album` Al join cancion Ca on Al.Nombre = Ca.Album WHERE `NombreArtista` = ? GROUP BY Ca.Album;");
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Al.IdAlbum, Al.Nombre,Al.FechaPublicacion,Al.Genero,Al.Imagen, Al.NombreArtista, COUNT(Ca.Album) as Cantidad FROM `album` Al join cancion Ca on Al.Nombre = Ca.Album WHERE `NombreArtista` = ? GROUP BY Ca.Album;");
 			consulta.setString(1, artista);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -660,11 +661,10 @@ public class GestionBD {
 	}
 
 	public ArrayList<String> sacarArtistaPorGenero(String genero) {
-		
+
 		ArrayList<String> artistas = new ArrayList<String>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"SELECT NombreArtista FROM album WHERE genero = ?");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT NombreArtista FROM album WHERE genero = ?");
 			consulta.setString(1, genero);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -679,7 +679,7 @@ public class GestionBD {
 		return artistas;
 
 	}
-	
+
 	public boolean sacarPremiun(String usuario) {
 		// Crea el ArrayList
 		boolean premiun = false;
@@ -706,11 +706,12 @@ public class GestionBD {
 		// Devuelve los generos
 		return premiun;
 	}
-	
+
 	public ArrayList<Album> sacarAlbumArtista() {
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT DISTINCT Genero, NombreArtista FROM `album`;");
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT DISTINCT Genero, NombreArtista FROM `album`;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
