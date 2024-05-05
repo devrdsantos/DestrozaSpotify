@@ -52,18 +52,18 @@ public class PanelRegistro extends JPanel {
 		
 		JLabel lblUsuario = new JLabel("Ingresa tu usuario:");
 		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblUsuario.setBounds(272, 209, 173, 28);
+		lblUsuario.setBounds(282, 209, 173, 28);
 		lblUsuario.setForeground(Color.decode("#FFFFFF"));
 		add(lblUsuario);
 		
 		JLabel lblPassword = new JLabel("Ingresa una contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
 		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblPassword.setBounds(230, 336, 228, 28);
+		lblPassword.setBounds(230, 403, 228, 28);
 		add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(507, 337, 266, 34);
+		passwordField.setBounds(507, 404, 266, 34);
 		add(passwordField);
 		
 		textFieldUsuario = new JTextField();
@@ -87,13 +87,13 @@ public class PanelRegistro extends JPanel {
 		JLabel lblRegistro = new JLabel("Ingresa la fecha de nacimiento\r\n:");
 		lblRegistro.setForeground(Color.WHITE);
 		lblRegistro.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblRegistro.setBounds(173, 458, 295, 28);
+		lblRegistro.setBounds(160, 458, 295, 28);
 		add(lblRegistro);
 		
 		JLabel lblIngresaTuNombre = new JLabel("Ingresa tu nombre:");
 		lblIngresaTuNombre.setForeground(Color.WHITE);
 		lblIngresaTuNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblIngresaTuNombre.setBounds(272, 276, 185, 28);
+		lblIngresaTuNombre.setBounds(278, 276, 185, 28);
 		add(lblIngresaTuNombre);
 		
 		textFieldNombre = new JTextField();
@@ -104,12 +104,12 @@ public class PanelRegistro extends JPanel {
 		JLabel lblIngresaTuApellido = new JLabel("Ingresa tu apellido:");
 		lblIngresaTuApellido.setForeground(Color.WHITE);
 		lblIngresaTuApellido.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblIngresaTuApellido.setBounds(275, 403, 193, 28);
+		lblIngresaTuApellido.setBounds(275, 336, 193, 28);
 		add(lblIngresaTuApellido);
 		
 		textFieldApellido = new JTextField();
 		textFieldApellido.setColumns(10);
-		textFieldApellido.setBounds(507, 404, 266, 34);
+		textFieldApellido.setBounds(507, 337, 266, 34);
 		add(textFieldApellido);
 		
 		JLabel lblIdioma = new JLabel("Idioma:");

@@ -354,13 +354,13 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), (String) comboBoxAlbum.getSelectedItem());
 				gestionBD.insertAudio(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
 				
-				v.cambiarDePanel(5);
-				
 				textFieldNombreCancion.setText("");
 				textFieldDuracion.setText("");
 				textFieldColaboradores.setText("");
 				textFieldAudio.setText("");
 				textFieldPortada.setText("");
+				
+				v.cambiarDePanel(5);
 				
 			}
 		});
@@ -407,12 +407,11 @@ public class PanelGestionMusica extends JPanel{
 				
 				f.delete();
 				f1.delete();
+							
+				textFieldEliminarCancion.setText("");
 				
 				v.cambiarDePanel(5);
 				
-				textFieldEliminarCancion.setText("");
-				
-			
 			}
 		});
 		btnEliminar.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -526,12 +525,13 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
 				gestionBD.insertMusico(textFieldCaracteristicas.getText(), textFieldNombreArtista.getText());
 				
-				v.cambiarDePanel(5);
-				
 				textFieldNombreArtista.setText("");
 				textFieldDescripcion.setText("");
 				textFieldCaracteristicas.setText("");
 				textFieldImagen.setText("");
+				
+				v.cambiarDePanel(5);
+				
 			}
 		});
 		btnAñadirAr.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -647,12 +647,13 @@ public class PanelGestionMusica extends JPanel{
 				
 				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), (String) comboBoxArtistaAlb.getSelectedItem());
 				
-				v.cambiarDePanel(5);
-				
 				textFieldNombreAlbum.setText("");
 				textFieldFecha.setText("");
 				textFieldPortadaAlb.setText("");
 				textFieldGenero.setText("");
+				
+				v.cambiarDePanel(5);
+				
 			}
 		});
 		btnAñadirAlb.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -745,6 +746,8 @@ public class PanelGestionMusica extends JPanel{
 				f.delete();
 				
 				textFieldEliminarArtista.setText("");
+				
+				v.cambiarDePanel(5);
 				
 			}
 		});
