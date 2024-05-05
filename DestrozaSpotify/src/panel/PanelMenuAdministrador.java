@@ -25,7 +25,7 @@ public class PanelMenuAdministrador extends JPanel{
 		setVisible(true);
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
-		setBackground(Color.decode("#142850"));
+		setBackground(Color.decode("#222222"));
 		
 		JLabel lblMenuAdministrador = new JLabel("MENU ADMINISTRADOR");
 		lblMenuAdministrador.setForeground(Color.decode("#ffffff"));
