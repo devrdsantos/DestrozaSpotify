@@ -65,9 +65,11 @@ public class PanelAlbum extends JPanel{
 		
 		JList<String> listAlbums = new JList<String>();
 		listAlbums.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!arg0.getValueIsAdjusting()) {
 				gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
 				v.cambiarDePanel(12);
+				}
 			}
 		});
 		DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();

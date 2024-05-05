@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import controller.ControladorDeSonido;
 import controller.GestionDeLaInformacion;
 import model.Cancion;
-import model.Musico;
 import view.VistaPrincipal;
 
 public class PanelReproductorDeMusica extends JPanel {
@@ -31,7 +30,6 @@ public class PanelReproductorDeMusica extends JPanel {
 	private boolean anuncio = false;
 
 	private ArrayList<Cancion> canciones;
-	private ArrayList<Musico> artistas;
 
 //	private JButton btnAleatorio;
 	private JButton btnAnterior;
@@ -46,7 +44,6 @@ public class PanelReproductorDeMusica extends JPanel {
 	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
 		canciones = gestionINF.mostrarCancion();
-		artistas = gestionINF.mostrarArtista();
 
 		sonido = new ControladorDeSonido(canciones);
 
@@ -86,7 +83,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (anuncio) {
 					sonido.anuncio();
 					btnPlay.setVisible(false);
@@ -96,8 +93,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnPlay.setVisible(false);
 					btnPlay2.setVisible(true);
 				}
-				
-			
+
 			}
 		});
 		btnPlay.setOpaque(true);
@@ -149,7 +145,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				} else {
 
 					if (!anuncio) {
-						System.out.println("anuncio");
+//						System.out.println("anuncio");
 						sonido.parar();
 						sonido.anuncio();
 						lblPortada.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
@@ -159,7 +155,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						btnPlay.setVisible(false);
 						btnPlay2.setVisible(true);
 					} else {
-						System.out.println("no anuncio");
+//						System.out.println("no anuncio");
 						intinerador = sonido.ramdom();
 
 						sonido.reproducir(intinerador);
@@ -190,7 +186,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnSiguente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (gestionINF.devolverPremiun() == true) {
-					System.out.println("Premiun");
+//					System.out.println("Premiun");
 
 					intinerador = (intinerador + 1) % canciones.size();
 					sonido.setCancionEnReproduccion(intinerador);
@@ -202,17 +198,29 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnPlay2.setVisible(false);
 
 				} else {
-					System.out.println("No Premiun");
-					intinerador = sonido.ramdom();
-					sonido.reproducir(intinerador);
-					lblPortada.setIcon(canciones.get(intinerador).getImagen());
-					lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					lblArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-					btnBucle.setForeground(new Color(255, 170, 67));
-					bucle = false;
-					btnPlay.setVisible(false);
-					btnPlay2.setVisible(true);
 
+					if (!anuncio) {
+//						System.out.println("anuncio");
+						sonido.parar();
+						sonido.anuncio();
+						lblPortada.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
+						lblCancion.setText("");
+						lblArtista.setText("");
+						anuncio = true;
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(true);
+					} else {
+//						System.out.println("No Premiun");
+						intinerador = sonido.ramdom();
+						sonido.reproducir(intinerador);
+						lblPortada.setIcon(canciones.get(intinerador).getImagen());
+						lblCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+						lblArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+						btnBucle.setForeground(new Color(255, 170, 67));
+						bucle = false;
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(true);
+					}
 				}
 
 			}
@@ -267,7 +275,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblArtista.setBounds(125, 185, 240, 30);
 		add(lblArtista);
-		
+
 		JButton btnMenu = new JButton("Menu");
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -280,7 +288,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnMenu.setBackground(new Color(63, 61, 61));
 		btnMenu.setBounds(125, 366, 180, 40);
 		add(btnMenu);
-		
+
 		JButton btnFavoritos = new JButton("Favoritos");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -44,7 +44,7 @@ public class PanelArtista extends JPanel {
 		 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(11);
+				v.cambiarDePanel(8);
 			}
 		});
 		setLayout(null);
@@ -72,10 +72,10 @@ public class PanelArtista extends JPanel {
 			}
 		});
 		DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarArtista().size(); i++) {
+		for (int i = 0; i < gestionINF.mostrarAlbums().size(); i++) {
 			modeloAlbums.addElement(gestionINF.mostrarAlbums().get(i).getNombre() + " -- "
 					+ gestionINF.mostrarAlbums().get(i).getFechaPublicacion() + " -- "
-					+ gestionINF.mostrarCancion().size() + " canciones");
+					+ gestionINF.mostrarAlbums().get(i).getCantidadCanciones() + " canciones");
 		}
 		listAlbums.setModel(modeloAlbums);
 		listAlbums.setBounds(125, 230, 400, 400);

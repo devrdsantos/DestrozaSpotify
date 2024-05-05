@@ -335,7 +335,7 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM album;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT DISTINCT * FROM album;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -344,7 +344,7 @@ public class GestionBD {
 				imagen = new ImageIcon(arrayImagen);
 				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
 						resultadoConsulta.getString(3), resultadoConsulta.getString(4), imagen,
-						resultadoConsulta.getString(6)));
+						resultadoConsulta.getString(6), resultadoConsulta.getInt(7)));
 
 			}
 
@@ -636,7 +636,7 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `album` WHERE `NombreArtista` = ?;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Al.IdAlbum, Al.Nombre,Al.FechaPublicacion,Al.Genero,Al.Imagen, Al.NombreArtista, COUNT(Ca.Album) as Cantidad FROM `album` Al join cancion Ca on Al.Nombre = Ca.Album WHERE `NombreArtista` = ? GROUP BY Ca.Album;");
 			consulta.setString(1, artista);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -646,7 +646,7 @@ public class GestionBD {
 				imagen = new ImageIcon(arrayImagen);
 				albums.add(new Album(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
 						resultadoConsulta.getString(3), resultadoConsulta.getString(4), imagen,
-						resultadoConsulta.getString(6)));
+						resultadoConsulta.getString(6), resultadoConsulta.getInt(7)));
 
 			}
 
@@ -774,5 +774,25 @@ public class GestionBD {
 		return premiun;
 	}
 	
+	public ArrayList<Album> sacarAlbumArtista() {
+		ArrayList<Album> albums = new ArrayList<Album>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT DISTINCT Genero, NombreArtista FROM `album`;");
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Album alb = new Album();
+				alb.setGenero(resultadoConsulta.getString(1));
+				alb.setNombreArtista(resultadoConsulta.getString(2));
+				albums.add(alb);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return albums;
+	}
 }
 
