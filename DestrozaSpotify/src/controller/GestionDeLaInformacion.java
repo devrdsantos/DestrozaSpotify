@@ -72,7 +72,6 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
-		System.out.println(artista);
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
@@ -104,6 +103,10 @@ public class GestionDeLaInformacion {
 	
 	public boolean devolverPremiun() {
 		return premiun;
+	}
+	
+	public ArrayList<Album> mostrarArtistasPorAlbum() {
+		return gestionBD.sacarAlbumArtista();
 	}
 	
 }

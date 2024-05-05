@@ -247,7 +247,7 @@ public class PanelGestionMusica extends JPanel{
 					archivoPortadaMu = selectedFile.getName();
 					textFieldPortada.setText(archivoPortadaMu);
 					Path sourcePath = selectedFile.toPath();
-					Path destinationPath = new File("imagenes/portadasMu", archivoPortadaMu).toPath();
+					Path destinationPath = new File("imagenes/portadasMu", archivoPortadaMu.replace(" ", "")).toPath();
 					
 					try {
 						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
@@ -325,7 +325,7 @@ public class PanelGestionMusica extends JPanel{
 					archivoMusica = selectedFile.getName();
 					textFieldAudio.setText(archivoMusica);
 					Path sourcePath = selectedFile.toPath();
-					Path destinationPath = new File("musica", archivoMusica).toPath();
+					Path destinationPath = new File("musica", archivoMusica.replace(" ", "")).toPath();
 					
 					try {
 						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
@@ -351,14 +351,8 @@ public class PanelGestionMusica extends JPanel{
 				
 //				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
 				
-				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), (String) comboBoxAlbum.getSelectedItem());
+				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), comboBoxAlbum.getSelectedItem().toString());
 				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
-				
-				textFieldNombreCancion.setText("");
-				textFieldDuracion.setText("");
-				textFieldColaboradores.setText("");
-				textFieldAudio.setText("");
-				textFieldPortada.setText("");
 				
 				v.cambiarDePanel(5);
 				
@@ -525,11 +519,6 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
 				gestionBD.insertMusico(textFieldCaracteristicas.getText(), textFieldNombreArtista.getText());
 				
-				textFieldNombreArtista.setText("");
-				textFieldDescripcion.setText("");
-				textFieldCaracteristicas.setText("");
-				textFieldImagen.setText("");
-				
 				v.cambiarDePanel(5);
 				
 			}
@@ -601,7 +590,7 @@ public class PanelGestionMusica extends JPanel{
 					archivoPortadaAlb = selectedFile.getName();
 					textFieldPortadaAlb.setText(archivoPortadaAlb);
 					Path sourcePath = selectedFile.toPath();
-					Path destinationPath = new File("imagenes/portadasAlb", archivoPortadaAlb).toPath();
+					Path destinationPath = new File("imagenes/portadasAlb", archivoPortadaAlb.replace(" ", "")).toPath();
 					
 					try {
 						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
@@ -645,12 +634,7 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), (String) comboBoxArtistaAlb.getSelectedItem());
-				
-				textFieldNombreAlbum.setText("");
-				textFieldFecha.setText("");
-				textFieldPortadaAlb.setText("");
-				textFieldGenero.setText("");
+				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), comboBoxArtistaAlb.getSelectedItem().toString());
 				
 				v.cambiarDePanel(5);
 				
@@ -744,8 +728,6 @@ public class PanelGestionMusica extends JPanel{
 				File f = new File("imagenes/imagenArt/" + textFieldEliminarArtista + ".pgj");
 				
 				f.delete();
-				
-				textFieldEliminarArtista.setText("");
 				
 				v.cambiarDePanel(5);
 				

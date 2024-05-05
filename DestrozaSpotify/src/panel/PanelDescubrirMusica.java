@@ -115,9 +115,9 @@ public class PanelDescubrirMusica extends JPanel {
 			}
 		});
 		DefaultListModel<String> artistaPorGenero = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
-			if (gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)) {
-				artistaPorGenero.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
+		for (int i = 0; i < gestionINF.mostrarArtistasPorAlbum().size(); i++) {
+			if (gestionINF.mostrarArtistasPorAlbum().get(i).getGenero().equals(generoSeleccionado)) {
+				artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i).getNombreArtista());
 			}
 		}
 		listaArtistasPorGenero.setModel(artistaPorGenero);
@@ -129,9 +129,9 @@ public class PanelDescubrirMusica extends JPanel {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				artistaPorGenero.removeAllElements();
-				for (int i = 0; i < gestionINF.mostrarArtistas().size(); i++) {
-					if (gestionINF.mostrarArtistas().get(i).getGenero().equals(generoSeleccionado)) {
-						artistaPorGenero.addElement(gestionINF.mostrarArtistas().get(i).getNombreArtista());
+				for (int i = 0; i < gestionINF.mostrarArtistasPorAlbum().size(); i++) {
+					if (gestionINF.mostrarArtistasPorAlbum().get(i).getGenero().equals(generoSeleccionado)) {
+						artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i).getNombreArtista());
 					}
 				}
 			}
