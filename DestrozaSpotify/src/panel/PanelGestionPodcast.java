@@ -29,8 +29,6 @@ public class PanelGestionPodcast extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private GestionBD gestionBD;
-
 	private JPanel panelAñadirPodcast;
 	private JPanel panelAñadirPodcaster;
 	private JPanel panelEliminarPodcast;
@@ -41,8 +39,7 @@ public class PanelGestionPodcast extends JPanel {
 	private String archivoPortadaPodcaster;
 	private String archivoMusicaPodcast;
 
-	public PanelGestionPodcast(VistaPrincipal v) {
-		gestionBD = new GestionBD();
+	public PanelGestionPodcast(VistaPrincipal v, GestionBD gestionBD) {
 
 		setSize(1200, 720);
 		setVisible(true);
@@ -50,6 +47,9 @@ public class PanelGestionPodcast extends JPanel {
 		setBackground(Color.decode("#222222"));
 		setLayout(null);
 
+		/**
+		 * Boton para volver atras
+		 */
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +83,9 @@ public class PanelGestionPodcast extends JPanel {
 		add(MenuBotones);
 		MenuBotones.setLayout(null);
 
+		/**
+		 * Boton para mostrar el panel de eliminar Podcast
+		 */
 		JButton btnEliminarPodcast = new JButton("Eliminar podcast");
 		btnEliminarPodcast.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,6 +99,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnEliminarPodcast.setBounds(10, 130, 170, 30);
 		MenuBotones.add(btnEliminarPodcast);
 
+		/**
+		 * Boton para mostrar el panel de añadir Podcaster
+		 */
 		JButton btnAñadirPod = new JButton("Añadir podcaster");
 		btnAñadirPod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,6 +115,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadirPod.setBounds(10, 10, 170, 30);
 		MenuBotones.add(btnAñadirPod);
 
+		/**
+		 * Boton para mostrar el panel de añadir Podcast
+		 */
 		JButton btnAñadirPodcast = new JButton("Añadir podcast");
 		btnAñadirPodcast.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,6 +131,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadirPodcast.setBounds(10, 50, 170, 30);
 		MenuBotones.add(btnAñadirPodcast);
 
+		/**
+		 * Boton para mostrar el panel de eliminar Podcaster
+		 */
 		JButton btnEliminarPodcaster = new JButton("Eliminar podcaster");
 		btnEliminarPodcaster.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,11 +147,17 @@ public class PanelGestionPodcast extends JPanel {
 		btnEliminarPodcaster.setBounds(10, 90, 170, 30);
 		MenuBotones.add(btnEliminarPodcaster);
 
+		/**
+		 * Boton para mostrar el panel de modificar el Podcaster
+		 */
 		JButton btnModificarPodcaster = new JButton("Modificar podcaster");
 		btnModificarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnModificarPodcaster.setBounds(10, 170, 170, 30);
 		MenuBotones.add(btnModificarPodcaster);
 
+		/**
+		 * Boton para mostrar el panel de modificar Podcast
+		 */
 		JButton btnModificarPodcast = new JButton("Modificar podcast");
 		btnModificarPodcast.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,16 +167,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnModificarPodcast.setBounds(10, 210, 170, 30);
 		MenuBotones.add(btnModificarPodcast);
 
-		/*
-		 * -----------------------------------------------------------------------------
-		 * -------------------------------------------------
-		 */
+/* --------------------------------------------------------------------------------------------------------------------------------- */
 
-		/*
-		 * ----- Panel añadir podcaster
-		 * -----------------------------------------------------------------------------
-		 * -----------------------
-		 */
+/* ----- Panel añadir podcaster ---------------------------------------------------------------------------------------------------- */
 
 		panelAñadirPodcaster = new JPanel();
 		panelAñadirPodcaster.setBounds(275, 175, 880, 500);
@@ -200,11 +211,20 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldPortadaPodcaster.setColumns(10);
 		panelAñadirPodcaster.add(textFieldPortadaPodcaster);
 
+		/**
+		 * Boton para subir la portada del Podcaster
+		 */
 		JButton btnSubirPortadaPodcaster = new JButton("Subir .jpg");
 		btnSubirPortadaPodcaster.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -214,6 +234,9 @@ public class PanelGestionPodcast extends JPanel {
 					archivoPortadaPodcaster = selectedFile.getName();
 					textFieldPortadaPodcaster.setText(archivoPortadaPodcaster);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("imagenes/imagenArt", archivoPortadaPodcaster).toPath();
 
 					try {
@@ -241,6 +264,9 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldDescripcion.setColumns(10);
 		panelAñadirPodcaster.add(textFieldDescripcion);
 
+		/**
+		 * Boton para añadir el Podcaster
+		 */
 		JButton btnAñadir = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -262,16 +288,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadir.setBounds(730, 450, 136, 35);
 		panelAñadirPodcaster.add(btnAñadir);
 
-		/*
-		 * -----------------------------------------------------------------------------
-		 * -------------------------------------------------
-		 */
+/* ------------------------------------------------------------------------------------------------------------------------------ */
 
-		/*
-		 * ----- Panel añadir podcast
-		 * -----------------------------------------------------------------------------
-		 * -----------------------
-		 */
+/* ----- Panel añadir podcast --------------------------------------------------------------------------------------------------- */
 
 		panelAñadirPodcast = new JPanel();
 		panelAñadirPodcast.setBounds(275, 175, 880, 500);
@@ -313,11 +332,20 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldPortada.setColumns(10);
 		panelAñadirPodcast.add(textFieldPortada);
 
+		/**
+		 * Boton para subir la portada del Podcast
+		 */
 		JButton btnSubirPortada = new JButton("Subir .jpg");
 		btnSubirPortada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .jpg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -327,6 +355,9 @@ public class PanelGestionPodcast extends JPanel {
 					archivoPortadaPodcaster = selectedFile.getName();
 					textFieldPortada.setText(archivoPortadaPodcaster);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("imagenes/portadasPodcast", archivoPortadaPodcaster).toPath();
 
 					try {
@@ -348,7 +379,10 @@ public class PanelGestionPodcast extends JPanel {
 		lblPodcaster.setForeground(Color.decode("#ffffff"));
 		lblPodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirPodcast.add(lblPodcaster);
-
+		
+		/**
+		 * ComboBox para enseñar los Podcasters
+		 */
 		JComboBox<String> comboBoxPodcaster = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarPodcasterInformacion().size(); i++) {
 			comboBoxPodcaster.addItem(gestionBD.sacarPodcasterInformacion().get(i).getNombre());
@@ -367,11 +401,20 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldAudio.setColumns(10);
 		panelAñadirPodcast.add(textFieldAudio);
 
+		/**
+		 * Boton para subir el wav
+		 */
 		JButton btnSubirWav = new JButton("Subir .wav");
 		btnSubirWav.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Seleccione un archivo .wav");
+				/**
+				 * Filtro para solo elegir archivos .wav
+				 */
 				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
 
 				int userSelection = fileChooser.showOpenDialog(null);
@@ -381,6 +424,9 @@ public class PanelGestionPodcast extends JPanel {
 					archivoMusicaPodcast = selectedFile.getName();
 					textFieldAudio.setText(archivoMusicaPodcast);
 					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
 					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
 
 					try {
@@ -407,6 +453,9 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldDescripcionPodc.setColumns(10);
 		panelAñadirPodcast.add(textFieldDescripcionPodc);
 
+		/**
+		 * Boton para subir el Podcast
+		 */
 		JButton btnAñadirPodc = new JButton("Añadir");
 		btnAñadirPodc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -432,16 +481,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadirPodc.setBounds(730, 450, 136, 35);
 		panelAñadirPodcast.add(btnAñadirPodc);
 
-		/*
-		 * -----------------------------------------------------------------------------
-		 * -------------------------------------------------
-		 */
+/* --------------------------------------------------------------------------------------------------------------------------------- */
 
-		/*
-		 * ----- Panel eliminar podcast
-		 * -----------------------------------------------------------------------------
-		 * -----------------------
-		 */
+/* ----- Panel eliminar podcast ---------------------------------------------------------------------------------------------------- */
 
 		panelEliminarPodcast = new JPanel();
 		panelEliminarPodcast.setBounds(275, 175, 880, 500);
@@ -461,6 +503,9 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldEliminarPodcast.setColumns(10);
 		panelEliminarPodcast.add(textFieldEliminarPodcast);
 
+		/**
+		 * Boton para eliminar el Podcast
+		 */
 		JButton btnEliminarPodc = new JButton("Eliminar");
 		btnEliminarPodc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -468,6 +513,9 @@ public class PanelGestionPodcast extends JPanel {
 				gestionBD.deletePodcast(textFieldEliminarPodcast.getText());
 				gestionBD.deleteAudio(textFieldEliminarPodcast.getText());
 
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
 				File f1 = new File(
 						"imagenes/portadasPodcast/" + textFieldEliminarPodcast.getText().replace(" ", "") + ".jpg");
 				File f2 = new File("musica/" + textFieldEliminarPodcast.getText().replace(" ", "") + ".wav");
@@ -488,16 +536,9 @@ public class PanelGestionPodcast extends JPanel {
 		btnEliminarPodc.setBounds(27, 110, 136, 35);
 		panelEliminarPodcast.add(btnEliminarPodc);
 
-		/*
-		 * -----------------------------------------------------------------------------
-		 * -------------------------------------------------
-		 */
+/*  ------------------------------------------------------------------------------------------------------------------------------ */
 
-		/*
-		 * ----- Panel eliminar podcaster
-		 * -----------------------------------------------------------------------------
-		 * -----------------------
-		 */
+/* ----- Panel eliminar podcaster -------------------------------------------------------------------------------------------------  */
 
 		panelEliminarPodcaster = new JPanel();
 		panelEliminarPodcaster.setBounds(275, 175, 880, 500);
@@ -517,6 +558,9 @@ public class PanelGestionPodcast extends JPanel {
 		textFieldEliminarPodcaster.setColumns(10);
 		panelEliminarPodcaster.add(textFieldEliminarPodcaster);
 
+		/**
+		 * Boton para eliminar el Podcaster
+		 */
 		JButton btnDeletePodcaster = new JButton("Eliminar");
 		btnDeletePodcaster.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -524,10 +568,14 @@ public class PanelGestionPodcast extends JPanel {
 				gestionBD.deletePodcaster(textFieldEliminarPodcaster.getText());
 				gestionBD.deleteArtista(textFieldEliminarPodcaster.getText());
 
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
 				File f = new File(
 						"imagenes/imagenArt/" + textFieldEliminarPodcaster.getText().replace(" ", "") + ".jpg");
 
 				f.delete();
+				
 				v.cambiarDePanel(5);
 
 			}
