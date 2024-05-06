@@ -33,6 +33,7 @@ public class VistaPrincipal extends JFrame {
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
 	private GestionBD gestionBD;
+	
 	/**
 	 * [CONSTRUCTOR] Inicializa el ControladorDeEntrada y GestionDeLaInformacion Le
 	 * otorga valores al Frame en donde se mostrará nuestro programa.
@@ -75,10 +76,10 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelMenuAdministrador(this));
 			break;
 		case 5:
-			setContentPane(new PanelGestionMusica(this));
+			setContentPane(new PanelGestionMusica(this, this.gestionBD));
 			break;
 		case 6:
-			setContentPane(new PanelGestionPodcast(this));
+			setContentPane(new PanelGestionPodcast(this, this.gestionBD));
 			break;
 		case 7:
 			setContentPane(new PanelArtista(this, this.gestionINF));

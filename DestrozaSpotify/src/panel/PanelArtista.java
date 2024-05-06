@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
@@ -87,13 +88,22 @@ public class PanelArtista extends JPanel {
 		lblNewLabel.setBounds(125, 200, 130, 20);
 		add(lblNewLabel);
 
-		JList<String> listArtista = new JList<String>();
-		DefaultListModel<String> modeloArtista = new DefaultListModel<String>();
-		modeloArtista.addElement("Genero: \n" + gestionINF.mostrarAlbums().get(0).getGenero());
-		modeloArtista.addElement("Descripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
-		listArtista.setModel(modeloArtista);
-		listArtista.setBounds(720, 230, 400, 200);
-		add(listArtista);
+//		JList<String> listArtista = new JList<String>();
+//		DefaultListModel<String> modeloArtista = new DefaultListModel<String>();
+//		modeloArtista.addElement("Genero: \n" + gestionINF.mostrarAlbums().get(0).getGenero());
+//		modeloArtista.addElement("Descripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
+//		listArtista.setModel(modeloArtista);
+//		listArtista.setBounds(720, 230, 400, 200);
+//		add(listArtista);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		textArea.setText("Genero: " + gestionINF.mostrarAlbums().get(0).getGenero()
+				+ "\nDescripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
+		textArea.setBounds(720, 230, 400, 200);
+		add(textArea);
 
 		JLabel lblInformacion = new JLabel("Informacion :");
 		lblInformacion.setForeground(Color.WHITE);
