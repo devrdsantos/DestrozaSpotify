@@ -21,7 +21,7 @@ public class GestionDeLaInformacion {
 	private String podcaster;
 	private String podcast;
 	private int posicion;
-	private boolean premiun;
+	private String premiun;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -130,7 +130,7 @@ public class GestionDeLaInformacion {
 		premiun = gestionBD.sacarPremiun(usuario);
 	}
 	
-	public boolean devolverPremiun() {
+	public String devolverPremiun() {
 		return premiun;
 	}
 	

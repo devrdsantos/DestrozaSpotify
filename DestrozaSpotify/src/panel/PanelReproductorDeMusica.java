@@ -173,8 +173,8 @@ public class PanelReproductorDeMusica extends JPanel {
 				/**
 				 * Verifica si eres premium
 				 */
-				if (gestionINF.devolverPremiun() == true) {
-					System.out.println("Premium");
+				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
+					System.out.println("Premiun");
 
 					sonido.setCancionEnReproduccion(intinerador);
 
@@ -243,7 +243,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				/**
 				 * Condicional para saber si es premium
 				 */
-				if (gestionINF.devolverPremiun() == true) {
+				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
 //					System.out.println("Premiun");
 
 					intinerador = (intinerador + 1) % canciones.size();

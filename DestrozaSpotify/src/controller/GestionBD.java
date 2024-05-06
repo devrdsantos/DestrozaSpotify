@@ -36,7 +36,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4p", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo3", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -66,7 +66,7 @@ public class GestionBD {
 			// System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
 			// parámetros
-			String query = "SELECT Usuario, Contraseña, Tipo FROM cliente WHERE Usuario = ?";
+			String query = "SELECT Usuario, Contraseña FROM cliente WHERE Usuario = ?";
 
 			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
 			// DNI
@@ -84,13 +84,13 @@ public class GestionBD {
 			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && usuario.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
-				if (resultadoConsulta.getString(3).equals("Cliente")) {
-					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
-					v.cambiarDePanel(3);
-					verificarLogin = true;
-				} else {
+				if (resultadoConsulta.getString(1).equals("Admin")) {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
 					v.cambiarDePanel(4);
+					verificarLogin = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
+					v.cambiarDePanel(3);
 					verificarLogin = true;
 				}
 
@@ -674,8 +674,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				canciones.add(new Cancion(resultadoConsulta.getString(1), resultadoConsulta.getInt(2), imagen,
-						resultadoConsulta.getString(4)));
+//				canciones.add(new Cancion(resultadoConsulta.getString(1), resultadoConsulta.getInt(2), imagen,
+//						resultadoConsulta.getString(4)));
 
 			}
 
@@ -750,22 +750,20 @@ public class GestionBD {
 	}
 
 
-	public boolean sacarPremiun(String usuario) {
+	public String sacarPremiun(String usuario) {
 		// Crea el ArrayList
-		boolean premiun = false;
+		String premiun = null;
 		try {
 			// System.out.println("Iniciando consulta..");
 			// QUERY que selecciona todo de la tabla CINE
-			PreparedStatement consulta = conexion.prepareStatement("SELECT IsPremiun FROM cliente where Usuario = ?;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Tipo FROM cliente where Usuario = ?;");
 			consulta.setString(1, usuario);
 			// Prepara la consulta para mandarla a la BD
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			// Agrega los generos que tiene la tabla album al ArrayList generos donde
 			while (resultadoConsulta.next()) {
-				if (resultadoConsulta.getString(1).equals("1")) {
-					premiun = true;
-				}
+				premiun = resultadoConsulta.getString(1);
 			}
 			// System.out.println("Cerrando Consulta a la tabla album..");
 			resultadoConsulta.close();
