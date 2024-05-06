@@ -281,8 +281,8 @@ public class PanelGestionMusica extends JPanel{
 		panelAñadirMusica.add(lblArtista);
 		
 		JComboBox<String> comboBoxArtistas = new JComboBox<String>();
-		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
-			comboBoxArtistas.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
+		for (int i = 0; i < gestionBD.sacarMusicoInformacion().size(); i++) {
+			comboBoxArtistas.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombre());
 		}
 		comboBoxArtistas.setBounds(248, 212, 288, 30);
 		panelAñadirMusica.add(comboBoxArtistas);
@@ -613,8 +613,8 @@ public class PanelGestionMusica extends JPanel{
 		panelAñadirAlbum.add(lblArtistaAlb);
 		
 		JComboBox<String> comboBoxArtistaAlb = new JComboBox<String>();
-		for (int i = 0; i < gestionBD.sacarArtistasInformacion().size(); i++) {
-			comboBoxArtistaAlb.addItem(gestionBD.sacarArtistasInformacion().get(i).getNombre());
+		for (int i = 0; i < gestionBD.sacarMusicoInformacion().size(); i++) {
+			comboBoxArtistaAlb.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombre());
 		}
 		comboBoxArtistaAlb.setBounds(248, 164, 288, 30);
 		panelAñadirAlbum.add(comboBoxArtistaAlb);

@@ -282,7 +282,7 @@ public class GestionBD {
 
 	}
 
-	public ArrayList<Musico> sacarArtistasInformacion() {
+	public ArrayList<Musico> sacarMusicoInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> artistas = new ArrayList<Musico>();
 
