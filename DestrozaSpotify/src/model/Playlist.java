@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Playlist {
 
+	private int IDPlaylist;
 	private String nombre;
 	private ArrayList<Cancion> canciones;
 	private Date fechaCreacion;
@@ -13,10 +14,15 @@ public class Playlist {
 
 	}
 
-	public Playlist(String nombre, ArrayList<Cancion> canciones, Date fechaCreacion) {
+	public Playlist(int IDPlaylist, String nombre, ArrayList<Cancion> canciones, Date fechaCreacion) {
+		this.IDPlaylist = IDPlaylist;
 		this.nombre = nombre;
 		this.canciones = canciones;
 		this.fechaCreacion = fechaCreacion;
+	}
+	
+	public int getIDPlaylist() {
+		return IDPlaylist;
 	}
 
 	public String getNombre() {

@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Audio {
 
+	private int IDAudio;
 	private String nombre;
 	private int duracion;
 	private ImageIcon imagen;
@@ -17,6 +18,10 @@ public abstract class Audio {
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.imagen = imagen;
+	}
+	
+	public int getIDAudio() {
+		return IDAudio;
 	}
 
 	public String getNombre() {

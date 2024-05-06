@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Podcast extends Audio {
 
+	private int IDPodcast;
 	private String descripcion;
 	private boolean reproduciendo;
 	
@@ -11,9 +12,14 @@ public class Podcast extends Audio {
 
 	}
 
-	public Podcast(String nombre, int duracion, ImageIcon imagen, String descripcion) {
+	public Podcast(int IDPodcast, String nombre, int duracion, ImageIcon imagen, String descripcion) {
 		super(nombre, duracion, imagen);
+		this.IDPodcast = IDPodcast;
 		this.descripcion = descripcion;
+	}
+	
+	public int getIDPodcast() {
+		return IDPodcast;
 	}
 
 	public String getDescripcion() {
