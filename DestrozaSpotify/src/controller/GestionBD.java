@@ -775,19 +775,19 @@ public class GestionBD {
 		return premiun;
 	}
 
-	public ArrayList<Album> sacarAlbumArtista() {
-		ArrayList<Album> albums = new ArrayList<Album>();
+	public ArrayList<String> sacarAlbumArtista() {
+		ArrayList<String> albums = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT DISTINCT Genero, NombreArtista FROM `album`;");
+					.prepareStatement("SELECT DISTINCT Genero, NombreArtistico FROM `album` Al join musico Mu on Al.IDmusico = Mu.IDMusico");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Album alb = new Album();
-				alb.setGenero(resultadoConsulta.getString(1));
-				alb.setNombreArtista(resultadoConsulta.getString(2));
-				albums.add(alb);
-
+//				alb.setGenero(resultadoConsulta.getString(1));
+//				alb.setNombreArtista(resultadoConsulta.getString(2));
+				albums.add(resultadoConsulta.getString(1));
+				albums.add(resultadoConsulta.getString(2));
 			}
 
 		} catch (SQLException e) {

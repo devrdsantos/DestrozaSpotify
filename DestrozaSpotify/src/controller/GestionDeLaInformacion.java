@@ -134,7 +134,7 @@ public class GestionDeLaInformacion {
 		return premiun;
 	}
 	
-	public ArrayList<Album> mostrarArtistasPorAlbum() {
+	public ArrayList<String> mostrarArtistasPorAlbum() {
 		return gestionBD.sacarAlbumArtista();
 	}
 
