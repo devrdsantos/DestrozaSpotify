@@ -20,6 +20,7 @@ public class Cancion extends Audio {
 		this.reproduciendo = false;
 	}
 
+
 	public int getIdAlbum() {
 		return idAlbum;
 	}

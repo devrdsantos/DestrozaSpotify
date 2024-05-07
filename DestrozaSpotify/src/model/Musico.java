@@ -2,16 +2,16 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public class Musico{
+public class Musico {
 
 	private int idMusico;
 	private String nombreArtistico;
 	private ImageIcon imagen;
 	private String caracteristicas;
 	private String descripcion;
-	
+
 	public Musico() {
-		
+
 	}
 
 	public Musico(int idMusico, String nombreArtistico, ImageIcon imagen, String caracteristicas, String descripcion) {
@@ -19,6 +19,29 @@ public class Musico{
 		this.nombreArtistico = nombreArtistico;
 		this.imagen = imagen;
 		this.caracteristicas = caracteristicas;
+	}
+
+	public String getNombre() {
+		return nombreArtistico;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombreArtistico = nombre;
+	}
+
+	public ImageIcon getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(ImageIcon imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
@@ -38,14 +61,6 @@ public class Musico{
 		this.nombreArtistico = nombreArtistico;
 	}
 
-	public ImageIcon getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(ImageIcon imagen) {
-		this.imagen = imagen;
-	}
-
 	public String getCaracteristicas() {
 		return caracteristicas;
 	}
@@ -53,15 +68,5 @@ public class Musico{
 	public void setCaracteristicas(String caracteristicas) {
 		this.caracteristicas = caracteristicas;
 	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
-	
 
 }

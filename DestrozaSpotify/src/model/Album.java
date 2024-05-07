@@ -8,22 +8,23 @@ import javax.swing.ImageIcon;
 public class Album {
 
 	private int idAlbum;
-	private String nombre;
-	private String fechaPublicacion;
+	private String titulo;
+	private String año;
 //	private ArrayList<Cancion> canciones;
 	private String genero;
 	private ImageIcon imagen;
 	private int idMusico;
 	private int cantidadCanciones;
-	
+
 	public Album() {
 
 	}
 
-	public Album(int idAlbum, String nombre, String fechaPublicacion, String genero, ImageIcon imagen, int idMusico, int cantidadCanciones) {
+	public Album(int idAlbum, String titulo, String año, String genero, ImageIcon imagen, int idMusico,
+			int cantidadCanciones) {
 		this.idAlbum = idAlbum;
-		this.nombre = nombre;
-		this.fechaPublicacion = fechaPublicacion;
+		this.titulo = titulo;
+		this.año = año;
 //		this.canciones = canciones;
 		this.genero = genero;
 		this.imagen = imagen;
@@ -40,19 +41,19 @@ public class Album {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return titulo;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.titulo = nombre;
 	}
 
 	public String getFechaPublicacion() {
-		return fechaPublicacion;
+		return año;
 	}
 
 	public void setFechaPublicacion(String fechaPublicacion) {
-		this.fechaPublicacion = fechaPublicacion;
+		this.año = fechaPublicacion;
 	}
 
 //	public ArrayList<Cancion> getCanciones() {
@@ -79,11 +80,11 @@ public class Album {
 		this.imagen = imagen;
 	}
 
-	public int getIdMusico() {
+	public int getIDMusico() {
 		return idMusico;
 	}
 
-	public void setNombreArtista(int idMusico) {
+	public void setIDMusico(int idMusico) {
 		this.idMusico = idMusico;
 	}
 
@@ -94,7 +95,5 @@ public class Album {
 	public void setCantidadCanciones(int cantidadCanciones) {
 		this.cantidadCanciones = cantidadCanciones;
 	}
-	
-	
-	
+
 }
