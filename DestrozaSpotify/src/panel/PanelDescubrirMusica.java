@@ -62,7 +62,7 @@ public class PanelDescubrirMusica extends JPanel {
 		lblTitulo.setForeground(new Color(255, 255, 255));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
-		add(lblTitulo);	
+		add(lblTitulo);
 		JButton btnPerfil = new JButton("Mi Perfil");
 		btnPerfil.setBounds(1000, 32, 137, 52);
 		btnPerfil.addActionListener(new ActionListener() {
@@ -108,15 +108,15 @@ public class PanelDescubrirMusica extends JPanel {
 		listaArtistasPorGenero.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!arg0.getValueIsAdjusting()) {
-				gestionINF.artistaSeleccionado(listaArtistasPorGenero.getSelectedValue());
-				v.cambiarDePanel(7);
+					gestionINF.artistaSeleccionado(listaArtistasPorGenero.getSelectedValue());
+					v.cambiarDePanel(7);
 				}
 			}
 		});
 		DefaultListModel<String> artistaPorGenero = new DefaultListModel<String>();
 		for (int i = 0; i < gestionINF.mostrarArtistasPorAlbum().size(); i++) {
 			if (gestionINF.mostrarArtistasPorAlbum().get(i).equals(generoSeleccionado)) {
-				artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i+1));
+				artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i + 1));
 			}
 		}
 		listaArtistasPorGenero.setModel(artistaPorGenero);
@@ -130,7 +130,7 @@ public class PanelDescubrirMusica extends JPanel {
 				artistaPorGenero.removeAllElements();
 				for (int i = 0; i < gestionINF.mostrarArtistasPorAlbum().size(); i++) {
 					if (gestionINF.mostrarArtistasPorAlbum().get(i).equals(generoSeleccionado)) {
-						artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i+1));
+						artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i + 1));
 					}
 				}
 			}

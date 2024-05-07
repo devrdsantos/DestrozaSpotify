@@ -106,7 +106,8 @@ public class ControladorDeEntrada {
 			gestionBD.insertUsuario(datosUsuario, v);	
 		} else {
 			gestionBD.insertUsuario(datosUsuario, v);
-			gestionBD.insertPremiun(datosUsuario);
+			int id = gestionBD.idClienteDeUsuario(textoUsuario);
+			gestionBD.insertPremiun(datosUsuario, id);
 		}
 
 		

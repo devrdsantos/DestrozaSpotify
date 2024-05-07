@@ -8,7 +8,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import model.Album;
-import model.Audio;
 import model.Cancion;
 import model.Musico;
 
@@ -23,6 +22,7 @@ public class GestionDeLaInformacion {
 	private String podcast;
 	private int posicion;
 	private String premiun;
+	private int indiceAlbum;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -75,6 +75,7 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
+		System.out.println(gestionBD.sacarMusicoPorArtista(artista).get(0).toString());
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
@@ -139,5 +140,11 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarAlbumArtista();
 	}
 
+	public void indiceAlbum(int indice) {
+		this.indiceAlbum = indice; 
+	}
 	
+	public int devolerIndiceAlbum() {
+		return indiceAlbum;
+	}
 }

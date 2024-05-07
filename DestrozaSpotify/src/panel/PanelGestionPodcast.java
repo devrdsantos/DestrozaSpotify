@@ -271,9 +271,8 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				gestionBD.insertArtista(textFieldNombrePodcaster.getText(), textFieldNombrePodcaster.getText(),
-						textFieldDescripcion.getText());
-				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(), textFieldGenero.getText());
+
+				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(),textFieldNombrePodcaster.getText(), textFieldGenero.getText(), textFieldDescripcion.getText());
 
 				v.cambiarDePanel(6);
 
@@ -385,7 +384,7 @@ public class PanelGestionPodcast extends JPanel {
 		 */
 		JComboBox<String> comboBoxPodcaster = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarPodcasterInformacion().size(); i++) {
-			comboBoxPodcaster.addItem(gestionBD.sacarPodcasterInformacion().get(i).getNombre());
+			comboBoxPodcaster.addItem(gestionBD.sacarPodcasterInformacion().get(i).getNombreArtistico());
 		}
 		comboBoxPodcaster.setBounds(248, 212, 288, 30);
 		panelAñadirPodcast.add(comboBoxPodcaster);

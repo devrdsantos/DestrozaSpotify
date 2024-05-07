@@ -2,19 +2,20 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public class Musico{
+public class Musico {
 
 	private int idMusico;
 	private String nombreArtistico;
 	private ImageIcon imagen;
 	private String caracteristicas;
 	private String descripcion;
-	
+
 	public Musico() {
-		
+
 	}
 
 	public Musico(int idMusico, String nombreArtistico, ImageIcon imagen, String caracteristicas, String descripcion) {
+		super();
 		this.idMusico = idMusico;
 		this.nombreArtistico = nombreArtistico;
 		this.imagen = imagen;
@@ -61,7 +62,11 @@ public class Musico{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Musico [idMusico=" + idMusico + ", nombreArtistico=" + nombreArtistico + ", imagen=" + imagen
+				+ ", caracteristicas=" + caracteristicas + ", descripcion=" + descripcion + "]";
+	}
 
 }

@@ -34,10 +34,10 @@ public class PanelGestionMusica extends JPanel{
 	private JPanel panelAñadirMusica;
 	private JPanel panelEliminarMusica;
 	private JPanel panelModificarMusica;
-	private JPanel panelAñadirArtista;
+	private JPanel panelAñadirMusico;
 	private JPanel panelAñadirAlbum;
 	private JPanel panelEliminarAlbum;
-	private JPanel panelEliminarArtista;
+	private JPanel panelEliminarMusico;
 	
 	private String archivoMusica;
 	private String archivoPortadaMu;
@@ -89,47 +89,47 @@ public class PanelGestionMusica extends JPanel{
 		/**
 		 * Boton para mostrar el panel de eliminar Artistas
 		 */
-		JButton btnEliminarArtista = new JButton("Eliminar artista");
-		btnEliminarArtista.addActionListener(new ActionListener() {
+		JButton btnEliminarMusico = new JButton("Eliminar musico");
+		btnEliminarMusico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelEliminarAlbum.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
 				panelEliminarMusica.setVisible(false);
 				panelAñadirMusica.setVisible(false);
-				panelAñadirArtista.setVisible(false);
-				panelEliminarArtista.setVisible(true);
+				panelAñadirMusico.setVisible(false);
+				panelEliminarMusico.setVisible(true);
 			}
 		});
-		btnEliminarArtista.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarArtista.setBounds(10, 130, 160, 30);
-		MenuBotones.add(btnEliminarArtista);
+		btnEliminarMusico.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminarMusico.setBounds(10, 130, 160, 30);
+		MenuBotones.add(btnEliminarMusico);
 		
 		/**
 		 * Boton para mostrar el panel de añadir Artistas
 		 */
-		JButton btnAñadirArtista = new JButton("Añadir artista");
-		btnAñadirArtista.addActionListener(new ActionListener() {
+		JButton btnAñadirMusico = new JButton("Añadir musico");
+		btnAñadirMusico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEliminarArtista.setVisible(false);
+				panelEliminarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
 				panelEliminarMusica.setVisible(false);
 				panelAñadirMusica.setVisible(false);
-				panelAñadirArtista.setVisible(true);
+				panelAñadirMusico.setVisible(true);
 			
 			}
 		});
-		btnAñadirArtista.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAñadirArtista.setBounds(10, 10, 160, 30);
-		MenuBotones.add(btnAñadirArtista);
+		btnAñadirMusico.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAñadirMusico.setBounds(10, 10, 160, 30);
+		MenuBotones.add(btnAñadirMusico);
 		
 		/**
 		 * Boton para mostrar el panel de modificar Artistas
 		 */
-		JButton btnModificarArtista = new JButton("Modificar artista");
-		btnModificarArtista.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnModificarArtista.setBounds(10, 250, 160, 30);
-		MenuBotones.add(btnModificarArtista);
+		JButton btnModificarMusico = new JButton("Modificar musico");
+		btnModificarMusico.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnModificarMusico.setBounds(10, 250, 160, 30);
+		MenuBotones.add(btnModificarMusico);
 		
 		/**
 		 * Boton para mostrar el panel de eliminar Albums
@@ -137,9 +137,9 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarAlbum = new JButton("Eliminar album");
 		btnEliminarAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEliminarArtista.setVisible(false);
+				panelEliminarMusico.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
-				panelAñadirArtista.setVisible(false);
+				panelAñadirMusico.setVisible(false);
 				panelAñadirMusica.setVisible(false);
 				panelEliminarMusica.setVisible(false);
 				panelEliminarAlbum.setVisible(true);
@@ -155,10 +155,10 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirAlbum = new JButton("Añadir album");
 		btnAñadirAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEliminarArtista.setVisible(false);
+				panelEliminarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
 				panelEliminarMusica.setVisible(false);
-				panelAñadirArtista.setVisible(false);
+				panelAñadirMusico.setVisible(false);
 				panelAñadirMusica.setVisible(false);
 				panelAñadirAlbum.setVisible(true);
 			}
@@ -181,11 +181,11 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEliminarArtista.setVisible(false);
+				panelEliminarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
 				panelEliminarMusica.setVisible(false);
-				panelAñadirArtista.setVisible(false);
+				panelAñadirMusico.setVisible(false);
 				panelAñadirMusica.setVisible(true);
 			}
 		});
@@ -207,10 +207,10 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarCancion = new JButton("Eliminar cancion");
 		btnEliminarCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEliminarArtista.setVisible(false);
+				panelEliminarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
-				panelAñadirArtista.setVisible(false);
+				panelAñadirMusico.setVisible(false);
 				panelAñadirMusica.setVisible(false);
 				panelEliminarMusica.setVisible(true);
 			}
@@ -341,12 +341,12 @@ public class PanelGestionMusica extends JPanel{
 		/**
 		 * ComboBox para mostrar todos los Albums
 		 */
-//		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
-//		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
-//			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
-//		}
-//		comboBoxAlbum.setBounds(248, 260, 288, 30);
-//		panelAñadirMusica.add(comboBoxAlbum);
+		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
+		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
+			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
+		}
+		comboBoxAlbum.setBounds(248, 260, 288, 30);
+		panelAñadirMusica.add(comboBoxAlbum);
 		
 		JLabel lblAudio = new JLabel("Audio:");
 		lblAudio.setBounds(173, 298, 65, 48);
@@ -410,14 +410,14 @@ public class PanelGestionMusica extends JPanel{
 				textFieldDuracion.getText();
 				textFieldColaboradores.getText();
 				comboBoxArtistas.getSelectedItem();
-//				comboBoxAlbum.getSelectedItem();
-//				
-////				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
-//				
-//				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), comboBoxAlbum.getSelectedItem().toString());
-//				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
-//				
-//				v.cambiarDePanel(5);
+				comboBoxAlbum.getSelectedItem();
+				
+//				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
+				
+				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
+				gestionBD.insertCancion(gestionBD.idAlbum(comboBoxAlbum.getSelectedItem().toString()),textFieldColaboradores.getText());
+				
+				v.cambiarDePanel(5);
 				
 			}
 		});
@@ -486,36 +486,36 @@ public class PanelGestionMusica extends JPanel{
 	
 /* ---------------------------------------------------------------------------------------------------------------------------- */	
 		
-/* ---- Panel añadir artista ------------------------------------------------------------------------------------------------- */
+/* ---- Panel añadir musico ------------------------------------------------------------------------------------------------- */
 		
-		panelAñadirArtista = new JPanel();
-		panelAñadirArtista.setBounds(275, 175, 880, 500);
-		panelAñadirArtista.setBackground(Color.decode("#142850"));
-		panelAñadirArtista.setVisible(false);
-		add(panelAñadirArtista);
-		panelAñadirArtista.setLayout(null);
+		panelAñadirMusico = new JPanel();
+		panelAñadirMusico.setBounds(275, 175, 880, 500);
+		panelAñadirMusico.setBackground(Color.decode("#142850"));
+		panelAñadirMusico.setVisible(false);
+		add(panelAñadirMusico);
+		panelAñadirMusico.setLayout(null);
 		
 		JLabel lblNombreArtista = new JLabel("Nombre del artista:");
 		lblNombreArtista.setBounds(50, 10, 211, 48);
 		lblNombreArtista.setForeground(Color.decode("#ffffff"));
 		lblNombreArtista.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirArtista.add(lblNombreArtista);
+		panelAñadirMusico.add(lblNombreArtista);
 
 		JTextField textFieldNombreArtista = new JTextField();
 		textFieldNombreArtista.setBounds(248, 20, 288, 30);
 		textFieldNombreArtista.setColumns(10);
-		panelAñadirArtista.add(textFieldNombreArtista);
+		panelAñadirMusico.add(textFieldNombreArtista);
 
 		JLabel lblImagenAr = new JLabel("Imagen:");
 		lblImagenAr.setBounds(145, 61, 85, 48);
 		lblImagenAr.setForeground(Color.decode("#ffffff"));
 		lblImagenAr.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirArtista.add(lblImagenAr);
+		panelAñadirMusico.add(lblImagenAr);
 
 		JTextField textFieldImagen = new JTextField();
 		textFieldImagen.setBounds(248, 70, 288, 30);
 		textFieldImagen.setColumns(10);
-		panelAñadirArtista.add(textFieldImagen);
+		panelAñadirMusico.add(textFieldImagen);
 
 		/**
 		 * Boton para subir la imagen del Artista
@@ -557,18 +557,18 @@ public class PanelGestionMusica extends JPanel{
 		});
 		btnSubirImagen.setBounds(555, 68, 111, 33);
 		btnSubirImagen.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panelAñadirArtista.add(btnSubirImagen);
+		panelAñadirMusico.add(btnSubirImagen);
 
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		lblDescripcion.setBounds(112, 116, 128, 48);
 		lblDescripcion.setForeground(Color.decode("#ffffff"));
 		lblDescripcion.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirArtista.add(lblDescripcion);
+		panelAñadirMusico.add(lblDescripcion);
 
 		JTextField textFieldDescripcion = new JTextField();
 		textFieldDescripcion.setBounds(248, 124, 288, 30);
 		textFieldDescripcion.setColumns(10);
-		panelAñadirArtista.add(textFieldDescripcion);
+		panelAñadirMusico.add(textFieldDescripcion);
 
 //		JLabel lblAlbumAr = new JLabel("Album:");
 //		lblAlbumAr.setBounds(163, 172, 75, 48);
@@ -584,12 +584,12 @@ public class PanelGestionMusica extends JPanel{
 		lblCaracteristicas.setBounds(86, 172, 150, 48);
 		lblCaracteristicas.setForeground(Color.decode("#ffffff"));
 		lblCaracteristicas.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirArtista.add(lblCaracteristicas);
+		panelAñadirMusico.add(lblCaracteristicas);
 		
 		JTextField textFieldCaracteristicas = new JTextField();
 		textFieldCaracteristicas.setBounds(248, 180, 288, 30);
 		textFieldCaracteristicas.setColumns(10);
-		panelAñadirArtista.add(textFieldCaracteristicas);
+		panelAñadirMusico.add(textFieldCaracteristicas);
 		
 		/**
 		 * Boton para subir el Artista
@@ -598,8 +598,8 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
-				gestionBD.insertMusico(textFieldCaracteristicas.getText(), textFieldNombreArtista.getText());
+//				gestionBD.insertArtista(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldDescripcion.getText());
+				gestionBD.insertMusico(textFieldNombreArtista.getText(), textFieldNombreArtista.getText(), textFieldCaracteristicas.getText(), textFieldDescripcion.getText());
 				
 				v.cambiarDePanel(5);
 				
@@ -612,7 +612,7 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAr.setBorderPainted(false);
 		btnAñadirAr.setBackground(Color.decode("#C67ACE"));
 		btnAñadirAr.setBounds(730, 450, 136, 35);
-		panelAñadirArtista.add(btnAñadirAr);
+		panelAñadirMusico.add(btnAñadirAr);
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */	
 		
@@ -734,7 +734,7 @@ public class PanelGestionMusica extends JPanel{
 		btnAñadirAlb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestionBD.insertAlbum(textFieldNombreAlbum.getText(), textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), comboBoxArtistaAlb.getSelectedItem().toString());
+				gestionBD.insertAlbum(textFieldNombreAlbum.getText() ,textFieldFecha.getText(), textFieldGenero.getText(), textFieldNombreAlbum.getText().replace(" ", ""), gestionBD.idMusico(comboBoxArtistaAlb.getSelectedItem().toString()) );
 				
 				v.cambiarDePanel(5);
 				
@@ -804,23 +804,23 @@ public class PanelGestionMusica extends JPanel{
 		
 /* ---- Panel eliminar artista --------------------------------------------------------------------------------------------------- */
 		
-		panelEliminarArtista = new JPanel();
-		panelEliminarArtista.setBounds(275, 175, 880, 500);
-		panelEliminarArtista.setBackground(Color.decode("#142850"));
-		panelEliminarArtista.setVisible(false);
-		add(panelEliminarArtista);
-		panelEliminarArtista.setLayout(null);
+		panelEliminarMusico = new JPanel();
+		panelEliminarMusico.setBounds(275, 175, 880, 500);
+		panelEliminarMusico.setBackground(Color.decode("#142850"));
+		panelEliminarMusico.setVisible(false);
+		add(panelEliminarMusico);
+		panelEliminarMusico.setLayout(null);
 		
 		JLabel lblEliminarArtista = new JLabel("Nombre del artista que quiera eliminar:");
 		lblEliminarArtista.setBounds(27, 10, 400, 48);
 		lblEliminarArtista.setForeground(Color.decode("#ffffff"));
 		lblEliminarArtista.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelEliminarArtista.add(lblEliminarArtista);
+		panelEliminarMusico.add(lblEliminarArtista);
 		
 		JTextField textFieldEliminarArtista = new JTextField();
 		textFieldEliminarArtista.setBounds(27, 60, 308, 30);
 		textFieldEliminarArtista.setColumns(10);
-		panelEliminarArtista.add(textFieldEliminarArtista);
+		panelEliminarMusico.add(textFieldEliminarArtista);
 		
 		/**
 		 * Boton para eliminar el Artista
@@ -850,7 +850,7 @@ public class PanelGestionMusica extends JPanel{
 		btnEliminarArt.setBorderPainted(false);
 		btnEliminarArt.setBackground(Color.decode("#C67ACE"));
 		btnEliminarArt.setBounds(27, 110, 136, 35);
-		panelEliminarArtista.add(btnEliminarArt);
+		panelEliminarMusico.add(btnEliminarArt);
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */
 	}
