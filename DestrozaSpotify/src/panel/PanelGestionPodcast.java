@@ -271,8 +271,8 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				gestionBD.insertArtista(textFieldNombrePodcaster.getText(), textFieldNombrePodcaster.getText(),
-						textFieldDescripcion.getText());
+//				gestionBD.insertArtista(textFieldNombrePodcaster.getText(), textFieldNombrePodcaster.getText(),
+//						textFieldDescripcion.getText());
 				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(), textFieldGenero.getText());
 
 				v.cambiarDePanel(6);
