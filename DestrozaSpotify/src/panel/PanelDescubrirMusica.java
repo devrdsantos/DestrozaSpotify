@@ -130,7 +130,7 @@ public class PanelDescubrirMusica extends JPanel {
 				artistaPorGenero.removeAllElements();
 				for (int i = 0; i < gestionINF.mostrarArtistasPorAlbum().size(); i++) {
 					if (gestionINF.mostrarArtistasPorAlbum().get(i).getGenero().equals(generoSeleccionado)) {
-						artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i).getNombreArtista());
+						artistaPorGenero.addElement(gestionINF.mostrarArtistasPorAlbum().get(i).getIDMusico());
 					}
 				}
 			}
