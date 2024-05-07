@@ -20,7 +20,8 @@ public class Album {
 
 	}
 
-	public Album(int idAlbum, String titulo, String año, String genero, ImageIcon imagen, int idMusico, int cantidadCanciones) {
+
+	public Album(int idAlbum, String nombre, String fechaPublicacion, String genero, ImageIcon imagen, int idMusico, int cantidadCanciones) {
 		this.idAlbum = idAlbum;
 		this.titulo = titulo;
 		this.año = año;
@@ -79,11 +80,12 @@ public class Album {
 		this.imagen = imagen;
 	}
 
-	public int getIDMusico() {
+
+	public int getIdMusico() {
 		return idMusico;
 	}
 
-	public void setIDMusico(int idMusico) {
+	public void setNombreArtista(int idMusico) {
 		this.idMusico = idMusico;
 	}
 

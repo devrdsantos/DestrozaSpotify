@@ -2,36 +2,40 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public class Musico {
-	
-	private int IDMusico;
+public class Musico{
+
+	private int idMusico;
 	private String nombreArtistico;
 	private ImageIcon imagen;
+	private String caracteristicas;
 	private String descripcion;
-	private String caracteristica;
-
+	
 	public Musico() {
 		
 	}
-	
-	public Musico(String nombreArtistico, ImageIcon imagen, String descripcion, int iDMusico, String caracteristica) {
-		super();
+
+	public Musico(int idMusico, String nombreArtistico, ImageIcon imagen, String caracteristicas, String descripcion) {
+		this.idMusico = idMusico;
 		this.nombreArtistico = nombreArtistico;
 		this.imagen = imagen;
+		this.caracteristicas = caracteristicas;
 		this.descripcion = descripcion;
-		IDMusico = iDMusico;
-		this.caracteristica = caracteristica;
 	}
 
+	public int getIdMusico() {
+		return idMusico;
+	}
 
+	public void setIdMusico(int idMusico) {
+		this.idMusico = idMusico;
+	}
 
-
-	public String getNombre() {
+	public String getNombreArtistico() {
 		return nombreArtistico;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombreArtistico = nombre;
+	public void setNombreArtistico(String nombreArtistico) {
+		this.nombreArtistico = nombreArtistico;
 	}
 
 	public ImageIcon getImagen() {
@@ -42,6 +46,14 @@ public class Musico {
 		this.imagen = imagen;
 	}
 
+	public String getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(String caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -49,25 +61,7 @@ public class Musico {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public int getIDMusico() {
-		return IDMusico;
-	}
-
-	public void setIDMusico(int iDMusico) {
-		IDMusico = iDMusico;
-	}
-
-	public String getCaracteristicas() {
-		return caracteristica;
-	}
-
-	public void setCaracteristicas(String caracteristicas) {
-		this.caracteristica = caracteristicas;
-	}
 	
-
-
-
+	
 
 }

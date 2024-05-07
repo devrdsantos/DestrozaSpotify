@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 
 public class Cancion extends Audio {
 
+
+	private int idAlbum;
 	private String artistasInvitados;
 	private boolean reproduciendo;
 
@@ -11,19 +13,41 @@ public class Cancion extends Audio {
 
 	}
 
-	public Cancion(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, boolean reproduciendo,
-			String artistasInvitados, boolean reproduciendo2) {
-		super(iDAudio, nombre, duracion, imagen, tipo, reproduciendo);
+
+	public Cancion(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, int idAlbum,
+			String artistasInvitados) {
+		super(iDAudio, nombre, duracion, imagen, tipo);
+		this.idAlbum = idAlbum;
 		this.artistasInvitados = artistasInvitados;
-		reproduciendo = reproduciendo2;
+		this.reproduciendo = false;
 	}
+
 
 	public String getColaboradores() {
 		return artistasInvitados;
+		}
+	
+	
+	public int getIdAlbum() {
+		return idAlbum;
 	}
+
 
 	public void setColaboradores(String colaboradores) {
 		this.artistasInvitados = colaboradores;
+	}
+
+	public void setIdAlbum(int idAlbum) {
+		this.idAlbum = idAlbum;
+	}
+
+	public String getArtistasInvitados() {
+		return artistasInvitados;
+	}
+
+	public void setArtistasInvitados(String artistasInvitados) {
+		this.artistasInvitados = artistasInvitados;
+
 	}
 
 	public boolean sonando() {

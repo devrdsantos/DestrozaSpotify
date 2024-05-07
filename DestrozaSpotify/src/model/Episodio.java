@@ -12,7 +12,7 @@ public class Episodio extends Audio {
 	}
 	
 	public Episodio(String nombre, int duracion, ImageIcon imagen, String colaboradores) {
-		super(nombre, duracion, imagen);
+		super(duracion, nombre, duracion, imagen, colaboradores);
 		this.colaboradores = colaboradores;
 	}
 

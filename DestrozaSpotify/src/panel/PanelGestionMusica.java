@@ -327,7 +327,7 @@ public class PanelGestionMusica extends JPanel{
 		 */
 		JComboBox<String> comboBoxArtistas = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarMusicoInformacion().size(); i++) {
-			comboBoxArtistas.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombre());
+			comboBoxArtistas.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombreArtistico());
 		}
 		comboBoxArtistas.setBounds(248, 212, 288, 30);
 		panelAñadirMusica.add(comboBoxArtistas);
@@ -341,12 +341,12 @@ public class PanelGestionMusica extends JPanel{
 		/**
 		 * ComboBox para mostrar todos los Albums
 		 */
-		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
-		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
-			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
-		}
-		comboBoxAlbum.setBounds(248, 260, 288, 30);
-		panelAñadirMusica.add(comboBoxAlbum);
+//		JComboBox<String> comboBoxAlbum = new JComboBox<String>();
+//		for (int i = 0; i < gestionBD.sacarAlbumInformacion().size(); i++) {
+//			comboBoxAlbum.addItem(gestionBD.sacarAlbumInformacion().get(i).getNombre());
+//		}
+//		comboBoxAlbum.setBounds(248, 260, 288, 30);
+//		panelAñadirMusica.add(comboBoxAlbum);
 		
 		JLabel lblAudio = new JLabel("Audio:");
 		lblAudio.setBounds(173, 298, 65, 48);
@@ -410,14 +410,14 @@ public class PanelGestionMusica extends JPanel{
 				textFieldDuracion.getText();
 				textFieldColaboradores.getText();
 				comboBoxArtistas.getSelectedItem();
-				comboBoxAlbum.getSelectedItem();
-				
-//				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
-				
-				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), comboBoxAlbum.getSelectedItem().toString());
-				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
-				
-				v.cambiarDePanel(5);
+//				comboBoxAlbum.getSelectedItem();
+//				
+////				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
+//				
+//				gestionBD.insertCancion(textFieldColaboradores.getText(), textFieldNombreCancion.getText(), comboBoxAlbum.getSelectedItem().toString());
+//				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
+//				
+//				v.cambiarDePanel(5);
 				
 			}
 		});
@@ -711,7 +711,7 @@ public class PanelGestionMusica extends JPanel{
 		 */
 		JComboBox<String> comboBoxArtistaAlb = new JComboBox<String>();
 		for (int i = 0; i < gestionBD.sacarMusicoInformacion().size(); i++) {
-			comboBoxArtistaAlb.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombre());
+			comboBoxArtistaAlb.addItem(gestionBD.sacarMusicoInformacion().get(i).getNombreArtistico());
 		}
 		comboBoxArtistaAlb.setBounds(248, 164, 288, 30);
 		panelAñadirAlbum.add(comboBoxArtistaAlb);

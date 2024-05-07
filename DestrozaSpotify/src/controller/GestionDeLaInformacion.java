@@ -8,6 +8,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import model.Album;
+import model.Audio;
 import model.Cancion;
 import model.Musico;
 
@@ -134,7 +135,7 @@ public class GestionDeLaInformacion {
 		return premiun;
 	}
 	
-	public ArrayList<Album> mostrarArtistasPorAlbum() {
+	public ArrayList<String> mostrarArtistasPorAlbum() {
 		return gestionBD.sacarAlbumArtista();
 	}
 

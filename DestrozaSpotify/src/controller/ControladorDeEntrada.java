@@ -39,7 +39,7 @@ public class ControladorDeEntrada {
 	 * @param v
 	 */
 	public void validarInformacionFormulario(String usuarioFormulario, String passFormulario, String nombreFormulario,
-			String apellidoFormulario, String idioma, String fechaNacFormulario, boolean premiun, VistaPrincipal v) {
+			String apellidoFormulario, String idioma, String fechaNacFormulario, String premiun, VistaPrincipal v) {
 
 //		String usuarioDB, passDB, nombreDB, apellidoDB;
 
@@ -98,18 +98,22 @@ public class ControladorDeEntrada {
 		String rol = "Cliente";
 		datosUsuario.add(rol);
 
-		if (premiun == false) {
-			datosUsuario.add("0");
+		datosUsuario.add(premiun);
+		
+		datosUsuario.add(idioma);
+		
+		if (premiun.equals("Free")) {
+			gestionBD.insertUsuario(datosUsuario, v);	
 		} else {
-			datosUsuario.add("1");
+			gestionBD.insertUsuario(datosUsuario, v);
+			gestionBD.insertPremiun(datosUsuario);
 		}
 
-		datosUsuario.add(idioma);
+		
 
 //		usuario.add(new Cliente(usuarioDB, passDB, nombreDB, rol, apellidoDB, fechaRegistro, false, idioma, fechaNacFormulario, null));
 
-		gestionBD.insertUsuario(datosUsuario, v);
-		gestionBD.insertPremiun(datosUsuario);
+		
 	}
 
 }
