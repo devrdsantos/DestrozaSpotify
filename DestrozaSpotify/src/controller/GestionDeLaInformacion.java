@@ -22,6 +22,7 @@ public class GestionDeLaInformacion {
 	private String podcast;
 	private int posicion;
 	private String premiun;
+	private int indiceAlbum;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -138,5 +139,11 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarAlbumArtista();
 	}
 
+	public void indiceAlbum(int indice) {
+		this.indiceAlbum = indice; 
+	}
 	
+	public int devolerIndiceAlbum() {
+		return indiceAlbum;
+	}
 }

@@ -776,7 +776,7 @@ public class GestionBD {
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
-				Album alb = new Album();
+//				Album alb = new Album();
 //				alb.setGenero(resultadoConsulta.getString(1));
 //				alb.setNombreArtista(resultadoConsulta.getString(2));
 				albums.add(resultadoConsulta.getString(1));
@@ -790,7 +790,7 @@ public class GestionBD {
 		return albums;
 	}
 
-	public void insertPremiun(ArrayList<String> datosUsuario) {
+	public void insertPremiun(ArrayList<String> datosUsuario, int id) {
 		gestionINF = new GestionDeLaInformacion();
 		String fechaBaja;
 		try {
@@ -804,7 +804,7 @@ public class GestionBD {
 			}
 
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO premiun VALUES (?,?)");
-			consulta.setString(1, null);
+			consulta.setInt(1, id);
 			consulta.setString(2, fechaBaja);
 			consulta.executeUpdate();
 
@@ -816,4 +816,27 @@ public class GestionBD {
 		}
 
 	}
+
+	public int idClienteDeUsuario(String usuario) {
+		int idCliente = 0;
+		try {
+			
+			PreparedStatement consulta = conexion.prepareStatement("SELECT `IDCliente` FROM `cliente` WHERE `Usuario` = ?;");
+			consulta.setString(1, usuario);
+		
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idCliente = resultadoConsulta.getInt(1);
+			}
+			
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return idCliente;
+	}
+
 }

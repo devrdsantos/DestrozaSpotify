@@ -58,30 +58,30 @@ public class PanelAlbum extends JPanel {
 		btnAtras.setBorderPainted(false);
 		add(btnAtras);
 
-		JLabel lblArtista = new JLabel();
-		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblArtista.setForeground(new Color(255, 255, 255));
-		lblArtista.setText("Lista de canciones: ");
-		lblArtista.setBounds(125, 180, 350, 40);
-		add(lblArtista);
+		JLabel lblListaCanciones = new JLabel();
+		lblListaCanciones.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblListaCanciones.setForeground(new Color(255, 255, 255));
+		lblListaCanciones.setText("Lista de canciones: ");
+		lblListaCanciones.setBounds(125, 180, 350, 40);
+		add(lblListaCanciones);
 
-		JList<String> listAlbums = new JList<String>();
-		listAlbums.addListSelectionListener(new ListSelectionListener() {
+		JList<String> listCanciones = new JList<String>();
+		listCanciones.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!arg0.getValueIsAdjusting()) {
-					gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
+					gestionINF.indiceDeLaCancion(listCanciones.getSelectedIndex());
 					v.cambiarDePanel(12);
 				}
 			}
 		});
-		DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
+		DefaultListModel<String> modeloCanciones = new DefaultListModel<String>();
 		for (int i = 0; i < gestionINF.mostrarCancion().size(); i++) {
-			modeloAlbums.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
+			modeloCanciones.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
 					+ gestionINF.mostrarCancion().get(i).getDuracion() + " segundos");
 		}
-		listAlbums.setModel(modeloAlbums);
-		listAlbums.setBounds(125, 230, 400, 400);
-		add(listAlbums);
+		listCanciones.setModel(modeloCanciones);
+		listCanciones.setBounds(125, 230, 400, 400);
+		add(listCanciones);
 
 //		JList<String> listArtista = new JList<String>();
 //		DefaultListModel<String> modeloArtista = new DefaultListModel<String>();
@@ -100,7 +100,7 @@ public class PanelAlbum extends JPanel {
 		add(lblInformacion);
 
 		JLabel lblImagenArtista = new JLabel("");
-		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(0).getImagen());
+		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(gestionINF.devolerIndiceAlbum()).getImagen());
 		lblImagenArtista.setBounds(820, 450, 200, 200);
 		add(lblImagenArtista);
 
