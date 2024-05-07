@@ -20,6 +20,7 @@ import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
+import panel.PanelMisPlaylist;
 import panel.PanelPodcast;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
@@ -49,6 +50,7 @@ public class VistaPrincipal extends JFrame {
 
 		setSize(1200, 720);
 		setVisible(true);
+		setResizable(false);
 		setTitle("Destruye Spotify");
 	}
 
@@ -105,7 +107,9 @@ public class VistaPrincipal extends JFrame {
 		case 14:
 			setContentPane(new PanelEpisodio(this, this.gestionINF));
 			break;
-			
+		case 15:
+			setContentPane(new PanelMisPlaylist(this, this.gestionINF));
+			break;
 
 		}
 	}
@@ -122,7 +126,7 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 
-		v.cambiarDePanel(5);
+		v.cambiarDePanel(1);
 
 	}
 

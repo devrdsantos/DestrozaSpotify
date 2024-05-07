@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import model.Album;
 import model.Cancion;
 import model.Musico;
+import model.Playlist;
 import model.Podcaster;
 import view.VistaPrincipal;
 
@@ -902,6 +903,61 @@ public class GestionBD {
 		}
 		
 		return idPodcaster;
+	}
+	
+	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist VALUES (?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, titulo);
+			consulta.setString(3, fechaCreacion);
+			consulta.setInt(4, idCliente);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Playlist creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+	
+	public ArrayList<Playlist> sacarPlaylistUsuario(int idUsuario) {
+		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `playlist` WHERE `IDCliente` = ?;");
+			consulta.setInt(1, idUsuario);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				playlists.add(new Playlist(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), resultadoConsulta.getString(3), resultadoConsulta.getInt(4)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return playlists;
+	}
+	
+	public void deletePlaylist(String titulo) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist` WHERE `Titulo` = ? ");
+			consulta.setString(1, titulo);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "La playlist con el " + titulo + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
 	}
 	
 }

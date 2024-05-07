@@ -64,7 +64,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		/**
 		 * Declaramos un contador
 		 */
-		intinerador = gestionINF.devolcerIndiceDeLaCancion();
+		intinerador = gestionINF.devolverIndiceDeLaCancion();
 
 		setSize(1200, 720);
 		setVisible(true);

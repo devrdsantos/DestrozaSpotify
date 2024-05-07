@@ -41,7 +41,7 @@ public class PanelDePrueba extends JPanel {
 
 		sonido = new ControladorDeSonido(gestionINF.mostrarCancion());
 
-		intinerador = gestionINF.devolcerIndiceDeLaCancion();
+		intinerador = gestionINF.devolverIndiceDeLaCancion();
 		
 		setSize(1200, 720);
 		setVisible(true);
