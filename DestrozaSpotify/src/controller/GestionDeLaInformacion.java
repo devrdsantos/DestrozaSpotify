@@ -75,6 +75,7 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
+		System.out.println(gestionBD.sacarMusicoPorArtista(artista).get(0).toString());
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	

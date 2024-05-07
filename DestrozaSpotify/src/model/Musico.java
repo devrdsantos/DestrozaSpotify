@@ -4,69 +4,69 @@ import javax.swing.ImageIcon;
 
 public class Musico {
 
-    private int idMusico;
-    private String nombreArtistico;
-    private ImageIcon imagen;
-    private String caracteristicas;
-    private String descripcion;
+	private int idMusico;
+	private String nombreArtistico;
+	private ImageIcon imagen;
+	private String caracteristicas;
+	private String descripcion;
 
-    public Musico() {
+	public Musico() {
 
-    }
+	}
 
-    public Musico(int idMusico, String nombreArtistico, ImageIcon imagen, String caracteristicas, String descripcion) {
-        this.idMusico = idMusico;
-        this.nombreArtistico = nombreArtistico;
-        this.imagen = imagen;
-        this.caracteristicas = caracteristicas;
-    }
+	public Musico(int idMusico, String nombreArtistico, ImageIcon imagen, String caracteristicas, String descripcion) {
+		super();
+		this.idMusico = idMusico;
+		this.nombreArtistico = nombreArtistico;
+		this.imagen = imagen;
+		this.caracteristicas = caracteristicas;
+		this.descripcion = descripcion;
+	}
 
-    public String getNombre() {
-        return nombreArtistico;
-    }
+	public int getIdMusico() {
+		return idMusico;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombreArtistico = nombre;
-    }
+	public void setIdMusico(int idMusico) {
+		this.idMusico = idMusico;
+	}
 
-    public ImageIcon getImagen() {
-        return imagen;
-    }
+	public String getNombreArtistico() {
+		return nombreArtistico;
+	}
 
-    public void setImagen(ImageIcon imagen) {
-        this.imagen = imagen;
-    }
+	public void setNombreArtistico(String nombreArtistico) {
+		this.nombreArtistico = nombreArtistico;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public ImageIcon getImagen() {
+		return imagen;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setImagen(ImageIcon imagen) {
+		this.imagen = imagen;
+	}
 
-    public int getIdMusico() {
-        return idMusico;
-    }
+	public String getCaracteristicas() {
+		return caracteristicas;
+	}
 
-    public void setIdMusico(int idMusico) {
-        this.idMusico = idMusico;
-    }
+	public void setCaracteristicas(String caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
 
-    public String getNombreArtistico() {
-        return nombreArtistico;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setNombreArtistico(String nombreArtistico) {
-        this.nombreArtistico = nombreArtistico;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public String getCaracteristicas() {
-        return caracteristicas;
-    }
-
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
+	@Override
+	public String toString() {
+		return "Musico [idMusico=" + idMusico + ", nombreArtistico=" + nombreArtistico + ", imagen=" + imagen
+				+ ", caracteristicas=" + caracteristicas + ", descripcion=" + descripcion + "]";
+	}
 
 }

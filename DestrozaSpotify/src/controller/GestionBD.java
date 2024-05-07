@@ -36,7 +36,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo3", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo34", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -510,11 +510,15 @@ public class GestionBD {
 
 	}
 
-	public void insertPodcaster(String nombrePodcaster, String genero) {
+	public void insertPodcaster(String nombrePodcaster, String imagenPod, String genero, String descripcion) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?)");
-			consulta.setString(1, genero);
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?,?,?,?)");
+			consulta.setString(1, null);
 			consulta.setString(2, nombrePodcaster);
+			InputStream imagen = new FileInputStream("imagenes/imagenArt/" + imagenPod + ".jpg");
+			consulta.setBlob(3, imagen);
+			consulta.setString(4, genero);
+			consulta.setString(5, descripcion);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Podcaster creado correctamente");
 			// Cambia al Panel para iniciar sesión
@@ -534,8 +538,7 @@ public class GestionBD {
 		ArrayList<Podcaster> podcasters = new ArrayList<Podcaster>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT Po.Genero, Ar.Nombre, Ar.Imagen, Ar.descripcion FROM podcaster Po "
-							+ "join artista Ar on Po.Podcaster = Ar.Nombre;");
+					.prepareStatement("SELECT * FROM Podcaster");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -543,8 +546,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-//				podcasters.add(new Podcaster(resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
-//						resultadoConsulta.getString(2)));
+				podcasters.add(new Podcaster(resultadoConsulta.getInt(1),resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
 
 			}
 
@@ -889,4 +892,26 @@ public class GestionBD {
 		return idAlbum;
 	}
 
+	public int idPodcaster(String podcaster) {
+		int idPodcaster = 0;
+		try {
+			
+			PreparedStatement consulta = conexion.prepareStatement("SELECT IDPodcaster FROM `podcaster` Where NombreArtistico = ?;");
+			consulta.setString(1, podcaster);
+		
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idPodcaster = resultadoConsulta.getInt(1);
+			}
+			
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return idPodcaster;
+	}
+	
 }
