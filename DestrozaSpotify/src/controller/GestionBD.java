@@ -220,7 +220,7 @@ public class GestionBD {
 		try {
 			// System.out.println("Iniciando consulta..");
 			// QUERY que selecciona todo de la tabla CINE
-			String query = "SELECT DISTINCT Podcaster FROM podcaster;";
+			String query = "SELECT DISTINCT NombreArtistico FROM podcaster;";
 			// Prepara la consulta para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			// Ejecuta la consulta
@@ -707,7 +707,7 @@ public class GestionBD {
 		ArrayList<String> podcasts = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT NombrePodcast FROM podcast WHERE Podcaster = ?");
+					.prepareStatement("SELECT podcaster.NombreArtistico FROM podcaster JOIN podcast ON podcaster.IDPodcaster = podcast.IDPodcaster WHERE podcaster.IDPodcaster = ?");
 			consulta.setString(1, podcaster);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {

@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 public class Album {
 
 	private int idAlbum;
-	private String titulo;
-	private String año;
+	private String nombre;
+	private String fechaPublicacion;
 //	private ArrayList<Cancion> canciones;
 	private String genero;
 	private ImageIcon imagen;
@@ -20,11 +20,10 @@ public class Album {
 
 	}
 
-
 	public Album(int idAlbum, String nombre, String fechaPublicacion, String genero, ImageIcon imagen, int idMusico, int cantidadCanciones) {
 		this.idAlbum = idAlbum;
-		this.titulo = titulo;
-		this.año = año;
+		this.nombre = nombre;
+		this.fechaPublicacion = fechaPublicacion;
 //		this.canciones = canciones;
 		this.genero = genero;
 		this.imagen = imagen;
@@ -41,19 +40,19 @@ public class Album {
 	}
 
 	public String getNombre() {
-		return titulo;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		this.titulo = nombre;
+		this.nombre = nombre;
 	}
 
 	public String getFechaPublicacion() {
-		return año;
+		return fechaPublicacion;
 	}
 
 	public void setFechaPublicacion(String fechaPublicacion) {
-		this.año = fechaPublicacion;
+		this.fechaPublicacion = fechaPublicacion;
 	}
 
 //	public ArrayList<Cancion> getCanciones() {
@@ -79,7 +78,6 @@ public class Album {
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;
 	}
-
 
 	public int getIdMusico() {
 		return idMusico;
