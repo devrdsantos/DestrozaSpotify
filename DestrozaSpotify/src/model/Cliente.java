@@ -33,7 +33,7 @@ public class Cliente {
 		this.rol = rol;
 		this.apellido = apellido;
 		this.fechaRegistro = fechaRegistro;
-		this.isPremiun = isPremium;
+		this.isPremiun = isPremium; // ESTE SERIA EL ATRIBUTO DE TIPO QUE ESTA EN LA BASE DE DATOS
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
 		this.favoritos = favoritos;

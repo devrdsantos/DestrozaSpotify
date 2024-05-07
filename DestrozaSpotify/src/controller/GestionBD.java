@@ -36,7 +36,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -57,6 +57,7 @@ public class GestionBD {
 		System.out.println("Conexion cerrada");
 	}
 
+	/* HECHO!! */
 	public boolean verificarLogin(String usuario, String pass, VistaPrincipal v) throws Exception {
 
 		boolean verificarLogin = false;
@@ -65,7 +66,7 @@ public class GestionBD {
 			// System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
 			// parámetros
-			String query = "SELECT Usuario, Contraseña, Rol FROM cliente WHERE Usuario = ?";
+			String query = "SELECT Usuario, Contraseña FROM cliente WHERE Usuario = ?";
 
 			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
 			// DNI
@@ -83,13 +84,13 @@ public class GestionBD {
 			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && usuario.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
-				if (resultadoConsulta.getString(3).equals("Cliente")) {
-					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
-					v.cambiarDePanel(3);
-					verificarLogin = true;
-				} else {
+				if (resultadoConsulta.getString(1).equals("Admin")) {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
 					v.cambiarDePanel(4);
+					verificarLogin = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
+					v.cambiarDePanel(3);
 					verificarLogin = true;
 				}
 
@@ -105,7 +106,8 @@ public class GestionBD {
 		}
 		return verificarLogin;
 	}
-
+	
+	/* HECHO!! */
 	public String sacarPasswordEncriptada(String usuario) throws Exception {
 		gestionINF = new GestionDeLaInformacion();
 		String passDesencriptada = "";
@@ -126,11 +128,12 @@ public class GestionBD {
 		return passDesencriptada;
 	}
 
+	
 	public void insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
 		gestionINF = new GestionDeLaInformacion();
 		String fechaAlta, fechaBaja;
 		try {
-			Statement consulta = conexion.createStatement();
+//			Statement consulta = conexion.createStatement();
 			// Toma la contraseña y la encripta a través del método
 			String passEncriptada = gestionINF.encriptar(datosUsuario.get(1));
 
@@ -144,30 +147,27 @@ public class GestionBD {
 			// 7 -> Premium
 			// 8 -> Idioma
 
-			if (datosUsuario.get(7) == "1") {
-				LocalDate fechaSinFormatoAlta = LocalDate.now();
-				DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
-
-				LocalDate fechaSinFormatoBaja = LocalDate.now();
-				DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
-				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
-				JOptionPane.showMessageDialog(null, "La fecha de caducidad del Premiun termina el " + fechaBaja);
-			} else {
-				fechaAlta = "";
-				fechaBaja = "";
-			}
-
 //			System.out.println(datosUsuario);
 
 			// TO DO --> cambiarlo
-			String insert = "INSERT INTO cliente VALUES ('" + datosUsuario.get(0) + "','" + passEncriptada + "','"
-					+ datosUsuario.get(2) + "','" + datosUsuario.get(6) + "', '" + datosUsuario.get(3) + "', '"
-					+ datosUsuario.get(5) + "', '" + datosUsuario.get(7) + "', '" + datosUsuario.get(8) + "', '"
-					+ datosUsuario.get(4) + "', '" + fechaAlta + "', '" + fechaBaja + "')";
+//			String insert = "INSERT INTO cliente VALUES ('"+ null + "','" + datosUsuario.get(2) + "','" + datosUsuario.get(3) + "','"
+//					+ datosUsuario.get(0) + "','" + passEncriptada + "', '" + datosUsuario.get(4) + "', '"
+//					+ datosUsuario.get(5) + "', '" + datosUsuario.get(7) + "', '" + datosUsuario.get(8) + "')";
 
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cliente VALUES (?,?,?,?,?,?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, datosUsuario.get(2));
+			consulta.setString(3, datosUsuario.get(3));
+			consulta.setString(4, datosUsuario.get(0));
+			consulta.setString(5, passEncriptada);
+			consulta.setString(6, datosUsuario.get(4));
+			consulta.setString(7, datosUsuario.get(5));
+			consulta.setString(8, datosUsuario.get(7));
+			consulta.setString(9, datosUsuario.get(8));
+			consulta.executeUpdate();
+			
 			// Ejecución del INSERT
-			consulta.executeUpdate(insert);
+//			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
 
@@ -295,8 +295,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(2);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				artistas.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
-						resultadoConsulta.getString(4)));
+//				artistas.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
+//						resultadoConsulta.getString(4)));
 
 			}
 
@@ -539,8 +539,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				podcasters.add(new Podcaster(resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
-						resultadoConsulta.getString(2)));
+//				podcasters.add(new Podcaster(resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
+//						resultadoConsulta.getString(2)));
 
 			}
 
@@ -620,8 +620,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(2);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				musicos.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
-						resultadoConsulta.getString(4)));
+//				musicos.add(new Musico(resultadoConsulta.getString(1), imagen, resultadoConsulta.getString(3),
+//						resultadoConsulta.getString(4)));
 
 			}
 
@@ -674,8 +674,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				canciones.add(new Cancion(resultadoConsulta.getString(1), resultadoConsulta.getInt(2), imagen,
-						resultadoConsulta.getString(4)));
+//				canciones.add(new Cancion(resultadoConsulta.getString(1), resultadoConsulta.getInt(2), imagen,
+//						resultadoConsulta.getString(4)));
 
 			}
 
@@ -706,7 +706,7 @@ public class GestionBD {
 		return artistas;
 
 	}
-<<<<<<< HEAD
+
 	
 	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
 		
@@ -750,22 +750,20 @@ public class GestionBD {
 	}
 
 
-	public boolean sacarPremiun(String usuario) {
+	public String sacarPremiun(String usuario) {
 		// Crea el ArrayList
-		boolean premiun = false;
+		String premiun = null;
 		try {
 			// System.out.println("Iniciando consulta..");
 			// QUERY que selecciona todo de la tabla CINE
-			PreparedStatement consulta = conexion.prepareStatement("SELECT IsPremiun FROM cliente where Usuario = ?;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Tipo FROM cliente where Usuario = ?;");
 			consulta.setString(1, usuario);
 			// Prepara la consulta para mandarla a la BD
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			// Agrega los generos que tiene la tabla album al ArrayList generos donde
 			while (resultadoConsulta.next()) {
-				if (resultadoConsulta.getString(1).equals("1")) {
-					premiun = true;
-				}
+				premiun = resultadoConsulta.getString(1);
 			}
 			// System.out.println("Cerrando Consulta a la tabla album..");
 			resultadoConsulta.close();
@@ -798,5 +796,38 @@ public class GestionBD {
 		}
 		return albums;
 	}
-}
 
+	public void insertPremiun(ArrayList<String> datosUsuario) {
+		gestionINF = new GestionDeLaInformacion();
+		String fechaBaja;
+		try {
+			Statement consulta = conexion.createStatement();
+			// Toma la contraseña y la encripta a través del método
+
+			if (datosUsuario.get(7) == "1") {
+				LocalDate fechaSinFormatoBaja = LocalDate.now();
+				DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
+				fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
+				JOptionPane.showMessageDialog(null, "La fecha de caducidad del Premiun termina el " + fechaBaja);
+			} else {
+				fechaBaja = "";
+			}
+
+//			System.out.println(datosUsuario);
+
+			// TO DO --> cambiarlo
+			String insert = "INSERT INTO premiun VALUES ('" + null + "','" + fechaBaja + "')";
+
+			// Ejecución del INSERT
+			consulta.executeUpdate(insert);
+			// Cambia al Panel para iniciar sesión
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+}

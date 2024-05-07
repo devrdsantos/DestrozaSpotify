@@ -109,6 +109,7 @@ public class ControladorDeEntrada {
 //		usuario.add(new Cliente(usuarioDB, passDB, nombreDB, rol, apellidoDB, fechaRegistro, false, idioma, fechaNacFormulario, null));
 
 		gestionBD.insertUsuario(datosUsuario, v);
+		gestionBD.insertPremiun(datosUsuario);
 	}
 
 }
