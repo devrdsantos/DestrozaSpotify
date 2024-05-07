@@ -31,7 +31,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private SimpleDateFormat formato;
-	private boolean premiun = false;
+	private String premiun;
 	
 	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador) {
 		
@@ -119,9 +119,9 @@ public class PanelRegistro extends JPanel {
 		add(lblIdioma);
 		
 		JComboBox<String> comboBoxIdioma = new JComboBox<String>();
-		comboBoxIdioma.addItem("ESP");
-		comboBoxIdioma.addItem("EUS");
-		comboBoxIdioma.addItem("ENG");
+		comboBoxIdioma.addItem("ES");
+		comboBoxIdioma.addItem("EU");
+		comboBoxIdioma.addItem("EN");
 		comboBoxIdioma.setBounds(507, 517, 150, 28);
 		add(comboBoxIdioma);
 		
@@ -153,7 +153,9 @@ public class PanelRegistro extends JPanel {
 				String idioma = (String) comboBoxIdioma.getSelectedItem();
 				
 				if (rdbtnPremiun.isSelected()) {
-					premiun = true;
+					premiun = "Premiun";
+				} else {
+					premiun = "Free";
 				}
 				
 				String fechaNac = formato.format(calendarNacimiento.getDate());

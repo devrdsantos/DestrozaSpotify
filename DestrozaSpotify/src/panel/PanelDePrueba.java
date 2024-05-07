@@ -133,7 +133,7 @@ public class PanelDePrueba extends JPanel {
 
 					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
 					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-					lblArtista.setText("<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
+//					lblArtista.setText("<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(false);
@@ -168,8 +168,8 @@ public class PanelDePrueba extends JPanel {
 					sonido.reproducir(intinerador);
 					lblPortada.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
 					lblCancion.setText("<html>" + gestionINF.mostrarCancion().get(intinerador).getNombre() + "</html>");
-					lblArtista.setText(
-							"<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
+//					lblArtista.setText(
+//							"<html>" + gestionINF.mostrarAlbums().get(intinerador).getNombreArtista() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(false);

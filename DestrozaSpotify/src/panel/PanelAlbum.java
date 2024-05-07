@@ -108,7 +108,7 @@ public class PanelAlbum extends JPanel {
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		textArea.setText("Colaboradores: " + gestionINF.mostrarCancion().get(0).getColaboradores()
+		textArea.setText("Colaboradores: " + gestionINF.mostrarCancion().get(0).getArtistasInvitados()
 				+ "\nFecha de salida: " + gestionINF.mostrarAlbums().get(0).getFechaPublicacion() + "\nCanciones: "
 				+ gestionINF.mostrarCancion().size() + "\nDuracion: " + duracionMax + " segundos");
 		textArea.setBounds(720, 230, 400, 200);

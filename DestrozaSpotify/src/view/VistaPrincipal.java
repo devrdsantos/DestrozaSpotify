@@ -122,7 +122,7 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 
-		v.cambiarDePanel(3);
+		v.cambiarDePanel(1);
 
 		
 	

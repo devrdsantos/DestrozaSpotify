@@ -15,13 +15,13 @@ public abstract class Audio {
 
 	}
 
-	public Audio(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, boolean reproduciendo) {
+	public Audio(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo) {
 		IDAudio = iDAudio;
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.imagen = imagen;
 		this.tipo = tipo;
-		this.reproduciendo = reproduciendo;
+		this.reproduciendo = false;
 	}
 
 

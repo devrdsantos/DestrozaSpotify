@@ -14,7 +14,7 @@ public class Podcast extends Audio {
 
 	public Podcast(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, boolean reproduciendo,
 			int iDPodcast, String descripcion, boolean reproduciendo2) {
-		super(iDAudio, nombre, duracion, imagen, tipo, reproduciendo);
+		super(iDAudio, nombre, duracion, imagen, tipo);
 		IDPodcast = iDPodcast;
 		this.descripcion = descripcion;
 		reproduciendo = reproduciendo2;
