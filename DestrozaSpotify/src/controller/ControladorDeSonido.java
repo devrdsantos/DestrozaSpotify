@@ -11,11 +11,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
-import model.Cancion;
+import model.Audio;
 
 public class ControladorDeSonido {
 
-	private ArrayList<Cancion> canciones;
+	private ArrayList<Audio> canciones;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -24,7 +24,7 @@ public class ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonido(ArrayList<Cancion> canciones) {
+	public ControladorDeSonido(ArrayList<Audio> canciones) {
 		this.canciones = canciones;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
