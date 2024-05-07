@@ -79,7 +79,7 @@ public class PanelGestionPodcast extends JPanel {
 		 */
 
 		JPanel MenuBotones = new JPanel();
-		MenuBotones.setBounds(40, 250, 190, 250);
+		MenuBotones.setBounds(40, 250, 190, 370);
 		add(MenuBotones);
 		MenuBotones.setLayout(null);
 
@@ -96,7 +96,7 @@ public class PanelGestionPodcast extends JPanel {
 			}
 		});
 		btnEliminarPodcast.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcast.setBounds(10, 130, 170, 30);
+		btnEliminarPodcast.setBounds(10, 170, 170, 30);
 		MenuBotones.add(btnEliminarPodcast);
 
 		/**
@@ -144,7 +144,7 @@ public class PanelGestionPodcast extends JPanel {
 			}
 		});
 		btnEliminarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcaster.setBounds(10, 90, 170, 30);
+		btnEliminarPodcaster.setBounds(10, 130, 170, 30);
 		MenuBotones.add(btnEliminarPodcaster);
 
 		/**
@@ -152,7 +152,7 @@ public class PanelGestionPodcast extends JPanel {
 		 */
 		JButton btnModificarPodcaster = new JButton("Modificar podcaster");
 		btnModificarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnModificarPodcaster.setBounds(10, 170, 170, 30);
+		btnModificarPodcaster.setBounds(10, 250, 170, 30);
 		MenuBotones.add(btnModificarPodcaster);
 
 		/**
@@ -164,8 +164,35 @@ public class PanelGestionPodcast extends JPanel {
 			}
 		});
 		btnModificarPodcast.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnModificarPodcast.setBounds(10, 210, 170, 30);
+		btnModificarPodcast.setBounds(10, 290, 170, 30);
 		MenuBotones.add(btnModificarPodcast);
+		
+		JButton btnAadirEpisodio = new JButton("Añadir episodio");
+		btnAadirEpisodio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAadirEpisodio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAadirEpisodio.setBounds(10, 90, 170, 30);
+		MenuBotones.add(btnAadirEpisodio);
+		
+		JButton btnEliminarPodcast_1 = new JButton("Eliminar episodio");
+		btnEliminarPodcast_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnEliminarPodcast_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminarPodcast_1.setBounds(10, 210, 170, 30);
+		MenuBotones.add(btnEliminarPodcast_1);
+		
+		JButton btnEliminarPodcast_1_1 = new JButton("Modificar episodio");
+		btnEliminarPodcast_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnEliminarPodcast_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminarPodcast_1_1.setBounds(10, 330, 170, 30);
+		MenuBotones.add(btnEliminarPodcast_1_1);
 
 /* --------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -590,3 +617,4 @@ public class PanelGestionPodcast extends JPanel {
 
 	}
 }
+
