@@ -36,7 +36,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo34", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo35", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -421,6 +421,7 @@ public class GestionBD {
 
 	}
 
+	
 	public void deleteCancion(String nombre) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `cancion` WHERE `NombreCancion` = ? ");
@@ -439,6 +440,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deleteAudio(String nombre) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `audio` WHERE `Nombre` = ? ");
@@ -457,9 +459,10 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deleteAlbum(String nombre) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Nombre` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Titulo` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El album " + nombre + " eliminada correctamente");
@@ -474,27 +477,10 @@ public class GestionBD {
 		}
 	}
 
-	public void deleteArtista(String nombre) {
-		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `artista` WHERE `Nombre` = ? ");
-			consulta.setString(1, nombre);
-			consulta.executeUpdate();
-			JOptionPane.showMessageDialog(null, "El artista " + nombre + " eliminado correctamente");
-			// Cambia al Panel para iniciar sesión
-
-			// Cierra la consulta
-			consulta.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-//				JOptionPane.showMessageDialog(null, "Campos inválidos");
-		}
-
-	}
-
+	/* HECHO!!! */
 	public void deleteMusico(String nombre) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `Nombre` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El musico " + nombre + " eliminado correctamente");
@@ -558,12 +544,14 @@ public class GestionBD {
 		return podcasters;
 	}
 
-	public void insertPodcast(String descripcion, String nombrePodcast, String podcaster) {
+	public void insertPodcast(String nombrePodcast, String imagenPodcast, int idPodcaster) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?)");
-			consulta.setString(1, descripcion);
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?,?)");
+			consulta.setString(1, null);
 			consulta.setString(2, nombrePodcast);
-			consulta.setString(3, podcaster);
+			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodcast + ".jpg");
+			consulta.setBlob(3, imagen);
+			consulta.setInt(4, idPodcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Podcast creado correctamente");
 			// Cambia al Panel para iniciar sesión
@@ -578,9 +566,10 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deletePodcast(String podcast) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `NombrePodcast` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `Titulo` = ? ");
 			consulta.setString(1, podcast);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcast " + podcast + " eliminado correctamente");
@@ -595,9 +584,10 @@ public class GestionBD {
 		}
 	}
 
+	/* HECHO!!! */
 	public void deletePodcaster(String podcaster) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcaster` WHERE `Podcaster` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcaster` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, podcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcaster " + podcaster + " eliminado correctamente");
