@@ -36,8 +36,11 @@ public class PanelArtista extends JPanel {
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		;
 
+		
+		/**
+		 * BTN - Atrás
+		 */
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -66,6 +69,9 @@ public class PanelArtista extends JPanel {
 		btnPerfil.setBounds(1009, 34, 136, 48);
 		add(btnPerfil);
 
+		/**
+		 * LBL - Nombre Artista
+		 */
 		JLabel lblArtista = new JLabel();
 		lblArtista.setFont(new Font("Dialog", Font.BOLD, 38));
 		lblArtista.setForeground(new Color(255, 255, 255));
@@ -101,8 +107,8 @@ public class PanelArtista extends JPanel {
 
 		JLabel lblNewLabel = new JLabel("Albums:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(230, 407, 130, 20);
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblNewLabel.setBounds(230, 399, 130, 28);
 		add(lblNewLabel);
 
 //		JList<String> listArtista = new JList<String>();
@@ -137,6 +143,9 @@ public class PanelArtista extends JPanel {
 		add(lblInformacion);
 		*/
 		
+		/**
+		 * LBL - Imagen
+		 */
 		JLabel lblImagenArtista = new JLabel("");
 		lblImagenArtista.setIcon(gestionINF.mostrarArtista().get(0).getImagen());
 		lblImagenArtista.setBounds(791, 195, 200, 200);
