@@ -37,7 +37,7 @@ public class PanelDePrueba extends JPanel {
 		setLayout(null);
 
 		/**
-		 * Boton para volver atras
+		 * BTN - Boton para volver atras
 		 */
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
@@ -54,6 +54,9 @@ public class PanelDePrueba extends JPanel {
 		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
 		
+		/**
+		 * BTN - Perfil
+		 */
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setOpaque(true);
 		btnPerfil.setForeground(Color.WHITE);
