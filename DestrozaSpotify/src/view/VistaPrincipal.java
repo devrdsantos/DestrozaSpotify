@@ -105,8 +105,7 @@ public class VistaPrincipal extends JFrame {
 		case 14:
 			setContentPane(new PanelEpisodio(this, this.gestionINF));
 			break;
-			
-
+		
 		}
 	}
 
