@@ -37,13 +37,11 @@ public class PanelArtista extends JPanel {
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
-
+		
+		/**
+		 * BTN - Atras
+		 */
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(8);
-			}
-		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAtras.setOpaque(true);
 		btnAtras.setContentAreaFilled(true);
@@ -51,6 +49,15 @@ public class PanelArtista extends JPanel {
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBackground(Color.decode("#353535"));
 		btnAtras.setBounds(52, 34, 136, 48);
+		/**
+		 * ACCION DEL BOTON
+		 */
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				v.cambiarDePanel(8);
+			}
+		});
+	
 		add(btnAtras);
 		
 		/**
@@ -124,7 +131,7 @@ public class PanelArtista extends JPanel {
 		textAreaInformacionArtista.setLineWrap(true);
 		textAreaInformacionArtista.setText(gestionINF.mostrarAlbums().get(0).getGenero()
 				+ "\n\n" + gestionINF.mostrarArtista().get(0).getDescripcion());
-		
+
 		textAreaInformacionArtista.setBackground(Color.decode("#222222"));
 		textAreaInformacionArtista.setBounds(339, 211, 397, 184);
 		add(textAreaInformacionArtista);
@@ -153,7 +160,7 @@ public class PanelArtista extends JPanel {
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(223, 207, 110, 28);
 		add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("Descripción:");
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Verdana", Font.BOLD, 16));
