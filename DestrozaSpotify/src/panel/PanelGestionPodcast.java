@@ -31,11 +31,14 @@ public class PanelGestionPodcast extends JPanel {
 
 	private JPanel panelAñadirPodcast;
 	private JPanel panelAñadirPodcaster;
+	private JPanel panelAñadirEpisodio;
 	private JPanel panelEliminarPodcast;
 	private JPanel panelEliminarPodcaster;
+	private JPanel panelEliminarEpisodio;
 	private JPanel panelModificarPodcast;
 	private JPanel panelModificarPodcaster;
 
+	
 	private String archivoPortadaPodcaster;
 	private String archivoMusicaPodcast;
 
@@ -170,6 +173,11 @@ public class PanelGestionPodcast extends JPanel {
 		JButton btnAadirEpisodio = new JButton("Añadir episodio");
 		btnAadirEpisodio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelEliminarPodcast.setVisible(false);
+				panelAñadirPodcast.setVisible(false);
+				panelAñadirPodcaster.setVisible(false);
+				panelEliminarPodcaster.setVisible(false);
+				panelAñadirEpisodio.setVisible(true);
 			}
 		});
 		btnAadirEpisodio.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -344,22 +352,11 @@ public class PanelGestionPodcast extends JPanel {
 		lblNombreAudio.setForeground(Color.decode("#ffffff"));
 		lblNombreAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirPodcast.add(lblNombreAudio);
-
-//		JLabel lblDuracion = new JLabel("Duracion (En segundos):");
-//		lblDuracion.setBounds(10, 58, 228, 48);
-//		lblDuracion.setForeground(Color.decode("#ffffff"));
-//		lblDuracion.setFont(new Font("Verdana", Font.PLAIN, 18));
-//		panelAñadirPodcast.add(lblDuracion);
-
+		
 		JTextField textFieldNombrePodcast = new JTextField();
 		textFieldNombrePodcast.setBounds(248, 20, 288, 30);
 		textFieldNombrePodcast.setColumns(10);
 		panelAñadirPodcast.add(textFieldNombrePodcast);
-
-//		JTextField textFieldDuracion = new JTextField();
-//		textFieldDuracion.setBounds(248, 70, 288, 30);
-//		textFieldDuracion.setColumns(10);
-//		panelAñadirPodcast.add(textFieldDuracion);
 
 		JLabel lblPortada = new JLabel("Portada:");
 		lblPortada.setBounds(153, 58, 85, 48);
@@ -430,68 +427,7 @@ public class PanelGestionPodcast extends JPanel {
 		comboBoxPodcaster.setBounds(248, 116, 288, 30);
 		panelAñadirPodcast.add(comboBoxPodcaster);
 
-//		JLabel lblAudio = new JLabel("Audio:");
-//		lblAudio.setBounds(173, 250, 65, 48);
-//		lblAudio.setForeground(Color.decode("#ffffff"));
-//		lblAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
-//		panelAñadirPodcast.add(lblAudio);
-//
-//		JTextField textFieldAudio = new JTextField();
-//		textFieldAudio.setBounds(248, 260, 288, 30);
-//		textFieldAudio.setColumns(10);
-//		panelAñadirPodcast.add(textFieldAudio);
-//
-//		/**
-//		 * Boton para subir el wav
-//		 */
-//		JButton btnSubirWav = new JButton("Subir .wav");
-//		btnSubirWav.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				/**
-//				 * El selector de archivos para guardarlos en el proyecto
-//				 */
-//				JFileChooser fileChooser = new JFileChooser();
-//				fileChooser.setDialogTitle("Seleccione un archivo .wav");
-//				/**
-//				 * Filtro para solo elegir archivos .wav
-//				 */
-//				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
-//
-//				int userSelection = fileChooser.showOpenDialog(null);
-//
-//				if (userSelection == JFileChooser.APPROVE_OPTION) {
-//					File selectedFile = fileChooser.getSelectedFile();
-//					archivoMusicaPodcast = selectedFile.getName();
-//					textFieldAudio.setText(archivoMusicaPodcast);
-//					Path sourcePath = selectedFile.toPath();
-//					/**
-//					 * En que parte debe dejar el archivo subido
-//					 */
-//					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
-//
-//					try {
-//						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-//						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
-//					} catch (IOException ex) {
-//						ex.printStackTrace();
-//					}
-//				}
-//			}
-//		});
-//		btnSubirWav.setBounds(555, 260, 111, 33);
-//		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
-//		panelAñadirPodcast.add(btnSubirWav);
-//
-//		JLabel lblDescripcionPodc = new JLabel("Descripcion:");
-//		lblDescripcionPodc.setBounds(122, 154, 148, 48);
-//		lblDescripcionPodc.setForeground(Color.decode("#ffffff"));
-//		lblDescripcionPodc.setFont(new Font("Verdana", Font.PLAIN, 18));
-//		panelAñadirPodcast.add(lblDescripcionPodc);
-//
-//		JTextField textFieldDescripcionPodc = new JTextField();
-//		textFieldDescripcionPodc.setBounds(248, 165, 288, 30);
-//		textFieldDescripcionPodc.setColumns(10);
-//		panelAñadirPodcast.add(textFieldDescripcionPodc);
+
 
 		/**
 		 * Boton para subir el Podcast
@@ -520,6 +456,164 @@ public class PanelGestionPodcast extends JPanel {
 		 * -----------------------------------------------------------------------------
 		 * ----------------------------------------------------
 		 */
+		
+		/*
+		 * ----- Panel añadir episodio
+		 * -----------------------------------------------------------------------------
+		 * --------------------
+		 */
+		
+		panelAñadirEpisodio = new JPanel();
+		panelAñadirEpisodio.setBounds(275, 175, 880, 500);
+		panelAñadirEpisodio.setBackground(Color.decode("#142850"));
+		panelAñadirEpisodio.setVisible(false);
+		add(panelAñadirEpisodio);
+		panelAñadirEpisodio.setLayout(null);
+		
+		JLabel lblNombreEpisodio = new JLabel("Nombre del episodio:");
+		lblNombreEpisodio.setBounds(45, 10, 211, 48);
+		lblNombreEpisodio.setForeground(Color.decode("#ffffff"));
+		lblNombreEpisodio.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirEpisodio.add(lblNombreEpisodio);
+		
+		JTextField textFieldNombreEpisodio = new JTextField();
+		textFieldNombreEpisodio.setBounds(248, 20, 288, 30);
+		textFieldNombreEpisodio.setColumns(10);
+		panelAñadirEpisodio.add(textFieldNombreEpisodio);
+		
+		JLabel lblAudio = new JLabel("Audio:");
+		lblAudio.setBounds(173, 250, 65, 48);
+		lblAudio.setForeground(Color.decode("#ffffff"));
+		lblAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirEpisodio.add(lblAudio);
+
+		JTextField textFieldAudio = new JTextField();
+		textFieldAudio.setBounds(248, 260, 288, 30);
+		textFieldAudio.setColumns(10);
+		panelAñadirEpisodio.add(textFieldAudio);
+
+		/**
+		 * Boton para subir el wav
+		 */
+		JButton btnSubirWav = new JButton("Subir .wav");
+		btnSubirWav.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .wav");
+				/**
+				 * Filtro para solo elegir archivos .wav
+				 */
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoMusicaPodcast = selectedFile.getName();
+					textFieldAudio.setText(archivoMusicaPodcast);
+					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
+					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
+
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		btnSubirWav.setBounds(555, 260, 111, 33);
+		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
+		panelAñadirEpisodio.add(btnSubirWav);
+
+		JLabel lblDescripcionPodc = new JLabel("Descripcion:");
+		lblDescripcionPodc.setBounds(122, 154, 148, 48);
+		lblDescripcionPodc.setForeground(Color.decode("#ffffff"));
+		lblDescripcionPodc.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirEpisodio.add(lblDescripcionPodc);
+
+		JTextField textFieldDescripcionPodc = new JTextField();
+		textFieldDescripcionPodc.setBounds(248, 165, 288, 30);
+		textFieldDescripcionPodc.setColumns(10);
+		panelAñadirEpisodio.add(textFieldDescripcionPodc);
+		
+
+		JLabel lblDuracion = new JLabel("Duracion (En segundos):");
+		lblDuracion.setBounds(10, 58, 228, 48);
+		lblDuracion.setForeground(Color.decode("#ffffff"));
+		lblDuracion.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirEpisodio.add(lblDuracion);
+
+		JTextField textFieldDuracion = new JTextField();
+		textFieldDuracion.setBounds(248, 70, 288, 30);
+		textFieldDuracion.setColumns(10);
+		panelAñadirEpisodio.add(textFieldDuracion);
+		
+		JLabel lblPortadaEpisodio = new JLabel("Portada:");
+		lblPortadaEpisodio.setBounds(153, 58, 85, 48);
+		lblPortadaEpisodio.setForeground(Color.decode("#ffffff"));
+		lblPortadaEpisodio.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelAñadirEpisodio.add(lblPortadaEpisodio);
+
+		JTextField textFieldPortadaEpisodio = new JTextField();
+		textFieldPortadaEpisodio.setBounds(248, 106, 288, 30);
+		textFieldPortadaEpisodio.setColumns(10);
+		panelAñadirEpisodio.add(textFieldPortadaEpisodio);
+
+		/**
+		 * Boton para subir la portada del Podcast
+		 */
+		JButton btnSubirPortadaEpisodio = new JButton("Subir .jpg");
+		btnSubirPortadaEpisodio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .jpg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoPortadaPodcaster = selectedFile.getName();
+					textFieldPortadaEpisodio.setText(archivoPortadaPodcaster);
+					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
+					Path destinationPath = new File("imagenes/portadasPodcast", archivoPortadaPodcaster).toPath();
+
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasPodcast'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
+
+			}
+		});
+		btnSubirPortadaEpisodio.setBounds(555, 116, 111, 33);
+		btnSubirPortadaEpisodio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		panelAñadirEpisodio.add(btnSubirPortadaEpisodio);
+		
+		/*
+		 * -----------------------------------------------------------------------------
+		 * -------------------------------------------------
+		 */
+		
 
 		/*
 		 * ----- Panel eliminar podcast
@@ -582,6 +676,8 @@ public class PanelGestionPodcast extends JPanel {
 		 * -----------------------------------------------------------------------------
 		 * -------------------------------------------------
 		 */
+		
+		
 
 		/*
 		 * ----- Panel eliminar podcaster
