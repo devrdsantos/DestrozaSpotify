@@ -4,40 +4,43 @@ import javax.swing.ImageIcon;
 
 public class Podcast {
 
-	private int IDPodcast;
+
+	private int idPodcast;
 	private String titulo;
-	private boolean reproduciendo;
 	private ImageIcon imagen;
-	private int IDPodcaster;
-	
-	
+	private int idPodcaster;
+
+
 	public Podcast() {
 
 	}
 	
-	
 
 
-	public Podcast(int iDPodcast, String titulo, boolean reproduciendo, ImageIcon imagen, int iDPodcaster) {
-		super();
-		IDPodcast = iDPodcast;
+
+	public Podcast(int idPodcast, String titulo, ImageIcon imagen, int idPodcaster) {
+		this.idPodcast = idPodcast;
 		this.titulo = titulo;
-		this.reproduciendo = reproduciendo;
 		this.imagen = imagen;
-		IDPodcaster = iDPodcaster;
+		this.idPodcaster = idPodcaster;
+
 	}
 
 
 
 
-	public int getIDPodcast() {
-		return IDPodcast;
+	public int getIdPodcast() {
+		return idPodcast;
 	}
 
 
-	public void setIDPodcast(int iDPodcast) {
-		IDPodcast = iDPodcast;
+
+
+	public void setIdPodcast(int idPodcast) {
+		this.idPodcast = idPodcast;
 	}
+
+
 
 
 	public String getTitulo() {
@@ -45,19 +48,13 @@ public class Podcast {
 	}
 
 
+
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
 
-	public boolean isReproduciendo() {
-		return reproduciendo;
-	}
-
-
-	public void setReproduciendo(boolean reproduciendo) {
-		this.reproduciendo = reproduciendo;
-	}
 
 
 	public ImageIcon getImagen() {
@@ -65,19 +62,28 @@ public class Podcast {
 	}
 
 
+
+
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;
 	}
 
 
-	public int getIDPodcaster() {
-		return IDPodcaster;
+
+
+	public int getIdPodcaster() {
+		return idPodcaster;
 	}
 
 
-	public void setIDPodcaster(int iDPodcaster) {
-		IDPodcaster = iDPodcaster;
+
+
+	public void setIdPodcaster(int idPodcaster) {
+		this.idPodcaster = idPodcaster;
 	}
+
+
+	
 
 	
 

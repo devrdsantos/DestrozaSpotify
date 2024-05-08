@@ -11,6 +11,7 @@ import model.Album;
 import model.Cancion;
 import model.Musico;
 import model.Playlist;
+import model.Podcast;
 
 public class GestionDeLaInformacion {
 
@@ -206,6 +207,22 @@ public class GestionDeLaInformacion {
 	
 	public void deleteCancionDePlaylist(int idAudio) {
 		gestionBD.deleteCancionDePlaylist(idAudio);
+	}
+	
+	public void insertEpisodio(int idAudio, int idPodcast, String colaboradores) {
+		gestionBD.insertEpisodio(idAudio, idPodcast, colaboradores);
+	}
+	
+	public void insertAudio(String nombre, int duracion, String imagenPodc) {
+		gestionBD.insertAudioEpisodio(nombre, duracion, imagenPodc);
+	}
+	
+	public int devolverIdPodcast(String titulo) {
+		return gestionBD.idPodcast(titulo); 
+	}
+	
+	public ArrayList<Podcast> sacarPodcastInformacion() {
+		return gestionBD.podcastInformacion();
 	}
 	
 }
