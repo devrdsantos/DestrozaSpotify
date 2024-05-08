@@ -2,42 +2,83 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public class Podcast extends Audio {
+public class Podcast {
 
 	private int IDPodcast;
-	private String descripcion;
+	private String titulo;
 	private boolean reproduciendo;
-
+	private ImageIcon imagen;
+	private int IDPodcaster;
+	
+	
 	public Podcast() {
 
 	}
+	
+	
 
-	public Podcast(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, boolean reproduciendo,
-			int iDPodcast, String descripcion, boolean reproduciendo2) {
-		super(iDAudio, nombre, duracion, imagen, tipo);
+
+	public Podcast(int iDPodcast, String titulo, boolean reproduciendo, ImageIcon imagen, int iDPodcaster) {
+		super();
 		IDPodcast = iDPodcast;
-		this.descripcion = descripcion;
-		reproduciendo = reproduciendo2;
+		this.titulo = titulo;
+		this.reproduciendo = reproduciendo;
+		this.imagen = imagen;
+		IDPodcaster = iDPodcaster;
 	}
+
+
+
 
 	public int getIDPodcast() {
 		return IDPodcast;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+
+	public void setIDPodcast(int iDPodcast) {
+		IDPodcast = iDPodcast;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public boolean sonando() {
-		if (!reproduciendo) {
-			return true;
-		} else {
-			return false;
-		}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
+
+
+	public boolean isReproduciendo() {
+		return reproduciendo;
+	}
+
+
+	public void setReproduciendo(boolean reproduciendo) {
+		this.reproduciendo = reproduciendo;
+	}
+
+
+	public ImageIcon getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(ImageIcon imagen) {
+		this.imagen = imagen;
+	}
+
+
+	public int getIDPodcaster() {
+		return IDPodcaster;
+	}
+
+
+	public void setIDPodcaster(int iDPodcaster) {
+		IDPodcaster = iDPodcaster;
+	}
+
+	
 
 }
