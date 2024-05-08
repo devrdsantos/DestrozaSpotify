@@ -179,9 +179,9 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarCancionesPorTituloPlaylist(titulo);
 	}
 	
-//	public int devolverIdPlaylist(String titulo) {
-//		return gestionBD.idPlaylist(titulo);
-//	}
+	public int devolverIdPlaylist(String titulo) {
+		return gestionBD.idPlaylist(titulo);
+	}
 	
 	public void recogerNombrePlaylist(String titulo) {
 		this.tituloPlaylist = titulo;
@@ -193,6 +193,18 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<Musico> devolverMusicoPorTituloPlaylist(String titulo) {
 		return gestionBD.sacarMusicoParaPlaylist(titulo);
+	}
+
+	public void añadirCancionAPlaylist(int idPlaylist, int idAudio) {
+		gestionBD.insertCancionEnPlaylist(idPlaylist, idAudio);
+	}
+	
+	public int sacarIdDelAudio(String nombre) {
+		return gestionBD.idAudio(nombre);
+	}
+	
+	public void deleteCancionDePlaylist() {
+		
 	}
 	
 }

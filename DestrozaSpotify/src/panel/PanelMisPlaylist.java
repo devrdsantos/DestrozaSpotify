@@ -87,6 +87,14 @@ public class PanelMisPlaylist extends JPanel{
 		add(btnBorrarCancion);
 		
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
+		btnAñadirCancion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame f =new JFrame();   
+				String titulo =JOptionPane.showInputDialog(f,"Introduzca el nombre de la cancion:");
+				gestionINF.añadirCancionAPlaylist(gestionINF.sacarIdDelAudio(titulo), gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist()));
+				v.cambiarDePanel(15);
+			}
+		});
 		btnAñadirCancion.setBounds(50, 276, 188, 40);
 		btnAñadirCancion.setOpaque(true);
 		btnAñadirCancion.setForeground(new Color(255, 170, 67));
