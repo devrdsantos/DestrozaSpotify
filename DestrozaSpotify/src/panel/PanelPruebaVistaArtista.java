@@ -31,7 +31,6 @@ public class PanelPruebaVistaArtista extends JPanel{
 		setBackground(Color.decode("#222222"));
 		;
 
-		
 		/**
 		 * BTN - Atras
 		 */

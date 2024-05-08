@@ -13,25 +13,18 @@ import javax.swing.JPanel;
 
 import controller.ControladorDeSonido;
 import controller.GestionDeLaInformacion;
-import model.Audio;
 import model.Cancion;
 import view.VistaPrincipal;
 
-public class PanelReproductorDeMusica extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	
+public class PanelReproductorDePlaylist extends JPanel {
 
 	private int intinerador = 0;
 	private boolean bucle = false;
 	private boolean anuncio = false;
 
 	/**
-	 * Declaramos un arraylist de tipo Cancion para almacenar las canciones que queremos reproducir
+	 * Declaramos un arraylist de tipo Cancion para almacenar las canciones que
+	 * queremos reproducir
 	 */
 	private ArrayList<Cancion> canciones;
 	/**
@@ -49,30 +42,28 @@ public class PanelReproductorDeMusica extends JPanel {
 	private JLabel lblTituloCancion;
 	private JLabel lblNombreArtista;
 
-	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
-
+	public PanelReproductorDePlaylist(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		/**
 		 * Le asignamos valor al arraylist canciones
 		 */
-		canciones = gestionINF.mostrarCancion();
-		
-		
+		canciones = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
+
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
 		sonido = new ControladorDeSonido(canciones);
-		
+
 		/**
 		 * Declaramos un contador
 		 */
 		intinerador = gestionINF.devolverIndiceDeLaCancion();
-
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
-		
+
 		/**
 		 * Boton Atrás
 		 */
@@ -85,7 +76,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(8);
+				v.cambiarDePanel(10);
 				sonido.pausar();
 			}
 		});
@@ -100,7 +91,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		 * Label donde se muestra la imagen de la portada de la canción
 		 */
 		lblPortadaCancion = new JLabel();
-		lblPortadaCancion.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
+		lblPortadaCancion.setIcon(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getImagen());
 		lblPortadaCancion.setBounds(480, 50, 500, 500);
 		add(lblPortadaCancion);
 
@@ -110,7 +101,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				/**
 				 * Condicional que decide si se pasan los anuncios
 				 */
@@ -133,7 +124,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay.setBackground(new Color(63, 61, 61));
 		btnPlay.setBounds(665, 570, 130, 52);
 		add(btnPlay);
-		
+
 		/**
 		 * Boton Stop
 		 */
@@ -154,8 +145,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay2.setBackground(new Color(63, 61, 61));
 		btnPlay2.setBounds(665, 570, 130, 52);
 		add(btnPlay2);
-		
-		
+
 		/**
 		 * Boton para ir a la canción anterior
 		 */
@@ -163,14 +153,14 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
-				 *  Condicional para volver atras de acuerdo al contador
+				 * Condicional para volver atras de acuerdo al contador
 				 */
 				if (intinerador == 0) {
 					intinerador = canciones.size() - 1;
 				} else {
-					intinerador = (intinerador - 1) % gestionINF.mostrarCancion().size();
+					intinerador = (intinerador - 1) % gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).size();
 				}
-				
+
 				/**
 				 * Verifica si eres premium
 				 */
@@ -181,7 +171,7 @@ public class PanelReproductorDeMusica extends JPanel {
 
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-
+					lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 
@@ -207,7 +197,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						 * le asignamos un numero random al contador
 						 */
 						intinerador = sonido.ramdom();
-						
+
 						/**
 						 * reproducimos una cancion de acuerdo al contador
 						 */
@@ -215,7 +205,7 @@ public class PanelReproductorDeMusica extends JPanel {
 
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+						lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
 						btnBucle.setForeground(new Color(255, 170, 67));
 						bucle = false;
 						anuncio = false;
@@ -234,7 +224,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnAnterior.setBackground(new Color(63, 61, 61));
 		btnAnterior.setBounds(480, 570, 130, 52);
 		add(btnAnterior);
-		
+
 		/**
 		 * Boton siguiente
 		 */
@@ -251,6 +241,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					sonido.setCancionEnReproduccion(intinerador);
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+					lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(true);
@@ -276,7 +267,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						sonido.reproducir(intinerador);
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+						lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
 						btnBucle.setForeground(new Color(255, 170, 67));
 						bucle = false;
 						btnPlay.setVisible(false);
@@ -293,7 +284,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnSiguente.setBackground(new Color(63, 61, 61));
 		btnSiguente.setBounds(850, 570, 130, 52);
 		add(btnSiguente);
-		
+
 		/**
 		 * Boton bucle
 		 */
@@ -308,7 +299,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnPlay2.setVisible(false);
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
-					
+
 					/**
 					 * metodo para colocar la cancion en bucle
 					 */
@@ -340,29 +331,24 @@ public class PanelReproductorDeMusica extends JPanel {
 		add(lblTituloCancion);
 
 		lblNombreArtista = new JLabel("Pruebas");
-		lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+		lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
 		lblNombreArtista.setForeground(new Color(255, 255, 255));
 		lblNombreArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNombreArtista.setBounds(125, 185, 240, 30);
 		add(lblNombreArtista);
+
 		
-		/*
-		JButton btnMenu = new JButton("Menu");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMenu.setOpaque(true);
-		btnMenu.setForeground(new Color(255, 170, 67));
-		btnMenu.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnMenu.setBorderPainted(false);
-		btnMenu.setBackground(new Color(63, 61, 61));
-		btnMenu.setBounds(125, 366, 180, 40);
-		add(btnMenu);
-		*/
-		
+		 JButton btnMenu = new JButton("Menu"); btnMenu.addActionListener(new
+		 ActionListener() { public void actionPerformed(ActionEvent e) { } });
+		 btnMenu.setOpaque(true); btnMenu.setForeground(new Color(255, 170, 67));
+		 btnMenu.setFont(new Font("Dialog", Font.BOLD, 16));
+		 btnMenu.setBorderPainted(false); btnMenu.setBackground(new Color(63, 61,
+		 61)); btnMenu.setBounds(125, 366, 180, 40); add(btnMenu);
+		 add(btnMenu);
+
 		/**
-		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist favoritos
+		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist
+		 * favoritos
 		 */
 		JButton btnFavoritos = new JButton("Favoritos");
 		btnFavoritos.addActionListener(new ActionListener() {

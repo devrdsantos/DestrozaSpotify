@@ -194,9 +194,16 @@ public class PanelGestionPodcast extends JPanel {
 		btnEliminarPodcast_1_1.setBounds(10, 330, 170, 30);
 		MenuBotones.add(btnEliminarPodcast_1_1);
 
-/* --------------------------------------------------------------------------------------------------------------------------------- */
+		/*
+		 * -----------------------------------------------------------------------------
+		 * ----------------------------------------------------
+		 */
 
-/* ----- Panel añadir podcaster ---------------------------------------------------------------------------------------------------- */
+		/*
+		 * ----- Panel añadir podcaster
+		 * -----------------------------------------------------------------------------
+		 * -----------------------
+		 */
 
 		panelAñadirPodcaster = new JPanel();
 		panelAñadirPodcaster.setBounds(275, 175, 880, 500);
@@ -298,8 +305,8 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-
-				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(),textFieldNombrePodcaster.getText(), textFieldGenero.getText(), textFieldDescripcion.getText());
+				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(), textFieldNombrePodcaster.getText(),
+						textFieldGenero.getText(), textFieldDescripcion.getText());
 
 				v.cambiarDePanel(6);
 
@@ -314,9 +321,16 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadir.setBounds(730, 450, 136, 35);
 		panelAñadirPodcaster.add(btnAñadir);
 
-/* ------------------------------------------------------------------------------------------------------------------------------ */
+		/*
+		 * -----------------------------------------------------------------------------
+		 * -------------------------------------------------
+		 */
 
-/* ----- Panel añadir podcast --------------------------------------------------------------------------------------------------- */
+		/*
+		 * ----- Panel añadir podcast
+		 * -----------------------------------------------------------------------------
+		 * ----------------------
+		 */
 
 		panelAñadirPodcast = new JPanel();
 		panelAñadirPodcast.setBounds(275, 175, 880, 500);
@@ -331,30 +345,30 @@ public class PanelGestionPodcast extends JPanel {
 		lblNombreAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirPodcast.add(lblNombreAudio);
 
-		JLabel lblDuracion = new JLabel("Duracion (En segundos):");
-		lblDuracion.setBounds(10, 58, 228, 48);
-		lblDuracion.setForeground(Color.decode("#ffffff"));
-		lblDuracion.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblDuracion);
+//		JLabel lblDuracion = new JLabel("Duracion (En segundos):");
+//		lblDuracion.setBounds(10, 58, 228, 48);
+//		lblDuracion.setForeground(Color.decode("#ffffff"));
+//		lblDuracion.setFont(new Font("Verdana", Font.PLAIN, 18));
+//		panelAñadirPodcast.add(lblDuracion);
 
 		JTextField textFieldNombrePodcast = new JTextField();
 		textFieldNombrePodcast.setBounds(248, 20, 288, 30);
 		textFieldNombrePodcast.setColumns(10);
 		panelAñadirPodcast.add(textFieldNombrePodcast);
 
-		JTextField textFieldDuracion = new JTextField();
-		textFieldDuracion.setBounds(248, 70, 288, 30);
-		textFieldDuracion.setColumns(10);
-		panelAñadirPodcast.add(textFieldDuracion);
+//		JTextField textFieldDuracion = new JTextField();
+//		textFieldDuracion.setBounds(248, 70, 288, 30);
+//		textFieldDuracion.setColumns(10);
+//		panelAñadirPodcast.add(textFieldDuracion);
 
 		JLabel lblPortada = new JLabel("Portada:");
-		lblPortada.setBounds(153, 106, 85, 48);
+		lblPortada.setBounds(153, 58, 85, 48);
 		lblPortada.setForeground(Color.decode("#ffffff"));
 		lblPortada.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirPodcast.add(lblPortada);
 
 		JTextField textFieldPortada = new JTextField();
-		textFieldPortada.setBounds(248, 116, 288, 30);
+		textFieldPortada.setBounds(248, 68, 288, 30);
 		textFieldPortada.setColumns(10);
 		panelAñadirPodcast.add(textFieldPortada);
 
@@ -396,16 +410,16 @@ public class PanelGestionPodcast extends JPanel {
 
 			}
 		});
-		btnSubirPortada.setBounds(555, 114, 111, 33);
+		btnSubirPortada.setBounds(555, 64, 111, 33);
 		btnSubirPortada.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panelAñadirPodcast.add(btnSubirPortada);
 
 		JLabel lblPodcaster = new JLabel("Podcaster:");
-		lblPodcaster.setBounds(136, 202, 120, 48);
+		lblPodcaster.setBounds(136, 106, 120, 48);
 		lblPodcaster.setForeground(Color.decode("#ffffff"));
 		lblPodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
 		panelAñadirPodcast.add(lblPodcaster);
-		
+
 		/**
 		 * ComboBox para enseñar los Podcasters
 		 */
@@ -413,71 +427,71 @@ public class PanelGestionPodcast extends JPanel {
 		for (int i = 0; i < gestionBD.sacarPodcasterInformacion().size(); i++) {
 			comboBoxPodcaster.addItem(gestionBD.sacarPodcasterInformacion().get(i).getNombreArtistico());
 		}
-		comboBoxPodcaster.setBounds(248, 212, 288, 30);
+		comboBoxPodcaster.setBounds(248, 116, 288, 30);
 		panelAñadirPodcast.add(comboBoxPodcaster);
 
-		JLabel lblAudio = new JLabel("Audio:");
-		lblAudio.setBounds(173, 250, 65, 48);
-		lblAudio.setForeground(Color.decode("#ffffff"));
-		lblAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblAudio);
-
-		JTextField textFieldAudio = new JTextField();
-		textFieldAudio.setBounds(248, 260, 288, 30);
-		textFieldAudio.setColumns(10);
-		panelAñadirPodcast.add(textFieldAudio);
-
-		/**
-		 * Boton para subir el wav
-		 */
-		JButton btnSubirWav = new JButton("Subir .wav");
-		btnSubirWav.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * El selector de archivos para guardarlos en el proyecto
-				 */
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Seleccione un archivo .wav");
-				/**
-				 * Filtro para solo elegir archivos .wav
-				 */
-				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
-
-				int userSelection = fileChooser.showOpenDialog(null);
-
-				if (userSelection == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = fileChooser.getSelectedFile();
-					archivoMusicaPodcast = selectedFile.getName();
-					textFieldAudio.setText(archivoMusicaPodcast);
-					Path sourcePath = selectedFile.toPath();
-					/**
-					 * En que parte debe dejar el archivo subido
-					 */
-					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
-
-					try {
-						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-				}
-			}
-		});
-		btnSubirWav.setBounds(555, 260, 111, 33);
-		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panelAñadirPodcast.add(btnSubirWav);
-
-		JLabel lblDescripcionPodc = new JLabel("Descripcion:");
-		lblDescripcionPodc.setBounds(122, 154, 148, 48);
-		lblDescripcionPodc.setForeground(Color.decode("#ffffff"));
-		lblDescripcionPodc.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblDescripcionPodc);
-
-		JTextField textFieldDescripcionPodc = new JTextField();
-		textFieldDescripcionPodc.setBounds(248, 165, 288, 30);
-		textFieldDescripcionPodc.setColumns(10);
-		panelAñadirPodcast.add(textFieldDescripcionPodc);
+//		JLabel lblAudio = new JLabel("Audio:");
+//		lblAudio.setBounds(173, 250, 65, 48);
+//		lblAudio.setForeground(Color.decode("#ffffff"));
+//		lblAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
+//		panelAñadirPodcast.add(lblAudio);
+//
+//		JTextField textFieldAudio = new JTextField();
+//		textFieldAudio.setBounds(248, 260, 288, 30);
+//		textFieldAudio.setColumns(10);
+//		panelAñadirPodcast.add(textFieldAudio);
+//
+//		/**
+//		 * Boton para subir el wav
+//		 */
+//		JButton btnSubirWav = new JButton("Subir .wav");
+//		btnSubirWav.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				/**
+//				 * El selector de archivos para guardarlos en el proyecto
+//				 */
+//				JFileChooser fileChooser = new JFileChooser();
+//				fileChooser.setDialogTitle("Seleccione un archivo .wav");
+//				/**
+//				 * Filtro para solo elegir archivos .wav
+//				 */
+//				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
+//
+//				int userSelection = fileChooser.showOpenDialog(null);
+//
+//				if (userSelection == JFileChooser.APPROVE_OPTION) {
+//					File selectedFile = fileChooser.getSelectedFile();
+//					archivoMusicaPodcast = selectedFile.getName();
+//					textFieldAudio.setText(archivoMusicaPodcast);
+//					Path sourcePath = selectedFile.toPath();
+//					/**
+//					 * En que parte debe dejar el archivo subido
+//					 */
+//					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
+//
+//					try {
+//						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+//						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
+//					} catch (IOException ex) {
+//						ex.printStackTrace();
+//					}
+//				}
+//			}
+//		});
+//		btnSubirWav.setBounds(555, 260, 111, 33);
+//		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
+//		panelAñadirPodcast.add(btnSubirWav);
+//
+//		JLabel lblDescripcionPodc = new JLabel("Descripcion:");
+//		lblDescripcionPodc.setBounds(122, 154, 148, 48);
+//		lblDescripcionPodc.setForeground(Color.decode("#ffffff"));
+//		lblDescripcionPodc.setFont(new Font("Verdana", Font.PLAIN, 18));
+//		panelAñadirPodcast.add(lblDescripcionPodc);
+//
+//		JTextField textFieldDescripcionPodc = new JTextField();
+//		textFieldDescripcionPodc.setBounds(248, 165, 288, 30);
+//		textFieldDescripcionPodc.setColumns(10);
+//		panelAñadirPodcast.add(textFieldDescripcionPodc);
 
 		/**
 		 * Boton para subir el Podcast
@@ -487,12 +501,7 @@ public class PanelGestionPodcast extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 //				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
 
-				gestionBD.insertPodcast(textFieldDescripcionPodc.getText(),
-						textFieldNombrePodcast.getText().replace(" ", ""),
-						(String) comboBoxPodcaster.getSelectedItem());
-				gestionBD.insertAudioPodc(textFieldNombrePodcast.getText(),
-						Integer.valueOf(textFieldDuracion.getText()),
-						textFieldNombrePodcast.getText().replace(" ", ""));
+				gestionBD.insertPodcast(textFieldNombrePodcast.getText(),textFieldNombrePodcast.getText() , gestionBD.idPodcaster(comboBoxPodcaster.getSelectedItem().toString()));
 
 				v.cambiarDePanel(5);
 
@@ -507,9 +516,16 @@ public class PanelGestionPodcast extends JPanel {
 		btnAñadirPodc.setBounds(730, 450, 136, 35);
 		panelAñadirPodcast.add(btnAñadirPodc);
 
-/* --------------------------------------------------------------------------------------------------------------------------------- */
+		/*
+		 * -----------------------------------------------------------------------------
+		 * ----------------------------------------------------
+		 */
 
-/* ----- Panel eliminar podcast ---------------------------------------------------------------------------------------------------- */
+		/*
+		 * ----- Panel eliminar podcast
+		 * -----------------------------------------------------------------------------
+		 * -----------------------
+		 */
 
 		panelEliminarPodcast = new JPanel();
 		panelEliminarPodcast.setBounds(275, 175, 880, 500);
@@ -562,9 +578,16 @@ public class PanelGestionPodcast extends JPanel {
 		btnEliminarPodc.setBounds(27, 110, 136, 35);
 		panelEliminarPodcast.add(btnEliminarPodc);
 
-/*  ------------------------------------------------------------------------------------------------------------------------------ */
+		/*
+		 * -----------------------------------------------------------------------------
+		 * -------------------------------------------------
+		 */
 
-/* ----- Panel eliminar podcaster -------------------------------------------------------------------------------------------------  */
+		/*
+		 * ----- Panel eliminar podcaster
+		 * -----------------------------------------------------------------------------
+		 * --------------------
+		 */
 
 		panelEliminarPodcaster = new JPanel();
 		panelEliminarPodcaster.setBounds(275, 175, 880, 500);
@@ -592,7 +615,6 @@ public class PanelGestionPodcast extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				gestionBD.deletePodcaster(textFieldEliminarPodcaster.getText());
-				gestionBD.deleteArtista(textFieldEliminarPodcaster.getText());
 
 				/**
 				 * Elimina los archivos de la Cancion (.jpg, .wav)
@@ -601,7 +623,7 @@ public class PanelGestionPodcast extends JPanel {
 						"imagenes/imagenArt/" + textFieldEliminarPodcaster.getText().replace(" ", "") + ".jpg");
 
 				f.delete();
-				
+
 				v.cambiarDePanel(5);
 
 			}

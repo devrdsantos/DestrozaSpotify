@@ -20,9 +20,11 @@ import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
+import panel.PanelMisPlaylist;
 import panel.PanelPodcast;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
+import panel.PanelReproductorDePlaylist;
 
 public class VistaPrincipal extends JFrame {
 
@@ -49,7 +51,10 @@ public class VistaPrincipal extends JFrame {
 
 		setSize(1200, 720);
 		setVisible(true);
-		setTitle("SoundScape");
+		setTitle("SoundScape");		
+		setResizable(false);
+		
+
 	}
 
 	/**
@@ -105,9 +110,14 @@ public class VistaPrincipal extends JFrame {
 		case 14:
 			setContentPane(new PanelEpisodio(this, this.gestionINF));
 			break;
-		
-		}
+		case 15:
+			setContentPane(new PanelMisPlaylist(this, this.gestionINF));
+			break;
+		case 16:
+			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
+			break;}
 	}
+
 
 	/**
 	 * [FUNCIÓN] main()
@@ -121,7 +131,9 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 
-		v.cambiarDePanel(6);
+
+		v.cambiarDePanel(1);
+
 
 	}
 
