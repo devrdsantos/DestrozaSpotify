@@ -150,6 +150,7 @@ public class GestionDeLaInformacion {
 	public int devolverIndiceAlbum() {
 		return indiceAlbum;
 	}
+
 	
 	public int devolverIdCliente(String cliente) {
 		return gestionBD.idClienteDeUsuario(cliente);
@@ -208,3 +209,4 @@ public class GestionDeLaInformacion {
 	}
 	
 }
+

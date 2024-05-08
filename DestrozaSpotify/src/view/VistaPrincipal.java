@@ -51,8 +51,10 @@ public class VistaPrincipal extends JFrame {
 
 		setSize(1200, 720);
 		setVisible(true);
+		setTitle("SoundScape");		
 		setResizable(false);
-		setTitle("Destruye Spotify");
+		
+
 	}
 
 	/**
@@ -113,10 +115,9 @@ public class VistaPrincipal extends JFrame {
 			break;
 		case 16:
 			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
-			break;
-			
-		}
+			break;}
 	}
+
 
 	/**
 	 * [FUNCIÓN] main()
@@ -130,7 +131,9 @@ public class VistaPrincipal extends JFrame {
 		v.setVisible(true);
 
 
+
 		v.cambiarDePanel(1);
+
 
 	}
 

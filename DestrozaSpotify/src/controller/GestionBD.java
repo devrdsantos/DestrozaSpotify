@@ -907,6 +907,8 @@ public class GestionBD {
 		return idPodcaster;
 	}
 
+	
+
 	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist VALUES (?,?,?,?)");
@@ -1100,3 +1102,4 @@ public class GestionBD {
 	}
 	
 }
+

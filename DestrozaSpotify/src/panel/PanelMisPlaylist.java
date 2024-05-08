@@ -32,26 +32,27 @@ public class PanelMisPlaylist extends JPanel {
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
+		setLayout(null);
+		
 
 		/**
 		 * Boton Volver
 		 */
-		JButton btnVolver = new JButton("<html><u>Volver<u><html>");
-		btnVolver.setBounds(21, 23, 254, 39);
-		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnVolver.setOpaque(true);
-		btnVolver.setContentAreaFilled(true);
-		btnVolver.setForeground(Color.decode("#C67ACE"));
-		btnVolver.setBorderPainted(false);
-		btnVolver.setBackground(Color.decode("#142850"));
-		btnVolver.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(3);
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				v.cambiarDePanel(1);
 			}
 		});
-		setLayout(null);
-		add(btnVolver);
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnAtras.setOpaque(true);
+		btnAtras.setContentAreaFilled(true);
+		btnAtras.setForeground(Color.decode("#FFFFFF"));
+		btnAtras.setBorderPainted(false);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
+		add(btnAtras);
+		
 
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();

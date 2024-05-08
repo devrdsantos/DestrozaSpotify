@@ -11,12 +11,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
-import model.Audio;
-import model.Cancion;
+import model.Podcast;
 
-public class ControladorDeSonido {
+public class ControladorDeSonidoPodcast {
 
-	private ArrayList<Cancion> canciones;
+	private ArrayList<Podcast> epidodios;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -25,8 +24,8 @@ public class ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonido(ArrayList<Cancion> canciones) {
-		this.canciones = canciones;
+	public ControladorDeSonidoPodcast(ArrayList<Podcast> episodios) {
+		this.epidodios = episodios;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
@@ -35,7 +34,7 @@ public class ControladorDeSonido {
 	}
 
 	public void setCancionEnReproduccion(int can) {
-		if (canciones.get(cancionEnReproduccion).sonando()) {
+		if (epidodios.get(cancionEnReproduccion).sonando()) {
 			cancionEnCurso.stop();
 		}
 
@@ -48,13 +47,13 @@ public class ControladorDeSonido {
 
 	public void reproducir(int cola) {
 		try {
-			if (canciones.get(cola).sonando()) {
+			if (epidodios.get(cola).sonando()) {
 				cancionEnCurso.stop();
 				cancionEnCurso.close();
 			}
 
 			cancionEnCurso.open(AudioSystem.getAudioInputStream(
-					new File("musica/" + canciones.get(cola).getNombre().replace(" ", "") + ".wav")));
+					new File("musica/" + epidodios.get(cola).getNombre().replace(" ", "") + ".wav")));
 			cancionEnCurso.start();
 			enReproduccion = false;
 
@@ -93,7 +92,7 @@ public class ControladorDeSonido {
 		int numeroAleatorioActual;
 
 		do {
-			numeroAleatorioActual = random.nextInt(canciones.size());
+			numeroAleatorioActual = random.nextInt(epidodios.size());
 		} while (numeroAleatorioActual == numeroAleatorioAnterior);
 
 		numeroAleatorioAnterior = numeroAleatorioActual;
