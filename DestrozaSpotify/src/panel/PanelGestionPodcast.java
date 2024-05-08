@@ -61,8 +61,8 @@ public class PanelGestionPodcast extends JPanel {
 		btnAtras.setContentAreaFilled(true);
 		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
-		btnAtras.setBackground(Color.decode("#C67ACE"));
-		btnAtras.setBounds(1010, 30, 136, 35);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
 
 		JLabel lblMenuAdministrador = new JLabel("Gestion de podcast");

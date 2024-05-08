@@ -112,8 +112,8 @@ public class PanelArtista extends JPanel {
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		textArea.setText("Genero: " + gestionINF.mostrarAlbums().get(0).getGenero()
-				+ "\nDescripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
+		textArea.setText(gestionINF.mostrarAlbums().get(0).getGenero()
+				+ "\n" + gestionINF.mostrarArtista().get(0).getDescripcion());
 		textArea.setBounds(232, 195, 400, 201);
 		add(textArea);
 		
