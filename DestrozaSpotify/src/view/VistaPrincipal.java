@@ -49,7 +49,7 @@ public class VistaPrincipal extends JFrame {
 
 		setSize(1200, 720);
 		setVisible(true);
-		setTitle("Destruye Spotify");
+		setTitle("SoundScape");
 	}
 
 	/**
