@@ -21,6 +21,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.GestionBD;
 import view.VistaPrincipal;
+import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 public class PanelDePrueba extends JPanel {
 
@@ -28,11 +32,6 @@ public class PanelDePrueba extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private JPanel panelAñadirPodcast;
-	private JPanel panelAñadirPodcaster;
-	private JPanel panelEliminarPodcast;
-	private JPanel panelEliminarPodcaster;
 	private JPanel panelModificarPodcast;
 	private JPanel panelModificarPodcaster;
 
@@ -61,559 +60,108 @@ public class PanelDePrueba extends JPanel {
 		btnAtras.setContentAreaFilled(true);
 		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
-		btnAtras.setBackground(Color.decode("#C67ACE"));
-		btnAtras.setBounds(1010, 30, 136, 35);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
-
-		JLabel lblMenuAdministrador = new JLabel("Gestion de podcast");
-		lblMenuAdministrador.setForeground(Color.decode("#ffffff"));
-		lblMenuAdministrador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuAdministrador.setFont(new Font("Malgun Gothic", Font.BOLD, 32));
-		lblMenuAdministrador.setBounds(360, 55, 480, 48);
-		add(lblMenuAdministrador);
-
-		/*
-		 * ----- Panel menu botones
-		 * -----------------------------------------------------------------------------
-		 * -----------
-		 */
-
-		JPanel MenuBotones = new JPanel();
-		MenuBotones.setBounds(40, 250, 190, 370);
-		add(MenuBotones);
-		MenuBotones.setLayout(null);
-
-		/**
-		 * Boton para mostrar el panel de eliminar Podcast
-		 */
-		JButton btnEliminarPodcast = new JButton("Eliminar podcast");
-		btnEliminarPodcast.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelAñadirPodcast.setVisible(false);
-				panelAñadirPodcaster.setVisible(false);
-				panelEliminarPodcaster.setVisible(false);
-				panelEliminarPodcast.setVisible(true);
-			}
-		});
-		btnEliminarPodcast.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcast.setBounds(10, 170, 170, 30);
-		MenuBotones.add(btnEliminarPodcast);
-
-		/**
-		 * Boton para mostrar el panel de añadir Podcaster
-		 */
-		JButton btnAñadirPod = new JButton("Añadir podcaster");
-		btnAñadirPod.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelEliminarPodcaster.setVisible(false);
-				panelEliminarPodcast.setVisible(false);
-				panelAñadirPodcast.setVisible(false);
-				panelAñadirPodcaster.setVisible(true);
-			}
-		});
-		btnAñadirPod.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAñadirPod.setBounds(10, 10, 170, 30);
-		MenuBotones.add(btnAñadirPod);
-
-		/**
-		 * Boton para mostrar el panel de añadir Podcast
-		 */
-		JButton btnAñadirPodcast = new JButton("Añadir podcast");
-		btnAñadirPodcast.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelEliminarPodcaster.setVisible(false);
-				panelEliminarPodcast.setVisible(false);
-				panelAñadirPodcaster.setVisible(false);
-				panelAñadirPodcast.setVisible(true);
-			}
-		});
-		btnAñadirPodcast.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAñadirPodcast.setBounds(10, 50, 170, 30);
-		MenuBotones.add(btnAñadirPodcast);
-
-		/**
-		 * Boton para mostrar el panel de eliminar Podcaster
-		 */
-		JButton btnEliminarPodcaster = new JButton("Eliminar podcaster");
-		btnEliminarPodcaster.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelEliminarPodcast.setVisible(false);
-				panelAñadirPodcast.setVisible(false);
-				panelAñadirPodcaster.setVisible(false);
-				panelEliminarPodcaster.setVisible(true);
-			}
-		});
-		btnEliminarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcaster.setBounds(10, 130, 170, 30);
-		MenuBotones.add(btnEliminarPodcaster);
-
-		/**
-		 * Boton para mostrar el panel de modificar el Podcaster
-		 */
-		JButton btnModificarPodcaster = new JButton("Modificar podcaster");
-		btnModificarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnModificarPodcaster.setBounds(10, 250, 170, 30);
-		MenuBotones.add(btnModificarPodcaster);
-
-		/**
-		 * Boton para mostrar el panel de modificar Podcast
-		 */
-		JButton btnModificarPodcast = new JButton("Modificar podcast");
-		btnModificarPodcast.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnModificarPodcast.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnModificarPodcast.setBounds(10, 290, 170, 30);
-		MenuBotones.add(btnModificarPodcast);
 		
-		JButton btnAadirEpisodio = new JButton("Añadir episodio");
-		btnAadirEpisodio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAadirEpisodio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAadirEpisodio.setBounds(10, 90, 170, 30);
-		MenuBotones.add(btnAadirEpisodio);
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
+		add(btnPerfil);
 		
-		JButton btnEliminarPodcast_1 = new JButton("Eliminar episodio");
-		btnEliminarPodcast_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEliminarPodcast_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcast_1.setBounds(10, 210, 170, 30);
-		MenuBotones.add(btnEliminarPodcast_1);
 		
-		JButton btnEliminarPodcast_1_1 = new JButton("Modificar episodio");
-		btnEliminarPodcast_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEliminarPodcast_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminarPodcast_1_1.setBounds(10, 330, 170, 30);
-		MenuBotones.add(btnEliminarPodcast_1_1);
-
-/* --------------------------------------------------------------------------------------------------------------------------------- */
-
-/* ----- Panel añadir podcaster ---------------------------------------------------------------------------------------------------- */
-
-		panelAñadirPodcaster = new JPanel();
-		panelAñadirPodcaster.setBounds(275, 175, 880, 500);
-		panelAñadirPodcaster.setBackground(Color.decode("#142850"));
-		panelAñadirPodcaster.setVisible(false);
-		add(panelAñadirPodcaster);
-		panelAñadirPodcaster.setLayout(null);
-
-		JLabel lblNombrePodcaster = new JLabel("Nombre del podcaster:");
-		lblNombrePodcaster.setBounds(27, 10, 211, 48);
-		lblNombrePodcaster.setForeground(Color.decode("#ffffff"));
-		lblNombrePodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcaster.add(lblNombrePodcaster);
-
-		JLabel lblGenero = new JLabel("Genero:");
-		lblGenero.setBounds(160, 58, 228, 48);
-		lblGenero.setForeground(Color.decode("#ffffff"));
-		lblGenero.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcaster.add(lblGenero);
-
-		JTextField textFieldNombrePodcaster = new JTextField();
-		textFieldNombrePodcaster.setBounds(248, 20, 288, 30);
-		textFieldNombrePodcaster.setColumns(10);
-		panelAñadirPodcaster.add(textFieldNombrePodcaster);
-
-		JTextField textFieldGenero = new JTextField();
-		textFieldGenero.setBounds(248, 70, 288, 30);
-		textFieldGenero.setColumns(10);
-		panelAñadirPodcaster.add(textFieldGenero);
-
-		JLabel lblPortadaPodcaster = new JLabel("Portada:");
-		lblPortadaPodcaster.setBounds(153, 106, 85, 48);
-		lblPortadaPodcaster.setForeground(Color.decode("#ffffff"));
-		lblPortadaPodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcaster.add(lblPortadaPodcaster);
-
-		JTextField textFieldPortadaPodcaster = new JTextField();
-		textFieldPortadaPodcaster.setBounds(248, 116, 288, 30);
-		textFieldPortadaPodcaster.setColumns(10);
-		panelAñadirPodcaster.add(textFieldPortadaPodcaster);
-
-		/**
-		 * Boton para subir la portada del Podcaster
-		 */
-		JButton btnSubirPortadaPodcaster = new JButton("Subir .jpg");
-		btnSubirPortadaPodcaster.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * El selector de archivos para guardarlos en el proyecto
-				 */
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
-				/**
-				 * Filtro para solo elegir archivos .jpg
-				 */
-				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
-
-				int userSelection = fileChooser.showOpenDialog(null);
-
-				if (userSelection == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = fileChooser.getSelectedFile();
-					archivoPortadaPodcaster = selectedFile.getName();
-					textFieldPortadaPodcaster.setText(archivoPortadaPodcaster);
-					Path sourcePath = selectedFile.toPath();
-					/**
-					 * En que parte debe dejar el archivo subido
-					 */
-					Path destinationPath = new File("imagenes/imagenArt", archivoPortadaPodcaster).toPath();
-
-					try {
-						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasPodcast'.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-				}
-
-			}
-		});
-		btnSubirPortadaPodcaster.setBounds(555, 114, 111, 33);
-		btnSubirPortadaPodcaster.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panelAñadirPodcaster.add(btnSubirPortadaPodcaster);
-
-		JLabel lblDescripcion = new JLabel("Descripcion:");
-		lblDescripcion.setBounds(130, 154, 148, 48);
-		lblDescripcion.setForeground(Color.decode("#ffffff"));
-		lblDescripcion.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcaster.add(lblDescripcion);
-
-		JTextField textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setBounds(248, 165, 288, 30);
-		textFieldDescripcion.setColumns(10);
-		panelAñadirPodcaster.add(textFieldDescripcion);
-
-		/**
-		 * Boton para añadir el Podcaster
-		 */
-		JButton btnAñadir = new JButton("Añadir");
-		btnAñadir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-
-				gestionBD.insertPodcaster(textFieldNombrePodcaster.getText(),textFieldNombrePodcaster.getText(), textFieldGenero.getText(), textFieldDescripcion.getText());
-
-				v.cambiarDePanel(6);
-
-			}
-		});
-		btnAñadir.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnAñadir.setOpaque(true);
-		btnAñadir.setContentAreaFilled(true);
-		btnAñadir.setForeground(Color.decode("#FFFFFF"));
-		btnAñadir.setBorderPainted(false);
-		btnAñadir.setBackground(Color.decode("#C67ACE"));
-		btnAñadir.setBounds(730, 450, 136, 35);
-		panelAñadirPodcaster.add(btnAñadir);
-
-/* ------------------------------------------------------------------------------------------------------------------------------ */
-
-/* ----- Panel añadir podcast --------------------------------------------------------------------------------------------------- */
-
-		panelAñadirPodcast = new JPanel();
-		panelAñadirPodcast.setBounds(275, 175, 880, 500);
-		panelAñadirPodcast.setBackground(Color.decode("#142850"));
-		panelAñadirPodcast.setVisible(false);
-		add(panelAñadirPodcast);
-		panelAñadirPodcast.setLayout(null);
-
-		JLabel lblNombreAudio = new JLabel("Nombre del podcast:");
-		lblNombreAudio.setBounds(45, 10, 211, 48);
-		lblNombreAudio.setForeground(Color.decode("#ffffff"));
-		lblNombreAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblNombreAudio);
-
-		JLabel lblDuracion = new JLabel("Duracion (En segundos):");
-		lblDuracion.setBounds(10, 58, 228, 48);
-		lblDuracion.setForeground(Color.decode("#ffffff"));
-		lblDuracion.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblDuracion);
-
-		JTextField textFieldNombrePodcast = new JTextField();
-		textFieldNombrePodcast.setBounds(248, 20, 288, 30);
-		textFieldNombrePodcast.setColumns(10);
-		panelAñadirPodcast.add(textFieldNombrePodcast);
-
-		JTextField textFieldDuracion = new JTextField();
-		textFieldDuracion.setBounds(248, 70, 288, 30);
-		textFieldDuracion.setColumns(10);
-		panelAñadirPodcast.add(textFieldDuracion);
-
-		JLabel lblPortada = new JLabel("Portada:");
-		lblPortada.setBounds(153, 106, 85, 48);
-		lblPortada.setForeground(Color.decode("#ffffff"));
-		lblPortada.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblPortada);
-
-		JTextField textFieldPortada = new JTextField();
-		textFieldPortada.setBounds(248, 116, 288, 30);
-		textFieldPortada.setColumns(10);
-		panelAñadirPodcast.add(textFieldPortada);
-
-		/**
-		 * Boton para subir la portada del Podcast
-		 */
-		JButton btnSubirPortada = new JButton("Subir .jpg");
-		btnSubirPortada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * El selector de archivos para guardarlos en el proyecto
-				 */
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Seleccione un archivo .jpg");
-				/**
-				 * Filtro para solo elegir archivos .jpg
-				 */
-				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
-
-				int userSelection = fileChooser.showOpenDialog(null);
-
-				if (userSelection == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = fileChooser.getSelectedFile();
-					archivoPortadaPodcaster = selectedFile.getName();
-					textFieldPortada.setText(archivoPortadaPodcaster);
-					Path sourcePath = selectedFile.toPath();
-					/**
-					 * En que parte debe dejar el archivo subido
-					 */
-					Path destinationPath = new File("imagenes/portadasPodcast", archivoPortadaPodcaster).toPath();
-
-					try {
-						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasPodcast'.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-				}
-
-			}
-		});
-		btnSubirPortada.setBounds(555, 114, 111, 33);
-		btnSubirPortada.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panelAñadirPodcast.add(btnSubirPortada);
-
-		JLabel lblPodcaster = new JLabel("Podcaster:");
-		lblPodcaster.setBounds(136, 202, 120, 48);
-		lblPodcaster.setForeground(Color.decode("#ffffff"));
-		lblPodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblPodcaster);
+		// LBL - Titulo opciones
+		JLabel lblOpciones = new JLabel("¿Qué quieres hacer?");
+		lblOpciones.setFont(new Font("Rubik", Font.PLAIN, 24));
+		lblOpciones.setForeground(Color.decode("#FFFFFF"));
+		lblOpciones.setBounds(52, 136, 393, 48);
+		add(lblOpciones);
 		
-		/**
-		 * ComboBox para enseñar los Podcasters
-		 */
-		JComboBox<String> comboBoxPodcaster = new JComboBox<String>();
-		for (int i = 0; i < gestionBD.sacarPodcasterInformacion().size(); i++) {
-			comboBoxPodcaster.addItem(gestionBD.sacarPodcasterInformacion().get(i).getNombreArtistico());
-		}
-		comboBoxPodcaster.setBounds(248, 212, 288, 30);
-		panelAñadirPodcast.add(comboBoxPodcaster);
-
-		JLabel lblAudio = new JLabel("Audio:");
-		lblAudio.setBounds(173, 250, 65, 48);
-		lblAudio.setForeground(Color.decode("#ffffff"));
-		lblAudio.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblAudio);
-
-		JTextField textFieldAudio = new JTextField();
-		textFieldAudio.setBounds(248, 260, 288, 30);
-		textFieldAudio.setColumns(10);
-		panelAñadirPodcast.add(textFieldAudio);
-
-		/**
-		 * Boton para subir el wav
-		 */
-		JButton btnSubirWav = new JButton("Subir .wav");
-		btnSubirWav.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * El selector de archivos para guardarlos en el proyecto
-				 */
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Seleccione un archivo .wav");
-				/**
-				 * Filtro para solo elegir archivos .wav
-				 */
-				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .wav", "wav"));
-
-				int userSelection = fileChooser.showOpenDialog(null);
-
-				if (userSelection == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = fileChooser.getSelectedFile();
-					archivoMusicaPodcast = selectedFile.getName();
-					textFieldAudio.setText(archivoMusicaPodcast);
-					Path sourcePath = selectedFile.toPath();
-					/**
-					 * En que parte debe dejar el archivo subido
-					 */
-					Path destinationPath = new File("musica", archivoMusicaPodcast).toPath();
-
-					try {
-						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-						System.out.println("Archivo subido correctamente a la carpeta 'musica'.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-				}
+		// BTN - Descubrir Musica
+		JButton btnDescMusica = new JButton("Descubrir Música");
+		btnDescMusica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnDescMusica.setBackground(Color.decode("#FFB850"));
+				btnDescMusica.setForeground(Color.decode("#222222"));
 			}
 		});
-		btnSubirWav.setBounds(555, 260, 111, 33);
-		btnSubirWav.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panelAñadirPodcast.add(btnSubirWav);
-
-		JLabel lblDescripcionPodc = new JLabel("Descripcion:");
-		lblDescripcionPodc.setBounds(122, 154, 148, 48);
-		lblDescripcionPodc.setForeground(Color.decode("#ffffff"));
-		lblDescripcionPodc.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelAñadirPodcast.add(lblDescripcionPodc);
-
-		JTextField textFieldDescripcionPodc = new JTextField();
-		textFieldDescripcionPodc.setBounds(248, 165, 288, 30);
-		textFieldDescripcionPodc.setColumns(10);
-		panelAñadirPodcast.add(textFieldDescripcionPodc);
-
-		/**
-		 * Boton para subir el Podcast
-		 */
-		JButton btnAñadirPodc = new JButton("Añadir");
-		btnAñadirPodc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
-
-				gestionBD.insertPodcast(textFieldDescripcionPodc.getText(),
-						textFieldNombrePodcast.getText().replace(" ", ""),
-						(String) comboBoxPodcaster.getSelectedItem());
-				gestionBD.insertAudioPodc(textFieldNombrePodcast.getText(),
-						Integer.valueOf(textFieldDuracion.getText()),
-						textFieldNombrePodcast.getText().replace(" ", ""));
-
-				v.cambiarDePanel(5);
-
-			}
-		});
-		btnAñadirPodc.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnAñadirPodc.setOpaque(true);
-		btnAñadirPodc.setContentAreaFilled(true);
-		btnAñadirPodc.setForeground(Color.decode("#FFFFFF"));
-		btnAñadirPodc.setBorderPainted(false);
-		btnAñadirPodc.setBackground(Color.decode("#C67ACE"));
-		btnAñadirPodc.setBounds(730, 450, 136, 35);
-		panelAñadirPodcast.add(btnAñadirPodc);
-
-/* --------------------------------------------------------------------------------------------------------------------------------- */
-
-/* ----- Panel eliminar podcast ---------------------------------------------------------------------------------------------------- */
-
-		panelEliminarPodcast = new JPanel();
-		panelEliminarPodcast.setBounds(275, 175, 880, 500);
-		panelEliminarPodcast.setBackground(Color.decode("#142850"));
-		panelEliminarPodcast.setVisible(false);
-		add(panelEliminarPodcast);
-		panelEliminarPodcast.setLayout(null);
-
-		JLabel lblEliminarPodcast = new JLabel("Nombre del podcast que quiera eliminar:");
-		lblEliminarPodcast.setBounds(27, 10, 400, 48);
-		lblEliminarPodcast.setForeground(Color.decode("#ffffff"));
-		lblEliminarPodcast.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelEliminarPodcast.add(lblEliminarPodcast);
-
-		JTextField textFieldEliminarPodcast = new JTextField();
-		textFieldEliminarPodcast.setBounds(27, 60, 308, 30);
-		textFieldEliminarPodcast.setColumns(10);
-		panelEliminarPodcast.add(textFieldEliminarPodcast);
-
-		/**
-		 * Boton para eliminar el Podcast
-		 */
-		JButton btnEliminarPodc = new JButton("Eliminar");
-		btnEliminarPodc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				gestionBD.deletePodcast(textFieldEliminarPodcast.getText());
-				gestionBD.deleteAudio(textFieldEliminarPodcast.getText());
-
-				/**
-				 * Elimina los archivos de la Cancion (.jpg, .wav)
-				 */
-				File f1 = new File(
-						"imagenes/portadasPodcast/" + textFieldEliminarPodcast.getText().replace(" ", "") + ".jpg");
-				File f2 = new File("musica/" + textFieldEliminarPodcast.getText().replace(" ", "") + ".wav");
-
-				f1.delete();
-				f2.delete();
-
-				v.cambiarDePanel(5);
-
-			}
-		});
-		btnEliminarPodc.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnEliminarPodc.setOpaque(true);
-		btnEliminarPodc.setContentAreaFilled(true);
-		btnEliminarPodc.setForeground(Color.decode("#FFFFFF"));
-		btnEliminarPodc.setBorderPainted(false);
-		btnEliminarPodc.setBackground(Color.decode("#C67ACE"));
-		btnEliminarPodc.setBounds(27, 110, 136, 35);
-		panelEliminarPodcast.add(btnEliminarPodc);
-
-/*  ------------------------------------------------------------------------------------------------------------------------------ */
-
-/* ----- Panel eliminar podcaster -------------------------------------------------------------------------------------------------  */
-
-		panelEliminarPodcaster = new JPanel();
-		panelEliminarPodcaster.setBounds(275, 175, 880, 500);
-		panelEliminarPodcaster.setBackground(Color.decode("#142850"));
-		panelEliminarPodcaster.setVisible(false);
-		add(panelEliminarPodcaster);
-		panelEliminarPodcaster.setLayout(null);
-
-		JLabel lblEliminarPodcaster = new JLabel("Nombre del podcaster que quiera eliminar:");
-		lblEliminarPodcaster.setBounds(27, 10, 400, 48);
-		lblEliminarPodcaster.setForeground(Color.decode("#ffffff"));
-		lblEliminarPodcaster.setFont(new Font("Verdana", Font.PLAIN, 18));
-		panelEliminarPodcaster.add(lblEliminarPodcaster);
-
-		JTextField textFieldEliminarPodcaster = new JTextField();
-		textFieldEliminarPodcaster.setBounds(27, 60, 308, 30);
-		textFieldEliminarPodcaster.setColumns(10);
-		panelEliminarPodcaster.add(textFieldEliminarPodcaster);
-
-		/**
-		 * Boton para eliminar el Podcaster
-		 */
-		JButton btnDeletePodcaster = new JButton("Eliminar");
-		btnDeletePodcaster.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				gestionBD.deletePodcaster(textFieldEliminarPodcaster.getText());
-				gestionBD.deleteArtista(textFieldEliminarPodcaster.getText());
-
-				/**
-				 * Elimina los archivos de la Cancion (.jpg, .wav)
-				 */
-				File f = new File(
-						"imagenes/imagenArt/" + textFieldEliminarPodcaster.getText().replace(" ", "") + ".jpg");
-
-				f.delete();
-				
-				v.cambiarDePanel(5);
-
-			}
-		});
-		btnDeletePodcaster.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnDeletePodcaster.setOpaque(true);
-		btnDeletePodcaster.setContentAreaFilled(true);
-		btnDeletePodcaster.setForeground(Color.decode("#FFFFFF"));
-		btnDeletePodcaster.setBorderPainted(false);
-		btnDeletePodcaster.setBackground(Color.decode("#C67ACE"));
-		btnDeletePodcaster.setBounds(27, 110, 136, 35);
-		panelEliminarPodcaster.add(btnDeletePodcaster);
+		btnDescMusica.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnDescMusica.setOpaque(true);
+		btnDescMusica.setContentAreaFilled(true);
+		btnDescMusica.setBorderPainted(false);
+		btnDescMusica.setBackground(Color.decode("#222222"));
+		btnDescMusica.setForeground(Color.decode("#FFB850"));
+		btnDescMusica.setBounds(92, 210, 250, 109);
+		add(btnDescMusica);
+		
+		// SEPARATOR - Descubrir Musica
+		JSeparator separatorDescMusica = new JSeparator();
+		separatorDescMusica.setForeground(new Color(0, 0, 0));
+		separatorDescMusica.setBackground(new Color(255, 184, 80));
+		separatorDescMusica.setBounds(92, 330, 250, 13);
+		add(separatorDescMusica);
+		
+		JButton btnDescubrirPodcast = new JButton("Descubrir Podcast");
+		btnDescubrirPodcast.setOpaque(true);
+		btnDescubrirPodcast.setForeground(new Color(255, 184, 80));
+		btnDescubrirPodcast.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnDescubrirPodcast.setContentAreaFilled(true);
+		btnDescubrirPodcast.setBorderPainted(false);
+		btnDescubrirPodcast.setBackground(new Color(34, 34, 34));
+		btnDescubrirPodcast.setBounds(464, 210, 250, 109);
+		add(btnDescubrirPodcast);
+		
+		JSeparator separatorDescPodcast = new JSeparator();
+		separatorDescPodcast.setForeground(Color.BLACK);
+		separatorDescPodcast.setBackground(new Color(255, 184, 80));
+		separatorDescPodcast.setBounds(464, 330, 250, 13);
+		add(separatorDescPodcast);
+		
+		JButton btnMisPlaylist = new JButton("Mis Playlist");
+		btnMisPlaylist.setOpaque(true);
+		btnMisPlaylist.setForeground(new Color(255, 184, 80));
+		btnMisPlaylist.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnMisPlaylist.setContentAreaFilled(true);
+		btnMisPlaylist.setBorderPainted(false);
+		btnMisPlaylist.setBackground(new Color(34, 34, 34));
+		btnMisPlaylist.setBounds(862, 210, 250, 109);
+		add(btnMisPlaylist);
+		
+		JSeparator separatorDescPodcast_1 = new JSeparator();
+		separatorDescPodcast_1.setForeground(Color.BLACK);
+		separatorDescPodcast_1.setBackground(new Color(255, 184, 80));
+		separatorDescPodcast_1.setBounds(862, 330, 250, 13);
+		add(separatorDescPodcast_1);
+		
+		JLabel lblRecomendacionesParaTi = new JLabel("Recomendaciones para ti");
+		lblRecomendacionesParaTi.setForeground(Color.WHITE);
+		lblRecomendacionesParaTi.setFont(new Font("Myanmar Text", Font.PLAIN, 20));
+		lblRecomendacionesParaTi.setBounds(52, 410, 393, 48);
+		add(lblRecomendacionesParaTi);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(52, 469, 229, 196);
+		add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(336, 469, 229, 196);
+		add(panel_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(624, 469, 229, 196);
+		add(panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(891, 469, 229, 196);
+		add(panel_3);
+	
+		
 
 	}
 }
