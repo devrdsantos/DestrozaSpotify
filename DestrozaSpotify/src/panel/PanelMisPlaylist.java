@@ -20,9 +20,8 @@ import javax.swing.JPanel;
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
 
-public class PanelMisPlaylist extends JPanel{
+public class PanelMisPlaylist extends JPanel {
 
-	
 	/**
 	 * 
 	 */
@@ -33,7 +32,7 @@ public class PanelMisPlaylist extends JPanel{
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		
+
 		/**
 		 * Boton Volver
 		 */
@@ -53,29 +52,30 @@ public class PanelMisPlaylist extends JPanel{
 		});
 		setLayout(null);
 		add(btnVolver);
-		
+
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).size(); i++) {
-			modeloPlaylist.addElement(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(i).getNombre());
+		for (int i = 0; i < gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
+				.size(); i++) {
+			modeloPlaylist.addElement(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
+					.get(i).getNombre());
 		}
 		listCanciones.setModel(modeloPlaylist);
 		listCanciones.setBounds(800, 175, 300, 400);
 		add(listCanciones);
-		 
-		
+
 		JLabel lblMisCanciones = new JLabel("Mis canciones:");
 		lblMisCanciones.setBounds(800, 125, 213, 34);
 		lblMisCanciones.setForeground(new Color(255, 255, 255));
 		lblMisCanciones.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(lblMisCanciones);
-		
+
 		JButton btnBorrarCancion = new JButton("Borrar cancion");
 		btnBorrarCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				v.cambiarDePanel(10);
+				gestionINF.deleteCancionDePlaylist(gestionINF.sacarIdDelAudio(listCanciones.getSelectedValue()));
+
+				v.cambiarDePanel(15);
 			}
 		});
 		btnBorrarCancion.setBounds(50, 327, 188, 40);
@@ -85,13 +85,14 @@ public class PanelMisPlaylist extends JPanel{
 		btnBorrarCancion.setBorderPainted(false);
 		btnBorrarCancion.setBackground(new Color(63, 61, 61));
 		add(btnBorrarCancion);
-		
+
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame f =new JFrame();   
-				String titulo =JOptionPane.showInputDialog(f,"Introduzca el nombre de la cancion:");
-				gestionINF.añadirCancionAPlaylist(gestionINF.sacarIdDelAudio(titulo), gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist()));
+				JFrame f = new JFrame();
+				String titulo = JOptionPane.showInputDialog(f, "Introduzca el nombre de la cancion:");
+				gestionINF.añadirCancionAPlaylist(gestionINF.sacarIdDelAudio(titulo),
+						gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist()));
 				v.cambiarDePanel(15);
 			}
 		});
@@ -102,7 +103,7 @@ public class PanelMisPlaylist extends JPanel{
 		btnAñadirCancion.setBorderPainted(false);
 		btnAñadirCancion.setBackground(new Color(63, 61, 61));
 		add(btnAñadirCancion);
-		
+
 		JButton btnReproducir = new JButton("Reproducir");
 		btnReproducir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,5 +119,5 @@ public class PanelMisPlaylist extends JPanel{
 		btnReproducir.setBackground(new Color(63, 61, 61));
 		add(btnReproducir);
 	}
-	
+
 }

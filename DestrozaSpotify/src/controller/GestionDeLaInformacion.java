@@ -204,8 +204,8 @@ public class GestionDeLaInformacion {
 		return gestionBD.idAudio(nombre);
 	}
 	
-	public void deleteCancionDePlaylist() {
-		
+	public void deleteCancionDePlaylist(int idAudio) {
+		gestionBD.deleteCancionDePlaylist(idAudio);
 	}
 	
 }
