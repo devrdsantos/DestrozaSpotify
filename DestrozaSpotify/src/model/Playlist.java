@@ -5,18 +5,30 @@ import java.util.Date;
 
 public class Playlist {
 
+	private int idPlaylist;
 	private String nombre;
 	private ArrayList<Cancion> canciones;
-	private Date fechaCreacion;
+	private String fechaCreacion;
+	private int idCliente;
 
 	public Playlist() {
 
 	}
 
-	public Playlist(String nombre, ArrayList<Cancion> canciones, Date fechaCreacion) {
+	public Playlist(int idPlaylist, String nombre, String fechaCreacion, int idCliente ) {
+		this.idPlaylist = idPlaylist;
 		this.nombre = nombre;
-		this.canciones = canciones;
+		canciones = new ArrayList<Cancion>();
 		this.fechaCreacion = fechaCreacion;
+		this.idCliente = idCliente;
+	}
+
+	public int getIdPlaylist() {
+		return idPlaylist;
+	}
+
+	public void setIdPlaylist(int idPlaylist) {
+		this.idPlaylist = idPlaylist;
 	}
 
 	public String getNombre() {
@@ -35,12 +47,22 @@ public class Playlist {
 		this.canciones = canciones;
 	}
 
-	public Date getFechaCreacion() {
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+	
+	
 
 }

@@ -8,24 +8,28 @@ import javax.swing.ImageIcon;
 public class Album {
 
 	private int idAlbum;
-	private String nombre;
-	private Date fechaPublicacion;
-	private ArrayList<Cancion> canciones;
+	private String titulo;
+	private String año;
+//	private ArrayList<Cancion> canciones;
 	private String genero;
 	private ImageIcon imagen;
+	private int idMusico;
+	private int cantidadCanciones;
 
 	public Album() {
 
 	}
 
-	public Album(int idAlbum, String nombre, Date fechaPublicacion, ArrayList<Cancion> canciones, String genero,
-			ImageIcon imagen) {
+	public Album(int idAlbum, String titulo, String año, String genero, ImageIcon imagen, int idMusico,
+			int cantidadCanciones) {
 		this.idAlbum = idAlbum;
-		this.nombre = nombre;
-		this.fechaPublicacion = fechaPublicacion;
-		this.canciones = canciones;
+		this.titulo = titulo;
+		this.año = año;
+//		this.canciones = canciones;
 		this.genero = genero;
 		this.imagen = imagen;
+		this.idMusico = idMusico;
+		this.cantidadCanciones = cantidadCanciones;
 	}
 
 	public int getIdAlbum() {
@@ -37,28 +41,28 @@ public class Album {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return titulo;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.titulo = nombre;
 	}
 
-	public Date getFechaPublicacion() {
-		return fechaPublicacion;
+	public String getFechaPublicacion() {
+		return año;
 	}
 
-	public void setFechaPublicacion(Date fechaPublicacion) {
-		this.fechaPublicacion = fechaPublicacion;
+	public void setFechaPublicacion(String fechaPublicacion) {
+		this.año = fechaPublicacion;
 	}
 
-	public ArrayList<Cancion> getCanciones() {
-		return canciones;
-	}
-
-	public void setCanciones(ArrayList<Cancion> canciones) {
-		this.canciones = canciones;
-	}
+//	public ArrayList<Cancion> getCanciones() {
+//		return canciones;
+//	}
+//
+//	public void setCanciones(ArrayList<Cancion> canciones) {
+//		this.canciones = canciones;
+//	}
 
 	public String getGenero() {
 		return genero;
@@ -74,6 +78,22 @@ public class Album {
 
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;
+	}
+
+	public int getIDMusico() {
+		return idMusico;
+	}
+
+	public void setIDMusico(int idMusico) {
+		this.idMusico = idMusico;
+	}
+
+	public int getCantidadCanciones() {
+		return cantidadCanciones;
+	}
+
+	public void setCantidadCanciones(int cantidadCanciones) {
+		this.cantidadCanciones = cantidadCanciones;
 	}
 
 }

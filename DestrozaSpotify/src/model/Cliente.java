@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Cliente {
 
+	private int IDCliente;
 	private String usuario;
 	private String contraseña;
 	private String nombre;
@@ -23,15 +24,16 @@ public class Cliente {
 
 	}
 
-	public Cliente(String usuario, String contraseña, String nombre, String rol, String apellido, String fechaRegistro,
+	public Cliente(int IDCliente, String usuario, String contraseña, String nombre, String rol, String apellido, String fechaRegistro,
 			boolean isPremium, String idioma, String fechaNacimiento, ArrayList<Playlist> favoritos) {
+		this.IDCliente = IDCliente;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.nombre = nombre;
 		this.rol = rol;
 		this.apellido = apellido;
 		this.fechaRegistro = fechaRegistro;
-		this.isPremiun = isPremium;
+		this.isPremiun = isPremium; // ESTE SERIA EL ATRIBUTO DE TIPO QUE ESTA EN LA BASE DE DATOS
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
 		this.favoritos = favoritos;
@@ -51,6 +53,10 @@ public class Cliente {
 
 	}
 
+	public int getIDCliente() {
+		return IDCliente;
+	}
+	
 	public String getUsuario() {
 		return usuario;
 	}

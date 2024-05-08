@@ -22,7 +22,7 @@ public class PanelBienvenida extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
-		setBackground(Color.decode("#142850"));
+		setBackground(Color.decode("#222222"));
 		JLabel mensajeBienvenida = new JLabel("Bienvenido/a a Cines ESA");
 		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
 		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
