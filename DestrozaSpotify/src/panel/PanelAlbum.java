@@ -88,7 +88,7 @@ public class PanelAlbum extends JPanel {
 				gestionINF.albumSeleccionado(listAlbums.getSelectedValue().split("--")[0]);
 				gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
 // 			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
-				v.cambiarDePanel(11);
+				v.cambiarDePanel(12);
 			}
 		}
 	});
@@ -96,7 +96,7 @@ public class PanelAlbum extends JPanel {
 	
 	DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
 	for (int i = 0; i < gestionINF.mostrarAlbums().size(); i++) {
-		modeloAlbums.addElement(gestionINF.mostrarAlbums().get(i).getNombre() + " -- "
+		modeloAlbums.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
 				+ gestionINF.mostrarAlbums().get(i).getFechaPublicacion() + " -- "
 				+ gestionINF.mostrarAlbums().get(i).getCantidadCanciones() + " canciones");
 	}
