@@ -62,11 +62,11 @@ public class PanelMiBiblioteca extends JPanel {
 		listPlaylist.setBounds(800, 175, 300, 400);
 		add(listPlaylist);
 		
-		JLabel lblNewLabel = new JLabel("Mi playlist:");
-		lblNewLabel.setBounds(800, 125, 213, 34);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		add(lblNewLabel);
+		JLabel lblMiPlaylist = new JLabel("Mi playlist:");
+		lblMiPlaylist.setBounds(800, 125, 213, 34);
+		lblMiPlaylist.setForeground(new Color(255, 255, 255));
+		lblMiPlaylist.setFont(new Font("Tahoma", Font.BOLD, 20));
+		add(lblMiPlaylist);
 		
 		JButton btnCrearNueva = new JButton("Crear nueva");
 		btnCrearNueva.addActionListener(new ActionListener() {
@@ -140,6 +140,7 @@ public class PanelMiBiblioteca extends JPanel {
 		btnVerPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Recojer el nombre de la playlist
+				gestionINF.recogerNombrePlaylist(listPlaylist.getSelectedValue());
 				v.cambiarDePanel(15);
 			}
 		});

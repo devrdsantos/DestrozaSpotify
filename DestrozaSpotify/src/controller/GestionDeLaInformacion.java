@@ -25,6 +25,7 @@ public class GestionDeLaInformacion {
 	private String premiun;
 	private int indiceAlbum;
 	private String usuario;
+	private String tituloPlaylist;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -172,6 +173,26 @@ public class GestionDeLaInformacion {
 	
 	public void deletePlaylist(String titulo) {
 		gestionBD.deletePlaylist(titulo);
+	}
+	
+	public ArrayList<Cancion> devolverCancionesPorTituloPlaylist(String titulo) {
+		return gestionBD.sacarCancionesPorTituloPlaylist(titulo);
+	}
+	
+//	public int devolverIdPlaylist(String titulo) {
+//		return gestionBD.idPlaylist(titulo);
+//	}
+	
+	public void recogerNombrePlaylist(String titulo) {
+		this.tituloPlaylist = titulo;
+	}
+	
+	public String devolverNombrePlaylist() {
+		return tituloPlaylist;
+	}
+	
+	public ArrayList<Musico> devolverMusicoPorTituloPlaylist(String titulo) {
+		return gestionBD.sacarMusicoParaPlaylist(titulo);
 	}
 	
 }
