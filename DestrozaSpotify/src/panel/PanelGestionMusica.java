@@ -459,6 +459,7 @@ public class PanelGestionMusica extends JPanel{
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				/* Falta por hacer!! */
 				gestionBD.deleteCancion(textFieldEliminarCancion.getText());
 				gestionBD.deleteAudio(textFieldEliminarCancion.getText());
 				
@@ -829,7 +830,6 @@ public class PanelGestionMusica extends JPanel{
 		btnEliminarArt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestionBD.deleteArtista(textFieldEliminarArtista.getText());
 				gestionBD.deleteMusico(textFieldEliminarArtista.getText());
 				
 				/**

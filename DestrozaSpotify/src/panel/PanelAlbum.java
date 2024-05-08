@@ -100,7 +100,7 @@ public class PanelAlbum extends JPanel {
 		add(lblInformacion);
 
 		JLabel lblImagenArtista = new JLabel("");
-		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(gestionINF.devolerIndiceAlbum()).getImagen());
+		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(gestionINF.devolverIndiceAlbum()).getImagen());
 		lblImagenArtista.setBounds(820, 450, 200, 200);
 		add(lblImagenArtista);
 

@@ -75,6 +75,7 @@ public class PanelLogin extends JPanel {
 				try {
 					gestionBD.verificarLogin(usuario, pass, v);
 					gestionINF.sacarPremiun(usuario);
+					gestionINF.sacarUsuario(usuario);
 				} catch (Exception e1) {
 					System.out.println("salio mal");
 					e1.printStackTrace();

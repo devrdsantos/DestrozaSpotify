@@ -10,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import model.Album;
 import model.Cancion;
 import model.Musico;
+import model.Playlist;
 
 public class GestionDeLaInformacion {
 
@@ -23,6 +24,8 @@ public class GestionDeLaInformacion {
 	private int posicion;
 	private String premiun;
 	private int indiceAlbum;
+	private String usuario;
+	private String tituloPlaylist;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -124,7 +127,7 @@ public class GestionDeLaInformacion {
 		this.posicion = posicion;
 	}
 
-	public int devolcerIndiceDeLaCancion() {
+	public int devolverIndiceDeLaCancion() {
 		return posicion;
 	}
 	
@@ -144,7 +147,54 @@ public class GestionDeLaInformacion {
 		this.indiceAlbum = indice; 
 	}
 	
-	public int devolerIndiceAlbum() {
+	public int devolverIndiceAlbum() {
 		return indiceAlbum;
 	}
+
+	
+	public int devolverIdCliente(String cliente) {
+		return gestionBD.idClienteDeUsuario(cliente);
+	}
+	
+	public void inserPodcast(String titulo, String fechaCreacion, int idCliente) {
+		gestionBD.insertPlaylist(titulo, fechaCreacion, idCliente);
+	}
+
+	public void sacarUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	
+	public String devolverUsuario() {
+		return usuario;
+	}
+	
+	public ArrayList<Playlist> devolverPlaylistCliente(int idCliente) {
+		return gestionBD.sacarPlaylistUsuario(idCliente);
+	}
+	
+	public void deletePlaylist(String titulo) {
+		gestionBD.deletePlaylist(titulo);
+	}
+	
+	public ArrayList<Cancion> devolverCancionesPorTituloPlaylist(String titulo) {
+		return gestionBD.sacarCancionesPorTituloPlaylist(titulo);
+	}
+	
+//	public int devolverIdPlaylist(String titulo) {
+//		return gestionBD.idPlaylist(titulo);
+//	}
+	
+	public void recogerNombrePlaylist(String titulo) {
+		this.tituloPlaylist = titulo;
+	}
+	
+	public String devolverNombrePlaylist() {
+		return tituloPlaylist;
+	}
+	
+	public ArrayList<Musico> devolverMusicoPorTituloPlaylist(String titulo) {
+		return gestionBD.sacarMusicoParaPlaylist(titulo);
+	}
+	
 }
+

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import model.Album;
 import model.Cancion;
 import model.Musico;
+import model.Playlist;
 import model.Podcaster;
 import view.VistaPrincipal;
 
@@ -36,7 +37,9 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4Grupo35", "root", "");
+
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -289,16 +292,15 @@ public class GestionBD {
 		ArrayList<Musico> artistas = new ArrayList<Musico>();
 
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"SELECT * FROM Musico;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM Musico;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				artistas.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5)));
+				artistas.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
 
 			}
 
@@ -337,7 +339,8 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT *, COUNT(IDalbum) FROM `album` GROUP BY IDalbum;");
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT *, COUNT(IDalbum) FROM `album` GROUP BY IDalbum;");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -439,6 +442,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deleteAudio(String nombre) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `audio` WHERE `Nombre` = ? ");
@@ -457,9 +461,10 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deleteAlbum(String nombre) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Nombre` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Titulo` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El album " + nombre + " eliminada correctamente");
@@ -474,27 +479,10 @@ public class GestionBD {
 		}
 	}
 
-	public void deleteArtista(String nombre) {
-		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `artista` WHERE `Nombre` = ? ");
-			consulta.setString(1, nombre);
-			consulta.executeUpdate();
-			JOptionPane.showMessageDialog(null, "El artista " + nombre + " eliminado correctamente");
-			// Cambia al Panel para iniciar sesión
-
-			// Cierra la consulta
-			consulta.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-//				JOptionPane.showMessageDialog(null, "Campos inválidos");
-		}
-
-	}
-
+	/* HECHO!!! */
 	public void deleteMusico(String nombre) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `Nombre` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El musico " + nombre + " eliminado correctamente");
@@ -537,8 +525,7 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Podcaster> podcasters = new ArrayList<Podcaster>();
 		try {
-			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT * FROM Podcaster");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM Podcaster");
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -546,8 +533,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				podcasters.add(new Podcaster(resultadoConsulta.getInt(1),resultadoConsulta.getString(2), imagen, resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5)));
+				podcasters.add(new Podcaster(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
 
 			}
 
@@ -558,12 +545,14 @@ public class GestionBD {
 		return podcasters;
 	}
 
-	public void insertPodcast(String descripcion, String nombrePodcast, String podcaster) {
+	public void insertPodcast(String nombrePodcast, String imagenPodcast, int idPodcaster) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?)");
-			consulta.setString(1, descripcion);
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?,?)");
+			consulta.setString(1, null);
 			consulta.setString(2, nombrePodcast);
-			consulta.setString(3, podcaster);
+			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodcast + ".jpg");
+			consulta.setBlob(3, imagen);
+			consulta.setInt(4, idPodcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Podcast creado correctamente");
 			// Cambia al Panel para iniciar sesión
@@ -578,9 +567,10 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!!! */
 	public void deletePodcast(String podcast) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `NombrePodcast` = ? ");
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `Titulo` = ? ");
 			consulta.setString(1, podcast);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcast " + podcast + " eliminado correctamente");
@@ -595,9 +585,11 @@ public class GestionBD {
 		}
 	}
 
+	/* HECHO!!! */
 	public void deletePodcaster(String podcaster) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcaster` WHERE `Podcaster` = ? ");
+			PreparedStatement consulta = conexion
+					.prepareStatement("DELETE FROM `podcaster` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, podcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcaster " + podcaster + " eliminado correctamente");
@@ -829,89 +821,221 @@ public class GestionBD {
 	public int idClienteDeUsuario(String usuario) {
 		int idCliente = 0;
 		try {
-			
-			PreparedStatement consulta = conexion.prepareStatement("SELECT `IDCliente` FROM `cliente` WHERE `Usuario` = ?;");
+
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT `IDCliente` FROM `cliente` WHERE `Usuario` = ?;");
 			consulta.setString(1, usuario);
-		
+
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			while (resultadoConsulta.next()) {
 				idCliente = resultadoConsulta.getInt(1);
 			}
-			
+
 			resultadoConsulta.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return idCliente;
 	}
-	
+
 	public int idMusico(String musico) {
 		int idMusico = 0;
 		try {
-			
-			PreparedStatement consulta = conexion.prepareStatement("SELECT `IDMusico`FROM `musico` WHERE `NombreArtistico` = ?;");
+
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT `IDMusico`FROM `musico` WHERE `NombreArtistico` = ?;");
 			consulta.setString(1, musico);
-		
+
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			while (resultadoConsulta.next()) {
 				idMusico = resultadoConsulta.getInt(1);
 			}
-			
+
 			resultadoConsulta.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return idMusico;
 	}
-	
+
 	public int idAlbum(String album) {
 		int idAlbum = 0;
 		try {
-			
+
 			PreparedStatement consulta = conexion.prepareStatement("SELECT IDalbum FROM `album` Where titulo = ?;");
 			consulta.setString(1, album);
-		
+
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			while (resultadoConsulta.next()) {
 				idAlbum = resultadoConsulta.getInt(1);
 			}
-			
+
 			resultadoConsulta.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return idAlbum;
 	}
 
 	public int idPodcaster(String podcaster) {
 		int idPodcaster = 0;
 		try {
-			
-			PreparedStatement consulta = conexion.prepareStatement("SELECT IDPodcaster FROM `podcaster` Where NombreArtistico = ?;");
+
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT IDPodcaster FROM `podcaster` Where NombreArtistico = ?;");
 			consulta.setString(1, podcaster);
-		
+
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
 			while (resultadoConsulta.next()) {
 				idPodcaster = resultadoConsulta.getInt(1);
 			}
-			
+
 			resultadoConsulta.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return idPodcaster;
 	}
+
 	
+
+	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist VALUES (?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, titulo);
+			consulta.setString(3, fechaCreacion);
+			consulta.setInt(4, idCliente);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Playlist creado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public ArrayList<Playlist> sacarPlaylistUsuario(int idUsuario) {
+		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `playlist` WHERE `IDCliente` = ?;");
+			consulta.setInt(1, idUsuario);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				playlists.add(new Playlist(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getInt(4)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return playlists;
+	}
+
+	public void deletePlaylist(String titulo) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist` WHERE `Titulo` = ? ");
+			consulta.setString(1, titulo);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "La playlist con el " + titulo + " eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
+	public ArrayList<Cancion> sacarCancionesPorTituloPlaylist(String titulo) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Cancion> playlistCanciones = new ArrayList<Cancion>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Au.IDAudio, Au.Nombre, Au.Duracion, AU.Imagen, Au.Tipo, Ca.IDAlbum, Ca.Artistas_invitados from playlist Pl join playlist_cancion Pc on Pl.IDplaylist = Pc.IDplaylist join audio Au on Pc.IDCancion = Au.IDAudio join cancion Ca on Au.IDAudio = Ca.IDAudio Where Pl.Titulo = ?;");
+			consulta.setString(1, titulo);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				playlistCanciones.add(new Cancion(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return playlistCanciones;
+	}
+
+//	public int idPlaylist(String titulo) {
+//		int idPlaylist = 0;
+//		try {
+//
+//			PreparedStatement consulta = conexion
+//					.prepareStatement("SELECT IDplaylsit FROM `playlist` Where Titulo = ?;");
+//			consulta.setString(1, titulo);
+//
+//			ResultSet resultadoConsulta = consulta.executeQuery();
+//
+//			while (resultadoConsulta.next()) {
+//				idPlaylist = resultadoConsulta.getInt(1);
+//			}
+//
+//			resultadoConsulta.close();
+//		} catch (SQLException e) {
+//
+//			e.printStackTrace();
+//		}
+//
+//		return idPlaylist;
+//	}
+
+	public ArrayList<Musico> sacarMusicoParaPlaylist(String titulo) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Musico> artista = new ArrayList<Musico>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Mu.IDMusico, Mu.NombreArtistico, Mu.Imagen, Mu.Caracteristica, Mu.Descripcion from playlist Pl join playlist_cancion Pc on Pl.IDplaylist = Pc.IDplaylist join cancion Ca on Pc.IDCancion = Ca.IDAudio join album Al on Ca.IDAlbum = Al.IDalbum join musico Mu on Al.IDmusico = Mu.IDMusico Where Pl.Titulo = ?");
+			consulta.setString(1, titulo);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				artista.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						imagen, resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return artista;
+	}
 }
+
