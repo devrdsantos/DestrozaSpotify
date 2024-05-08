@@ -28,16 +28,6 @@ import java.awt.event.MouseEvent;
 
 public class PanelDePrueba extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel panelModificarPodcast;
-	private JPanel panelModificarPodcaster;
-
-	private String archivoPortadaPodcaster;
-	private String archivoMusicaPodcast;
-
 	public PanelDePrueba(VistaPrincipal v, GestionBD gestionBD) {
 
 		setSize(1200, 720);
