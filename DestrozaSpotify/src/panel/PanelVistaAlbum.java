@@ -19,14 +19,10 @@ import view.VistaPrincipal;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PanelAlbum extends JPanel {
-	private int duracionMax;
+public class PanelVistaAlbum extends JPanel {
 	
-	public PanelAlbum (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
-		
-		for (int i = 0; i < gestionINF.mostrarCancion().size(); i++) {
-			duracionMax = duracionMax + gestionINF.mostrarCancion().get(i).getDuracion();
-		}
+	
+	public PanelVistaAlbum (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 		setLayout(null);
 		setSize(1200, 720);
@@ -188,7 +184,6 @@ public class PanelAlbum extends JPanel {
 	lblDatoFecha.setForeground(Color.WHITE);
 	lblDatoFecha.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoFecha.setBounds(421, 201, 239, 28);
-	lblDatoFecha.setText(gestionINF.mostrarAlbums().get(0).getFechaPublicacion());
 	add(lblDatoFecha);
 	
 	/**
@@ -199,7 +194,6 @@ public class PanelAlbum extends JPanel {
 	lblDatoGenero.setForeground(Color.WHITE);
 	lblDatoGenero.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoGenero.setBounds(306, 245, 340, 28);
-	lblDatoGenero.setText(gestionINF.mostrarAlbums().get(0).getGenero());
 	add(lblDatoGenero);
 	
 	/**
@@ -210,7 +204,6 @@ public class PanelAlbum extends JPanel {
 	lblDatoCantidadCanciones.setForeground(Color.WHITE);
 	lblDatoCantidadCanciones.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoCantidadCanciones.setBounds(438, 288, 340, 28);
-	lblDatoCantidadCanciones.setText(gestionINF.mostrarCancion().size() + " canciones");
 	add(lblDatoCantidadCanciones);
 	
 	/**
@@ -221,7 +214,6 @@ public class PanelAlbum extends JPanel {
 	lblDatoDuracion.setForeground(Color.WHITE);
 	lblDatoDuracion.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoDuracion.setBounds(320, 333, 340, 28);
-	lblDatoDuracion.setText(duracionMax + " segundos");
 	add(lblDatoDuracion);
 	
 	
