@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.SwingConstants;
 
 public class PanelArtista extends JPanel {
 
@@ -72,7 +73,9 @@ public class PanelArtista extends JPanel {
 		lblArtista.setBounds(228, 116, 763, 68);
 		add(lblArtista);
 		
-
+		/**
+		 * LIST - Lista de álbums
+		 */
 		JList<String> listAlbums = new JList<String>();
 		listAlbums.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
@@ -84,6 +87,8 @@ public class PanelArtista extends JPanel {
 				}
 			}
 		});
+		listAlbums.setBackground(Color.decode("#DDDDDD"));
+		
 		DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
 		for (int i = 0; i < gestionINF.mostrarAlbums().size(); i++) {
 			modeloAlbums.addElement(gestionINF.mostrarAlbums().get(i).getNombre() + " -- "
@@ -108,14 +113,21 @@ public class PanelArtista extends JPanel {
 //		listArtista.setBounds(720, 230, 400, 200);
 //		add(listArtista);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setText(gestionINF.mostrarAlbums().get(0).getGenero()
-				+ "\n" + gestionINF.mostrarArtista().get(0).getDescripcion());
-		textArea.setBounds(232, 195, 400, 201);
-		add(textArea);
+		/**
+		 * TEXTAREA - Información del artista
+		 */
+		JTextArea textAreaInformacionArtista = new JTextArea();
+		textAreaInformacionArtista.setForeground(new Color(255, 255, 255));
+		textAreaInformacionArtista.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textAreaInformacionArtista.setEditable(false);
+		textAreaInformacionArtista.setWrapStyleWord(true);
+		textAreaInformacionArtista.setLineWrap(true);
+		textAreaInformacionArtista.setText(gestionINF.mostrarAlbums().get(0).getGenero()
+				+ "\n\n" + gestionINF.mostrarArtista().get(0).getDescripcion());
+		
+		textAreaInformacionArtista.setBackground(Color.decode("#222222"));
+		textAreaInformacionArtista.setBounds(339, 211, 397, 184);
+		add(textAreaInformacionArtista);
 		
 		/*
 		JLabel lblInformacion = new JLabel("Informacion :");
@@ -134,6 +146,19 @@ public class PanelArtista extends JPanel {
 		panel.setBackground(new Color(255, 0, 128));
 		panel.setBounds(203, 116, 10, 68);
 		add(panel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Género:");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(223, 207, 110, 28);
+		add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Descripción:");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblNewLabel_1_1.setBounds(227, 251, 110, 28);
+		add(lblNewLabel_1_1);
 
 	}
 }
