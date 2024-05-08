@@ -29,33 +29,30 @@ public class PanelDescubrirMusica extends JPanel {
 	public PanelDescubrirMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
 //		gestionINF.mostrarCancion();
-
+		setLayout(null);
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-
+		
 		/**
 		 * BTN - Ir atrás
 		 */
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(32, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
-
-		/**
-		 * ACCION DEL BOTON
-		 */
+		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		setLayout(null);
-		btnAtras.setBackground(Color.decode("#3f3d3d"));
-		btnAtras.setForeground(Color.decode("#ffaa43"));
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAtras.setOpaque(true);
+		btnAtras.setContentAreaFilled(true);
+		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
+
 
 		JLabel lblTitulo = new JLabel("Descubrir Música");
 		lblTitulo.setBounds(325, 50, 524, 74);
@@ -63,21 +60,28 @@ public class PanelDescubrirMusica extends JPanel {
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
 		add(lblTitulo);
-		JButton btnPerfil = new JButton("Mi Perfil");
-		btnPerfil.setBounds(1000, 32, 137, 52);
+		
+		/**
+		 * BOTON PERFIL
+		 */
+		
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPerfil.setOpaque(true);
-		btnPerfil.setForeground(new Color(255, 170, 67));
-		btnPerfil.setFont(new Font("Open Sans", Font.BOLD, 16));
-		btnPerfil.setBorderPainted(false);
-		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
+		
 
 		JComboBox<String> comboBoxGeneros = new JComboBox<String>();
-		comboBoxGeneros.setBounds(550, 150, 417, 33);
+		comboBoxGeneros.setBounds(100, 213, 417, 33);
 		comboBoxGeneros.addActionListener(new ActionListener() {// add actionlistner to listen for change
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,14 +95,14 @@ public class PanelDescubrirMusica extends JPanel {
 		add(comboBoxGeneros);
 
 		JLabel lblArtistasXGenero = new JLabel("Artistas por Género:");
-		lblArtistasXGenero.setBounds(300, 150, 224, 41);
+		lblArtistasXGenero.setBounds(100, 161, 224, 41);
 		lblArtistasXGenero.setForeground(new Color(255, 255, 255));
 		lblArtistasXGenero.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblArtistasXGenero.setFont(new Font("Open Sans", Font.PLAIN, 20));
 		add(lblArtistasXGenero);
 
 		JLabel lblNewLabel = new JLabel("Resultados:");
-		lblNewLabel.setBounds(100, 250, 159, 22);
+		lblNewLabel.setBounds(100, 327, 159, 27);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Open Sans", Font.PLAIN, 18));
@@ -120,11 +124,11 @@ public class PanelDescubrirMusica extends JPanel {
 			}
 		}
 		listaArtistasPorGenero.setModel(artistaPorGenero);
-		listaArtistasPorGenero.setBounds(100, 300, 1000, 313);
+		listaArtistasPorGenero.setBounds(100, 364, 1000, 313);
 		add(listaArtistasPorGenero);
 
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(700, 200, 137, 52);
+		btnBuscar.setBounds(527, 213, 117, 33);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				artistaPorGenero.removeAllElements();

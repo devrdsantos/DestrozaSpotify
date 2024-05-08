@@ -41,14 +41,14 @@ public class PanelLogin extends JPanel {
 
 		JLabel lblUsuario = new JLabel("Ingresa su usuario:");
 		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblUsuario.setBounds(376, 300, 180, 28);
+		lblUsuario.setBounds(376, 300, 200, 28);
 		lblUsuario.setForeground(Color.decode("#FFFFFF"));
 		add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Ingresa tu contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
 		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblPassword.setBounds(343, 367, 211, 28);
+		lblPassword.setBounds(343, 367, 230, 28);
 		add(lblPassword);
 
 		passwordField = new JPasswordField();
@@ -88,7 +88,7 @@ public class PanelLogin extends JPanel {
 		btnIniciarSesion.setForeground(Color.decode("#FFFFFF"));
 		btnIniciarSesion.setBorderPainted(false);
 		btnIniciarSesion.setBackground(Color.decode("#C67ACE"));
-		btnIniciarSesion.setBounds(431, 446, 150, 39);
+		btnIniciarSesion.setBounds(420, 446, 170, 39);
 		add(btnIniciarSesion);
 
 		JLabel lblSinCuenta = new JLabel("¿Aún no tienes una cuenta?");

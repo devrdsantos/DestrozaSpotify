@@ -105,6 +105,13 @@ public class PanelMenuCliente extends JPanel {
 		btnDescubrirPodcast.setBounds(464, 210, 250, 109);
 		btnDescubrirPodcast.addMouseListener(new MouseAdapter() {
 			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnDescubrirPodcast.setBackground(Color.decode("#FFB850"));
+				btnDescubrirPodcast.setForeground(Color.decode("#222222"));
+			}
+		});
+		btnDescubrirPodcast.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(9);
 			}
@@ -125,6 +132,13 @@ public class PanelMenuCliente extends JPanel {
 		btnMisPlaylist.setBorderPainted(false);
 		btnMisPlaylist.setBackground(new Color(34, 34, 34));
 		btnMisPlaylist.setBounds(862, 210, 250, 109);
+		btnMisPlaylist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMisPlaylist.setBackground(Color.decode("#FFB850"));
+				btnMisPlaylist.setForeground(Color.decode("#222222"));
+			}
+		});
 		btnMisPlaylist.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
