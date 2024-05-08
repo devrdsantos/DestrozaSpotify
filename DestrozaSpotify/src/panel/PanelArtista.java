@@ -29,38 +29,49 @@ public class PanelArtista extends JPanel {
 		// ELIMINARME!!!
 //	gestionINF.artistaSeleccionado("Artemas");
 //	gestionINF.albumSeleccionado("Pretty");
-
+		
+		setLayout(null);
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
 
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(74, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
-
-		/**
-		 * ACCION DEL BOTON
-		 */
+		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(8);
 			}
 		});
-		setLayout(null);
-		btnAtras.setBackground(Color.decode("#3f3d3d"));
-		btnAtras.setForeground(Color.decode("#ffaa43"));
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAtras.setOpaque(true);
+		btnAtras.setContentAreaFilled(true);
+		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
+		
+		/**
+		 * BTN - Perfil
+		 */
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
+		add(btnPerfil);
 
 		JLabel lblArtista = new JLabel();
-		lblArtista.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblArtista.setFont(new Font("Dialog", Font.BOLD, 38));
 		lblArtista.setForeground(new Color(255, 255, 255));
 		lblArtista.setText(gestionINF.devolverArtista());
-		lblArtista.setBounds(125, 150, 350, 40);
+		lblArtista.setBounds(228, 116, 763, 68);
 		add(lblArtista);
+		
 
 		JList<String> listAlbums = new JList<String>();
 		listAlbums.addListSelectionListener(new ListSelectionListener() {
@@ -80,13 +91,13 @@ public class PanelArtista extends JPanel {
 					+ gestionINF.mostrarAlbums().get(i).getCantidadCanciones() + " canciones");
 		}
 		listAlbums.setModel(modeloAlbums);
-		listAlbums.setBounds(125, 230, 400, 400);
+		listAlbums.setBounds(228, 436, 763, 242);
 		add(listAlbums);
 
 		JLabel lblNewLabel = new JLabel("Albums:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(125, 200, 130, 20);
+		lblNewLabel.setBounds(230, 407, 130, 20);
 		add(lblNewLabel);
 
 //		JList<String> listArtista = new JList<String>();
@@ -103,19 +114,26 @@ public class PanelArtista extends JPanel {
 		textArea.setLineWrap(true);
 		textArea.setText("Genero: " + gestionINF.mostrarAlbums().get(0).getGenero()
 				+ "\nDescripción: " + gestionINF.mostrarArtista().get(0).getDescripcion());
-		textArea.setBounds(720, 230, 400, 200);
+		textArea.setBounds(232, 195, 400, 201);
 		add(textArea);
-
+		
+		/*
 		JLabel lblInformacion = new JLabel("Informacion :");
 		lblInformacion.setForeground(Color.WHITE);
 		lblInformacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblInformacion.setBounds(720, 200, 130, 20);
 		add(lblInformacion);
-
+		*/
+		
 		JLabel lblImagenArtista = new JLabel("");
 		lblImagenArtista.setIcon(gestionINF.mostrarArtista().get(0).getImagen());
-		lblImagenArtista.setBounds(820, 450, 200, 200);
+		lblImagenArtista.setBounds(791, 195, 200, 200);
 		add(lblImagenArtista);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 0, 128));
+		panel.setBounds(203, 116, 10, 68);
+		add(panel);
 
 	}
 }
