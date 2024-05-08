@@ -96,7 +96,7 @@ public class PanelAlbum extends JPanel {
 	
 	DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
 	for (int i = 0; i < gestionINF.mostrarAlbums().size(); i++) {
-		modeloAlbums.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
+		modeloAlbums.addElement(gestionINF.mostrarAlbums().get(i).getNombre() + " -- "
 				+ gestionINF.mostrarAlbums().get(i).getFechaPublicacion() + " -- "
 				+ gestionINF.mostrarAlbums().get(i).getCantidadCanciones() + " canciones");
 	}

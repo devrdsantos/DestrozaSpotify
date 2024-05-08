@@ -13,12 +13,13 @@ import javax.swing.JPanel;
 
 import controller.ControladorDeSonido;
 import controller.GestionDeLaInformacion;
-import model.Audio;
 import model.Cancion;
 import view.VistaPrincipal;
+import javax.swing.SwingConstants;
 
 public class PanelReproductorDeMusica extends JPanel {
-
+	
+	
 	/**
 	 * 
 	 */
@@ -44,10 +45,12 @@ public class PanelReproductorDeMusica extends JPanel {
 	private JButton btnPlay;
 	private JButton btnSiguente;
 	private JButton btnBucle;
-	private JButton btnPlay2;
+	private JButton btnPause;
 	private JLabel lblPortadaCancion;
 	private JLabel lblTituloCancion;
 	private JLabel lblNombreArtista;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
 
 	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
@@ -72,42 +75,53 @@ public class PanelReproductorDeMusica extends JPanel {
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
+		setLayout(null);
 		
-		/**
-		 * Boton Atrás
-		 */
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(74, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
 
 		/**
-		 * ACCION DEL BOTON
+		 * BTN - Atrás
 		 */
+		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(8);
-				sonido.pausar();
 			}
 		});
-		setLayout(null);
-		btnAtras.setBackground(Color.decode("#3f3d3d"));
-		btnAtras.setForeground(Color.decode("#ffaa43"));
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAtras.setOpaque(true);
+		btnAtras.setContentAreaFilled(true);
+		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
+		
+		/**
+		 * BTN - Perfil
+		 */
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
+		add(btnPerfil);
+		
 
 		/**
 		 * Label donde se muestra la imagen de la portada de la canción
 		 */
 		lblPortadaCancion = new JLabel();
 		lblPortadaCancion.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
-		lblPortadaCancion.setBounds(480, 50, 500, 500);
+		lblPortadaCancion.setBounds(356, 129, 440, 360);
 		add(lblPortadaCancion);
 
 		/**
 		 * Boton de play
 		 */
-		btnPlay = new JButton("Play");
+		btnPlay = new JButton("▶");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -117,49 +131,49 @@ public class PanelReproductorDeMusica extends JPanel {
 				if (anuncio) {
 					sonido.anuncio();
 					btnPlay.setVisible(false);
-					btnPlay2.setVisible(true);
+					btnPause.setVisible(true);
 				} else {
 					sonido.reproducir(intinerador);
 					btnPlay.setVisible(false);
-					btnPlay2.setVisible(true);
+					btnPause.setVisible(true);
 				}
 
 			}
 		});
 		btnPlay.setOpaque(true);
-		btnPlay.setForeground(new Color(255, 170, 67));
-		btnPlay.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnPlay.setForeground(new Color(255, 255, 255));
+		btnPlay.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnPlay.setBorderPainted(false);
-		btnPlay.setBackground(new Color(63, 61, 61));
-		btnPlay.setBounds(665, 570, 130, 52);
+		btnPlay.setBackground(new Color(53, 53, 53));
+		btnPlay.setBounds(546, 600, 60, 60);
 		add(btnPlay);
 		
 		/**
 		 * Boton Stop
 		 */
-		btnPlay2 = new JButton("Stop");
-		btnPlay2.setVisible(false);
-		btnPlay2.addActionListener(new ActionListener() {
+		btnPause = new JButton("⏸");
+		btnPause.setVisible(false);
+		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
 				 * Metodo que detiene la canción.
 				 */
-				sonido.continuarCancion(btnPlay2);
+				sonido.continuarCancion(btnPause);
 			}
 		});
-		btnPlay2.setOpaque(true);
-		btnPlay2.setForeground(new Color(255, 170, 67));
-		btnPlay2.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnPlay2.setBorderPainted(false);
-		btnPlay2.setBackground(new Color(63, 61, 61));
-		btnPlay2.setBounds(665, 570, 130, 52);
-		add(btnPlay2);
+		btnPause.setOpaque(true);
+		btnPause.setForeground(new Color(255, 255, 255));
+		btnPause.setFont(new Font("Dialog", Font.BOLD, 12));
+		btnPause.setBorderPainted(false);
+		btnPause.setBackground(new Color(63, 61, 61));
+		btnPause.setBounds(546, 600, 60, 60);
+		add(btnPause);
 		
 		
 		/**
 		 * Boton para ir a la canción anterior
 		 */
-		btnAnterior = new JButton("<");
+		btnAnterior = new JButton("⏪");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -186,7 +200,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					bucle = false;
 
 					btnPlay.setVisible(true);
-					btnPlay2.setVisible(false);
+					btnPause.setVisible(false);
 				} else {
 					/**
 					 * Condicional para ver si anuncio es false, si lo es reproduce un anuncio
@@ -200,7 +214,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblNombreArtista.setText("");
 						anuncio = true;
 						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
+						btnPause.setVisible(true);
 					} else {
 //						System.out.println("no anuncio");
 						/**
@@ -220,7 +234,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						bucle = false;
 						anuncio = false;
 						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
+						btnPause.setVisible(true);
 					}
 
 				}
@@ -228,17 +242,17 @@ public class PanelReproductorDeMusica extends JPanel {
 			}
 		});
 		btnAnterior.setOpaque(true);
-		btnAnterior.setForeground(new Color(255, 170, 67));
-		btnAnterior.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnAnterior.setForeground(new Color(255, 255, 255));
+		btnAnterior.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnAnterior.setBorderPainted(false);
-		btnAnterior.setBackground(new Color(63, 61, 61));
-		btnAnterior.setBounds(480, 570, 130, 52);
+		btnAnterior.setBackground(new Color(53, 53, 53));
+		btnAnterior.setBounds(486, 600, 60, 60);
 		add(btnAnterior);
 		
 		/**
 		 * Boton siguiente
 		 */
-		btnSiguente = new JButton(">");
+		btnSiguente = new JButton("⏩");
 		btnSiguente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -254,7 +268,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(true);
-					btnPlay2.setVisible(false);
+					btnPause.setVisible(false);
 
 				} else {
 					/**
@@ -269,7 +283,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblNombreArtista.setText("");
 						anuncio = true;
 						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
+						btnPause.setVisible(true);
 					} else {
 //						System.out.println("No Premiun");
 						intinerador = sonido.ramdom();
@@ -280,24 +294,24 @@ public class PanelReproductorDeMusica extends JPanel {
 						btnBucle.setForeground(new Color(255, 170, 67));
 						bucle = false;
 						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
+						btnPause.setVisible(true);
 					}
 				}
 
 			}
 		});
 		btnSiguente.setOpaque(true);
-		btnSiguente.setForeground(new Color(255, 170, 67));
-		btnSiguente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnSiguente.setForeground(new Color(255, 255, 255));
+		btnSiguente.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnSiguente.setBorderPainted(false);
-		btnSiguente.setBackground(new Color(63, 61, 61));
-		btnSiguente.setBounds(850, 570, 130, 52);
+		btnSiguente.setBackground(new Color(53, 53, 53));
+		btnSiguente.setBounds(607, 600, 60, 60);
 		add(btnSiguente);
 		
 		/**
 		 * Boton bucle
 		 */
-		btnBucle = new JButton("Bucle");
+		btnBucle = new JButton("🔁 ");
 		btnBucle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -305,7 +319,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				 */
 				if (bucle) {
 					btnPlay.setVisible(true);
-					btnPlay2.setVisible(false);
+					btnPause.setVisible(false);
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					
@@ -316,7 +330,7 @@ public class PanelReproductorDeMusica extends JPanel {
 
 				} else {
 					btnPlay.setVisible(false);
-					btnPlay2.setVisible(true);
+					btnPause.setVisible(true);
 					btnBucle.setForeground(new Color(0, 255, 0));
 					bucle = true;
 					sonido.bucle(bucle, intinerador);
@@ -325,25 +339,25 @@ public class PanelReproductorDeMusica extends JPanel {
 			}
 		});
 		btnBucle.setOpaque(true);
-		btnBucle.setForeground(new Color(255, 170, 67));
-		btnBucle.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnBucle.setForeground(new Color(255, 255, 255));
+		btnBucle.setFont(new Font("Dialog", Font.PLAIN, 12));
 		btnBucle.setBorderPainted(false);
-		btnBucle.setBackground(new Color(63, 61, 61));
-		btnBucle.setBounds(125, 315, 180, 40);
+		btnBucle.setBackground(new Color(53, 53, 53));
+		btnBucle.setBounds(424, 600, 60, 60);
 		add(btnBucle);
 
 		lblTituloCancion = new JLabel("Pruebas");
 		lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-		lblTituloCancion.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTituloCancion.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblTituloCancion.setForeground(new Color(255, 255, 255));
-		lblTituloCancion.setBounds(125, 140, 350, 50);
+		lblTituloCancion.setBounds(356, 499, 440, 50);
 		add(lblTituloCancion);
 
 		lblNombreArtista = new JLabel("Pruebas");
 		lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-		lblNombreArtista.setForeground(new Color(255, 255, 255));
+		lblNombreArtista.setForeground(Color.decode("#FFB850"));
 		lblNombreArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNombreArtista.setBounds(125, 185, 240, 30);
+		lblNombreArtista.setBounds(356, 560, 298, 30);
 		add(lblNombreArtista);
 		
 		/*
@@ -364,18 +378,34 @@ public class PanelReproductorDeMusica extends JPanel {
 		/**
 		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist favoritos
 		 */
-		JButton btnFavoritos = new JButton("Favoritos");
+		JButton btnFavoritos = new JButton("❤");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnFavoritos.setOpaque(true);
-		btnFavoritos.setForeground(new Color(255, 170, 67));
-		btnFavoritos.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnFavoritos.setForeground(new Color(255, 255, 255));
+		btnFavoritos.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnFavoritos.setBorderPainted(false);
-		btnFavoritos.setBackground(new Color(63, 61, 61));
-		btnFavoritos.setBounds(125, 417, 180, 40);
+		btnFavoritos.setBackground(new Color(53, 53, 53));
+		btnFavoritos.setBounds(668, 600, 60, 60);
 		add(btnFavoritos);
+		
+		lblNewLabel = new JLabel("REPRODUCIENDO DESDE ÁLBUM");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblNewLabel.setBounds(456, 51, 234, 30);
+		add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel(".getNombreAlbum()");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(Color.decode("#FFB850"));
+		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblNewLabel_1.setBounds(356, 77, 391, 41);
+		lblNewLabel_1.setText(gestionINF.devolerAlbum());
+		add(lblNewLabel_1);
 
 	}
+	
+
 }
