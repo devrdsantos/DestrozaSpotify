@@ -991,29 +991,53 @@ public class GestionBD {
 		return playlistCanciones;
 	}
 
-//	public int idPlaylist(String titulo) {
-//		int idPlaylist = 0;
-//		try {
-//
-//			PreparedStatement consulta = conexion
-//					.prepareStatement("SELECT IDplaylsit FROM `playlist` Where Titulo = ?;");
-//			consulta.setString(1, titulo);
-//
-//			ResultSet resultadoConsulta = consulta.executeQuery();
-//
-//			while (resultadoConsulta.next()) {
-//				idPlaylist = resultadoConsulta.getInt(1);
-//			}
-//
-//			resultadoConsulta.close();
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//		}
-//
-//		return idPlaylist;
-//	}
+	public int idPlaylist(String titulo) {
+		int idPlaylist = 0;
+		try {
 
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT IDplaylist FROM `playlist` Where Titulo = ?;");
+			consulta.setString(1, titulo);
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idPlaylist = resultadoConsulta.getInt(1);
+			}
+
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return idPlaylist;
+	}
+
+	public int idAudio(String nombre) {
+		int idAudio = 0;
+		try {
+
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT IDAudio FROM `audio` Where Nombre = ?;");
+			consulta.setString(1, nombre);
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idAudio = resultadoConsulta.getInt(1);
+			}
+
+			resultadoConsulta.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Cancion no encontrada!!");
+			e.printStackTrace();
+		}
+
+		return idAudio;
+	}
+	
+	
 	public ArrayList<Musico> sacarMusicoParaPlaylist(String titulo) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> artista = new ArrayList<Musico>();
@@ -1037,5 +1061,47 @@ public class GestionBD {
 		}
 		return artista;
 	}
+	
+	public void insertCancionEnPlaylist(int idPlaylist, int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist_cancion VALUES (?,?,?)");
+			System.out.println(idPlaylist);
+			consulta.setInt(1, idAudio);
+			consulta.setInt(2, idPlaylist);
+			LocalDate fechaSinFormato = LocalDate.now();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String fechaCreacion = formato.format(fechaSinFormato);
+			consulta.setString(3, fechaCreacion);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Cancion añadida!");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+	
+	public void deleteCancionDePlaylist(int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist_cancion` WHERE `IDCancion` = ? ");
+			consulta.setInt(1, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Cancion eliminada");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+	
 }
 
