@@ -15,11 +15,8 @@ import javax.swing.JPanel;
 
 import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
-<<<<<<< HEAD
-=======
 import interfaces.ControladorDeSonido;
 import model.Audio;
->>>>>>> refs/remotes/origin/Izan
 import model.Cancion;
 import view.VistaPrincipal;
 import javax.swing.SwingConstants;
@@ -49,6 +46,7 @@ public class PanelReproductorDeMusica extends JPanel {
 //	private JButton btnAleatorio;
 	private JButton btnAnterior;
 	private JButton btnPlay;
+	private JButton btnPlay2;
 	private JButton btnSiguente;
 	private JButton btnBucle;
 	private JButton btnPause;
@@ -80,18 +78,11 @@ public class PanelReproductorDeMusica extends JPanel {
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		;
-<<<<<<< HEAD
+
 		setLayout(null);
 		
-=======
 
-		/**
-		 * Boton Atrás
-		 */
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(74, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
->>>>>>> refs/remotes/origin/Izan
+
 
 		/**
 		 * BTN - Atrás
@@ -176,7 +167,6 @@ public class PanelReproductorDeMusica extends JPanel {
 				sonido.continuarCancion(btnPause);
 			}
 		});
-<<<<<<< HEAD
 		btnPause.setOpaque(true);
 		btnPause.setForeground(new Color(255, 255, 255));
 		btnPause.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -186,7 +176,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		add(btnPause);
 		
 		
-=======
+
 		btnPlay2.setOpaque(true);
 		btnPlay2.setForeground(new Color(255, 170, 67));
 		btnPlay2.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -195,7 +185,6 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPlay2.setBounds(665, 570, 130, 52);
 		add(btnPlay2);
 
->>>>>>> refs/remotes/origin/Izan
 		/**
 		 * Boton para ir a la canción anterior
 		 */

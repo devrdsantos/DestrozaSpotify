@@ -38,7 +38,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4Grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4Grupo35", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -417,7 +417,7 @@ public class GestionBD {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
 			consulta.setString(1, nombre);
 			consulta.setInt(2, duracion);
-			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodc + ".jpg");
+			InputStream imagen = new FileInputStream("imagenes/portadasEpisodio/" + imagenPodc + ".jpg");
 			consulta.setBlob(3, imagen);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
@@ -513,7 +513,7 @@ public class GestionBD {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
 			consulta.setString(2, nombrePodcaster);
-			InputStream imagen = new FileInputStream("imagenes/imagenArt/" + imagenPod + ".jpg");
+			InputStream imagen = new FileInputStream("imagenes/imagenArt/" + imagenPod.replace(" ", "") + ".jpg");
 			consulta.setBlob(3, imagen);
 			consulta.setString(4, genero);
 			consulta.setString(5, descripcion);
@@ -562,7 +562,7 @@ public class GestionBD {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?,?)");
 			consulta.setString(1, null);
 			consulta.setString(2, nombrePodcast);
-			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodcast + ".jpg");
+			InputStream imagen = new FileInputStream("imagenes/portadasPodcast/" + imagenPodcast.replace(" ", "") + ".jpg");
 			consulta.setBlob(3, imagen);
 			consulta.setInt(4, idPodcaster);
 			consulta.executeUpdate();
