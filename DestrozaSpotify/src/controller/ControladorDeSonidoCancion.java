@@ -12,11 +12,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 import interfaces.ControladorDeSonido;
-import model.Podcast;
+import model.Audio;
+import model.Cancion;
 
-public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
+public class ControladorDeSonidoCancion implements ControladorDeSonido {
 
-	private ArrayList<Podcast> epidodios;
+	private ArrayList<Cancion> canciones;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -25,8 +26,8 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonidoEpisodio(ArrayList<Podcast> episodios) {
-		this.epidodios = episodios;
+	public ControladorDeSonidoCancion(ArrayList<Cancion> canciones) {
+		this.canciones = canciones;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
@@ -34,10 +35,11 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 		}
 	}
 
+	@Override
 	public void setCancionEnReproduccion(int can) {
-//		if (epidodios.get(cancionEnReproduccion).sonando()) {
-//			cancionEnCurso.stop();
-//		}
+		if (canciones.get(cancionEnReproduccion).sonando()) {
+			cancionEnCurso.stop();
+		}
 
 //		if (!(can < 0 || can >= canciones.size())) {
 //			this.cancionEnReproduccion = can;
@@ -46,32 +48,36 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	}
 
+	@Override
 	public void reproducir(int cola) {
-//		try {
-//			if (epidodios.get(cola).sonando()) {
-//				cancionEnCurso.stop();
-//				cancionEnCurso.close();
-//			}
+		try {
+			if (canciones.get(cola).sonando()) {
+				cancionEnCurso.stop();
+				cancionEnCurso.close();
+			}
 
-//			cancionEnCurso.open(AudioSystem.getAudioInputStream(
-//					new File("musica/" + epidodios.get(cola).getNombre().replace(" ", "") + ".wav")));
+			cancionEnCurso.open(AudioSystem.getAudioInputStream(
+					new File("musica/" + canciones.get(cola).getNombre().replace(" ", "") + ".wav")));
 			cancionEnCurso.start();
 			enReproduccion = false;
 
-//		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	@Override
 	public void pausar() {
 		cancionEnCurso.stop();
 	}
 
+	@Override
 	public boolean cancionActiva() {
 		return cancionEnCurso.isActive();
 	}
 
+	@Override
 	public void bucle(boolean activo, int cola) {
 
 		if (activo == true) {
@@ -89,22 +95,25 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	}
 
+	@Override
 	public int ramdom() {
 		int numeroAleatorioActual;
 
 		do {
-			numeroAleatorioActual = random.nextInt(epidodios.size());
+			numeroAleatorioActual = random.nextInt(canciones.size());
 		} while (numeroAleatorioActual == numeroAleatorioAnterior);
 
 		numeroAleatorioAnterior = numeroAleatorioActual;
 		return numeroAleatorioActual;
 	}
 
+	@Override
 	public long seguirCancion() {
 		cancionEnCurso.stop();
 		return cancionEnCurso.getMicrosecondPosition();
 	}
 
+	@Override
 	public void continuarCancion(JButton play2) {
 
 		if (!enReproduccion) {
@@ -121,6 +130,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	}
 
+	@Override
 	public void anuncio() {
 		try {
 			cancionEnCurso.open(AudioSystem.getAudioInputStream(new File("anuncio/Anuncio.wav")));
@@ -131,6 +141,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 		cancionEnCurso.start();
 	}
 	
+	@Override
 	public void parar() {
 		cancionEnCurso.stop();
 		cancionEnCurso.close();

@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.GestionDeLaInformacion;
+import model.Cancion;
 import view.VistaPrincipal;
 
 public class PanelMisPlaylist extends JPanel {
@@ -27,7 +29,18 @@ public class PanelMisPlaylist extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ArrayList<Cancion> cancionesPlaylist;
+	
 	public PanelMisPlaylist(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
+		if (gestionINF.devolverFavoritosSeleccionado() == true) {
+			cancionesPlaylist = gestionINF.cancionesDePlaylistFavoritos();
+		} else {
+			cancionesPlaylist = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
+		}
+		
+		
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -41,7 +54,7 @@ public class PanelMisPlaylist extends JPanel {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(1);
+				v.cambiarDePanel(10);
 			}
 		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -56,10 +69,9 @@ public class PanelMisPlaylist extends JPanel {
 
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
-				.size(); i++) {
-			modeloPlaylist.addElement(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
-					.get(i).getNombre());
+	
+		for (int i = 0; i < cancionesPlaylist.size(); i++) {
+			modeloPlaylist.addElement(cancionesPlaylist.get(i).getNombre());	
 		}
 		listCanciones.setModel(modeloPlaylist);
 		listCanciones.setBounds(800, 175, 300, 400);
@@ -90,11 +102,17 @@ public class PanelMisPlaylist extends JPanel {
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist())) == 3 ) {
+					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist!!");
+				} else {
+				
 				JFrame f = new JFrame();
 				String titulo = JOptionPane.showInputDialog(f, "Introduzca el nombre de la cancion:");
 				gestionINF.añadirCancionAPlaylist(gestionINF.sacarIdDelAudio(titulo),
 						gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist()));
 				v.cambiarDePanel(15);
+				}
 			}
 		});
 		btnAñadirCancion.setBounds(50, 276, 188, 40);

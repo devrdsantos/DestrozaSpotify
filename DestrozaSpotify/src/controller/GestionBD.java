@@ -130,6 +130,7 @@ public class GestionBD {
 		return passDesencriptada;
 	}
 
+	/* HECHO!! */
 	public void insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
 		gestionINF = new GestionDeLaInformacion();
 		try {
@@ -190,6 +191,7 @@ public class GestionBD {
 	 * @return generos
 	 */
 	// - - - - - - - - - - - - - -
+	/* HECHO!! */
 	public ArrayList<String> sacarGeneros() {
 		// Crea el ArrayList
 		ArrayList<String> generos = new ArrayList<String>();
@@ -216,13 +218,14 @@ public class GestionBD {
 		return generos;
 	}
 
+	/* HECHO!! */
 	public ArrayList<String> sacarPodcasters() {
 		// Crea el ArrayList
 		ArrayList<String> podcasters = new ArrayList<String>();
 		try {
 			// System.out.println("Iniciando consulta..");
 			// QUERY que selecciona todo de la tabla CINE
-			String query = "SELECT DISTINCT Podcaster FROM podcaster;";
+			String query = "SELECT DISTINCT NombreArtistico FROM podcaster;";
 			// Prepara la consulta para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			// Ejecuta la consulta
@@ -263,6 +266,7 @@ public class GestionBD {
 //
 //	}
 
+	/* HECHO!! */
 	public void insertMusico(String nombreArtistico, String imagenMu, String caracteristicas, String descripcion) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO musico VALUES (?,?,?,?,?)");
@@ -286,6 +290,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Musico> sacarMusicoInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> artistas = new ArrayList<Musico>();
@@ -310,6 +315,7 @@ public class GestionBD {
 		return artistas;
 	}
 
+	/* HECHO!! */
 	public void insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, int idMusico) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO album VALUES (?,?,?,?,?,?)");
@@ -334,6 +340,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Album> sacarAlbumInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
@@ -359,6 +366,7 @@ public class GestionBD {
 		return albums;
 	}
 
+	/* HECHO!! */
 	public void insertCancion(int idAlbum, String colaboradores) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cancion VALUES (?,?,?)");
@@ -379,6 +387,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public void insertAudioMu(String nombre, int duracion, String imagenMu) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?,?,?)");
@@ -402,6 +411,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public void insertAudioEpisodio(String nombre, int duracion, String imagenPodc) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
@@ -497,6 +507,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public void insertPodcaster(String nombrePodcaster, String imagenPod, String genero, String descripcion) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?,?,?,?)");
@@ -520,6 +531,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Podcaster> sacarPodcasterInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Podcaster> podcasters = new ArrayList<Podcaster>();
@@ -544,6 +556,7 @@ public class GestionBD {
 		return podcasters;
 	}
 
+	/* HECHO!! */
 	public void insertPodcast(String nombrePodcast, String imagenPodcast, int idPodcaster) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?,?)");
@@ -603,6 +616,7 @@ public class GestionBD {
 		}
 	}
 
+	/* HECHO!! */
 	public ArrayList<Musico> sacarMusicoPorArtista(String artista) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> musicos = new ArrayList<Musico>();
@@ -628,6 +642,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Album> sacarAlbumPorArtista(String artista) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Album> albums = new ArrayList<Album>();
@@ -655,6 +670,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Cancion> sacarCancionPorArtista(String album) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
@@ -682,6 +698,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<String> sacarArtistaPorGenero(String genero) {
 
 		ArrayList<String> artistas = new ArrayList<String>();
@@ -702,6 +719,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
 
 		ArrayList<String> podcasts = new ArrayList<String>();
@@ -723,6 +741,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<String> sacarEpisodiosPorPodcast(String podcast) {
 		ArrayList<String> episodios = new ArrayList<String>();
 		try {
@@ -743,6 +762,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public String sacarPremiun(String usuario) {
 		// Crea el ArrayList
 		String premiun = null;
@@ -768,6 +788,7 @@ public class GestionBD {
 		return premiun;
 	}
 
+	/* HECHO!! */
 	public ArrayList<String> sacarAlbumArtista() {
 		ArrayList<String> albums = new ArrayList<String>();
 		try {
@@ -790,6 +811,7 @@ public class GestionBD {
 		return albums;
 	}
 
+	/* HECHO!! */
 	public void insertPremiun(ArrayList<String> datosUsuario, int id) {
 		gestionINF = new GestionDeLaInformacion();
 		String fechaBaja;
@@ -817,6 +839,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public int idClienteDeUsuario(String usuario) {
 		int idCliente = 0;
 		try {
@@ -840,6 +863,7 @@ public class GestionBD {
 		return idCliente;
 	}
 
+	/* HECHO!! */
 	public int idMusico(String musico) {
 		int idMusico = 0;
 		try {
@@ -863,6 +887,7 @@ public class GestionBD {
 		return idMusico;
 	}
 
+	/* HECHO!! */
 	public int idAlbum(String album) {
 		int idAlbum = 0;
 		try {
@@ -885,6 +910,7 @@ public class GestionBD {
 		return idAlbum;
 	}
 
+	/* HECHO!! */
 	public int idPodcaster(String podcaster) {
 		int idPodcaster = 0;
 		try {
@@ -908,8 +934,7 @@ public class GestionBD {
 		return idPodcaster;
 	}
 
-	
-
+	/* HECHO!! */
 	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist VALUES (?,?,?,?)");
@@ -931,6 +956,7 @@ public class GestionBD {
 
 	}
 
+	/* HECHO!! */
 	public ArrayList<Playlist> sacarPlaylistUsuario(int idUsuario) {
 		ArrayList<Playlist> playlists = new ArrayList<Playlist>();
 		try {
@@ -949,6 +975,7 @@ public class GestionBD {
 		return playlists;
 	}
 
+	/* HECHO!! */
 	public void deletePlaylist(String titulo) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist` WHERE `Titulo` = ? ");
@@ -966,6 +993,7 @@ public class GestionBD {
 		}
 	}
 
+	/* HECHO!! */
 	public ArrayList<Cancion> sacarCancionesPorTituloPlaylist(String titulo) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Cancion> playlistCanciones = new ArrayList<Cancion>();
@@ -990,6 +1018,7 @@ public class GestionBD {
 		return playlistCanciones;
 	}
 
+	/* HECHO!! */
 	public int idPlaylist(String titulo) {
 		int idPlaylist = 0;
 		try {
@@ -1013,12 +1042,12 @@ public class GestionBD {
 		return idPlaylist;
 	}
 
+	/* HECHO!! */
 	public int idAudio(String nombre) {
 		int idAudio = 0;
 		try {
 
-			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT IDAudio FROM `audio` Where Nombre = ?;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT IDAudio FROM `audio` Where Nombre = ?;");
 			consulta.setString(1, nombre);
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
@@ -1035,8 +1064,8 @@ public class GestionBD {
 
 		return idAudio;
 	}
-	
-	
+
+	/* HECHO!! */
 	public ArrayList<Musico> sacarMusicoParaPlaylist(String titulo) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> artista = new ArrayList<Musico>();
@@ -1049,9 +1078,8 @@ public class GestionBD {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				artista.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						imagen, resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5)));
+				artista.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
 			}
 
 		} catch (SQLException e) {
@@ -1060,11 +1088,13 @@ public class GestionBD {
 		}
 		return artista;
 	}
-	
+
+	/* HECHO!! */
 	public void insertCancionEnPlaylist(int idPlaylist, int idAudio) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist_cancion VALUES (?,?,?)");
 			System.out.println(idPlaylist);
+			System.out.println(idAudio);
 			consulta.setInt(1, idAudio);
 			consulta.setInt(2, idPlaylist);
 			LocalDate fechaSinFormato = LocalDate.now();
@@ -1084,10 +1114,12 @@ public class GestionBD {
 		}
 
 	}
-	
+
+	/* HECHO!! */
 	public void deleteCancionDePlaylist(int idAudio) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist_cancion` WHERE `IDCancion` = ? ");
+			PreparedStatement consulta = conexion
+					.prepareStatement("DELETE FROM `playlist_cancion` WHERE `IDCancion` = ? ");
 			consulta.setInt(1, idAudio);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion eliminada");
@@ -1101,7 +1133,8 @@ public class GestionBD {
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
 	}
-	
+
+	/* HECHO!! */
 	public void insertEpisodio(int idAudio, int idPodcast, String colaboradores) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO episodio VALUES (?,?,?)");
@@ -1121,13 +1154,13 @@ public class GestionBD {
 		}
 
 	}
-	
+
+	/* HECHO!! */
 	public int idPodcast(String titulo) {
 		int idPodcast = 0;
 		try {
 
-			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT IDPodcast FROM `podcast` Where Titulo = ?;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT IDPodcast FROM `podcast` Where Titulo = ?;");
 			consulta.setString(1, titulo);
 
 			ResultSet resultadoConsulta = consulta.executeQuery();
@@ -1145,19 +1178,19 @@ public class GestionBD {
 		return idPodcast;
 	}
 
+	/* HECHO!! */
 	public ArrayList<Podcast> podcastInformacion() {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Podcast> podcasts = new ArrayList<Podcast>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"SELECT * FROM `podcast`;");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `podcast`;");
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
-				podcasts.add(new Podcast(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						imagen, resultadoConsulta.getInt(4)));
+				podcasts.add(new Podcast(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getInt(4)));
 			}
 
 		} catch (SQLException e) {
@@ -1166,6 +1199,90 @@ public class GestionBD {
 		}
 		return podcasts;
 	}
+
+	/* HECHO!! */
+	public void insertFavoritos(int idCliente, int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO gustos VALUES (?,?)");
+			consulta.setInt(1, idCliente);
+			consulta.setInt(2, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Cancion añadida a favoritos");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+
+	}
+
+	public ArrayList<Cancion> cancionesDeFavoritos(int idCliente) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Cancion> favoritos = new ArrayList<Cancion>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Au.IDAudio, Au.Nombre, Au.Duracion, AU.Imagen, Au.Tipo, Ca.IDAlbum, Ca.Artistas_invitados FROM `gustos` Gu join audio Au on Gu.IDAudio = AU.IDAudio join Cancion Ca on Au.IDAudio = CA.IDAudio WHERE IDCliente = ?;");
+			consulta.setInt(1, idCliente);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				favoritos.add(new Cancion(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return favoritos;
+	}
+
+	public ArrayList<Musico> sacarMusicoParaPlaylistFavoritos(int idCliente) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Musico> artista = new ArrayList<Musico>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Mu.IDMusico, Mu.NombreArtistico, Mu.Imagen, Mu.Caracteristica, Mu.Descripcion FROM `gustos` Gu join cancion Ca on Gu.IDAudio = Ca.IDAudio join album Al on Ca.IDAlbum = Al.IDalbum join Musico Mu on Al.IDmusico = Mu.IDMusico WHere IDCliente = ?;");
+			consulta.setInt(1, idCliente);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				artista.add(new Musico(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return artista;
+	}
+
+	public int capacidadDePlaylist(int idPlaylist) {
+		int capacidad = 0;
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT COUNT(IDCancion) FROM `playlist_cancion` Where IDplaylist = ?");
+			consulta.setInt(1, idPlaylist);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				capacidad = resultadoConsulta.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return capacidad;
+	}
 	
 }
-
