@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-import controller.ControladorDeSonido;
+import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
 import model.Cancion;
 import view.VistaPrincipal;
-import javax.swing.SwingConstants;
 
 public class PanelPruebaReproductorCancion extends JPanel {
 	
@@ -38,7 +38,7 @@ public class PanelPruebaReproductorCancion extends JPanel {
 	/**
 	 * Declaramos el controlador de sonido
 	 */
-	private ControladorDeSonido sonido;
+	private ControladorDeSonidoCancion sonido;
 
 //	private JButton btnAleatorio;
 	private JButton btnAnterior;
@@ -63,7 +63,7 @@ public class PanelPruebaReproductorCancion extends JPanel {
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
-		sonido = new ControladorDeSonido(canciones);
+		sonido = new ControladorDeSonidoCancion(canciones);
 		
 		/**
 		 * Declaramos un contador

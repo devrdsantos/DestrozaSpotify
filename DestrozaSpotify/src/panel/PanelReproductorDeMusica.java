@@ -62,7 +62,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		 * Le asignamos valor al arraylist canciones
 		 */
 		canciones = gestionINF.mostrarCancion();
-
+		System.out.println(canciones);
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
@@ -71,6 +71,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		/**
 		 * Declaramos un contador
 		 */
+		System.out.println(gestionINF.devolverIndiceDeLaCancion());
 		intinerador = gestionINF.devolverIndiceDeLaCancion();
 
 		setSize(1200, 720);
@@ -176,7 +177,19 @@ public class PanelReproductorDeMusica extends JPanel {
 		add(btnPause);
 		
 		
-
+		/**
+		 * Boton Stop
+		 */
+		btnPlay2 = new JButton("⏸");
+		btnPlay2.setVisible(false);
+		btnPlay2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Metodo que detiene la canción.
+				 */
+				sonido.continuarCancion(btnPlay2);
+			}
+		});
 		btnPlay2.setOpaque(true);
 		btnPlay2.setForeground(new Color(255, 170, 67));
 		btnPlay2.setFont(new Font("Dialog", Font.BOLD, 16));
