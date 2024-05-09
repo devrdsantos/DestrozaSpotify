@@ -84,7 +84,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelGestionMusica(this, this.gestionBD));
 			break;
 		case 6:
-			setContentPane(new PanelGestionPodcast(this, this.gestionBD));
+			setContentPane(new PanelGestionPodcast(this, this.gestionBD, this.gestionINF));
 			break;
 		case 7:
 			setContentPane(new PanelArtista(this, this.gestionINF));

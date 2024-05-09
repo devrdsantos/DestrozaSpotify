@@ -11,9 +11,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
+import interfaces.ControladorDeSonido;
 import model.Podcast;
 
-public class ControladorDeSonidoPodcast {
+public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	private ArrayList<Podcast> epidodios;
 	private int cancionEnReproduccion;
@@ -24,7 +25,7 @@ public class ControladorDeSonidoPodcast {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonidoPodcast(ArrayList<Podcast> episodios) {
+	public ControladorDeSonidoEpisodio(ArrayList<Podcast> episodios) {
 		this.epidodios = episodios;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
@@ -34,9 +35,9 @@ public class ControladorDeSonidoPodcast {
 	}
 
 	public void setCancionEnReproduccion(int can) {
-		if (epidodios.get(cancionEnReproduccion).sonando()) {
-			cancionEnCurso.stop();
-		}
+//		if (epidodios.get(cancionEnReproduccion).sonando()) {
+//			cancionEnCurso.stop();
+//		}
 
 //		if (!(can < 0 || can >= canciones.size())) {
 //			this.cancionEnReproduccion = can;
@@ -46,21 +47,21 @@ public class ControladorDeSonidoPodcast {
 	}
 
 	public void reproducir(int cola) {
-		try {
-			if (epidodios.get(cola).sonando()) {
-				cancionEnCurso.stop();
-				cancionEnCurso.close();
-			}
+//		try {
+//			if (epidodios.get(cola).sonando()) {
+//				cancionEnCurso.stop();
+//				cancionEnCurso.close();
+//			}
 
-			cancionEnCurso.open(AudioSystem.getAudioInputStream(
-					new File("musica/" + epidodios.get(cola).getNombre().replace(" ", "") + ".wav")));
+//			cancionEnCurso.open(AudioSystem.getAudioInputStream(
+//					new File("musica/" + epidodios.get(cola).getNombre().replace(" ", "") + ".wav")));
 			cancionEnCurso.start();
 			enReproduccion = false;
 
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public void pausar() {

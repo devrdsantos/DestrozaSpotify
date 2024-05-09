@@ -11,10 +11,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
+import interfaces.ControladorDeSonido;
 import model.Audio;
 import model.Cancion;
 
-public class ControladorDeSonido {
+public class ControladorDeSonidoCancion implements ControladorDeSonido {
 
 	private ArrayList<Cancion> canciones;
 	private int cancionEnReproduccion;
@@ -25,7 +26,7 @@ public class ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonido(ArrayList<Cancion> canciones) {
+	public ControladorDeSonidoCancion(ArrayList<Cancion> canciones) {
 		this.canciones = canciones;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
@@ -34,6 +35,7 @@ public class ControladorDeSonido {
 		}
 	}
 
+	@Override
 	public void setCancionEnReproduccion(int can) {
 		if (canciones.get(cancionEnReproduccion).sonando()) {
 			cancionEnCurso.stop();
@@ -46,6 +48,7 @@ public class ControladorDeSonido {
 
 	}
 
+	@Override
 	public void reproducir(int cola) {
 		try {
 			if (canciones.get(cola).sonando()) {
@@ -64,14 +67,17 @@ public class ControladorDeSonido {
 		}
 	}
 
+	@Override
 	public void pausar() {
 		cancionEnCurso.stop();
 	}
 
+	@Override
 	public boolean cancionActiva() {
 		return cancionEnCurso.isActive();
 	}
 
+	@Override
 	public void bucle(boolean activo, int cola) {
 
 		if (activo == true) {
@@ -89,6 +95,7 @@ public class ControladorDeSonido {
 
 	}
 
+	@Override
 	public int ramdom() {
 		int numeroAleatorioActual;
 
@@ -100,27 +107,30 @@ public class ControladorDeSonido {
 		return numeroAleatorioActual;
 	}
 
+	@Override
 	public long seguirCancion() {
 		cancionEnCurso.stop();
 		return cancionEnCurso.getMicrosecondPosition();
 	}
 
+	@Override
 	public void continuarCancion(JButton play2) {
 
 		if (!enReproduccion) {
 			continuar = cancionEnCurso.getMicrosecondPosition();
 			cancionEnCurso.stop();
-			play2.setText("▶");
+			play2.setText("Play");
 			enReproduccion = true;
 		} else {
 			cancionEnCurso.setMicrosecondPosition(continuar);
 			cancionEnCurso.start();
-			play2.setText("⏸");
+			play2.setText("Stop");
 			enReproduccion = false;
 		}
 
 	}
 
+	@Override
 	public void anuncio() {
 		try {
 			cancionEnCurso.open(AudioSystem.getAudioInputStream(new File("anuncio/Anuncio.wav")));
@@ -131,6 +141,7 @@ public class ControladorDeSonido {
 		cancionEnCurso.start();
 	}
 	
+	@Override
 	public void parar() {
 		cancionEnCurso.stop();
 		cancionEnCurso.close();

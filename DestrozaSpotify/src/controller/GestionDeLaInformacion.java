@@ -9,8 +9,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 import model.Album;
 import model.Cancion;
+import model.Cliente;
 import model.Musico;
 import model.Playlist;
+import model.Podcast;
 
 public class GestionDeLaInformacion {
 
@@ -26,9 +28,14 @@ public class GestionDeLaInformacion {
 	private int indiceAlbum;
 	private String usuario;
 	private String tituloPlaylist;
+	private boolean favoritos = false;;
+	
+	private Cliente cliente;
+	
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
+		cliente = new Cliente();
 	}
 	
 	public String desencriptar(String mensajeEncriptado) throws Exception {
@@ -78,7 +85,6 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
-		System.out.println(gestionBD.sacarMusicoPorArtista(artista).get(0).toString());
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
@@ -156,7 +162,7 @@ public class GestionDeLaInformacion {
 		return gestionBD.idClienteDeUsuario(cliente);
 	}
 	
-	public void inserPodcast(String titulo, String fechaCreacion, int idCliente) {
+	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
 		gestionBD.insertPlaylist(titulo, fechaCreacion, idCliente);
 	}
 
@@ -196,16 +202,64 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarMusicoParaPlaylist(titulo);
 	}
 
-	public void añadirCancionAPlaylist(int idPlaylist, int idAudio) {
-		gestionBD.insertCancionEnPlaylist(idPlaylist, idAudio);
+	public void añadirCancionAPlaylist(int idAudio, int idPlaylist) {
+		gestionBD.insertCancionEnPlaylist(idAudio, idPlaylist);
 	}
 	
 	public int sacarIdDelAudio(String nombre) {
 		return gestionBD.idAudio(nombre);
 	}
 	
-	public void deleteCancionDePlaylist() {
-		
+	public void deleteCancionDePlaylist(int idAudio) {
+		gestionBD.deleteCancionDePlaylist(idAudio);
+	}
+	
+	public void insertEpisodio(int idAudio, int idPodcast, String colaboradores) {
+		gestionBD.insertEpisodio(idAudio, idPodcast, colaboradores);
+	}
+	
+	public void insertAudio(String nombre, int duracion, String imagenPodc) {
+		gestionBD.insertAudioEpisodio(nombre, duracion, imagenPodc);
+	}
+	
+	public int devolverIdPodcast(String titulo) {
+		return gestionBD.idPodcast(titulo); 
+	}
+	
+	public ArrayList<Podcast> sacarPodcastInformacion() {
+		return gestionBD.podcastInformacion();
+	}
+	
+	public void favoritos(int idCliente, int idAudio) {
+		gestionBD.insertFavoritos(idCliente, idAudio);
+	}
+	
+	public void playlistFavoritos(int idCliente) {
+		cliente.setFavoritos(gestionBD.cancionesDeFavoritos(idCliente));
+	}
+	
+	public ArrayList<Cancion> cancionesDePlaylistFavoritos() {
+		return cliente.getFavoritos();
+	}
+	
+	public void favoritosSeleccionado(String favoritos) {
+		if (favoritos.equalsIgnoreCase("Favoritos")) {
+			this.favoritos = true;
+		} else {
+			this.favoritos = false;
+		}
+	}
+	
+	public boolean devolverFavoritosSeleccionado() {
+		return favoritos;
+	}
+	
+	public ArrayList<Musico> artistasDePlaylistFavoritos(int idCliente) {
+		return gestionBD.sacarMusicoParaPlaylistFavoritos(idCliente);
+	}
+	
+	public int capacidadDePlaylist(int idPlaylist) {
+		return gestionBD.capacidadDePlaylist(idPlaylist);
 	}
 	
 }

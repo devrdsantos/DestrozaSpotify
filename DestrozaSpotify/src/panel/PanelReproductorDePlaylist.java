@@ -11,9 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controller.ControladorDeSonido;
+import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
+import interfaces.ControladorDeSonido;
 import model.Cancion;
+import model.Musico;
 import view.VistaPrincipal;
 
 public class PanelReproductorDePlaylist extends JPanel {
@@ -27,6 +29,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 	 * queremos reproducir
 	 */
 	private ArrayList<Cancion> canciones;
+	private ArrayList<Musico> musico;
 	/**
 	 * Declaramos el controlador de sonido
 	 */
@@ -46,12 +49,19 @@ public class PanelReproductorDePlaylist extends JPanel {
 		/**
 		 * Le asignamos valor al arraylist canciones
 		 */
-		canciones = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
-
+		
+		if (gestionINF.devolverFavoritosSeleccionado() == true) {
+			canciones = gestionINF.cancionesDePlaylistFavoritos();
+			musico = gestionINF.artistasDePlaylistFavoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()));
+		} else {
+			canciones = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
+			musico = gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
+		}
+		
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
-		sonido = new ControladorDeSonido(canciones);
+		sonido = new ControladorDeSonidoCancion(canciones);
 
 		/**
 		 * Declaramos un contador
@@ -91,7 +101,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 		 * Label donde se muestra la imagen de la portada de la canción
 		 */
 		lblPortadaCancion = new JLabel();
-		lblPortadaCancion.setIcon(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getImagen());
+		lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 		lblPortadaCancion.setBounds(480, 50, 500, 500);
 		add(lblPortadaCancion);
 
@@ -158,7 +168,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 				if (intinerador == 0) {
 					intinerador = canciones.size() - 1;
 				} else {
-					intinerador = (intinerador - 1) % gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).size();
+					intinerador = (intinerador - 1) % canciones.size();
 				}
 
 				/**
@@ -171,7 +181,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
+					lblNombreArtista.setText("<html>" + musico.get(intinerador).getNombreArtistico() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 
@@ -205,7 +215,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-						lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
+						lblNombreArtista.setText("<html>" + musico.get(intinerador).getNombreArtistico() + "</html>");
 						btnBucle.setForeground(new Color(255, 170, 67));
 						bucle = false;
 						anuncio = false;
@@ -241,7 +251,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 					sonido.setCancionEnReproduccion(intinerador);
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
+					lblNombreArtista.setText("<html>" + musico.get(intinerador).getNombreArtistico() + "</html>");
 					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = false;
 					btnPlay.setVisible(true);
@@ -267,7 +277,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 						sonido.reproducir(intinerador);
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-						lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
+						lblNombreArtista.setText("<html>" + musico.get(intinerador).getNombreArtistico() + "</html>");
 						btnBucle.setForeground(new Color(255, 170, 67));
 						bucle = false;
 						btnPlay.setVisible(false);
@@ -323,15 +333,15 @@ public class PanelReproductorDePlaylist extends JPanel {
 		btnBucle.setBounds(125, 315, 180, 40);
 		add(btnBucle);
 
-		lblTituloCancion = new JLabel("Pruebas");
+		lblTituloCancion = new JLabel();
 		lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 		lblTituloCancion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTituloCancion.setForeground(new Color(255, 255, 255));
 		lblTituloCancion.setBounds(125, 140, 350, 50);
 		add(lblTituloCancion);
 
-		lblNombreArtista = new JLabel("Pruebas");
-		lblNombreArtista.setText("<html>" + gestionINF.devolverMusicoPorTituloPlaylist(gestionINF.devolverNombrePlaylist()).get(intinerador).getNombreArtistico() + "</html>");
+		lblNombreArtista = new JLabel();
+		lblNombreArtista.setText("<html>" + musico.get(intinerador).getNombreArtistico() + "</html>");
 		lblNombreArtista.setForeground(new Color(255, 255, 255));
 		lblNombreArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNombreArtista.setBounds(125, 185, 240, 30);
