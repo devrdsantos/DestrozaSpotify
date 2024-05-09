@@ -11,9 +11,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
+import interfaces.ControladorDeSonido;
 import model.Podcast;
 
-public class ControladorDeSonidoEpisodio {
+public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	private ArrayList<Podcast> epidodios;
 	private int cancionEnReproduccion;

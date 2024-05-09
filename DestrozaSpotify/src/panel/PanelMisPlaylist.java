@@ -102,11 +102,17 @@ public class PanelMisPlaylist extends JPanel {
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist())) == 3 ) {
+					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist!!");
+				} else {
+				
 				JFrame f = new JFrame();
 				String titulo = JOptionPane.showInputDialog(f, "Introduzca el nombre de la cancion:");
 				gestionINF.añadirCancionAPlaylist(gestionINF.sacarIdDelAudio(titulo),
 						gestionINF.devolverIdPlaylist(gestionINF.devolverNombrePlaylist()));
 				v.cambiarDePanel(15);
+				}
 			}
 		});
 		btnAñadirCancion.setBounds(50, 276, 188, 40);

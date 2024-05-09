@@ -85,7 +85,6 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Musico> mostrarArtista() {
-		System.out.println(gestionBD.sacarMusicoPorArtista(artista).get(0).toString());
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
@@ -163,7 +162,7 @@ public class GestionDeLaInformacion {
 		return gestionBD.idClienteDeUsuario(cliente);
 	}
 	
-	public void inserPodcast(String titulo, String fechaCreacion, int idCliente) {
+	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
 		gestionBD.insertPlaylist(titulo, fechaCreacion, idCliente);
 	}
 
@@ -203,8 +202,8 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarMusicoParaPlaylist(titulo);
 	}
 
-	public void añadirCancionAPlaylist(int idPlaylist, int idAudio) {
-		gestionBD.insertCancionEnPlaylist(idPlaylist, idAudio);
+	public void añadirCancionAPlaylist(int idAudio, int idPlaylist) {
+		gestionBD.insertCancionEnPlaylist(idAudio, idPlaylist);
 	}
 	
 	public int sacarIdDelAudio(String nombre) {
@@ -259,6 +258,9 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarMusicoParaPlaylistFavoritos(idCliente);
 	}
 	
+	public int capacidadDePlaylist(int idPlaylist) {
+		return gestionBD.capacidadDePlaylist(idPlaylist);
+	}
 	
 }
 

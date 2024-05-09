@@ -27,13 +27,13 @@ public class PanelMiBiblioteca extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelMiBiblioteca(VistaPrincipal v , GestionDeLaInformacion gestionINF) {
+	public PanelMiBiblioteca(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
 		setLayout(null);
-		
+
 		/**
 		 * Boton Volver
 		 */
@@ -51,38 +51,44 @@ public class PanelMiBiblioteca extends JPanel {
 		btnAtras.setBackground(Color.decode("#353535"));
 		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
-		
+
 		JList<String> listPlaylist = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
 		modeloPlaylist.addElement("Favoritos");
-		for (int i = 0; i < gestionINF.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario())).size(); i++) {
-			modeloPlaylist.addElement(gestionINF.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario())).get(i).getNombre());
+		for (int i = 0; i < gestionINF
+				.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario())).size(); i++) {
+			modeloPlaylist.addElement(
+					gestionINF.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()))
+							.get(i).getNombre());
 		}
 		listPlaylist.setModel(modeloPlaylist);
 		listPlaylist.setBounds(800, 175, 300, 400);
 		add(listPlaylist);
-		
+
 		JLabel lblMiPlaylist = new JLabel("Mi playlist:");
 		lblMiPlaylist.setBounds(800, 125, 213, 34);
 		lblMiPlaylist.setForeground(new Color(255, 255, 255));
 		lblMiPlaylist.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(lblMiPlaylist);
-		
+
 		JButton btnCrearNueva = new JButton("Crear nueva");
 		btnCrearNueva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Fecha de creacion
+
+				// Fecha de creacion
 				LocalDate fechaSinFormato = LocalDate.now();
 				DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				String fechaCreacion = formato.format(fechaSinFormato);
-				
-				//Titulo de la playlist
-				JFrame f =new JFrame();   
-				String titulo =JOptionPane.showInputDialog(f,"Introduzca el nombre de la playlist:");  
-				
-				gestionINF.inserPodcast(titulo, fechaCreacion, gestionINF.devolverIdCliente(gestionINF.devolverUsuario()));
-				
+
+				// Titulo de la playlist
+				JFrame f = new JFrame();
+				String titulo = JOptionPane.showInputDialog(f, "Introduzca el nombre de la playlist:");
+
+				gestionINF.insertPlaylist(titulo, fechaCreacion,
+						gestionINF.devolverIdCliente(gestionINF.devolverUsuario()));
+
 				v.cambiarDePanel(10);
+
 			}
 		});
 		btnCrearNueva.setBounds(50, 225, 188, 40);
@@ -92,12 +98,12 @@ public class PanelMiBiblioteca extends JPanel {
 		btnCrearNueva.setBorderPainted(false);
 		btnCrearNueva.setBackground(new Color(63, 61, 61));
 		add(btnCrearNueva);
-		
+
 		JButton btnBorrarPlaylist = new JButton("Borrar playlist");
 		btnBorrarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestionINF.deletePlaylist(listPlaylist.getSelectedValue());
-				
+
 				v.cambiarDePanel(10);
 			}
 		});
@@ -108,7 +114,7 @@ public class PanelMiBiblioteca extends JPanel {
 		btnBorrarPlaylist.setBorderPainted(false);
 		btnBorrarPlaylist.setBackground(new Color(63, 61, 61));
 		add(btnBorrarPlaylist);
-		
+
 		JButton btnImportar = new JButton("Importar");
 		btnImportar.setBounds(50, 327, 188, 40);
 		btnImportar.setOpaque(true);
@@ -117,7 +123,7 @@ public class PanelMiBiblioteca extends JPanel {
 		btnImportar.setBorderPainted(false);
 		btnImportar.setBackground(new Color(63, 61, 61));
 		add(btnImportar);
-		
+
 		JButton btnExportar = new JButton("Exportar");
 		btnExportar.setBounds(50, 378, 188, 40);
 		btnExportar.setOpaque(true);
@@ -126,7 +132,7 @@ public class PanelMiBiblioteca extends JPanel {
 		btnExportar.setBorderPainted(false);
 		btnExportar.setBackground(new Color(63, 61, 61));
 		add(btnExportar);
-		
+
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setBounds(50, 429, 188, 40);
 		btnPerfil.setOpaque(true);
@@ -135,7 +141,7 @@ public class PanelMiBiblioteca extends JPanel {
 		btnPerfil.setBorderPainted(false);
 		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
-		
+
 		JButton btnVerPlaylist = new JButton("Ver playlist");
 		btnVerPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,7 +153,7 @@ public class PanelMiBiblioteca extends JPanel {
 					gestionINF.favoritosSeleccionado(listPlaylist.getSelectedValue());
 					gestionINF.recogerNombrePlaylist(listPlaylist.getSelectedValue());
 					v.cambiarDePanel(15);
-				}	
+				}
 			}
 		});
 		btnVerPlaylist.setBounds(50, 480, 188, 40);
@@ -157,5 +163,5 @@ public class PanelMiBiblioteca extends JPanel {
 		btnVerPlaylist.setBorderPainted(false);
 		btnVerPlaylist.setBackground(new Color(63, 61, 61));
 		add(btnVerPlaylist);
-}
+	}
 }

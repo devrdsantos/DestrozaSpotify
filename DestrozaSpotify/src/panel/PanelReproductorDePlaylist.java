@@ -11,8 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controller.ControladorDeSonido;
+import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
+import interfaces.ControladorDeSonido;
 import model.Cancion;
 import model.Musico;
 import view.VistaPrincipal;
@@ -60,7 +61,7 @@ public class PanelReproductorDePlaylist extends JPanel {
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
-		sonido = new ControladorDeSonido(canciones);
+		sonido = new ControladorDeSonidoCancion(canciones);
 
 		/**
 		 * Declaramos un contador

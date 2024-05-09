@@ -1094,6 +1094,7 @@ public class GestionBD {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist_cancion VALUES (?,?,?)");
 			System.out.println(idPlaylist);
+			System.out.println(idAudio);
 			consulta.setInt(1, idAudio);
 			consulta.setInt(2, idPlaylist);
 			LocalDate fechaSinFormato = LocalDate.now();
@@ -1243,13 +1244,13 @@ public class GestionBD {
 		return favoritos;
 	}
 
-	public ArrayList<Musico> sacarMusicoParaPlaylistFavoritos(int idClient) {
+	public ArrayList<Musico> sacarMusicoParaPlaylistFavoritos(int idCliente) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Musico> artista = new ArrayList<Musico>();
 		try {
 			PreparedStatement consulta = conexion.prepareStatement(
 					"SELECT Mu.IDMusico, Mu.NombreArtistico, Mu.Imagen, Mu.Caracteristica, Mu.Descripcion FROM `gustos` Gu join cancion Ca on Gu.IDAudio = Ca.IDAudio join album Al on Ca.IDAlbum = Al.IDalbum join Musico Mu on Al.IDmusico = Mu.IDMusico WHere IDCliente = ?;");
-			consulta.setInt(1, idClient);
+			consulta.setInt(1, idCliente);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
@@ -1266,5 +1267,22 @@ public class GestionBD {
 		return artista;
 	}
 
+	public int capacidadDePlaylist(int idPlaylist) {
+		int capacidad = 0;
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT COUNT(IDCancion) FROM `playlist_cancion` Where IDplaylist = ?");
+			consulta.setInt(1, idPlaylist);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				capacidad = resultadoConsulta.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return capacidad;
+	}
 	
 }
