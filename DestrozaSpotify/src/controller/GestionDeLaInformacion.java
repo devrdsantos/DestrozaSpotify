@@ -28,7 +28,10 @@ public class GestionDeLaInformacion {
 	private int indiceAlbum;
 	private String usuario;
 	private String tituloPlaylist;
+	private boolean favoritos = false;;
+	
 	private Cliente cliente;
+	
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
@@ -231,6 +234,31 @@ public class GestionDeLaInformacion {
 	public void favoritos(int idCliente, int idAudio) {
 		gestionBD.insertFavoritos(idCliente, idAudio);
 	}
+	
+	public void playlistFavoritos(int idCliente) {
+		cliente.setFavoritos(gestionBD.cancionesDeFavoritos(idCliente));
+	}
+	
+	public ArrayList<Cancion> cancionesDePlaylistFavoritos() {
+		return cliente.getFavoritos();
+	}
+	
+	public void favoritosSeleccionado(String favoritos) {
+		if (favoritos.equalsIgnoreCase("Favoritos")) {
+			this.favoritos = true;
+		} else {
+			this.favoritos = false;
+		}
+	}
+	
+	public boolean devolverFavoritosSeleccionado() {
+		return favoritos;
+	}
+	
+	public ArrayList<Musico> artistasDePlaylistFavoritos(int idCliente) {
+		return gestionBD.sacarMusicoParaPlaylistFavoritos(idCliente);
+	}
+	
 	
 }
 

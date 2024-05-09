@@ -18,7 +18,7 @@ public class Cliente {
 	private String fechaNacimiento;
 	private String fechaPremiumAlta;
 	private String fechaPreiumBaja;
-	private ArrayList<Playlist> favoritos;
+	private ArrayList<Cancion> favoritos;
 
 	public Cliente() {
 
@@ -36,7 +36,7 @@ public class Cliente {
 		this.isPremiun = isPremium; // ESTE SERIA EL ATRIBUTO DE TIPO QUE ESTA EN LA BASE DE DATOS
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
-		favoritos = new ArrayList<Playlist>();;
+		favoritos = new ArrayList<Cancion>();;
 
 		if (!isPremium) {
 			LocalDate fechaSinFormatoAlta = LocalDate.now();
@@ -145,11 +145,11 @@ public class Cliente {
 		this.fechaPreiumBaja = fechaPreiumBaja;
 	}
 
-	public ArrayList<Playlist> getFavoritos() {
+	public ArrayList<Cancion> getFavoritos() {
 		return favoritos;
 	}
 
-	public void setFavoritos(ArrayList<Playlist> favoritos) {
+	public void setFavoritos(ArrayList<Cancion> favoritos) {
 		this.favoritos = favoritos;
 	}
 

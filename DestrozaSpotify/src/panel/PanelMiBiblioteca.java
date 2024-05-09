@@ -140,9 +140,11 @@ public class PanelMiBiblioteca extends JPanel {
 		btnVerPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (listPlaylist.getSelectedValue().equalsIgnoreCase("Favoritos")) {
-					
+					gestionINF.favoritosSeleccionado(listPlaylist.getSelectedValue());
+					gestionINF.playlistFavoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()));
 					v.cambiarDePanel(15);
 				} else {
+					gestionINF.favoritosSeleccionado(listPlaylist.getSelectedValue());
 					gestionINF.recogerNombrePlaylist(listPlaylist.getSelectedValue());
 					v.cambiarDePanel(15);
 				}	
