@@ -9,6 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import model.Album;
 import model.Cancion;
+import model.Cliente;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
@@ -27,9 +28,11 @@ public class GestionDeLaInformacion {
 	private int indiceAlbum;
 	private String usuario;
 	private String tituloPlaylist;
+	private Cliente cliente;
 	
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
+		cliente = new Cliente();
 	}
 	
 	public String desencriptar(String mensajeEncriptado) throws Exception {
@@ -223,6 +226,10 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<Podcast> sacarPodcastInformacion() {
 		return gestionBD.podcastInformacion();
+	}
+	
+	public void favoritos(int idCliente, int idAudio) {
+		gestionBD.insertFavoritos(idCliente, idAudio);
 	}
 	
 }

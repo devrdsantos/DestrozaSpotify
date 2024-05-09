@@ -367,6 +367,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		JButton btnFavoritos = new JButton("Favoritos");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gestionINF.favoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()), gestionINF.sacarIdDelAudio(canciones.get(intinerador).getNombre()));
 			}
 		});
 		btnFavoritos.setOpaque(true);

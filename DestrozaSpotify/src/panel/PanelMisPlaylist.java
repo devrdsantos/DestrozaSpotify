@@ -28,6 +28,9 @@ public class PanelMisPlaylist extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public PanelMisPlaylist(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
+		
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -56,10 +59,11 @@ public class PanelMisPlaylist extends JPanel {
 
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
+	
 		for (int i = 0; i < gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
 				.size(); i++) {
 			modeloPlaylist.addElement(gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist())
-					.get(i).getNombre());
+					.get(i).getNombre());	
 		}
 		listCanciones.setModel(modeloPlaylist);
 		listCanciones.setBounds(800, 175, 300, 400);

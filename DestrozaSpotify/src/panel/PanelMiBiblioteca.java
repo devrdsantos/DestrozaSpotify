@@ -54,6 +54,7 @@ public class PanelMiBiblioteca extends JPanel {
 		
 		JList<String> listPlaylist = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
+		modeloPlaylist.addElement("Favoritos");
 		for (int i = 0; i < gestionINF.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario())).size(); i++) {
 			modeloPlaylist.addElement(gestionINF.devolverPlaylistCliente(gestionINF.devolverIdCliente(gestionINF.devolverUsuario())).get(i).getNombre());
 		}
@@ -138,9 +139,13 @@ public class PanelMiBiblioteca extends JPanel {
 		JButton btnVerPlaylist = new JButton("Ver playlist");
 		btnVerPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Recojer el nombre de la playlist
-				gestionINF.recogerNombrePlaylist(listPlaylist.getSelectedValue());
-				v.cambiarDePanel(15);
+				if (listPlaylist.getSelectedValue().equalsIgnoreCase("Favoritos")) {
+					
+					v.cambiarDePanel(15);
+				} else {
+					gestionINF.recogerNombrePlaylist(listPlaylist.getSelectedValue());
+					v.cambiarDePanel(15);
+				}	
 			}
 		});
 		btnVerPlaylist.setBounds(50, 480, 188, 40);

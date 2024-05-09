@@ -25,7 +25,7 @@ public class Cliente {
 	}
 
 	public Cliente(int IDCliente, String usuario, String contraseña, String nombre, String rol, String apellido, String fechaRegistro,
-			boolean isPremium, String idioma, String fechaNacimiento, ArrayList<Playlist> favoritos) {
+			boolean isPremium, String idioma, String fechaNacimiento) {
 		this.IDCliente = IDCliente;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
@@ -36,7 +36,7 @@ public class Cliente {
 		this.isPremiun = isPremium; // ESTE SERIA EL ATRIBUTO DE TIPO QUE ESTA EN LA BASE DE DATOS
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
-		this.favoritos = favoritos;
+		favoritos = new ArrayList<Playlist>();;
 
 		if (!isPremium) {
 			LocalDate fechaSinFormatoAlta = LocalDate.now();
