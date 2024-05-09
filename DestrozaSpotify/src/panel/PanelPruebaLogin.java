@@ -99,7 +99,7 @@ public class PanelPruebaLogin extends JPanel {
 		btnIniciarSesion.setForeground(Color.decode("#FFFFFF"));
 		btnIniciarSesion.setBorderPainted(false);
 		btnIniciarSesion.setBackground(Color.decode("#ED028B"));
-		btnIniciarSesion.setBounds(536, 559, 170, 39);
+		btnIniciarSesion.setBounds(536, 559, 170, 40);
 		add(btnIniciarSesion);
 
 		/**
@@ -118,7 +118,7 @@ public class PanelPruebaLogin extends JPanel {
 		add(lblSinCuenta);
 		
 		/**
-		 * LBL - Imagen 
+		 * LBL - Fondo 
 		 */
 		JLabel lblImagen = new JLabel();
 		lblImagen.setFont(new Font("Rubik", Font.PLAIN, 16));
