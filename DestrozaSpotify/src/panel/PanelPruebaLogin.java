@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import controller.GestionBD;
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelPruebaLogin extends JPanel {
 
@@ -35,34 +37,30 @@ public class PanelPruebaLogin extends JPanel {
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		JLabel mensajeBienvenida = new JLabel("Inicia sesión");
-		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
-		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-		mensajeBienvenida.setFont(new Font("Verdana", Font.BOLD, 28));
-		mensajeBienvenida.setBounds(183, 174, 280, 78);
-		add(mensajeBienvenida);
 
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblUsuario.setBounds(122, 320, 100, 28);
+		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblUsuario.setBounds(398, 430, 100, 28);
 		lblUsuario.setForeground(Color.decode("#FFFFFF"));
 		add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
-		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblPassword.setBounds(122, 404, 100, 28);
+		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblPassword.setBounds(410, 496, 87, 28);
 		add(lblPassword);
 
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Verdana", Font.PLAIN, 14));
 		passwordField.setBackground(new Color(239, 237, 237));
-		passwordField.setBounds(232, 404, 266, 34);
+		passwordField.setBounds(508, 496, 266, 28);
 		add(passwordField);
 
 		textFieldUsuario = new JTextField();
+		textFieldUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
 		textFieldUsuario.setBackground(new Color(239, 237, 237));
-		textFieldUsuario.setBounds(232, 320, 266, 34);
+		textFieldUsuario.setBounds(508, 430, 266, 28);
 		add(textFieldUsuario);
 		textFieldUsuario.setColumns(10);
 
@@ -70,6 +68,10 @@ public class PanelPruebaLogin extends JPanel {
 		 * BTN - Iniciar sesión
 		 */
 		JButton btnIniciarSesion = new JButton("Iniciar sesión");
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnIniciarSesion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,19 +93,19 @@ public class PanelPruebaLogin extends JPanel {
 				}
 			}
 		});
-		btnIniciarSesion.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnIniciarSesion.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnIniciarSesion.setOpaque(true);
 		btnIniciarSesion.setContentAreaFilled(true);
 		btnIniciarSesion.setForeground(Color.decode("#FFFFFF"));
 		btnIniciarSesion.setBorderPainted(false);
 		btnIniciarSesion.setBackground(Color.decode("#ED028B"));
-		btnIniciarSesion.setBounds(118, 520, 170, 39);
+		btnIniciarSesion.setBounds(536, 559, 170, 39);
 		add(btnIniciarSesion);
 
 		/**
 		 * LBL - ¿Aún sin cuenta?
 		 */
-		JLabel lblSinCuenta = new JLabel("¿Aún no tienes una cuenta?");
+		JLabel lblSinCuenta = new JLabel("<html><u>¿Aún no tienes una cuenta?</u></html>");
 		lblSinCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -111,19 +113,20 @@ public class PanelPruebaLogin extends JPanel {
 			}
 		});
 		lblSinCuenta.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblSinCuenta.setBounds(298, 530, 211, 20);
-		lblSinCuenta.setForeground(Color.decode("#FFB850"));
+		lblSinCuenta.setBounds(522, 617, 211, 20);
+		lblSinCuenta.setForeground(new Color(255, 173, 13));
 		add(lblSinCuenta);
 		
 		/**
 		 * LBL - Imagen 
 		 */
 		JLabel lblImagen = new JLabel();
-		lblImagen.setBackground(new Color(255, 128, 0));
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setIcon(new ImageIcon ( "logo.jpg" ) ) ; 
-		lblImagen.setBounds(650, 0, 550, 720);
+		lblImagen.setFont(new Font("Rubik", Font.PLAIN, 16));
+		lblImagen.setBounds(0, 0, 1200, 720);
+		lblImagen.setIcon(new ImageIcon("imagenes/varios/fondo-login.jpg"));
 		add(lblImagen);
-
+		
+		
 	}
-}
+	}
+

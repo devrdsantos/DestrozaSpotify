@@ -22,6 +22,7 @@ import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
 import panel.PanelMisPlaylist;
 import panel.PanelPodcast;
+import panel.PanelPruebaLogin;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
 import panel.PanelReproductorDePlaylist;
@@ -115,6 +116,9 @@ public class VistaPrincipal extends JFrame {
 			break;
 		case 16:
 			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
+			break;
+		case 17:
+			setContentPane (new PanelPruebaLogin(this, this.gestionINF)); 
 			break;}
 	}
 
@@ -132,7 +136,7 @@ public class VistaPrincipal extends JFrame {
 
 
 
-		v.cambiarDePanel(1);
+		v.cambiarDePanel(17);
 
 
 	}
