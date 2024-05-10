@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.GestionDeLaInformacion;
+import controller.GestorDeFicheros;
 import view.VistaPrincipal;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class PanelMiBiblioteca extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelMiBiblioteca(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+	public PanelMiBiblioteca(VistaPrincipal v, GestionDeLaInformacion gestionINF, GestorDeFicheros ficheros) {
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -125,6 +126,11 @@ public class PanelMiBiblioteca extends JPanel {
 		add(btnImportar);
 
 		JButton btnExportar = new JButton("Exportar");
+		btnExportar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ficheros.escribirFichero(gestionINF.devolverCancionesPorTituloPlaylist(listPlaylist.getSelectedValue()), listPlaylist.getSelectedValue());
+			}
+		});
 		btnExportar.setBounds(50, 378, 188, 40);
 		btnExportar.setOpaque(true);
 		btnExportar.setForeground(new Color(255, 170, 67));

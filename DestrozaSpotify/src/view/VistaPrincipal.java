@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import controller.ControladorDeEntrada;
 import controller.GestionBD;
 import controller.GestionDeLaInformacion;
+import controller.GestorDeFicheros;
 import panel.PanelAlbum;
 import panel.PanelArtista;
 import panel.PanelBienvenida;
@@ -37,6 +38,7 @@ public class VistaPrincipal extends JFrame {
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
 	private GestionBD gestionBD;
+	private GestorDeFicheros ficheros;
 	
 	/**
 	 * [CONSTRUCTOR] Inicializa el ControladorDeEntrada y GestionDeLaInformacion Le
@@ -47,7 +49,7 @@ public class VistaPrincipal extends JFrame {
 		gestionINF =  new GestionDeLaInformacion();
 		controlador =  new ControladorDeEntrada();
 		gestionBD = new GestionBD();
-		
+		ficheros = new GestorDeFicheros();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -98,7 +100,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelDescubrirPodcast(this, this.gestionINF));
 			break;
 		case 10:
-			setContentPane(new PanelMiBiblioteca(this, this.gestionINF));
+			setContentPane(new PanelMiBiblioteca(this, this.gestionINF, this.ficheros));
 			break;
 		case 11:
 			setContentPane(new PanelAlbum(this, this.gestionINF));
