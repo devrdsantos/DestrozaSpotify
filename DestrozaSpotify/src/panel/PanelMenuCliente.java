@@ -75,6 +75,13 @@ public class PanelMenuCliente extends JPanel {
 		});
 		btnDescMusica.addMouseListener(new MouseAdapter() {
 			@Override
+			public void mouseExited(MouseEvent e) {
+				btnDescMusica.setForeground(Color.decode("#FFB850"));
+				btnDescMusica.setBackground(Color.decode("#222222"));		
+			}
+		});
+		btnDescMusica.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(8);
 			}
@@ -112,6 +119,13 @@ public class PanelMenuCliente extends JPanel {
 		});
 		btnDescubrirPodcast.addMouseListener(new MouseAdapter() {
 			@Override
+			public void mouseExited(MouseEvent e) {
+				btnDescubrirPodcast.setForeground(Color.decode("#FFB850"));
+				btnDescubrirPodcast.setBackground(Color.decode("#222222"));		
+			}
+		});
+		btnDescubrirPodcast.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(9);
 			}
@@ -137,6 +151,13 @@ public class PanelMenuCliente extends JPanel {
 			public void mouseEntered(MouseEvent e) {
 				btnMisPlaylist.setBackground(Color.decode("#FFB850"));
 				btnMisPlaylist.setForeground(Color.decode("#222222"));
+			}
+		});
+		btnMisPlaylist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMisPlaylist.setForeground(Color.decode("#FFB850"));
+				btnMisPlaylist.setBackground(Color.decode("#222222"));		
 			}
 		});
 		btnMisPlaylist.addMouseListener(new MouseAdapter() {
