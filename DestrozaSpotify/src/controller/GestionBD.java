@@ -706,7 +706,7 @@ public class GestionBD {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("SELECT a.idAudio, a.Nombre, a.Duracion, a.Imagen, a.Colaboradores FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
+			PreparedStatement consulta = conexion.prepareStatement("SELECT a.idAudio, a.Nombre, a.Duracion, a.Imagen, e.Colaboradores FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
 			consulta.setInt(1, idPodcast);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {

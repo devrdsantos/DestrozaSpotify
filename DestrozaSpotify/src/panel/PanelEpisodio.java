@@ -82,11 +82,16 @@ public class PanelEpisodio extends JPanel {
 		
 		JList<String> listaEpisodios = new JList<String>();
 		listaEpisodios.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				gestionINF.artistaSeleccionado(listaEpisodios.getSelectedValue());
-				v.cambiarDePanel(7);
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!arg0.getValueIsAdjusting()) {
+					gestionINF.indiceDeLaCancion(listaEpisodios.getSelectedIndex());
+	 			System.out.println(listaEpisodios.getSelectedValue().split("--")[0]);
+					v.cambiarDePanel(20);
+				}
 			}
 		});
+		listaEpisodios.setBackground(Color.decode("#DDDDDD"));
+		
 		DefaultListModel<String> EpisodiosPorPodcast = new DefaultListModel<String>();
 		podcastSeleccionado = gestionINF.mostrarPodcast();
 		

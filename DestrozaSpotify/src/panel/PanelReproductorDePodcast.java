@@ -39,7 +39,6 @@ public class PanelReproductorDePodcast extends JPanel {
 	 */
 	private ControladorDeSonidoEpisodio sonido;
 
-//	private JButton btnAleatorio;
 	private JButton btnAnterior;
 	private JButton btnPlay;
 	private JButton btnPlay2;
@@ -114,7 +113,7 @@ public class PanelReproductorDePodcast extends JPanel {
 		 * Label donde se muestra la imagen de la portada de la canción
 		 */
 		lblPortadaCancion = new JLabel();
-		lblPortadaCancion.setIcon(gestionINF.mostrarCancion().get(intinerador).getImagen());
+		lblPortadaCancion.setIcon(gestionINF.mostrarEpisodioss(gestionINF.devolverIdPodcast(gestionINF.mostrarPodcast())).get(intinerador).getImagen());
 		lblPortadaCancion.setBounds(356, 129, 440, 360);
 		add(lblPortadaCancion);
 

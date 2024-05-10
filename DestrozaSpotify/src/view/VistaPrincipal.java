@@ -26,6 +26,7 @@ import panel.PanelPruebaRegistro;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
 import panel.PanelReproductorDePlaylist;
+import panel.PanelReproductorDePodcast;
 
 public class VistaPrincipal extends JFrame {
 
@@ -126,6 +127,9 @@ public class VistaPrincipal extends JFrame {
 			break;
 		case 19:
 			setContentPane (new PanelPerfil(this, this.gestionINF)); 
+			break;
+		case 20:
+			setContentPane (new PanelReproductorDePodcast(this, this.gestionINF)); 
 			break;
 			
 		}
