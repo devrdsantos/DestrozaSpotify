@@ -88,9 +88,11 @@ public class PanelEpisodio extends JPanel {
 			}
 		});
 		DefaultListModel<String> EpisodiosPorPodcast = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarEpisodiosPorPodcast(gestionINF.devolverIdPodcast(gestionINF.mostrarPodcast())).size(); i++) {
+		podcastSeleccionado = gestionINF.mostrarPodcast();
+		
+		for (int i = 0; i < gestionINF.mostrarEpisodiosPorPodcast(gestionINF.devolverIdPodcast(podcastSeleccionado)).size(); i++) {
 			
-				EpisodiosPorPodcast.addElement(gestionINF.mostrarEpisodiosPorPodcast(gestionINF.devolverIdPodcast(gestionINF.mostrarPodcast())).get(i));
+				EpisodiosPorPodcast.addElement(gestionINF.mostrarEpisodiosPorPodcast(gestionINF.devolverIdPodcast(podcastSeleccionado)).get(i));
 		}
 		listaEpisodios.setModel(EpisodiosPorPodcast);
 		listaEpisodios.setBounds(100, 300, 1000, 313);

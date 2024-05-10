@@ -127,8 +127,8 @@ public class GestionDeLaInformacion {
 		return this.podcast;
 	}
 	
-	public ArrayList<String> mostrarEpisodiosPorPodcast(int podcast){
-		return gestionBD.sacarEpisodiosPorPodcast(podcast);
+	public ArrayList<String> mostrarEpisodiosPorPodcast(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcast(idPodcast);
 	}
 	
 	public void indiceDeLaCancion(int posicion) {

@@ -750,7 +750,7 @@ public class GestionBD {
 		ArrayList<String> episodios = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT a.Nombre FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = idPodcast");
+					.prepareStatement("SELECT a.Nombre FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
 			consulta.setInt(1, idPodcast);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
