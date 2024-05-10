@@ -7,11 +7,10 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
 import model.Album;
 import model.Cancion;
 import model.Cliente;
+import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
@@ -270,6 +269,10 @@ public class GestionDeLaInformacion {
 
 	public int devolverIdPodcaster(String nombreArtistico) {
 		return gestionBD.idPodcaster(nombreArtistico);
+	}
+	
+	public ArrayList<Episodio> mostrarEpisodioss(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcasts(idPodcast);
 	}
 	
 }

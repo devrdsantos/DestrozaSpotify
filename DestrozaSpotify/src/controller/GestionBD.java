@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
 
 import model.Album;
 import model.Cancion;
+import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
@@ -699,6 +699,30 @@ public class GestionBD {
 			e.printStackTrace();
 		}
 		return canciones;
+
+	}
+	
+	public ArrayList<Episodio> sacarEpisodiosPorPodcasts(int idPodcast) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT a.idAudio, a.Nombre, a.Duracion, a.Imagen, a.Colaboradores FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
+			consulta.setInt(1, idPodcast);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				episodios.add(new Episodio(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
 
 	}
 

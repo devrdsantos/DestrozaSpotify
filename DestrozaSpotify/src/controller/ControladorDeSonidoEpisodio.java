@@ -16,7 +16,7 @@ import model.Podcast;
 
 public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
-	private ArrayList<Podcast> epidodios;
+	private ArrayList<Podcast> episodios;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -26,7 +26,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	boolean anuncion = false;
 
 	public ControladorDeSonidoEpisodio(ArrayList<Podcast> episodios) {
-		this.epidodios = episodios;
+		this.episodios = episodios;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
@@ -74,30 +74,12 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	public void bucle(boolean activo, int cola) {
 
-		if (activo == true) {
-//			System.out.println(activo);
-			reproducir(cola);
-			cancionEnCurso.loop(100);
-//			cancionEnCurso.stop();
-		} else {
-			reproducir(cola);
-			cancionEnCurso.loop(0);
-			cancionEnCurso.stop();
-//			System.out.println(activo);
-
-		}
+	System.out.println("Inutilizado");
 
 	}
 
 	public int ramdom() {
-		int numeroAleatorioActual;
-
-		do {
-			numeroAleatorioActual = random.nextInt(epidodios.size());
-		} while (numeroAleatorioActual == numeroAleatorioAnterior);
-
-		numeroAleatorioAnterior = numeroAleatorioActual;
-		return numeroAleatorioActual;
+		return 1;
 	}
 
 	public long seguirCancion() {
@@ -122,13 +104,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	}
 
 	public void anuncio() {
-		try {
-			cancionEnCurso.open(AudioSystem.getAudioInputStream(new File("anuncio/Anuncio.wav")));
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		cancionEnCurso.start();
+		System.out.println("Inutilizado");
 	}
 	
 	public void parar() {
