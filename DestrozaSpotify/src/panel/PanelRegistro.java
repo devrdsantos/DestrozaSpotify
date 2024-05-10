@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -174,7 +176,7 @@ public class PanelRegistro extends JPanel {
 		add(btnCrearCuenta);
 		
 		
-		
+
 		
 		
 		
