@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ControladorDeEntrada;
+import controller.GestionDeLaInformacion;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import view.VistaPrincipal;
 
@@ -35,7 +37,7 @@ public class PanelRegistro extends JPanel{
 	private SimpleDateFormat formato;
 	private String premiun;
 	
-	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador) {
+	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador, GestionDeLaInformacion gestionINF) {
 		
 		formato = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -125,9 +127,9 @@ public class PanelRegistro extends JPanel{
 		JComboBox<String> comboBoxIdioma = new JComboBox<String>();
 		comboBoxIdioma.setBackground(new Color(232, 232, 232));
 		comboBoxIdioma.setFont(new Font("Verdana", Font.PLAIN, 14));
-		comboBoxIdioma.addItem("ES");
-		comboBoxIdioma.addItem("EU");
-		comboBoxIdioma.addItem("EN");
+		for (int i = 0; i < gestionINF.idiomas().size(); i++) {
+			comboBoxIdioma.addItem(gestionINF.idiomas().get(i));
+		}
 		comboBoxIdioma.setBounds(887, 412, 150, 28);
 		add(comboBoxIdioma);
 		

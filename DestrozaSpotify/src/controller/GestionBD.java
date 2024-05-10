@@ -1287,4 +1287,27 @@ public class GestionBD {
 		return capacidad;
 	}
 	
+	public ArrayList<String> sacarIdiomas() {
+		// Crea el ArrayList
+		ArrayList<String> idiomas = new ArrayList<String>();
+		try {
+			
+			String query = "SELECT IDidioma FROM `idioma`;";
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			
+			while (resultadoConsulta.next()) {
+				idiomas.add((resultadoConsulta.getString(1)));
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return idiomas;
+	}
+	
 }

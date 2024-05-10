@@ -7,6 +7,8 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import model.Album;
 import model.Cancion;
 import model.Cliente;
@@ -260,6 +262,10 @@ public class GestionDeLaInformacion {
 	
 	public int capacidadDePlaylist(int idPlaylist) {
 		return gestionBD.capacidadDePlaylist(idPlaylist);
+	}
+	
+	public ArrayList<String> idiomas() {
+		return gestionBD.sacarIdiomas();
 	}
 	
 }
