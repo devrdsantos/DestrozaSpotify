@@ -416,11 +416,13 @@ public class GestionBD {
 	/* HECHO!! */
 	public void insertAudioEpisodio(String nombre, int duracion, String imagenPodc) {
 		try {
-			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
-			consulta.setString(1, nombre);
-			consulta.setInt(2, duracion);
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, nombre);
+			consulta.setInt(3, duracion);
 			InputStream imagen = new FileInputStream("imagenes/portadasEpisodio/" + imagenPodc + ".jpg");
-			consulta.setBlob(3, imagen);
+			consulta.setBlob(4, imagen);
+			consulta.setString(5, "Podcast");
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
 			// Cambia al Panel para iniciar sesión
