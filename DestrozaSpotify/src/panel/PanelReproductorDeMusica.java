@@ -175,8 +175,6 @@ public class PanelReproductorDeMusica extends JPanel {
 				 * Verifica si eres premium
 				 */
 				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
-					System.out.println("Premiun");
-
 					sonido.setCancionEnReproduccion(intinerador);
 
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
