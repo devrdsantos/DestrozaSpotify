@@ -14,14 +14,12 @@ import panel.PanelDescubrirPodcast;
 import panel.PanelEpisodio;
 import panel.PanelGestionMusica;
 import panel.PanelGestionPodcast;
-import panel.PanelArtista;
-import panel.PanelGestionMusica;
-import panel.PanelGestionPodcast;
 import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
 import panel.PanelMisPlaylist;
+import panel.PanelPerfil;
 import panel.PanelPodcast;
 import panel.PanelPruebaLogin;
 import panel.PanelPruebaRegistro;
@@ -125,7 +123,12 @@ public class VistaPrincipal extends JFrame {
 			break;
 		case 18:
 			setContentPane (new PanelPruebaRegistro(this, this.controlador)); 
-			break;}
+			break;
+		case 19:
+			setContentPane (new PanelPerfil(this, this.gestionINF)); 
+			break;
+			
+		}
 			
 		
 	}

@@ -68,6 +68,12 @@ public class PanelAlbum extends JPanel {
 	btnPerfil.setBorderPainted(false);
 	btnPerfil.setBackground(new Color(53, 53, 53));
 	btnPerfil.setBounds(1009, 34, 136, 48);
+	btnPerfil.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			v.cambiarDePanel(19);
+		}
+	});
 	add(btnPerfil);
 	
 	

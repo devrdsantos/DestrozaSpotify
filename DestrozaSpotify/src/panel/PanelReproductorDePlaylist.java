@@ -96,6 +96,8 @@ public class PanelReproductorDePlaylist extends JPanel {
 		btnAtras.setOpaque(true);
 		btnAtras.setBorderPainted(false);
 		add(btnAtras);
+		
+		
 
 		/**
 		 * Label donde se muestra la imagen de la portada de la canción
