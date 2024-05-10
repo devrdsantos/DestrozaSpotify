@@ -1,7 +1,6 @@
 package panel;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,108 +10,237 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
-import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelAlbum extends JPanel {
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	private int duracionMax;
-
-	public PanelAlbum(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
-
+	
+	public PanelAlbum (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
 		for (int i = 0; i < gestionINF.mostrarCancion().size(); i++) {
 			duracionMax = duracionMax + gestionINF.mostrarCancion().get(i).getDuracion();
 		}
-
+		
+		setLayout(null);
 		setSize(1200, 720);
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		;
-
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(32, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
-
-		/**
-		 * ACCION DEL BOTON
-		 */
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(7);
-			}
-		});
-		setLayout(null);
-		btnAtras.setBackground(Color.decode("#3f3d3d"));
-		btnAtras.setForeground(Color.decode("#ffaa43"));
-		btnAtras.setOpaque(true);
-		btnAtras.setBorderPainted(false);
-		add(btnAtras);
-
-		JLabel lblListaCanciones = new JLabel();
-		lblListaCanciones.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblListaCanciones.setForeground(new Color(255, 255, 255));
-		lblListaCanciones.setText("Lista de canciones: ");
-		lblListaCanciones.setBounds(125, 180, 350, 40);
-		add(lblListaCanciones);
-
-		JList<String> listCanciones = new JList<String>();
-		listCanciones.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				if (!arg0.getValueIsAdjusting()) {
-					gestionINF.indiceDeLaCancion(listCanciones.getSelectedIndex());
-					v.cambiarDePanel(12);
-				}
-			}
-		});
-		DefaultListModel<String> modeloCanciones = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarCancion().size(); i++) {
-			modeloCanciones.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
-					+ gestionINF.mostrarCancion().get(i).getDuracion() + " segundos");
+	
+	/**
+	 * BTN - Atrás
+	 */
+	JButton btnAtras = new JButton("Atras");
+	btnAtras.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			v.cambiarDePanel(8);
 		}
-		listCanciones.setModel(modeloCanciones);
-		listCanciones.setBounds(125, 230, 400, 400);
-		add(listCanciones);
+	});
+	btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
+	btnAtras.setOpaque(true);
+	btnAtras.setContentAreaFilled(true);
+	btnAtras.setForeground(Color.decode("#FFFFFF"));
+	btnAtras.setBorderPainted(false);
+	btnAtras.setBackground(Color.decode("#353535"));
+	btnAtras.setBounds(52, 34, 136, 48);
+	add(btnAtras);
+	
+	/**
+	 * BTN - Perfil
+	 */
+	JButton btnPerfil = new JButton("Perfil");
+	btnPerfil.setOpaque(true);
+	btnPerfil.setForeground(Color.WHITE);
+	btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+	btnPerfil.setContentAreaFilled(true);
+	btnPerfil.setBorderPainted(false);
+	btnPerfil.setBackground(new Color(53, 53, 53));
+	btnPerfil.setBounds(1009, 34, 136, 48);
+	btnPerfil.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			v.cambiarDePanel(19);
+		}
+	});
+	add(btnPerfil);
+	
+	
 
-//		JList<String> listArtista = new JList<String>();
-//		DefaultListModel<String> modeloArtista = new DefaultListModel<String>();
-//		modeloArtista.addElement("Colaboradores: " + gestionINF.mostrarCancion().get(0).getColaboradores());
-//		modeloArtista.addElement("Fecha de salida: " + gestionINF.mostrarAlbums().get(0).getFechaPublicacion());
-//		modeloArtista.addElement("Canciones: " + gestionINF.mostrarCancion().size());
-//		modeloArtista.addElement("Duracion: " + duracionMax + " segundos");
-//		listArtista.setModel(modeloArtista);
-//		listArtista.setBounds(720, 230, 400, 200);
-//		add(listArtista);
-
-		JLabel lblInformacion = new JLabel("Informacion :");
-		lblInformacion.setForeground(Color.WHITE);
-		lblInformacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInformacion.setBounds(720, 180, 350, 40);
-		add(lblInformacion);
-
-		JLabel lblImagenArtista = new JLabel("");
-		lblImagenArtista.setIcon(gestionINF.mostrarAlbums().get(gestionINF.devolverIndiceAlbum()).getImagen());
-		lblImagenArtista.setBounds(820, 450, 200, 200);
-		add(lblImagenArtista);
-
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setText("Colaboradores: " + gestionINF.mostrarCancion().get(0).getArtistasInvitados()
-				+ "\nFecha de salida: " + gestionINF.mostrarAlbums().get(0).getFechaPublicacion() + "\nCanciones: "
-				+ gestionINF.mostrarCancion().size() + "\nDuracion: " + duracionMax + " segundos");
-		textArea.setBounds(720, 230, 400, 200);
-		add(textArea);
-
+	/**
+	 * LBL - Nombre Albúm
+	 */
+	JLabel lblAlbum = new JLabel();
+	lblAlbum.setFont(new Font("Dialog", Font.BOLD, 38));
+	lblAlbum.setForeground(new Color(255, 255, 255));
+	lblAlbum.setText(gestionINF.devolverArtista());
+	lblAlbum.setBounds(228, 74, 763, 68);
+	add(lblAlbum);
+	
+	/**
+	 * LIST - Lista de canciones
+	 */
+	JList<String> listAlbums = new JList<String>();
+	listAlbums.setFont(new Font("Verdana", Font.PLAIN, 14));
+	listAlbums.addListSelectionListener(new ListSelectionListener() {
+		public void valueChanged(ListSelectionEvent arg0) {
+			if (!arg0.getValueIsAdjusting()) {
+				gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
+// 			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
+				v.cambiarDePanel(12);
+			}
+		}
+	});
+	listAlbums.setBackground(Color.decode("#DDDDDD"));
+	
+	DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
+	for (int i = 0; i < gestionINF.mostrarCancion().size(); i++) {
+		modeloAlbums.addElement(gestionINF.mostrarCancion().get(i).getNombre() + " -- "
+				+ gestionINF.mostrarCancion().get(i).getDuracion() + " segundos");
 	}
+	listAlbums.setModel(modeloAlbums);
+	listAlbums.setBounds(228, 436, 763, 242);
+	add(listAlbums);
+
+	/**
+	 * LBL - Canciones
+	 */
+	
+	JLabel lblCanciones = new JLabel("Canciones:");
+	lblCanciones.setForeground(new Color(255, 255, 255));
+	lblCanciones.setFont(new Font("Verdana", Font.PLAIN, 18));
+	lblCanciones.setBounds(228, 400, 130, 27);
+	add(lblCanciones);
+	
+	/**
+	 * LBL - Por
+	 */
+	JLabel lblNewLabel = new JLabel("Por");
+	lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblNewLabel.setForeground(new Color(192, 192, 192));
+	lblNewLabel.setBounds(228, 158, 33, 27);
+	add(lblNewLabel);
+	
+	
+	/**
+	 * LBL - Artista
+	 */
+	JLabel lblArtista = new JLabel();
+	lblArtista.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			v.cambiarDePanel(7);
+		}
+	});
+	lblArtista.setForeground(Color.decode("#FFB850"));
+	lblArtista.setText(gestionINF.devolverArtista());
+	lblArtista.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblArtista.setBounds(264, 158, 496, 27);
+	add(lblArtista);
+	
+	/**
+	 * LBL - Fecha de publicación
+	 */
+	JLabel lblFecha = new JLabel("Fecha de publicación:");
+	lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
+	lblFecha.setFont(new Font("Verdana", Font.BOLD, 16));
+	lblFecha.setForeground(new Color(255, 255, 255));
+	lblFecha.setBounds(227, 201, 193, 28);
+	add(lblFecha);
+	
+	/**
+	 * LBL - Género
+	 */
+	JLabel lblDescripcion = new JLabel("Género:");
+	lblDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDescripcion.setForeground(Color.WHITE);
+	lblDescripcion.setFont(new Font("Verdana", Font.BOLD, 16));
+	lblDescripcion.setBounds(227, 245, 76, 28);
+	add(lblDescripcion);
+	
+	/**
+	 * LBL - Cantidad de canciones
+	 */
+	JLabel lblCantidadDeCanciones = new JLabel("Cantidad de canciones:");
+	lblCantidadDeCanciones.setHorizontalAlignment(SwingConstants.LEFT);
+	lblCantidadDeCanciones.setForeground(Color.WHITE);
+	lblCantidadDeCanciones.setFont(new Font("Verdana", Font.BOLD, 16));
+	lblCantidadDeCanciones.setBounds(228, 288, 205, 28);
+	add(lblCantidadDeCanciones);
+	
+	/**
+	 * LBL - Duración
+	 */
+	JLabel lblDuracin = new JLabel("Duración:");
+	lblDuracin.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDuracin.setForeground(Color.WHITE);
+	lblDuracin.setFont(new Font("Verdana", Font.BOLD, 16));
+	lblDuracin.setBounds(228, 333, 90, 28);
+	add(lblDuracin);
+	
+	/**
+	 * LBL - (Dato) Fecha de publicación
+	 */
+	JLabel lblDatoFecha = new JLabel("Fecha de publicación");
+	lblDatoFecha.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDatoFecha.setForeground(Color.WHITE);
+	lblDatoFecha.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblDatoFecha.setBounds(421, 201, 239, 28);
+	lblDatoFecha.setText(gestionINF.mostrarAlbums().get(0).getFechaPublicacion());
+	add(lblDatoFecha);
+	
+	/**
+	 * LBL - (Dato) Genero
+	 */
+	JLabel lblDatoGenero = new JLabel("Género");
+	lblDatoGenero.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDatoGenero.setForeground(Color.WHITE);
+	lblDatoGenero.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblDatoGenero.setBounds(306, 245, 340, 28);
+	lblDatoGenero.setText(gestionINF.mostrarAlbums().get(0).getGenero());
+	add(lblDatoGenero);
+	
+	/**
+	 * LBL - (For) Cantidad de canciones
+	 */
+	JLabel lblDatoCantidadCanciones = new JLabel("Cantidad de canciones");
+	lblDatoCantidadCanciones.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDatoCantidadCanciones.setForeground(Color.WHITE);
+	lblDatoCantidadCanciones.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblDatoCantidadCanciones.setBounds(438, 288, 340, 28);
+	lblDatoCantidadCanciones.setText(gestionINF.mostrarCancion().size() + " canciones");
+	add(lblDatoCantidadCanciones);
+	
+	/**
+	 * LBL - (For y suma) Fecha de publicación
+	 */
+	JLabel lblDatoDuracion = new JLabel("Duración del álbum en minutos");
+	lblDatoDuracion.setHorizontalAlignment(SwingConstants.LEFT);
+	lblDatoDuracion.setForeground(Color.WHITE);
+	lblDatoDuracion.setFont(new Font("Verdana", Font.PLAIN, 16));
+	lblDatoDuracion.setBounds(320, 333, 340, 28);
+	lblDatoDuracion.setText(duracionMax + " segundos");
+	add(lblDatoDuracion);
+	
+	
+	/**
+	 * LBL - Imagen
+	 */
+	JLabel lblImagenArtista = new JLabel("");
+	lblImagenArtista.setIcon(gestionINF.mostrarArtista().get(0).getImagen());
+	lblImagenArtista.setBounds(789, 160, 200, 200);
+	add(lblImagenArtista);
+
+}	
 }

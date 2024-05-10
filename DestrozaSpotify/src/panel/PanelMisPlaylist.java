@@ -66,6 +66,22 @@ public class PanelMisPlaylist extends JPanel {
 		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
 		
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(19);
+			}
+		});
+		add(btnPerfil);
+		
 
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
