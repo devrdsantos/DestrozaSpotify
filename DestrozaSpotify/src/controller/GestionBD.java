@@ -724,13 +724,13 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
+	public ArrayList<String> sacarPodcastPorPodcaster(int idPodcaster) {
 
 		ArrayList<String> podcasts = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT NombrePodcast FROM podcast WHERE Podcaster = ?");
-			consulta.setString(1, podcaster);
+					.prepareStatement("SELECT Titulo FROM podcast WHERE idPodcaster = ?");
+			consulta.setInt(1, idPodcaster);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				podcasts.add(new String(resultadoConsulta.getString(1)));
@@ -746,12 +746,12 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public ArrayList<String> sacarEpisodiosPorPodcast(String podcast) {
+	public ArrayList<String> sacarEpisodiosPorPodcast(int idPodcast) {
 		ArrayList<String> episodios = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT Descripcion FROM podcast WHERE NombrePodcast = ?");
-			consulta.setString(1, podcast);
+					.prepareStatement("SELECT a.Nombre FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = idPodcast");
+			consulta.setInt(1, idPodcast);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				episodios.add(new String(resultadoConsulta.getString(1)));

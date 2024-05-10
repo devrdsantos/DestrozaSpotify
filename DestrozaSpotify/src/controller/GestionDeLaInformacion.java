@@ -115,7 +115,7 @@ public class GestionDeLaInformacion {
 		return this.podcaster;
 	}
 	
-	public ArrayList<String> mostrarPodcastPorPodcaster(String podcaster){
+	public ArrayList<String> mostrarPodcastPorPodcaster(int podcaster){
 		return gestionBD.sacarPodcastPorPodcaster(podcaster);
 	}
 	
@@ -127,7 +127,7 @@ public class GestionDeLaInformacion {
 		return this.podcast;
 	}
 	
-	public ArrayList<String> mostrarEpisodiosPorPodcast(String podcast){
+	public ArrayList<String> mostrarEpisodiosPorPodcast(int podcast){
 		return gestionBD.sacarEpisodiosPorPodcast(podcast);
 	}
 	
@@ -266,6 +266,10 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<String> idiomas() {
 		return gestionBD.sacarIdiomas();
+	}
+
+	public int devolverIdPodcaster(String nombreArtistico) {
+		return gestionBD.idPodcaster(nombreArtistico);
 	}
 	
 }

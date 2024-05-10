@@ -80,7 +80,7 @@ public class PanelPodcast extends JPanel {
 		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
 		
-		JComboBox comboBoxPodcast = new JComboBox();
+		JComboBox<String> comboBoxPodcast = new JComboBox<String>();
 		comboBoxPodcast.setBounds(550, 150, 417, 33);
 		comboBoxPodcast.addActionListener(new ActionListener() {//add actionlistner to listen for change
 	            @Override
@@ -89,8 +89,8 @@ public class PanelPodcast extends JPanel {
 	            }
 		});
 		
-		for (int i = 0; i < gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).size(); i++) {
-			comboBoxPodcast.addItem(gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).get(i));
+		for (int i = 0; i < gestionINF.mostrarPodcastPorPodcaster(gestionINF.devolverIdPodcaster(gestionINF.mostrarPodcaster())).size(); i++) {
+			comboBoxPodcast.addItem(gestionINF.mostrarPodcastPorPodcaster(gestionINF.devolverIdPodcaster(gestionINF.mostrarPodcaster())).get(i));
 		}
 		add(comboBoxPodcast);
 		
