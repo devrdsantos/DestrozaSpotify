@@ -1,22 +1,19 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 import interfaces.ControladorDeSonido;
-import model.Podcast;
+import model.Episodio;
 
 public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
-	private ArrayList<Podcast> episodios;
+	private ArrayList<Episodio> episodios;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -25,7 +22,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonidoEpisodio(ArrayList<Podcast> episodios) {
+	public ControladorDeSonidoEpisodio(ArrayList<Episodio> episodios) {
 		this.episodios = episodios;
 		try {
 			cancionEnCurso = AudioSystem.getClip();

@@ -14,9 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controller.ControladorDeSonidoCancion;
+import controller.ControladorDeSonidoEpisodio;
 import controller.GestionDeLaInformacion;
-import interfaces.ControladorDeSonido;
 import model.Episodio;
 import view.VistaPrincipal;
 
@@ -38,7 +37,7 @@ public class PanelReproductorDePodcast extends JPanel {
 	/**
 	 * Declaramos el controlador de sonido
 	 */
-	private ControladorDeSonido sonido;
+	private ControladorDeSonidoEpisodio sonido;
 
 //	private JButton btnAleatorio;
 	private JButton btnAnterior;
@@ -61,7 +60,7 @@ public class PanelReproductorDePodcast extends JPanel {
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
-		sonido = new ControladorDeSonidoCancion(canciones);
+		sonido = new ControladorDeSonidoEpisodio(episodios);
 
 		/**
 		 * Declaramos un contador
@@ -126,18 +125,11 @@ public class PanelReproductorDePodcast extends JPanel {
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				/**
-				 * Condicional que decide si se pasan los anuncios
-				 */
-				if (anuncio) {
-					sonido.anuncio();
-					btnPlay.setVisible(false);
-					btnPause.setVisible(true);
-				} else {
+				
 					sonido.reproducir(intinerador);
 					btnPlay.setVisible(false);
 					btnPause.setVisible(true);
-				}
+				
 
 			}
 		});
@@ -202,7 +194,7 @@ public class PanelReproductorDePodcast extends JPanel {
 				 * Condicional para volver atras de acuerdo al contador
 				 */
 				if (intinerador == 0) {
-					intinerador = canciones.size() - 1;
+					intinerador = episodios.size() - 1;
 				} else {
 					intinerador = (intinerador - 1) % gestionINF.mostrarCancion().size();
 				}
@@ -215,11 +207,8 @@ public class PanelReproductorDePodcast extends JPanel {
 
 					sonido.setCancionEnReproduccion(intinerador);
 
-					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
-					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-
-					btnBucle.setForeground(new Color(255, 170, 67));
-					bucle = false;
+					lblPortadaCancion.setIcon(episodios.get(intinerador).getImagen());
+					lblTituloCancion.setText("<html>" + episodios.get(intinerador).getNombre() + "</html>");
 
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
@@ -227,17 +216,6 @@ public class PanelReproductorDePodcast extends JPanel {
 					/**
 					 * Condicional para ver si anuncio es false, si lo es reproduce un anuncio
 					 */
-					if (!anuncio) {
-//						System.out.println("anuncio");
-						sonido.parar();
-						sonido.anuncio();
-						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
-						lblTituloCancion.setText("");
-						lblNombreArtista.setText("");
-						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPause.setVisible(true);
-					} else {
 //						System.out.println("no anuncio");
 						/**
 						 * le asignamos un numero random al contador
@@ -249,19 +227,13 @@ public class PanelReproductorDePodcast extends JPanel {
 						 */
 						sonido.reproducir(intinerador);
 
-						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
-						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+						lblPortadaCancion.setIcon(episodios.get(intinerador).getImagen());
+						lblTituloCancion.setText("<html>" + episodios.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
-						bucle = false;
-						anuncio = false;
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
 					}
-
 				}
-
-			}
 		});
 		btnAnterior.setOpaque(true);
 		btnAnterior.setForeground(new Color(255, 255, 255));
@@ -283,12 +255,10 @@ public class PanelReproductorDePodcast extends JPanel {
 				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
 //					System.out.println("Premiun");
 
-					intinerador = (intinerador + 1) % canciones.size();
+					intinerador = (intinerador + 1) % episodios.size();
 					sonido.setCancionEnReproduccion(intinerador);
-					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
-					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					btnBucle.setForeground(new Color(255, 170, 67));
-					bucle = false;
+					lblPortadaCancion.setIcon(episodios.get(intinerador).getImagen());
+					lblTituloCancion.setText("<html>" + episodios.get(intinerador).getNombre() + "</html>");
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
 
@@ -296,31 +266,17 @@ public class PanelReproductorDePodcast extends JPanel {
 					/**
 					 * condicional para ver si es un anuncio
 					 */
-					if (!anuncio) {
-//						System.out.println("anuncio");
-						sonido.parar();
-						sonido.anuncio();
-						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
-						lblTituloCancion.setText("");
-						lblNombreArtista.setText("");
-						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPause.setVisible(true);
-					} else {
+					
 //						System.out.println("No Premiun");
 						intinerador = sonido.ramdom();
 						sonido.reproducir(intinerador);
-						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
-						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+						lblPortadaCancion.setIcon(episodios.get(intinerador).getImagen());
+						lblTituloCancion.setText("<html>" + episodios.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
-						bucle = false;
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
 					}
 				}
-
-			}
 		});
 		btnSiguente.setOpaque(true);
 		btnSiguente.setForeground(new Color(255, 255, 255));
@@ -330,46 +286,8 @@ public class PanelReproductorDePodcast extends JPanel {
 		btnSiguente.setBounds(607, 600, 60, 60);
 		add(btnSiguente);
 
-		/**
-		 * Boton bucle
-		 */
-		btnBucle = new JButton("🔁 ");
-		btnBucle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Condicional para saber si el boton bucle es true
-				 */
-				if (bucle) {
-					btnPlay.setVisible(true);
-					btnPause.setVisible(false);
-					btnBucle.setForeground(new Color(255, 170, 67));
-					bucle = false;
-
-					/**
-					 * metodo para colocar la cancion en bucle
-					 */
-					sonido.bucle(bucle, intinerador);
-
-				} else {
-					btnPlay.setVisible(false);
-					btnPause.setVisible(true);
-					btnBucle.setForeground(new Color(0, 255, 0));
-					bucle = true;
-					sonido.bucle(bucle, intinerador);
-
-				}
-			}
-		});
-		btnBucle.setOpaque(true);
-		btnBucle.setForeground(new Color(255, 255, 255));
-		btnBucle.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnBucle.setBorderPainted(false);
-		btnBucle.setBackground(new Color(53, 53, 53));
-		btnBucle.setBounds(424, 600, 60, 60);
-		add(btnBucle);
-
 		lblTituloCancion = new JLabel();
-		lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
+		lblTituloCancion.setText("<html>" + episodios.get(intinerador).getNombre() + "</html>");
 		lblTituloCancion.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblTituloCancion.setForeground(new Color(255, 255, 255));
 		lblTituloCancion.setBounds(356, 499, 440, 50);
@@ -393,7 +311,7 @@ public class PanelReproductorDePodcast extends JPanel {
 					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
 				} else {
 					gestionINF.añadirCancionAPlaylist(
-							gestionINF.sacarIdDelAudio(canciones.get(intinerador).getNombre()),
+							gestionINF.sacarIdDelAudio(episodios.get(intinerador).getNombre()),
 							gestionINF.devolverIdPlaylist(playlist));
 				}
 			}
@@ -414,7 +332,7 @@ public class PanelReproductorDePodcast extends JPanel {
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestionINF.favoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()),
-						gestionINF.sacarIdDelAudio(canciones.get(intinerador).getNombre()));
+						gestionINF.sacarIdDelAudio(episodios.get(intinerador).getNombre()));
 			}
 		});
 		btnFavoritos.setOpaque(true);
