@@ -62,7 +62,6 @@ public class PanelReproductorDeMusica extends JPanel {
 		 * Le asignamos valor al arraylist canciones
 		 */
 		canciones = gestionINF.mostrarCancion();
-		System.out.println(canciones);
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
@@ -71,7 +70,6 @@ public class PanelReproductorDeMusica extends JPanel {
 		/**
 		 * Declaramos un contador
 		 */
-		System.out.println(gestionINF.devolverIndiceDeLaCancion());
 		intinerador = gestionINF.devolverIndiceDeLaCancion();
 
 		setSize(1200, 720);

@@ -20,6 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelAlbum extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int duracionMax;
 	
 	public PanelAlbum (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
@@ -85,7 +90,7 @@ public class PanelAlbum extends JPanel {
 	listAlbums.addListSelectionListener(new ListSelectionListener() {
 		public void valueChanged(ListSelectionEvent arg0) {
 			if (!arg0.getValueIsAdjusting()) {
-				gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
+				gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
 // 			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
 				v.cambiarDePanel(12);
 			}

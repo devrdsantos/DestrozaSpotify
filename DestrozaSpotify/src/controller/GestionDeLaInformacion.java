@@ -150,8 +150,7 @@ public class GestionDeLaInformacion {
 	}
 
 	public void indiceAlbum(int indice) {
-		
-		this.indiceAlbum = indice; 
+		this.indiceAlbum = indice;
 	}
 	
 	public int devolverIndiceAlbum() {
