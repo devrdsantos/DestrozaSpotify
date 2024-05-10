@@ -415,7 +415,7 @@ public class PanelGestionMusica extends JPanel{
 //				System.out.println(textFieldNombreCancion.getText().replace(" ", ""));
 				
 				gestionBD.insertAudioMu(textFieldNombreCancion.getText(), Integer.valueOf(textFieldDuracion.getText()), textFieldNombreCancion.getText().replace(" ", ""));
-				gestionBD.insertCancion(gestionBD.idAlbum(comboBoxAlbum.getSelectedItem().toString()),textFieldColaboradores.getText());
+				gestionBD.insertCancion(gestionBD.idAudio(textFieldNombreCancion.getText()),gestionBD.idAlbum(comboBoxAlbum.getSelectedItem().toString()),textFieldColaboradores.getText());
 				
 				v.cambiarDePanel(5);
 				

@@ -101,7 +101,7 @@ public class PanelArtista extends JPanel {
 				if (!arg0.getValueIsAdjusting()) {
 					gestionINF.albumSeleccionado(listAlbums.getSelectedValue().split("--")[0]);
 //					gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
-//     			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
+					System.out.println(listAlbums.getSelectedValue().split("--")[0]);
 					v.cambiarDePanel(11);
 				}
 			}

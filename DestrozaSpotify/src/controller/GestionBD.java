@@ -39,7 +39,7 @@ public class GestionBD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
@@ -369,10 +369,10 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertCancion(int idAlbum, String colaboradores) {
+	public void insertCancion(int idAudio, int idAlbum, String colaboradores) {
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cancion VALUES (?,?,?)");
-			consulta.setString(1, null);
+			consulta.setInt(1, idAudio);
 			consulta.setInt(2, idAlbum);
 			consulta.setString(3, colaboradores);
 			consulta.executeUpdate();

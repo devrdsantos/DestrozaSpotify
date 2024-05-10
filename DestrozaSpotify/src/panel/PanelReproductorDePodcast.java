@@ -83,7 +83,7 @@ public class PanelReproductorDePodcast extends JPanel {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(8);
+				v.cambiarDePanel(3);
 			}
 		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));

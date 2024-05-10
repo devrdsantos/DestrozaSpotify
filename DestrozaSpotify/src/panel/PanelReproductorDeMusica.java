@@ -220,7 +220,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 
 					btnPlay.setVisible(true);
@@ -237,6 +237,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
+						btnBucle.setForeground(new Color(255, 255, 255));
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
 					} else {
@@ -254,7 +255,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
+						btnBucle.setForeground(new Color(255, 255, 255));
 						bucle = false;
 						anuncio = false;
 						btnPlay.setVisible(false);
@@ -289,7 +290,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					sonido.setCancionEnReproduccion(intinerador);
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
@@ -306,6 +307,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
+						btnBucle.setForeground(new Color(255, 255, 255));
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
 					} else {
@@ -315,7 +317,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
+						btnBucle.setForeground(new Color(255, 255, 255));
 						bucle = false;
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
@@ -344,7 +346,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				if (bucle) {
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 
 					/**
@@ -355,7 +357,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				} else {
 					btnPlay.setVisible(false);
 					btnPause.setVisible(true);
-					btnBucle.setForeground(new Color(0, 255, 0));
+					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = true;
 					sonido.bucle(bucle, intinerador);
 
