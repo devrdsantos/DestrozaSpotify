@@ -32,9 +32,9 @@ public class PanelMenuCliente extends JPanel {
 		setBackground(Color.decode("#222222"));
 
 		/**
-		 * Boton de volver al login
+		 * BTN - Atrás
 		 */
-		JButton btnAtras = new JButton("Atras");
+		JButton btnAtras = new JButton("Atrás");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(1);
@@ -49,6 +49,9 @@ public class PanelMenuCliente extends JPanel {
 		btnAtras.setBounds(52, 54, 100, 40);
 		add(btnAtras);
 
+		/**
+		 * BTN - Perfil
+		 */
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setOpaque(true);
 		btnPerfil.setForeground(Color.WHITE);
@@ -59,7 +62,9 @@ public class PanelMenuCliente extends JPanel {
 		btnPerfil.setBounds(1038, 54, 100, 40);
 		add(btnPerfil);
 
-		// BTN - Descubrir Musica
+		/**
+		 * BTN - Descubrir Música
+		 */
 		JButton btnDescMusica = new JButton("Descubrir Música");
 		btnDescMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,6 +99,10 @@ public class PanelMenuCliente extends JPanel {
 		btnDescMusica.setBounds(134, 204, 250, 109);
 		add(btnDescMusica);
 
+		
+		/**
+		 * BTN - Descubrir Podcast
+		 */
 		JButton btnDescubrirPodcast = new JButton("Descubrir Podcast");
 		btnDescubrirPodcast.setOpaque(true);
 		btnDescubrirPodcast.setForeground(new Color(255, 173, 13));
@@ -124,6 +133,9 @@ public class PanelMenuCliente extends JPanel {
 		});
 		add(btnDescubrirPodcast);
 		
+		/**
+		 * BTN - Mis Playlist
+		 */
 		JButton btnMisPlaylist = new JButton("Mis Playlist");
 		btnMisPlaylist.setOpaque(true);
 		btnMisPlaylist.setForeground(new Color(255, 173, 13));
