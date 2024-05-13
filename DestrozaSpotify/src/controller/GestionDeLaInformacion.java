@@ -10,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import model.Album;
 import model.Cancion;
 import model.Cliente;
+import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
@@ -113,7 +114,7 @@ public class GestionDeLaInformacion {
 		return this.podcaster;
 	}
 	
-	public ArrayList<String> mostrarPodcastPorPodcaster(String podcaster){
+	public ArrayList<String> mostrarPodcastPorPodcaster(int podcaster){
 		return gestionBD.sacarPodcastPorPodcaster(podcaster);
 	}
 	
@@ -125,8 +126,8 @@ public class GestionDeLaInformacion {
 		return this.podcast;
 	}
 	
-	public ArrayList<String> mostrarEpisodiosPorPodcast(String podcast){
-		return gestionBD.sacarEpisodiosPorPodcast(podcast);
+	public ArrayList<String> mostrarEpisodiosPorPodcast(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcast(idPodcast);
 	}
 	
 	public void indiceDeLaCancion(int posicion) {
@@ -150,7 +151,7 @@ public class GestionDeLaInformacion {
 	}
 
 	public void indiceAlbum(int indice) {
-		this.indiceAlbum = indice; 
+		this.indiceAlbum = indice;
 	}
 	
 	public int devolverIndiceAlbum() {
@@ -260,6 +261,18 @@ public class GestionDeLaInformacion {
 	
 	public int capacidadDePlaylist(int idPlaylist) {
 		return gestionBD.capacidadDePlaylist(idPlaylist);
+	}
+	
+	public ArrayList<String> idiomas() {
+		return gestionBD.sacarIdiomas();
+	}
+
+	public int devolverIdPodcaster(String nombreArtistico) {
+		return gestionBD.idPodcaster(nombreArtistico);
+	}
+	
+	public ArrayList<Episodio> mostrarEpisodioss(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcasts(idPodcast);
 	}
 	
 }

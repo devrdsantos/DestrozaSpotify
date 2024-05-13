@@ -9,15 +9,14 @@ import java.util.Random;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 import interfaces.ControladorDeSonido;
-import model.Podcast;
+import model.Episodio;
 
 public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
-	private ArrayList<Podcast> epidodios;
+	private ArrayList<Episodio> episodios;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
 	private Random random = new Random();
@@ -26,8 +25,8 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	private boolean enReproduccion = true;
 	boolean anuncion = false;
 
-	public ControladorDeSonidoEpisodio(ArrayList<Podcast> episodios) {
-		this.epidodios = episodios;
+	public ControladorDeSonidoEpisodio(ArrayList<Episodio> episodios) {
+		this.episodios = episodios;
 		try {
 			cancionEnCurso = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
@@ -75,30 +74,12 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	public void bucle(boolean activo, int cola) {
 
-		if (activo == true) {
-//			System.out.println(activo);
-			reproducir(cola);
-			cancionEnCurso.loop(100);
-//			cancionEnCurso.stop();
-		} else {
-			reproducir(cola);
-			cancionEnCurso.loop(0);
-			cancionEnCurso.stop();
-//			System.out.println(activo);
-
-		}
+	System.out.println("Inutilizado");
 
 	}
 
 	public int ramdom() {
-		int numeroAleatorioActual;
-
-		do {
-			numeroAleatorioActual = random.nextInt(epidodios.size());
-		} while (numeroAleatorioActual == numeroAleatorioAnterior);
-
-		numeroAleatorioAnterior = numeroAleatorioActual;
-		return numeroAleatorioActual;
+		return 1;
 	}
 
 	public long seguirCancion() {
@@ -123,13 +104,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	}
 
 	public void anuncio() {
-		try {
-			cancionEnCurso.open(AudioSystem.getAudioInputStream(new File("anuncio/Anuncio.wav")));
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		cancionEnCurso.start();
+		System.out.println("Inutilizado");
 	}
 	
 	public void parar() {

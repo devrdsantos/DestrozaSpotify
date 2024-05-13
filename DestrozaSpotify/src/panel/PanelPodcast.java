@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -36,28 +38,29 @@ public class PanelPodcast extends JPanel {
 		setVisible(true);
 		setFont(new Font("Open Sans", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		
+		setLayout(null);
 		
 		/**
-		 *  BTN - Ir atrás 
+		 * BTN - Atrás
+
 		 */
-		JButton btnAtras = new JButton("Ir atrás");
-		btnAtras.setBounds(32, 32, 137, 52);
-		btnAtras.setFont(new Font("Open Sans", Font.BOLD, 16));
-		
-			/**
-			 *  ACCION DEL BOTON
-			 */
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnAtras.setOpaque(true);
+		btnAtras.setContentAreaFilled(true);
+		btnAtras.setForeground(Color.decode("#FFFFFF"));
+		btnAtras.setBorderPainted(false);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 34, 136, 48);
+		/**
+		 * ACCION DEL BOTON
+		 */
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(9);
 			}
 		});
-		setLayout(null);
-		btnAtras.setBackground(Color.decode("#3f3d3d"));
-		btnAtras.setForeground(Color.decode("#ffaa43"));
-		btnAtras.setOpaque(true);
-		btnAtras.setBorderPainted(false);
+	
 		add(btnAtras);
 		
 		JLabel lblTitulo = new JLabel("Descubrir PODCAST");
@@ -67,20 +70,23 @@ public class PanelPodcast extends JPanel {
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
 		add(lblTitulo);
 		
-		JButton btnPerfil = new JButton("Mi Perfil");
-		btnPerfil.setBounds(1000, 32, 137, 52);
-		btnPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1009, 34, 136, 48);
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(19);
 			}
 		});
-		btnPerfil.setOpaque(true);
-		btnPerfil.setForeground(new Color(255, 170, 67));
-		btnPerfil.setFont(new Font("Open Sans", Font.BOLD, 16));
-		btnPerfil.setBorderPainted(false);
-		btnPerfil.setBackground(new Color(63, 61, 61));
 		add(btnPerfil);
 		
-		JComboBox comboBoxPodcast = new JComboBox();
+		JComboBox<String> comboBoxPodcast = new JComboBox<String>();
 		comboBoxPodcast.setBounds(550, 150, 417, 33);
 		comboBoxPodcast.addActionListener(new ActionListener() {//add actionlistner to listen for change
 	            @Override
@@ -89,8 +95,8 @@ public class PanelPodcast extends JPanel {
 	            }
 		});
 		
-		for (int i = 0; i < gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).size(); i++) {
-			comboBoxPodcast.addItem(gestionINF.mostrarPodcastPorPodcaster(gestionINF.mostrarPodcaster()).get(i));
+		for (int i = 0; i < gestionINF.mostrarPodcastPorPodcaster(gestionINF.devolverIdPodcaster(gestionINF.mostrarPodcaster())).size(); i++) {
+			comboBoxPodcast.addItem(gestionINF.mostrarPodcastPorPodcaster(gestionINF.devolverIdPodcaster(gestionINF.mostrarPodcaster())).get(i));
 		}
 		add(comboBoxPodcast);
 		

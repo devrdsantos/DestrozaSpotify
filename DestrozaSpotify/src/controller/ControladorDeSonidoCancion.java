@@ -121,12 +121,12 @@ public class ControladorDeSonidoCancion implements ControladorDeSonido {
 		if (!enReproduccion) {
 			continuar = cancionEnCurso.getMicrosecondPosition();
 			cancionEnCurso.stop();
-			play2.setText("Play");
+			play2.setText("▶");
 			enReproduccion = true;
 		} else {
 			cancionEnCurso.setMicrosecondPosition(continuar);
 			cancionEnCurso.start();
-			play2.setText("Stop");
+			play2.setText("⏸");
 			enReproduccion = false;
 		}
 
