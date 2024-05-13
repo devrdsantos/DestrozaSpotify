@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
 
 import model.Album;
 import model.Cancion;
+import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
@@ -39,7 +39,11 @@ public class GestionBD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
+<<<<<<< HEAD
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo36", "root", "");
+=======
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
@@ -133,7 +137,12 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public void insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
+=======
+	public boolean insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
+		boolean insertUsuario = false;
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 		gestionINF = new GestionDeLaInformacion();
 		try {
 //			Statement consulta = conexion.createStatement();
@@ -171,6 +180,7 @@ public class GestionBD {
 
 			// Ejecución del INSERT
 //			consulta.executeUpdate(insert);
+			insertUsuario = true;
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
 
@@ -183,6 +193,8 @@ public class GestionBD {
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 			v.cambiarDePanel(2);
 		}
+		
+		return insertUsuario;
 
 	}
 
@@ -199,7 +211,7 @@ public class GestionBD {
 		ArrayList<String> generos = new ArrayList<String>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			// QUERY que selecciona todo de la tabla CINE
+			// QUERY que selecciona todo de la tabla album
 			String query = "SELECT DISTINCT Genero FROM album;";
 			// Prepara la consulta para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
@@ -269,7 +281,12 @@ public class GestionBD {
 //	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public void insertMusico(String nombreArtistico, String imagenMu, String caracteristicas, String descripcion) {
+=======
+	public boolean insertMusico(String nombreArtistico, String imagenMu, String caracteristicas, String descripcion) {
+		boolean insertMusico = false;
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO musico VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -280,6 +297,7 @@ public class GestionBD {
 			consulta.setString(5, descripcion);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Musico creado correctamente");
+			insertMusico = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -289,6 +307,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return insertMusico;
 
 	}
 
@@ -318,7 +337,12 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public void insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, int idMusico) {
+=======
+	public boolean insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, int idMusico) {
+		boolean insertAlbum = false;
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO album VALUES (?,?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -330,6 +354,7 @@ public class GestionBD {
 			consulta.setInt(6, idMusico);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Album creado correctamente");
+			insertAlbum = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -339,6 +364,9 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		
+		return insertAlbum;
+		
 
 	}
 
@@ -369,7 +397,12 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public void insertCancion(int idAlbum, String colaboradores) {
+=======
+	public boolean insertCancion(int idAlbum, String colaboradores) {
+		boolean insertCancion = false;
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cancion VALUES (?,?,?)");
 			consulta.setString(1, null);
@@ -377,6 +410,7 @@ public class GestionBD {
 			consulta.setString(3, colaboradores);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion creado correctamente");
+			insertCancion = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -386,7 +420,8 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		
+		return insertCancion;
 	}
 
 	/* HECHO!! */
@@ -416,11 +451,21 @@ public class GestionBD {
 	/* HECHO!! */
 	public void insertAudioEpisodio(String nombre, int duracion, String imagenPodc) {
 		try {
+<<<<<<< HEAD
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?)");
 			consulta.setString(1, nombre);
 			consulta.setInt(2, duracion);
 			InputStream imagen = new FileInputStream("imagenes/portadasEpisodio/" + imagenPodc + ".jpg");
 			consulta.setBlob(3, imagen);
+=======
+			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?,?,?)");
+			consulta.setString(1, null);
+			consulta.setString(2, nombre);
+			consulta.setInt(3, duracion);
+			InputStream imagen = new FileInputStream("imagenes/portadasEpisodio/" + imagenPodc + ".jpg");
+			consulta.setBlob(4, imagen);
+			consulta.setString(5, "Podcast");
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
 			// Cambia al Panel para iniciar sesión
@@ -699,7 +744,34 @@ public class GestionBD {
 		return canciones;
 
 	}
+	
+	public ArrayList<Episodio> sacarEpisodiosPorPodcasts(int idPodcast) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT a.idAudio, a.Nombre, a.Duracion, a.Imagen, e.Colaboradores FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
+			consulta.setInt(1, idPodcast);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
 
+<<<<<<< HEAD
+=======
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				episodios.add(new Episodio(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
+
+	}
+
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 	/* HECHO!! */
 	public ArrayList<String> sacarArtistaPorGenero(String genero) {
 
@@ -722,13 +794,17 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public ArrayList<String> sacarPodcastPorPodcaster(String podcaster) {
+=======
+	public ArrayList<String> sacarPodcastPorPodcaster(int idPodcaster) {
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 
 		ArrayList<String> podcasts = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT NombrePodcast FROM podcast WHERE Podcaster = ?");
-			consulta.setString(1, podcaster);
+					.prepareStatement("SELECT Titulo FROM podcast WHERE idPodcaster = ?");
+			consulta.setInt(1, idPodcaster);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				podcasts.add(new String(resultadoConsulta.getString(1)));
@@ -744,12 +820,16 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
+<<<<<<< HEAD
 	public ArrayList<String> sacarEpisodiosPorPodcast(String podcast) {
+=======
+	public ArrayList<String> sacarEpisodiosPorPodcast(int idPodcast) {
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 		ArrayList<String> episodios = new ArrayList<String>();
 		try {
 			PreparedStatement consulta = conexion
-					.prepareStatement("SELECT Descripcion FROM podcast WHERE NombrePodcast = ?");
-			consulta.setString(1, podcast);
+					.prepareStatement("SELECT a.Nombre FROM audio a JOIN episodio e ON a.IDAudio = e.IDAudio WHERE e.IDPodcast = ?");
+			consulta.setInt(1, idPodcast);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				episodios.add(new String(resultadoConsulta.getString(1)));
@@ -1286,5 +1366,31 @@ public class GestionBD {
 		}
 		return capacidad;
 	}
+<<<<<<< HEAD
+=======
+	
+	public ArrayList<String> sacarIdiomas() {
+		// Crea el ArrayList
+		ArrayList<String> idiomas = new ArrayList<String>();
+		try {
+			
+			String query = "SELECT IDidioma FROM `idioma`;";
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			
+			while (resultadoConsulta.next()) {
+				idiomas.add((resultadoConsulta.getString(1)));
+			}
+			// System.out.println("Cerrando Consulta a la tabla album..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			// System.out.println("Conexion incorrecta con la tabla Album");
+			e.printStackTrace();
+		}
+		// Devuelve los generos
+		return idiomas;
+	}
+>>>>>>> branch 'Daniel' of https://github.com/devrdsantos/DestrozaSpotify.git
 	
 }

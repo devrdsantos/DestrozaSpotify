@@ -579,7 +579,7 @@ public class PanelGestionPodcast extends JPanel {
 		panelAñadirEpisodio.add(textFieldPortadaEpisodio);
 
 		/**
-		 * Boton para subir la portada del Podcast
+		 * Boton para subir la portada del Episodio
 		 */
 		JButton btnSubirPortadaEpisodio = new JButton("Subir .jpg");
 		btnSubirPortadaEpisodio.addActionListener(new ActionListener() {

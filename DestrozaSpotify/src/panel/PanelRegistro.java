@@ -7,21 +7,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ControladorDeEntrada;
+import controller.GestionDeLaInformacion;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import view.VistaPrincipal;
-import javax.swing.JRadioButton;
 
-public class PanelRegistro extends JPanel {
-	
+public class PanelRegistro extends JPanel{
+
 	/**
 	 * 
 	 */
@@ -33,7 +37,7 @@ public class PanelRegistro extends JPanel {
 	private SimpleDateFormat formato;
 	private String premiun;
 	
-	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador) {
+	public PanelRegistro(VistaPrincipal v, ControladorDeEntrada controlador, GestionDeLaInformacion gestionINF) {
 		
 		formato = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -43,97 +47,102 @@ public class PanelRegistro extends JPanel {
 		
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		JLabel mensajeRegistro = new JLabel("Registrate");
-		mensajeRegistro.setForeground(Color.decode("#ffffff"));
-		mensajeRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-		mensajeRegistro.setFont(new Font("Malgun Gothic", Font.BOLD, 32));
-		mensajeRegistro.setBounds(371, 91, 515, 78);
-		add(mensajeRegistro);
 		
-		JLabel lblUsuario = new JLabel("Ingresa tu usuario:");
-		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblUsuario.setBounds(282, 209, 173, 28);
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblUsuario.setBounds(723, 171, 80, 28);
 		lblUsuario.setForeground(Color.decode("#FFFFFF"));
 		add(lblUsuario);
 		
-		JLabel lblPassword = new JLabel("Ingresa una contraseña:");
+		JLabel lblPassword = new JLabel("Contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
-		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblPassword.setBounds(230, 403, 228, 28);
+		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblPassword.setBounds(723, 317, 100, 28);
 		add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(507, 404, 266, 34);
+		passwordField.setBackground(new Color(232, 232, 232));
+		passwordField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		passwordField.setBounds(823, 317, 266, 28);
 		add(passwordField);
 		
 		textFieldUsuario = new JTextField();
-		textFieldUsuario.setBounds(507, 210, 266, 34);
+		textFieldUsuario.setBackground(new Color(232, 232, 232));
+		textFieldUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
+		textFieldUsuario.setBounds(823, 171, 266, 28);
 		add(textFieldUsuario);
 		textFieldUsuario.setColumns(10);
 		
-		JLabel lblTienesCuenta = new JLabel("¿Ya tienes una cuenta?");
+		JLabel lblTienesCuenta = new JLabel("<html><u>¿Ya tienes una cuenta?</u></html>");
 		lblTienesCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(1);
 			}
 		});
-		lblTienesCuenta.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTienesCuenta.setBounds(639, 592, 211, 20);
-		lblTienesCuenta.setForeground(Color.decode("#BE6DB7"));
+		lblTienesCuenta.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblTienesCuenta.setBounds(826, 570, 211, 20);
+		lblTienesCuenta.setForeground(new Color(255, 173, 13));
 		add(lblTienesCuenta);
 		
 		
-		JLabel lblRegistro = new JLabel("Ingresa la fecha de nacimiento\r\n:");
+		JLabel lblRegistro = new JLabel("Fecha de nacimiento:");
 		lblRegistro.setForeground(Color.WHITE);
-		lblRegistro.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblRegistro.setBounds(160, 458, 295, 28);
+		lblRegistro.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblRegistro.setBounds(723, 363, 160, 28);
 		add(lblRegistro);
 		
-		JLabel lblIngresaTuNombre = new JLabel("Ingresa tu nombre:");
+		JLabel lblIngresaTuNombre = new JLabel("Nombre/s:");
 		lblIngresaTuNombre.setForeground(Color.WHITE);
-		lblIngresaTuNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblIngresaTuNombre.setBounds(278, 276, 185, 28);
+		lblIngresaTuNombre.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblIngresaTuNombre.setBounds(723, 220, 80, 28);
 		add(lblIngresaTuNombre);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.setBackground(new Color(232, 232, 232));
+		textFieldNombre.setFont(new Font("Verdana", Font.PLAIN, 14));
 		textFieldNombre.setColumns(10);
-		textFieldNombre.setBounds(507, 277, 266, 34);
+		textFieldNombre.setBounds(823, 220, 266, 28);
 		add(textFieldNombre);
 		
-		JLabel lblIngresaTuApellido = new JLabel("Ingresa tu apellido:");
+		JLabel lblIngresaTuApellido = new JLabel("Apellido/s:");
 		lblIngresaTuApellido.setForeground(Color.WHITE);
-		lblIngresaTuApellido.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblIngresaTuApellido.setBounds(275, 336, 193, 28);
+		lblIngresaTuApellido.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblIngresaTuApellido.setBounds(723, 270, 80, 28);
 		add(lblIngresaTuApellido);
 		
 		textFieldApellido = new JTextField();
+		textFieldApellido.setBackground(new Color(232, 232, 232));
+		textFieldApellido.setFont(new Font("Verdana", Font.PLAIN, 14));
 		textFieldApellido.setColumns(10);
-		textFieldApellido.setBounds(507, 337, 266, 34);
+		textFieldApellido.setBounds(823, 270, 266, 28);
 		add(textFieldApellido);
 		
-		JLabel lblIdioma = new JLabel("Idioma:");
+		JLabel lblIdioma = new JLabel("Selecciona un idioma:");
 		lblIdioma.setForeground(Color.WHITE);
-		lblIdioma.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblIdioma.setBounds(372, 513, 86, 28);
+		lblIdioma.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblIdioma.setBounds(723, 412, 160, 28);
 		add(lblIdioma);
 		
 		JComboBox<String> comboBoxIdioma = new JComboBox<String>();
-		comboBoxIdioma.addItem("ES");
-		comboBoxIdioma.addItem("EU");
-		comboBoxIdioma.addItem("EN");
-		comboBoxIdioma.setBounds(507, 517, 150, 28);
+		comboBoxIdioma.setBackground(new Color(232, 232, 232));
+		comboBoxIdioma.setFont(new Font("Verdana", Font.PLAIN, 14));
+		for (int i = 0; i < gestionINF.idiomas().size(); i++) {
+			comboBoxIdioma.addItem(gestionINF.idiomas().get(i));
+		}
+		comboBoxIdioma.setBounds(887, 412, 150, 28);
 		add(comboBoxIdioma);
 		
 		JCalendarComboBox calendarNacimiento = new JCalendarComboBox();
-		calendarNacimiento.setBounds(507, 458, 266, 35);
+		calendarNacimiento.setBackground(new Color(240, 240, 240));
+		calendarNacimiento.setBounds(887, 363, 202, 30);
 		add(calendarNacimiento);
 		
-		JRadioButton rdbtnPremiun = new JRadioButton("Premiun");
+		JRadioButton rdbtnPremiun = new JRadioButton("Cuenta Premium");
 		rdbtnPremiun.setOpaque(false);
-		rdbtnPremiun.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnPremiun.setFont(new Font("Verdana", Font.PLAIN, 14));
 		rdbtnPremiun.setForeground(Color.decode("#FFFFFF"));
-		rdbtnPremiun.setBounds(690, 518, 109, 23);
+		rdbtnPremiun.setBounds(821, 465, 150, 23);
 		add(rdbtnPremiun);
 		
 		JButton btnCrearCuenta = new JButton("Crear cuenta");
@@ -164,18 +173,26 @@ public class PanelRegistro extends JPanel {
 					
 			}
 		});
-		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnCrearCuenta.setOpaque(true);
 		btnCrearCuenta.setContentAreaFilled(true);
 		btnCrearCuenta.setForeground(Color.decode("#FFFFFF"));
 		btnCrearCuenta.setBorderPainted(false);
-		btnCrearCuenta.setBackground(Color.decode("#C67ACE"));
-		btnCrearCuenta.setBounds(465, 582, 150, 39);
+		btnCrearCuenta.setBackground(new Color(237, 2, 139));
+		btnCrearCuenta.setBounds(845, 513, 150, 40);
 		add(btnCrearCuenta);
 		
 		
 		
-		
+
+		/**
+		 * LBL - Fondo 
+		 */
+		JLabel lblImagen = new JLabel();
+		lblImagen.setFont(new Font("Rubik", Font.PLAIN, 16));
+		lblImagen.setBounds(0, 0, 1200, 720);
+		lblImagen.setIcon(new ImageIcon("imagenes/varios/fondo-registro.jpg"));
+		add(lblImagen);
 		
 		
 		

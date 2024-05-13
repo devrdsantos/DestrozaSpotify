@@ -45,4 +45,9 @@ public class Cancion extends Audio {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return getNombre() + " - " + getDuracion() + "\nArtista invitados: " + artistasInvitados;
+	}
+	
 }

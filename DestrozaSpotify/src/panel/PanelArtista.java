@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -72,6 +74,12 @@ public class PanelArtista extends JPanel {
 		btnPerfil.setBorderPainted(false);
 		btnPerfil.setBackground(new Color(53, 53, 53));
 		btnPerfil.setBounds(1009, 34, 136, 48);
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(19);
+			}
+		});
 		add(btnPerfil);
 
 		/**
@@ -92,7 +100,7 @@ public class PanelArtista extends JPanel {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!arg0.getValueIsAdjusting()) {
 					gestionINF.albumSeleccionado(listAlbums.getSelectedValue().split("--")[0]);
-					gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
+//					gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
 //     			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
 					v.cambiarDePanel(11);
 				}
