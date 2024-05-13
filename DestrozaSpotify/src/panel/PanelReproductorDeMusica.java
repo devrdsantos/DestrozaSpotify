@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -12,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
@@ -30,6 +33,8 @@ public class PanelReproductorDeMusica extends JPanel {
 	private int intinerador = 0;
 	private boolean bucle = false;
 	private boolean anuncio = false;
+
+	private LocalDateTime ultimaCancionReproducida;
 
 	/**
 	 * Declaramos un arraylist de tipo Cancion para almacenar las canciones que
@@ -50,9 +55,24 @@ public class PanelReproductorDeMusica extends JPanel {
 	private JLabel lblPortadaCancion;
 	private JLabel lblTituloCancion;
 	private JLabel lblNombreArtista;
-
+	private JButton btnFavoritos;
+	private JButton btnMenu;
+	
 	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
+		Timer timerAnuncio = new Timer(34000, new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        btnSiguente.setEnabled(true);
+		        btnAnterior.setEnabled(true);
+		    }
+		});
+		
+		Timer timer = new Timer(180000, new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        btnSiguente.setEnabled(true);
+		    }
+		});
+		
 		/**
 		 * Le asignamos valor al arraylist canciones
 		 */
@@ -193,15 +213,25 @@ public class PanelReproductorDeMusica extends JPanel {
 					 */
 					if (!anuncio) {
 //						System.out.println("anuncio");
+						btnSiguente.setEnabled(false);
+						btnAnterior.setEnabled(false);
+						btnBucle.setVisible(false);
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(false);
+						btnMenu.setVisible(false);
+						btnFavoritos.setVisible(false);
+						timerAnuncio.restart();
+									
 						sonido.parar();
 						sonido.anuncio();
 						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
 					} else {
+						btnSiguente.setEnabled(false);
+						timer.restart();
+						
 //						System.out.println("no anuncio");
 						/**
 						 * le asignamos un numero random al contador
@@ -221,6 +251,7 @@ public class PanelReproductorDeMusica extends JPanel {
 						anuncio = false;
 						btnPlay.setVisible(false);
 						btnPlay2.setVisible(true);
+
 					}
 
 				}
@@ -244,6 +275,9 @@ public class PanelReproductorDeMusica extends JPanel {
 				/**
 				 * Condicional para saber si es premium
 				 */
+				 
+				 
+				
 				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
 //					System.out.println("Premiun");
 
@@ -262,16 +296,26 @@ public class PanelReproductorDeMusica extends JPanel {
 					 */
 					if (!anuncio) {
 //						System.out.println("anuncio");
+						btnSiguente.setEnabled(false);
+						btnAnterior.setEnabled(false);
+						btnBucle.setVisible(false);
+						btnPlay.setVisible(false);
+						btnPlay2.setVisible(false);
+						btnMenu.setVisible(false);
+						btnFavoritos.setVisible(false);
+						timerAnuncio.restart();
+						
 						sonido.parar();
 						sonido.anuncio();
 						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPlay2.setVisible(true);
 					} else {
-//						System.out.println("No Premiun");
+						btnSiguente.setEnabled(false);
+						timer.restart();
+						
+						System.out.println("No Premiun");
 						intinerador = sonido.ramdom();
 						sonido.reproducir(intinerador);
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
@@ -283,7 +327,6 @@ public class PanelReproductorDeMusica extends JPanel {
 						btnPlay2.setVisible(true);
 					}
 				}
-
 			}
 		});
 		btnSiguente.setOpaque(true);
@@ -346,7 +389,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		lblNombreArtista.setBounds(125, 185, 240, 30);
 		add(lblNombreArtista);
 
-		JButton btnMenu = new JButton("Menu");
+		btnMenu = new JButton("Menu");
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -354,7 +397,8 @@ public class PanelReproductorDeMusica extends JPanel {
 				String playlist = JOptionPane.showInputDialog(f, "Introduzca el nombre de la playlist:");
 
 				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(playlist)) == 3) {
-					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
+					JOptionPane.showMessageDialog(null,
+							"Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
 				} else {
 					gestionINF.añadirCancionAPlaylist(
 							gestionINF.sacarIdDelAudio(canciones.get(intinerador).getNombre()),
@@ -374,7 +418,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist
 		 * favoritos
 		 */
-		JButton btnFavoritos = new JButton("Favoritos");
+		btnFavoritos = new JButton("Favoritos");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestionINF.favoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()),
@@ -390,4 +434,5 @@ public class PanelReproductorDeMusica extends JPanel {
 		add(btnFavoritos);
 
 	}
+
 }

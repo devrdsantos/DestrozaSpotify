@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -147,4 +149,14 @@ public class ControladorDeSonidoCancion implements ControladorDeSonido {
 		cancionEnCurso.close();
 	}
 
+//	public void reproducirCancion() {
+//        if (!esClienteFree || haPasadoSuficienteTiempo()) {
+//            // Lógica para reproducir la canción
+//            System.out.println("Reproduciendo canción...");
+//            ultimaCancionReproducida = LocalDateTime.now();
+//        } else {
+//            System.out.println("No puedes cambiar de canción tan rápido.");
+//        }
+//    }
+	
 }

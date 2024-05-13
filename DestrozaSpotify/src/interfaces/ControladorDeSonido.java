@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.time.LocalDateTime;
+
 import javax.swing.JButton;
 
 public interface ControladorDeSonido {
@@ -23,5 +25,5 @@ public interface ControladorDeSonido {
 	void anuncio();
 
 	void parar();
-
+	
 }

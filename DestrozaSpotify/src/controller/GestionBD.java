@@ -764,27 +764,25 @@ public class GestionBD {
 
 	/* HECHO!! */
 	public String sacarPremiun(String usuario) {
-		// Crea el ArrayList
+
 		String premiun = null;
 		try {
-			// System.out.println("Iniciando consulta..");
-			// QUERY que selecciona todo de la tabla CINE
+
 			PreparedStatement consulta = conexion.prepareStatement("SELECT Tipo FROM cliente where Usuario = ?;");
 			consulta.setString(1, usuario);
-			// Prepara la consulta para mandarla a la BD
+
 			ResultSet resultadoConsulta = consulta.executeQuery();
 
-			// Agrega los generos que tiene la tabla album al ArrayList generos donde
 			while (resultadoConsulta.next()) {
 				premiun = resultadoConsulta.getString(1);
 			}
-			// System.out.println("Cerrando Consulta a la tabla album..");
+
 			resultadoConsulta.close();
 		} catch (SQLException e) {
-			// System.out.println("Conexion incorrecta con la tabla Album");
+
 			e.printStackTrace();
 		}
-		// Devuelve los generos
+
 		return premiun;
 	}
 
@@ -1270,8 +1268,8 @@ public class GestionBD {
 	public int capacidadDePlaylist(int idPlaylist) {
 		int capacidad = 0;
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"SELECT COUNT(IDCancion) FROM `playlist_cancion` Where IDplaylist = ?");
+			PreparedStatement consulta = conexion
+					.prepareStatement("SELECT COUNT(IDCancion) FROM `playlist_cancion` Where IDplaylist = ?");
 			consulta.setInt(1, idPlaylist);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
@@ -1284,5 +1282,5 @@ public class GestionBD {
 		}
 		return capacidad;
 	}
-	
+
 }
