@@ -1,11 +1,14 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 import interfaces.ControladorDeSonido;
@@ -24,6 +27,7 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 
 	public ControladorDeSonidoEpisodio(ArrayList<Episodio> episodios) {
 		this.episodios = episodios;
+		System.out.println(episodios.get(cancionEnReproduccion));
 		try {
 			cancionEnCurso = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
@@ -32,9 +36,9 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	}
 
 	public void setCancionEnReproduccion(int can) {
-//		if (epidodios.get(cancionEnReproduccion).sonando()) {
-//			cancionEnCurso.stop();
-//		}
+	//	if (episodios.get(cancionEnReproduccion).sonando()) {
+	//		cancionEnCurso.stop();
+	//	}
 
 //		if (!(can < 0 || can >= canciones.size())) {
 //			this.cancionEnReproduccion = can;
@@ -50,8 +54,19 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 //				cancionEnCurso.close();
 //			}
 
-//			cancionEnCurso.open(AudioSystem.getAudioInputStream(
-//					new File("musica/" + epidodios.get(cola).getNombre().replace(" ", "") + ".wav")));
+			try {
+				cancionEnCurso.open(AudioSystem.getAudioInputStream(
+						new File("musica/" + episodios.get(cola).getNombre().replace(" ", "") + ".wav")));
+			} catch (LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			cancionEnCurso.start();
 			enReproduccion = false;
 
@@ -89,12 +104,12 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 		if (!enReproduccion) {
 			continuar = cancionEnCurso.getMicrosecondPosition();
 			cancionEnCurso.stop();
-			play2.setText("Play");
+			play2.setText("▶");
 			enReproduccion = true;
 		} else {
 			cancionEnCurso.setMicrosecondPosition(continuar);
 			cancionEnCurso.start();
-			play2.setText("Stop");
+			play2.setText("⏸");
 			enReproduccion = false;
 		}
 

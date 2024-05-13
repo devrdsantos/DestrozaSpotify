@@ -124,7 +124,6 @@ public class PanelReproductorDePodcast extends JPanel {
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				
 					sonido.reproducir(intinerador);
 					btnPlay.setVisible(false);
 					btnPause.setVisible(true);
