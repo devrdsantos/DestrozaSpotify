@@ -39,7 +39,7 @@ public class GestionBD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
@@ -133,7 +133,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
+	public boolean insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
+		boolean insertUsuario = false;
 		gestionINF = new GestionDeLaInformacion();
 		try {
 //			Statement consulta = conexion.createStatement();
@@ -171,6 +172,7 @@ public class GestionBD {
 
 			// Ejecución del INSERT
 //			consulta.executeUpdate(insert);
+			insertUsuario = true;
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			// Cambia al Panel para iniciar sesión
 
@@ -183,6 +185,8 @@ public class GestionBD {
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 			v.cambiarDePanel(2);
 		}
+		
+		return insertUsuario;
 
 	}
 
@@ -199,7 +203,7 @@ public class GestionBD {
 		ArrayList<String> generos = new ArrayList<String>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			// QUERY que selecciona todo de la tabla CINE
+			// QUERY que selecciona todo de la tabla album
 			String query = "SELECT DISTINCT Genero FROM album;";
 			// Prepara la consulta para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
@@ -269,7 +273,8 @@ public class GestionBD {
 //	}
 
 	/* HECHO!! */
-	public void insertMusico(String nombreArtistico, String imagenMu, String caracteristicas, String descripcion) {
+	public boolean insertMusico(String nombreArtistico, String imagenMu, String caracteristicas, String descripcion) {
+		boolean insertMusico = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO musico VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -280,6 +285,7 @@ public class GestionBD {
 			consulta.setString(5, descripcion);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Musico creado correctamente");
+			insertMusico = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -289,6 +295,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return insertMusico;
 
 	}
 
@@ -318,7 +325,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, int idMusico) {
+	public boolean insertAlbum(String nombre, String fechaPub, String genero, String imagenAlb, int idMusico) {
+		boolean insertAlbum = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO album VALUES (?,?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -330,6 +338,7 @@ public class GestionBD {
 			consulta.setInt(6, idMusico);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Album creado correctamente");
+			insertAlbum = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -339,6 +348,9 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		
+		return insertAlbum;
+		
 
 	}
 
@@ -369,7 +381,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertCancion(int idAlbum, String colaboradores) {
+	public boolean insertCancion(int idAlbum, String colaboradores) {
+		boolean insertCancion = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO cancion VALUES (?,?,?)");
 			consulta.setString(1, null);
@@ -377,6 +390,7 @@ public class GestionBD {
 			consulta.setString(3, colaboradores);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion creado correctamente");
+			insertCancion = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -386,7 +400,8 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		
+		return insertCancion;
 	}
 
 	/* HECHO!! */
