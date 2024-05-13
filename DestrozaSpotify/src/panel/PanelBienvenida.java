@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -23,12 +25,17 @@ public class PanelBienvenida extends JPanel {
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#222222"));
-		JLabel mensajeBienvenida = new JLabel("Bienvenido/a a Cines ESA");
-		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
-		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-		mensajeBienvenida.setFont(new Font("Malgun Gothic", Font.BOLD, 60));
-		mensajeBienvenida.setBounds(168, 273, 816, 114);
-		add(mensajeBienvenida);
+		
+		/**
+		 * LBL - Fondo 
+		 */
+		JLabel lblImagen = new JLabel();
+		lblImagen.setFont(new Font("Rubik", Font.PLAIN, 16));
+		lblImagen.setBounds(0, 0, 1200, 720);
+		lblImagen.setIcon(new ImageIcon("imagenes/varios/fondo-bienvenida.jpg"));
+		add(lblImagen);
+		
+	
 		
 		/*
 		* Funcionalidad de la ventana
