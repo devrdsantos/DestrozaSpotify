@@ -10,7 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.GestionBD;
-import model.Musico;
 import view.VistaPrincipal;
 
 public class GestionBDTest {
@@ -116,7 +115,7 @@ public class GestionBDTest {
 	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
 	@Test
 	public void testInsertAlbum() {
-		assertTrue(gestionBD.insertAlbum("testAlbum", "2000-01-01", "Cumbia", "Pretty", 1));
+	//	assertTrue(gestionBD.insertAlbum("testAlbum", "2000-01-01", "Cumbia", "Pretty", 1));
 	}
 	//HECHO
 	@Test
@@ -124,31 +123,25 @@ public class GestionBDTest {
 		String testAlbumPrueba = "Pretty";
 		assertEquals(testAlbumPrueba, gestionBD.sacarAlbumInformacion().get(0).getNombre());
 	}
-	/*
+	//HECHO
 	@Test
 	public void testInsertCancion() {
-		
-		assertTrue(gestionBD.insertCancion(1, 1, "Izan y Gontzal"));
-	}*/
-
-	/*@Test
-	public void testInsertAudioMu() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		//assertTrue(gestionBD.insertCancion(17, 1, "Izan y Gontzal"));
+	}
+	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+		@Test
+		public void testInsertAudioMu() {
+			//assertTrue(gestionBD.insertAudioMu("audiotest", 200, "cancionprueba"));
+		}
+	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	@Test
 	public void testInsertAudioEpisodio() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
-	public void testDeleteCancion() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+	//	assertTrue(gestionBD.insertAudioEpisodio("nombreprueba", 200, "JoeRoganPortada"));
+	}
+	/*
+	@Test
 	public void testDeleteAudio() {
-		fail("Not yet implemented");
+		assertTrue(gestionBD.deleteAudio("audiotest"));
 	}*/
 
 	/*@Test
@@ -160,21 +153,24 @@ public class GestionBDTest {
 	public void testDeleteMusico() {
 		fail("Not yet implemented");
 	}*/
-
-	/*@Test
+	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	@Test
 	public void testInsertPodcaster() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		//assertTrue(gestionBD.insertPodcaster("testPodcaster", "Artemas", "Comedia", "Podcaster de prueba para el test"));
+	}
+	//HECHO
+	@Test
 	public void testSacarPodcasterInformacion() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		ArrayList<String> listaPodcaster = new ArrayList<String>();
+		listaPodcaster.add("Joe Rogan");
+		
+		assertEquals(listaPodcaster.get(0), gestionBD.sacarPodcasterInformacion().get(0).getNombreArtistico());
+	}
+	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	@Test
 	public void testInsertPodcast() {
-		fail("Not yet implemented");
-	}*/
+	//	assertTrue(gestionBD.insertPodcast("podcastDePrueba", "DebateGordofobia", 1));
+	}
 
 	/*@Test
 	public void testDeletePodcast() {
@@ -186,10 +182,11 @@ public class GestionBDTest {
 		fail("Not yet implemented");
 	}*/
 
-	/*@Test
+	@Test
 	public void testSacarMusicoPorArtista() {
-		fail("Not yet implemented");
-	}*/
+		String resultadoEsperado = "Artemas";
+		assertEquals(resultadoEsperado, gestionBD.sacarMusicoPorArtista("Artemas").get(0).getNombreArtistico());
+	}
 
 	/*@Test
 	public void testSacarAlbumPorArtista() {

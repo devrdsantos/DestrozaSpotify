@@ -409,7 +409,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertAudioMu(String nombre, int duracion, String imagenMu) {
+	public boolean insertAudioMu(String nombre, int duracion, String imagenMu) {
+		boolean insertAudioMu = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -420,6 +421,7 @@ public class GestionBD {
 			consulta.setString(5, "Canción");
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
+			insertAudioMu = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -429,11 +431,12 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertAudioMu;
 	}
 
 	/* HECHO!! */
-	public void insertAudioEpisodio(String nombre, int duracion, String imagenPodc) {
+	public boolean insertAudioEpisodio(String nombre, int duracion, String imagenPodc) {
+		boolean insertAudioEpisodio = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO audio VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -445,6 +448,7 @@ public class GestionBD {
 
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Audio creado correctamente");
+			insertAudioEpisodio = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -454,15 +458,17 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertAudioEpisodio;
 	}
 
-	public void deleteCancion(String nombre) {
+	public boolean deleteCancion(String nombre) {
+		boolean deleteCancion = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `cancion` WHERE `NombreCancion` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "La cancion " + nombre + " eliminada correctamente");
+			deleteCancion = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -472,16 +478,18 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return deleteCancion;
 	}
 
 	/* HECHO!!! */
-	public void deleteAudio(String nombre) {
+	public boolean deleteAudio(String nombre) {
+		boolean deleteAudio = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `audio` WHERE `Nombre` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El audio " + nombre + " eliminado correctamente");
+			deleteAudio = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -491,7 +499,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return deleteAudio;
 	}
 
 	/* HECHO!!! */
@@ -532,7 +540,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertPodcaster(String nombrePodcaster, String imagenPod, String genero, String descripcion) {
+	public boolean insertPodcaster(String nombrePodcaster, String imagenPod, String genero, String descripcion) {
+		boolean insertPodcaster = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcaster VALUES (?,?,?,?,?)");
 			consulta.setString(1, null);
@@ -543,6 +552,7 @@ public class GestionBD {
 			consulta.setString(5, descripcion);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Podcaster creado correctamente");
+			insertPodcaster = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -552,7 +562,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertPodcaster;
 	}
 
 	/* HECHO!! */
@@ -581,7 +591,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertPodcast(String nombrePodcast, String imagenPodcast, int idPodcaster) {
+	public boolean insertPodcast(String nombrePodcast, String imagenPodcast, int idPodcaster) {
+		boolean insertPodcast = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO podcast VALUES (?,?,?,?)");
 			consulta.setString(1, null);
@@ -591,6 +602,7 @@ public class GestionBD {
 			consulta.setInt(4, idPodcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Podcast creado correctamente");
+			insertPodcast = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -600,7 +612,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertPodcast;
 	}
 
 	/* HECHO!!! */
