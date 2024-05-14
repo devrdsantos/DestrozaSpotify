@@ -27,16 +27,19 @@ public class PanelPerfil extends JPanel {
 		JButton btnAtras = new JButton("Inicio");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(3);
+				v.cambiarDePanel(1);
 			}
 		});
-		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnAtras.setOpaque(true);
 		btnAtras.setContentAreaFilled(true);
 		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
-		btnAtras.setBackground(new Color(56, 56, 56));
-		btnAtras.setBounds(48, 50, 136, 48);
+
+		//btnAtras.setBackground(new Color(56, 56, 56));
+		//btnAtras.setBounds(48, 50, 136, 48);
+		btnAtras.setBackground(Color.decode("#353535"));
+		btnAtras.setBounds(52, 54, 100, 40);
 		add(btnAtras);
 		
 		
@@ -132,19 +135,5 @@ public class PanelPerfil extends JPanel {
 		lblImagen.setBounds(0, 0, 1200, 720);
 		lblImagen.setIcon(new ImageIcon("imagenes/varios/fondo-perfil.jpg"));
 		add(lblImagen);
-		
-		
-		
-		
-		
-		
-		
-		
-	
-
-		
-		
-	
-		
 	}
 }

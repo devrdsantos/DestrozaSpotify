@@ -4,10 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -39,53 +37,41 @@ public class PanelDescubrirMusica extends JPanel {
 		setBackground(Color.decode("#222222"));
 		
 		/**
-		 * BTN - Ir atrás
+		 * BTN - Atrás
 		 */
-		JButton btnAtras = new JButton("Atras");
+		JButton btnAtras = new JButton("Atrás");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnAtras.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnAtras.setOpaque(true);
 		btnAtras.setContentAreaFilled(true);
 		btnAtras.setForeground(Color.decode("#FFFFFF"));
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBackground(Color.decode("#353535"));
-		btnAtras.setBounds(52, 34, 136, 48);
+		btnAtras.setBounds(52, 54, 100, 40);
 		add(btnAtras);
 
-
-		JLabel lblTitulo = new JLabel("Descubrir Música");
-		lblTitulo.setBounds(325, 50, 524, 74);
-		lblTitulo.setForeground(new Color(255, 255, 255));
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
-		add(lblTitulo);
-		
 		/**
-		 * BOTON PERFIL
+		 * BTN - Perfil
 		 */
-		
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setOpaque(true);
 		btnPerfil.setForeground(Color.WHITE);
-		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnPerfil.setContentAreaFilled(true);
 		btnPerfil.setBorderPainted(false);
 		btnPerfil.setBackground(new Color(53, 53, 53));
-		btnPerfil.setBounds(1009, 34, 136, 48);
-		btnPerfil.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(19);
-			}
-		});
+		btnPerfil.setBounds(1038, 54, 100, 40);
 		add(btnPerfil);
+		
+		
 		
 
 		JComboBox<String> comboBoxGeneros = new JComboBox<String>();
+		comboBoxGeneros.setFont(new Font("Verdana", Font.PLAIN, 14));
 		comboBoxGeneros.setBackground(Color.decode("#DDDDDD"));
 		comboBoxGeneros.setBounds(100, 213, 417, 33);
 		comboBoxGeneros.addActionListener(new ActionListener() {// add actionlistner to listen for change
@@ -100,21 +86,8 @@ public class PanelDescubrirMusica extends JPanel {
 		}
 		add(comboBoxGeneros);
 
-		JLabel lblArtistasXGenero = new JLabel("Artistas por Género:");
-		lblArtistasXGenero.setBounds(100, 161, 224, 41);
-		lblArtistasXGenero.setForeground(new Color(255, 255, 255));
-		lblArtistasXGenero.setHorizontalAlignment(SwingConstants.LEFT);
-		lblArtistasXGenero.setFont(new Font("Verdana", Font.PLAIN, 18));
-		add(lblArtistasXGenero);
-
-		JLabel lblNewLabel = new JLabel("Resultados:");
-		lblNewLabel.setBounds(100, 290, 159, 27);
-		lblNewLabel.setForeground(new Color(192, 192, 192));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
-		add(lblNewLabel);
-
 		JList<String> listaArtistasPorGenero = new JList<String>();
+		listaArtistasPorGenero.setFont(new Font("Verdana", Font.PLAIN, 14));
 		listaArtistasPorGenero.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!arg0.getValueIsAdjusting()) {
@@ -131,7 +104,8 @@ public class PanelDescubrirMusica extends JPanel {
 		}
 		listaArtistasPorGenero.setModel(artistaPorGenero);
 		listaArtistasPorGenero.setBounds(100, 320, 1000, 313);
-		listaArtistasPorGenero.setBackground(Color.decode("#DDDDDD"));
+		listaArtistasPorGenero.setBackground(new Color(44, 44, 44));
+		listaArtistasPorGenero.setForeground(Color.decode("#FFFFFF"));
 		add(listaArtistasPorGenero);
 
 		JButton btnBuscar = new JButton("Buscar");
@@ -152,6 +126,16 @@ public class PanelDescubrirMusica extends JPanel {
 		btnBuscar.setBorderPainted(false);
 		btnBuscar.setBackground(Color.decode("#ED028B"));
 		add(btnBuscar);
+		
+		
+		/**
+		 * LBL - Fondo 
+		 */
+		JLabel lblImagen = new JLabel();
+		lblImagen.setFont(new Font("Rubik", Font.PLAIN, 16));
+		lblImagen.setBounds(0, 0, 1200, 720);
+		lblImagen.setIcon(new ImageIcon("imagenes/varios/fondo-descubrirmusica.jpg"));
+		add(lblImagen);
 	}
 
 }
