@@ -197,7 +197,7 @@ public class PanelAlbum extends JPanel {
 	lblDatoFecha.setForeground(Color.WHITE);
 	lblDatoFecha.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoFecha.setBounds(421, 201, 239, 28);
-	lblDatoFecha.setText(gestionINF.mostrarAlbums().get(0).getFechaPublicacion());
+	lblDatoFecha.setText(gestionINF.mostrarAlbumsPorArtista().get(0).getFechaPublicacion());
 	add(lblDatoFecha);
 	
 	/**
@@ -208,7 +208,7 @@ public class PanelAlbum extends JPanel {
 	lblDatoGenero.setForeground(Color.WHITE);
 	lblDatoGenero.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoGenero.setBounds(306, 245, 340, 28);
-	lblDatoGenero.setText(gestionINF.mostrarAlbums().get(0).getGenero());
+	lblDatoGenero.setText(gestionINF.mostrarAlbumsPorArtista().get(0).getGenero());
 	add(lblDatoGenero);
 	
 	/**

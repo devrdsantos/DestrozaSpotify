@@ -109,10 +109,10 @@ public class PanelArtista extends JPanel {
 		listAlbums.setBackground(Color.decode("#DDDDDD"));
 		
 		DefaultListModel<String> modeloAlbums = new DefaultListModel<String>();
-		for (int i = 0; i < gestionINF.mostrarAlbums().size(); i++) {
-			modeloAlbums.addElement(gestionINF.mostrarAlbums().get(i).getNombre() + " -- "
-					+ gestionINF.mostrarAlbums().get(i).getFechaPublicacion() + " -- "
-					+ gestionINF.mostrarAlbums().get(i).getCantidadCanciones() + " canciones");
+		for (int i = 0; i < gestionINF.mostrarAlbumsPorArtista().size(); i++) {
+			modeloAlbums.addElement(gestionINF.mostrarAlbumsPorArtista().get(i).getNombre() + " -- "
+					+ gestionINF.mostrarAlbumsPorArtista().get(i).getFechaPublicacion() + " -- "
+					+ gestionINF.mostrarAlbumsPorArtista().get(i).getCantidadCanciones() + " canciones");
 		}
 		listAlbums.setModel(modeloAlbums);
 		listAlbums.setBounds(228, 436, 763, 242);
@@ -141,7 +141,7 @@ public class PanelArtista extends JPanel {
 		textAreaInformacionArtista.setEditable(false);
 		textAreaInformacionArtista.setWrapStyleWord(true);
 		textAreaInformacionArtista.setLineWrap(true);
-		textAreaInformacionArtista.setText(gestionINF.mostrarAlbums().get(0).getGenero()
+		textAreaInformacionArtista.setText(gestionINF.mostrarAlbumsPorArtista().get(0).getGenero()
 				+ "\n\n" + gestionINF.mostrarArtista().get(0).getDescripcion());
 
 		textAreaInformacionArtista.setBackground(Color.decode("#222222"));
