@@ -1166,6 +1166,7 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.updateAlbum(textFieldTituloMo.getText(), textFieldFechaMo.getText(), textFieldGeneroMo.getText(), textFieldTituloMo.getText().replace(" ", ""), comboBoxAlbumMo.getSelectedItem().toString());
 				
 				v.cambiarDePanel(5);
+				
 			}
 		});
 		btnModificarAlb.setOpaque(true);
