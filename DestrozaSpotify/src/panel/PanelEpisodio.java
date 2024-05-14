@@ -60,7 +60,7 @@ public class PanelEpisodio extends JPanel {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(3);
+				v.cambiarDePanel(13);
 			}
 		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -86,7 +86,7 @@ public class PanelEpisodio extends JPanel {
 				if (!arg0.getValueIsAdjusting()) {
 					gestionINF.indiceDeLaCancion(listaEpisodios.getSelectedIndex());
 	 			//System.out.println(listaEpisodios.getSelectedValue().split("--")[0]);
-					v.cambiarDePanel(20);
+					v.cambiarDePanel(18);
 				}
 			}
 		});
