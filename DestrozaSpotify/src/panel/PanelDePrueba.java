@@ -238,97 +238,95 @@ public class PanelDePrueba extends JPanel{
 	add(panelModificarImagen);
 	panelModificarImagen.setLayout(null);
 	
-	JLabel lblModificarMusico = new JLabel("Nombre de la cancion:");
+	JLabel lblModificarMusico = new JLabel("Nombre del podcaster:");
 	lblModificarMusico.setForeground(Color.WHITE);
 	lblModificarMusico.setFont(new Font("Verdana", Font.PLAIN, 18));
 	lblModificarMusico.setBounds(27, 10, 211, 48);
 	panelModificarImagen.add(lblModificarMusico);
 	
+	JLabel lblModificarNombreAu = new JLabel("Nombre artistico:");
+	lblModificarNombreAu.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblModificarNombreAu.setForeground(Color.WHITE);
+	lblModificarNombreAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+	lblModificarNombreAu.setBounds(27, 107, 211, 48);
+	panelModificarImagen.add(lblModificarNombreAu);
 	
+	JLabel lblModificarImagenAu = new JLabel("Imagen:");
+	lblModificarImagenAu.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblModificarImagenAu.setForeground(Color.WHITE);
+	lblModificarImagenAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+	lblModificarImagenAu.setBounds(27, 225, 211, 48);
+	panelModificarImagen.add(lblModificarImagenAu);
 	
-	JLabel lblModificarTituloAlb = new JLabel("Titulo:");
-	lblModificarTituloAlb.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblModificarTituloAlb.setForeground(Color.WHITE);
-	lblModificarTituloAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
-	lblModificarTituloAlb.setBounds(27, 107, 211, 48);
-	panelModificarImagen.add(lblModificarTituloAlb);
+	JLabel lblModificarDuracionAu = new JLabel("Genero:");
+	lblModificarDuracionAu.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblModificarDuracionAu.setForeground(Color.WHITE);
+	lblModificarDuracionAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+	lblModificarDuracionAu.setBounds(27, 166, 211, 48);
+	panelModificarImagen.add(lblModificarDuracionAu);
 	
-	JLabel lblModificarImagenAlb = new JLabel("Imagen:");
-	lblModificarImagenAlb.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblModificarImagenAlb.setForeground(Color.WHITE);
-	lblModificarImagenAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
-	lblModificarImagenAlb.setBounds(27, 284, 211, 48);
-	panelModificarImagen.add(lblModificarImagenAlb);
+	JLabel lblModificarColaboracionCa = new JLabel("Descripcion:");
+	lblModificarColaboracionCa.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblModificarColaboracionCa.setForeground(Color.WHITE);
+	lblModificarColaboracionCa.setFont(new Font("Verdana", Font.PLAIN, 18));
+	lblModificarColaboracionCa.setBounds(27, 285, 211, 48);
+	panelModificarImagen.add(lblModificarColaboracionCa);
 	
-	JLabel lblModificarFechaAlb = new JLabel("Fecha (yyyy-MM-dd):");
-	lblModificarFechaAlb.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblModificarFechaAlb.setForeground(Color.WHITE);
-	lblModificarFechaAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
-	lblModificarFechaAlb.setBounds(27, 166, 211, 48);
-	panelModificarImagen.add(lblModificarFechaAlb);
+	JTextField textFieldNombreArtistico = new JTextField();
+	textFieldNombreArtistico.setColumns(10);
+	textFieldNombreArtistico.setBounds(248, 117, 288, 30);
+	panelModificarImagen.add(textFieldNombreArtistico);
 	
-	JLabel lblModificarGeneroAlb = new JLabel("Genero:");
-	lblModificarGeneroAlb.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblModificarGeneroAlb.setForeground(Color.WHITE);
-	lblModificarGeneroAlb.setFont(new Font("Verdana", Font.PLAIN, 18));
-	lblModificarGeneroAlb.setBounds(27, 225, 211, 48);
-	panelModificarImagen.add(lblModificarGeneroAlb);
+	JTextField textFieldGenero = new JTextField();
+	textFieldGenero.setColumns(10);
+	textFieldGenero.setBounds(248, 175, 288, 30);
+	panelModificarImagen.add(textFieldGenero);
 	
-	JTextField textFieldTituloMo = new JTextField();
-	textFieldTituloMo.setColumns(10);
-	textFieldTituloMo.setBounds(248, 117, 288, 30);
-	panelModificarImagen.add(textFieldTituloMo);
+	JTextField textFieldDescripcionMo = new JTextField();
+	textFieldDescripcionMo.setColumns(10);
+	textFieldDescripcionMo.setBounds(248, 295, 288, 30);
+	panelModificarImagen.add(textFieldDescripcionMo);
 	
-	JTextField textFieldFechaMo = new JTextField();
-	textFieldFechaMo.setColumns(10);
-	textFieldFechaMo.setBounds(248, 175, 288, 30);
-	panelModificarImagen.add(textFieldFechaMo);
+	JTextField textFieldImagenPodcasterMo = new JTextField();
+	textFieldImagenPodcasterMo.setColumns(10);
+	textFieldImagenPodcasterMo.setBounds(248, 235, 288, 30);
+	panelModificarImagen.add(textFieldImagenPodcasterMo);
 	
-	JTextField textFieldGeneroMo = new JTextField();
-	textFieldGeneroMo.setColumns(10);
-	textFieldGeneroMo.setBounds(248, 235, 288, 30);
-	panelModificarImagen.add(textFieldGeneroMo);
-	
-	JTextField textFieldImagenAlbMo = new JTextField();
-	textFieldImagenAlbMo.setColumns(10);
-	textFieldImagenAlbMo.setBounds(248, 295, 288, 30);
-	panelModificarImagen.add(textFieldImagenAlbMo);
-	
-	JButton btnModificarMu = new JButton("Modificar");
-	btnModificarMu.addActionListener(new ActionListener() {
+	JButton btnModificarPodcaster = new JButton("Modificar");
+	btnModificarPodcaster.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		}
 	});
-	btnModificarMu.setOpaque(true);
-	btnModificarMu.setForeground(Color.WHITE);
-	btnModificarMu.setFont(new Font("Verdana", Font.BOLD, 16));
-	btnModificarMu.setContentAreaFilled(true);
-	btnModificarMu.setBorderPainted(false);
-	btnModificarMu.setBackground(new Color(198, 122, 206));
-	btnModificarMu.setBounds(730, 450, 136, 35);
-	panelModificarImagen.add(btnModificarMu);
+	btnModificarPodcaster.setOpaque(true);
+	btnModificarPodcaster.setForeground(Color.WHITE);
+	btnModificarPodcaster.setFont(new Font("Verdana", Font.BOLD, 16));
+	btnModificarPodcaster.setContentAreaFilled(true);
+	btnModificarPodcaster.setBorderPainted(false);
+	btnModificarPodcaster.setBackground(new Color(198, 122, 206));
+	btnModificarPodcaster.setBounds(730, 450, 136, 35);
+	panelModificarImagen.add(btnModificarPodcaster);
 
-	JComboBox comboBoxAlbumMo = new JComboBox();
-	comboBoxAlbumMo.setBounds(248, 23, 288, 30);
-	panelModificarImagen.add(comboBoxAlbumMo);
+	JComboBox comboBoxPodcasterMo = new JComboBox();
+	comboBoxPodcasterMo.setBounds(248, 23, 288, 30);
+	panelModificarImagen.add(comboBoxPodcasterMo);
 	
-	JButton btnSubirPortadaMo = new JButton("Subir .jpg");
-	btnSubirPortadaMo.addActionListener(new ActionListener() {
+	JButton btnSubirImagenPodcasterMo = new JButton("Subir .jpg");
+	btnSubirImagenPodcasterMo.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		}
 	});
-	btnSubirPortadaMo.setFont(new Font("Tahoma", Font.BOLD, 13));
-	btnSubirPortadaMo.setBounds(560, 293, 111, 33);
-	panelModificarImagen.add(btnSubirPortadaMo);
+	btnSubirImagenPodcasterMo.setFont(new Font("Tahoma", Font.BOLD, 13));
+	btnSubirImagenPodcasterMo.setBounds(546, 233, 111, 33);
+	panelModificarImagen.add(btnSubirImagenPodcasterMo);
 	
-	JButton btnCambiar = new JButton("Cambiar");
-	btnCambiar.addActionListener(new ActionListener() {
+	JButton btnCambiarPodcaster = new JButton("Cambiar");
+	btnCambiarPodcaster.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		}
 	});
-	btnCambiar.setFont(new Font("Tahoma", Font.BOLD, 13));
-	btnCambiar.setBounds(560, 20, 111, 33);
-	panelModificarImagen.add(btnCambiar);
+	btnCambiarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 13));
+	btnCambiarPodcaster.setBounds(560, 20, 111, 33);
+	panelModificarImagen.add(btnCambiarPodcaster);
 	
 	
 	

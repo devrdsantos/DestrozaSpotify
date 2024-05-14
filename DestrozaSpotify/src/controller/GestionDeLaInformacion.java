@@ -32,6 +32,7 @@ public class GestionDeLaInformacion {
 	private boolean favoritos = false;;
 	
 	private Cliente cliente;
+	private String nombreCancion;
 	
 	
 	public GestionDeLaInformacion() {
@@ -101,7 +102,6 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarCancionPorArtista(album);
 	}
 	
-
 	public ArrayList<Album> mostrarArtistas(){
 		return gestionBD.sacarAlbumInformacion();
 	}
@@ -281,5 +281,14 @@ public class GestionDeLaInformacion {
 	public ArrayList<Album> albumPorTitulo(){
 		return gestionBD.albumPorTitulo(album);
 	}
+	
+	public void cancionSeleccionada(String nombreCancion) {
+		this.nombreCancion = nombreCancion;
+	} 
+	
+	public ArrayList<Cancion> cancionPorNombre() {
+		return gestionBD.cancionPorNombre(nombreCancion);
+	}
+	
 }
 

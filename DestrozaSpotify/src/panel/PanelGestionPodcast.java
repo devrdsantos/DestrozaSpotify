@@ -780,7 +780,165 @@ public class PanelGestionPodcast extends JPanel {
 		btnDeletePodcaster.setBackground(Color.decode("#C67ACE"));
 		btnDeletePodcaster.setBounds(27, 110, 136, 35);
 		panelEliminarPodcaster.add(btnDeletePodcaster);
+		
+		/*
+		 * ----- Panel eliminar episodio
+		 * -----------------------------------------------------------------------------
+		 * --------------------
+		 */
+		
+		panelEliminarEpisodio = new JPanel();
+		panelEliminarEpisodio.setBounds(275, 175, 880, 500);
+		panelEliminarEpisodio.setBackground(Color.decode("#142850"));
+		panelEliminarEpisodio.setVisible(false);
+		add(panelEliminarEpisodio);
+		panelEliminarEpisodio.setLayout(null);
 
+		JLabel lblEliminarEpisodio = new JLabel("Nombre del episodio que quiera eliminar:");
+		lblEliminarEpisodio.setBounds(27, 10, 400, 48);
+		lblEliminarEpisodio.setForeground(Color.decode("#ffffff"));
+		lblEliminarEpisodio.setFont(new Font("Verdana", Font.PLAIN, 18));
+		panelEliminarPodcaster.add(lblEliminarEpisodio);
+
+		JTextField textFieldEliminarEpisodio = new JTextField();
+		textFieldEliminarEpisodio.setBounds(27, 60, 308, 30);
+		textFieldEliminarEpisodio.setColumns(10);
+		panelEliminarPodcaster.add(textFieldEliminarEpisodio);
+
+		/**
+		 * Boton para eliminar el Podcaster
+		 */
+		JButton btnDeleteEpisodio = new JButton("Eliminar");
+		btnDeleteEpisodio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestionBD.deleteEpisodio(gestionINF.sacarIdDelAudio(textFieldEliminarEpisodio.getText()));
+
+				/**
+				 * Elimina los archivos de la Cancion (.jpg, .wav)
+				 */
+				File f = new File(
+						"imagenes/portadasEpisodio/" + textFieldEliminarEpisodio.getText().replace(" ", "") + ".jpg");
+				File f1 = new File("musica/"+ textFieldEliminarEpisodio.getText().replace(" ", "") + ".wav");
+				
+				f.delete();
+				f1.delete();
+
+				v.cambiarDePanel(5);
+
+			}
+		});
+		btnDeleteEpisodio.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnDeleteEpisodio.setOpaque(true);
+		btnDeleteEpisodio.setContentAreaFilled(true);
+		btnDeleteEpisodio.setForeground(Color.decode("#FFFFFF"));
+		btnDeleteEpisodio.setBorderPainted(false);
+		btnDeleteEpisodio.setBackground(Color.decode("#C67ACE"));
+		btnDeleteEpisodio.setBounds(27, 110, 136, 35);
+		panelEliminarPodcaster.add(btnDeleteEpisodio);
+
+		/*
+		 * ----- Panel modificar podcaster
+		 * -----------------------------------------------------------------------------
+		 * --------------------
+		 */
+		
+		panelModificarPodcaster = new JPanel();
+		panelModificarPodcaster.setBounds(275, 175, 880, 500);
+		panelModificarPodcaster.setBackground(Color.decode("#142850"));
+		panelModificarPodcaster.setVisible(false);
+		add(panelModificarPodcaster);
+		panelModificarPodcaster.setLayout(null);
+		
+		JLabel lblModificarMusico = new JLabel("Nombre del podcaster:");
+		lblModificarMusico.setForeground(Color.WHITE);
+		lblModificarMusico.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarMusico.setBounds(27, 10, 211, 48);
+		panelModificarPodcaster.add(lblModificarMusico);
+		
+		JLabel lblModificarNombreAu = new JLabel("Nombre artistico:");
+		lblModificarNombreAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarNombreAu.setForeground(Color.WHITE);
+		lblModificarNombreAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarNombreAu.setBounds(27, 107, 211, 48);
+		panelModificarPodcaster.add(lblModificarNombreAu);
+		
+		JLabel lblModificarImagenAu = new JLabel("Imagen:");
+		lblModificarImagenAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarImagenAu.setForeground(Color.WHITE);
+		lblModificarImagenAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarImagenAu.setBounds(27, 225, 211, 48);
+		panelModificarPodcaster.add(lblModificarImagenAu);
+		
+		JLabel lblModificarDuracionAu = new JLabel("Genero:");
+		lblModificarDuracionAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarDuracionAu.setForeground(Color.WHITE);
+		lblModificarDuracionAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarDuracionAu.setBounds(27, 166, 211, 48);
+		panelModificarPodcaster.add(lblModificarDuracionAu);
+		
+		JLabel lblModificarColaboracionCa = new JLabel("Descripcion:");
+		lblModificarColaboracionCa.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarColaboracionCa.setForeground(Color.WHITE);
+		lblModificarColaboracionCa.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarColaboracionCa.setBounds(27, 285, 211, 48);
+		panelModificarPodcaster.add(lblModificarColaboracionCa);
+		
+		JTextField textFieldNombreArtistico = new JTextField();
+		textFieldNombreArtistico.setColumns(10);
+		textFieldNombreArtistico.setBounds(248, 117, 288, 30);
+		panelModificarPodcaster.add(textFieldNombreArtistico);
+		
+		JTextField textFieldGeneroPodcaster = new JTextField();
+		textFieldGeneroPodcaster.setColumns(10);
+		textFieldGeneroPodcaster.setBounds(248, 175, 288, 30);
+		panelModificarPodcaster.add(textFieldGeneroPodcaster);
+		
+		JTextField textFieldDescripcionMo = new JTextField();
+		textFieldDescripcionMo.setColumns(10);
+		textFieldDescripcionMo.setBounds(248, 295, 288, 30);
+		panelModificarPodcaster.add(textFieldDescripcionMo);
+		
+		JTextField textFieldImagenPodcasterMo = new JTextField();
+		textFieldImagenPodcasterMo.setColumns(10);
+		textFieldImagenPodcasterMo.setBounds(248, 235, 288, 30);
+		panelModificarPodcaster.add(textFieldImagenPodcasterMo);
+		
+		JButton btnModificarPodcasterMo = new JButton("Modificar");
+		btnModificarPodcasterMo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnModificarPodcasterMo.setOpaque(true);
+		btnModificarPodcasterMo.setForeground(Color.WHITE);
+		btnModificarPodcasterMo.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnModificarPodcasterMo.setContentAreaFilled(true);
+		btnModificarPodcasterMo.setBorderPainted(false);
+		btnModificarPodcasterMo.setBackground(new Color(198, 122, 206));
+		btnModificarPodcasterMo.setBounds(730, 450, 136, 35);
+		panelModificarPodcaster.add(btnModificarPodcasterMo);
+
+		JComboBox<String> comboBoxPodcasterMo = new JComboBox<String>();
+		comboBoxPodcasterMo.setBounds(248, 23, 288, 30);
+		panelModificarPodcaster.add(comboBoxPodcasterMo);
+		
+		JButton btnSubirImagenPodcasterMo = new JButton("Subir .jpg");
+		btnSubirImagenPodcasterMo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSubirImagenPodcasterMo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnSubirImagenPodcasterMo.setBounds(546, 233, 111, 33);
+		panelModificarPodcaster.add(btnSubirImagenPodcasterMo);
+		
+		JButton btnCambiarPodcaster = new JButton("Cambiar");
+		btnCambiarPodcaster.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCambiarPodcaster.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnCambiarPodcaster.setBounds(560, 20, 111, 33);
+		panelModificarPodcaster.add(btnCambiarPodcaster);
+		
 	}
 }
 

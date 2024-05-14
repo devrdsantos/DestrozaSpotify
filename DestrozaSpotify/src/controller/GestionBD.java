@@ -38,11 +38,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-
-
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
-
-
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -135,7 +131,6 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-
 	public boolean insertUsuario(ArrayList<String> datosUsuario, VistaPrincipal v) {
 		boolean insertUsuario = false;
 		gestionINF = new GestionDeLaInformacion();
@@ -188,7 +183,7 @@ public class GestionBD {
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 			v.cambiarDePanel(2);
 		}
-		
+
 		return insertUsuario;
 
 	}
@@ -353,9 +348,8 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-		
+
 		return insertAlbum;
-		
 
 	}
 
@@ -788,9 +782,7 @@ public class GestionBD {
 	}*/
 
 	/* HECHO!! */
-
 	public ArrayList<String> sacarPodcastPorPodcaster(int idPodcaster) {
-
 
 		ArrayList<String> podcasts = new ArrayList<String>();
 		try {
@@ -811,7 +803,6 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-
 	public ArrayList<String> sacarEpisodiosPorPodcast(int idPodcast) {
 
 		ArrayList<String> episodios = new ArrayList<String>();
@@ -1401,6 +1392,7 @@ public class GestionBD {
 	public boolean updateMusico(String nombreArtisticoMo, String imagenMo, String caracteristicasMo,
 			String descripcionMo, String artista) {
 		boolean updateMusico = false;
+
 		try {
 			PreparedStatement consulta = conexion.prepareStatement(
 					"UPDATE `musico` SET `NombreArtistico`=?,`Imagen`=?,`Caracteristica`=?,`Descripcion`=? WHERE `NombreArtistico` = ?");
@@ -1409,7 +1401,7 @@ public class GestionBD {
 			consulta.setBlob(2, imagen);
 			consulta.setString(3, caracteristicasMo);
 			consulta.setString(4, descripcionMo);
-			
+
 			consulta.setString(5, artista);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Musico modificado");
@@ -1430,15 +1422,16 @@ public class GestionBD {
 	public boolean updateAlbum(String tituloMo, String añoMo, String generoMo,
 			String imagenMo, String titulo) {
 		boolean updateAlbum = false;
+
 		try {
-			PreparedStatement consulta = conexion.prepareStatement(
-					"UPDATE `album` SET `titulo`=?,`año`=?,`genero`=?,`imagen`=? WHERE `titulo` = ?");
+			PreparedStatement consulta = conexion
+					.prepareStatement("UPDATE `album` SET `titulo`=?,`año`=?,`genero`=?,`imagen`=? WHERE `titulo` = ?");
 			consulta.setString(1, tituloMo);
 			consulta.setString(2, añoMo);
 			consulta.setString(3, generoMo);
 			InputStream imagen = new FileInputStream("imagenes/portadasAlb/" + imagenMo + ".jpg");
 			consulta.setBlob(4, imagen);
-			
+
 			consulta.setString(5, titulo);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Album modificado");
@@ -1454,7 +1447,7 @@ public class GestionBD {
 		}
 		return updateAlbum;
 	}
-	
+
 	/* HECHO!! */
 	public ArrayList<Album> albumPorTitulo(String titulo) {
 		ImageIcon imagen = new ImageIcon();
@@ -1481,5 +1474,127 @@ public class GestionBD {
 		}
 		return albums;
 
+	}
+
+	/* HECHO!! */
+	public ArrayList<Cancion> cancionPorNombre(String nombre) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT Au.IDAudio, Au.Nombre, Au.Duracion, Au.Imagen, Au.Tipo, Ca.IDAlbum, Ca.Artistas_invitados FROM `audio`Au join cancion Ca on Au.IDAudio = Ca.IDAudio Where nombre = ?;");
+			consulta.setString(1, nombre);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				canciones.add(new Cancion(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return canciones;
+
+	}
+
+	/* HECHO!! */
+	public boolean updateAudio(String nombreMo, String duracionMo, String imagenMo, String nombre) {
+		boolean updateAudio = false;
+		try {
+			PreparedStatement consulta = conexion
+					.prepareStatement("UPDATE `audio` SET `Nombre`=?,`Duracion`=?,`Imagen`=? WHERE `Nombre` = ?");
+			consulta.setString(1, nombreMo);
+			consulta.setString(2, duracionMo);
+			InputStream imagen = new FileInputStream("imagenes/portadasMu/" + imagenMo + ".jpg");
+			consulta.setBlob(3, imagen);
+
+			consulta.setString(4, nombre);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Audio modificado");
+			updateAudio = true;
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+		
+		return updateAudio;
+	}
+
+	/* HECHO!! */
+	public boolean updateCancion(String colaboradoresMo, int idAudio) {
+		boolean updateCancion = false;
+		try {
+			PreparedStatement consulta = conexion
+					.prepareStatement("UPDATE `cancion` SET `Artistas_invitados`=? WHERE `IDAudio` = ?;");
+			consulta.setString(1, colaboradoresMo);
+
+			consulta.setInt(2, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Cancion modificada");
+			updateCancion = true;
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+		
+		return updateCancion;
+	}
+
+	public ArrayList<Cancion> cancionesInformacion() {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Au.IDAudio, `Nombre`, `Duracion`, `Imagen`, `Tipo`, Ca.IDAlbum ,Ca.Artistas_invitados FROM audio Au join cancion Ca on Au.IDAudio = Ca.IDAudio;");
+
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(4);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				canciones.add(new Cancion(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5), resultadoConsulta.getInt(6) ,resultadoConsulta.getString(7)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return canciones;
+	}
+
+	public void deleteEpisodio(int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `episodio` WHERE `IDAudio` = ? ");
+			consulta.setInt(1, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El episodio ha sido eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
 	}
 }

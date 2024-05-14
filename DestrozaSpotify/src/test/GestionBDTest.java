@@ -367,11 +367,26 @@ public class GestionBDTest {
 	public void testUpdateAlbum() {
 		assertFalse(gestionBD.updateAlbum("hola", "hola", "hola", "hola", "hola"));
 	}
-	
+	//HECHO
 	@Test
 	public void testAlbumPorTitulo() {
 		String resultadoEsperado = "Indie";
 		assertEquals(resultadoEsperado, gestionBD.albumPorTitulo("Pretty").get(0).getGenero());
 	}
-
+	//HECHO
+	@Test
+	public void testCancionPorNombre() {
+		String resultadoEsperado = "Demons";
+		assertEquals(resultadoEsperado, gestionBD.cancionPorNombre("Demons").get(0).getNombre());
+	}
+	//HECHO
+	@Test
+	public void testUpdateAudio() {
+		assertFalse(gestionBD.updateAudio("hola", "hola", "hola", "hola"));
+	}
+	@Test
+	public void testUpdateCancion() {
+		assertTrue(gestionBD.updateCancion("ALGO", 155));
+	}
+	
 }

@@ -81,7 +81,7 @@ public class PanelDescubrirPodcast extends JPanel {
 		});
 		add(btnPerfil);
 		
-		JComboBox comboBoxPodcasters = new JComboBox();
+		JComboBox<String> comboBoxPodcasters = new JComboBox<String>();
 		comboBoxPodcasters.setBounds(550, 150, 417, 33);
 		comboBoxPodcasters.addActionListener(new ActionListener() {//add actionlistner to listen for change
 	            @Override
