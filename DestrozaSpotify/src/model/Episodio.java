@@ -11,10 +11,13 @@ public class Episodio extends Audio {
 		
 	}
 	
-	public Episodio(String nombre, int duracion, ImageIcon imagen, String colaboradores) {
-		super(duracion, nombre, duracion, imagen, colaboradores);
-		this.colaboradores = colaboradores;
+	
+
+	public Episodio(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo) {
+		super(iDAudio, nombre, duracion, imagen, tipo);
 	}
+
+
 
 	public String getColaboradores() {
 		return colaboradores;

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import controller.ControladorDeEntrada;
 import controller.GestionBD;
 import controller.GestionDeLaInformacion;
+import controller.GestorDeFicheros;
 import panel.PanelAlbum;
 import panel.PanelArtista;
 import panel.PanelBienvenida;
@@ -13,18 +14,19 @@ import panel.PanelDescubrirPodcast;
 import panel.PanelEpisodio;
 import panel.PanelGestionMusica;
 import panel.PanelGestionPodcast;
-import panel.PanelArtista;
-import panel.PanelGestionMusica;
-import panel.PanelGestionPodcast;
 import panel.PanelLogin;
 import panel.PanelMenuAdministrador;
 import panel.PanelMenuCliente;
 import panel.PanelMiBiblioteca;
 import panel.PanelMisPlaylist;
+import panel.PanelPerfil;
 import panel.PanelPodcast;
+import panel.PanelPruebaLogin;
+import panel.PanelPruebaRegistro;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
 import panel.PanelReproductorDePlaylist;
+import panel.PanelReproductorDePodcast;
 
 public class VistaPrincipal extends JFrame {
 
@@ -35,6 +37,7 @@ public class VistaPrincipal extends JFrame {
 	private GestionDeLaInformacion gestionINF;
 	private ControladorDeEntrada controlador;
 	private GestionBD gestionBD;
+	private GestorDeFicheros ficheros;
 	
 	/**
 	 * [CONSTRUCTOR] Inicializa el ControladorDeEntrada y GestionDeLaInformacion Le
@@ -45,7 +48,7 @@ public class VistaPrincipal extends JFrame {
 		gestionINF =  new GestionDeLaInformacion();
 		controlador =  new ControladorDeEntrada();
 		gestionBD = new GestionBD();
-		
+		ficheros = new GestorDeFicheros();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,7 +75,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelLogin(this, this.gestionINF));
 			break;
 		case 2:
-			setContentPane(new PanelRegistro(this, this.controlador));
+			setContentPane(new PanelRegistro(this, this.controlador, this.gestionINF));
 			break;
 		case 3:
 			setContentPane(new PanelMenuCliente(this, this.gestionINF));
@@ -84,7 +87,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelGestionMusica(this, this.gestionBD));
 			break;
 		case 6:
-			setContentPane(new PanelGestionPodcast(this, this.gestionBD));
+			setContentPane(new PanelGestionPodcast(this, this.gestionBD, this.gestionINF));
 			break;
 		case 7:
 			setContentPane(new PanelArtista(this, this.gestionINF));
@@ -96,7 +99,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelDescubrirPodcast(this, this.gestionINF));
 			break;
 		case 10:
-			setContentPane(new PanelMiBiblioteca(this, this.gestionINF));
+			setContentPane(new PanelMiBiblioteca(this, this.gestionINF, this.ficheros));
 			break;
 		case 11:
 			setContentPane(new PanelAlbum(this, this.gestionINF));
@@ -116,9 +119,24 @@ public class VistaPrincipal extends JFrame {
 		case 16:
 			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
 			break;
+		case 17:
+			setContentPane (new PanelPruebaLogin(this, this.gestionINF)); 
+			break;
+		case 18:
+			setContentPane (new PanelPruebaRegistro(this, this.controlador)); 
+			break;
+		case 19:
+			setContentPane (new PanelPerfil(this, this.gestionINF)); 
+			break;
+		case 20:
+			setContentPane (new PanelReproductorDePodcast(this, this.gestionINF)); 
+			break;
 			
 		}
+			
+		
 	}
+
 
 	/**
 	 * [FUNCIÓN] main()
@@ -133,7 +151,7 @@ public class VistaPrincipal extends JFrame {
 
 
 
-		v.cambiarDePanel(1);
+		v.cambiarDePanel(0);
 
 
 	}
