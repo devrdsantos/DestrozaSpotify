@@ -787,7 +787,6 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-
 	public ArrayList<String> sacarEpisodiosPorPodcast(int idPodcast) {
 
 		ArrayList<String> episodios = new ArrayList<String>();
@@ -1531,5 +1530,22 @@ public class GestionBD {
 			e.printStackTrace();
 		}
 		return canciones;
+	}
+
+	public void deleteEpisodio(int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `episodio` WHERE `IDAudio` = ? ");
+			consulta.setInt(1, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "El episodio ha sido eliminado correctamente");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//				JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
 	}
 }
