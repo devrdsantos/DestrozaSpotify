@@ -95,6 +95,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarMusico = new JButton("Eliminar musico");
 		btnEliminarMusico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
@@ -115,6 +116,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirMusico = new JButton("Añadir musico");
 		btnAñadirMusico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
@@ -136,6 +138,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnModificarMusico = new JButton("Modificar musico");
 		btnModificarMusico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
 				panelAñadirAlbum.setVisible(false);
@@ -156,6 +159,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarAlbum = new JButton("Eliminar album");
 		btnEliminarAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
@@ -176,6 +180,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirAlbum = new JButton("Añadir album");
 		btnAñadirAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
@@ -196,6 +201,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnModificarAlbum = new JButton("Modificar album");
 		btnModificarAlbum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
 				panelEliminarAlbum.setVisible(false);
@@ -216,6 +222,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
@@ -234,6 +241,19 @@ public class PanelGestionMusica extends JPanel{
 		 * Boton para mostrar el panel de modificar las Canciones
 		 */
 		JButton btnModificarCancion = new JButton("Modificar cancion");
+		btnModificarCancion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelModificarAlbum.setVisible(false);
+				panelModificarMusico.setVisible(false);
+				panelEliminarAlbum.setVisible(false);
+				panelAñadirAlbum.setVisible(false);
+				panelEliminarMusica.setVisible(false);
+				panelAñadirMusica.setVisible(false);
+				panelAñadirMusico.setVisible(false);
+				panelEliminarMusico.setVisible(false);
+				panelModificarMusica.setVisible(true);
+			}
+		});
 		btnModificarCancion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnModificarCancion.setBounds(10, 330, 160, 30);
 		MenuBotones.add(btnModificarCancion);
@@ -244,6 +264,7 @@ public class PanelGestionMusica extends JPanel{
 		JButton btnEliminarCancion = new JButton("Eliminar cancion");
 		btnEliminarCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelModificarMusica.setVisible(false);
 				panelModificarAlbum.setVisible(false);
 				panelModificarMusico.setVisible(false);
 				panelEliminarMusico.setVisible(false);
@@ -1166,9 +1187,7 @@ public class PanelGestionMusica extends JPanel{
 				gestionBD.updateAlbum(textFieldTituloMo.getText(), textFieldFechaMo.getText(), textFieldGeneroMo.getText(), textFieldTituloMo.getText().replace(" ", ""), comboBoxAlbumMo.getSelectedItem().toString());
 				
 				v.cambiarDePanel(5);
-				
-				
-				
+		
 			}
 		});
 		btnModificarAlb.setOpaque(true);
@@ -1179,6 +1198,148 @@ public class PanelGestionMusica extends JPanel{
 		btnModificarAlb.setBackground(new Color(198, 122, 206));
 		btnModificarAlb.setBounds(730, 450, 136, 35);
 		panelModificarAlbum.add(btnModificarAlb);
+		
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+		
+/* ---- Panel modificar cancion --------------------------------------------------------------------------------------------------- */					
+		
+		panelModificarMusica = new JPanel();
+		panelModificarMusica.setBounds(275, 175, 880, 500);
+		panelModificarMusica.setBackground(Color.decode("#142850"));
+		panelModificarMusica.setVisible(false);
+		add(panelModificarMusica);
+		panelModificarMusica.setLayout(null);
+		
+		JLabel lblModificarCancion = new JLabel("Nombre de la cancion:");
+		lblModificarCancion.setForeground(Color.WHITE);
+		lblModificarCancion.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarCancion.setBounds(27, 10, 211, 48);
+		panelModificarMusica.add(lblModificarCancion);
+
+		JLabel lblModificarNombreAu = new JLabel("Nombre:");
+		lblModificarNombreAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarNombreAu.setForeground(Color.WHITE);
+		lblModificarNombreAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarNombreAu.setBounds(27, 107, 211, 48);
+		panelModificarMusica.add(lblModificarNombreAu);
+		
+		JLabel lblModificarImagenAu = new JLabel("Imagen:");
+		lblModificarImagenAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarImagenAu.setForeground(Color.WHITE);
+		lblModificarImagenAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarImagenAu.setBounds(27, 225, 211, 48);
+		panelModificarMusica.add(lblModificarImagenAu);
+		
+		JLabel lblModificarDuracionAu = new JLabel("Duracion:");
+		lblModificarDuracionAu.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarDuracionAu.setForeground(Color.WHITE);
+		lblModificarDuracionAu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarDuracionAu.setBounds(27, 166, 211, 48);
+		panelModificarMusica.add(lblModificarDuracionAu);
+		
+		JLabel lblModificarColaboracionCa = new JLabel("Colaboracion:");
+		lblModificarColaboracionCa.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblModificarColaboracionCa.setForeground(Color.WHITE);
+		lblModificarColaboracionCa.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblModificarColaboracionCa.setBounds(27, 285, 211, 48);
+		panelModificarMusica.add(lblModificarColaboracionCa);
+		
+		JTextField textFieldNombreAu = new JTextField();
+		textFieldNombreAu.setColumns(10);
+		textFieldNombreAu.setBounds(248, 117, 288, 30);
+		panelModificarMusica.add(textFieldNombreAu);
+		
+		JTextField textFieldDuracionAu = new JTextField();
+		textFieldDuracionAu.setColumns(10);
+		textFieldDuracionAu.setBounds(248, 175, 288, 30);
+		panelModificarMusica.add(textFieldDuracionAu);
+		
+		JTextField textFieldColaborardorCa = new JTextField();
+		textFieldColaborardorCa.setColumns(10);
+		textFieldColaborardorCa.setBounds(248, 295, 288, 30);
+		panelModificarMusica.add(textFieldColaborardorCa);
+		
+		JTextField textFieldImagenAuMo = new JTextField();
+		textFieldImagenAuMo.setColumns(10);
+		textFieldImagenAuMo.setBounds(248, 235, 288, 30);
+		panelModificarMusica.add(textFieldImagenAuMo);
+
+		JComboBox<String> comboBoxCancionMo = new JComboBox<String>();
+		comboBoxCancionMo.setBounds(248, 23, 288, 30);
+		for (int i = 0; i < gestionBD.cancionesInformacion().size(); i++) {
+			comboBoxCancionMo.addItem(gestionBD.cancionesInformacion().get(i).getNombre());
+		}
+		panelModificarMusica.add(comboBoxCancionMo);
+		
+		JButton btnSubirImagenCaMo = new JButton("Subir .jpg");
+		btnSubirImagenCaMo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * El selector de archivos para guardarlos en el proyecto
+				 */
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Seleccione un archivo .ppg");
+				/**
+				 * Filtro para solo elegir archivos .jpg
+				 */
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos .jpg", "jpg"));
+
+				int userSelection = fileChooser.showOpenDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					archivoImagenArt = selectedFile.getName();
+					textFieldImagenAuMo.setText(archivoImagenArt);
+					Path sourcePath = selectedFile.toPath();
+					/**
+					 * En que parte debe dejar el archivo subido
+					 */
+					Path destinationPath = new File("imagenes/portadasMu", archivoImagenArt).toPath();
+					
+					try {
+						Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+						System.out.println("Archivo subido correctamente a la carpeta 'imagenes/portadasMu'.");
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
+				
+			}
+		});
+		btnSubirImagenCaMo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnSubirImagenCaMo.setBounds(546, 233, 111, 33);
+		panelModificarMusica.add(btnSubirImagenCaMo);
+		
+		JButton btnCambiarAu = new JButton("Cambiar");
+		btnCambiarAu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestionINF.cancionSeleccionada(comboBoxCancionMo.getSelectedItem().toString());
+				textFieldNombreAu.setText(gestionINF.cancionPorNombre().get(0).getNombre());
+				textFieldDuracionAu.setText(gestionINF.cancionPorNombre().get(0).getDuracion() + "");
+				textFieldColaborardorCa.setText(gestionINF.cancionPorNombre().get(0).getArtistasInvitados());
+//				textFieldImagenAuMo
+			
+			}
+		});
+		btnCambiarAu.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnCambiarAu.setBounds(560, 20, 111, 33);
+		panelModificarMusica.add(btnCambiarAu);
+		
+		JButton btnModificarAu = new JButton("Modificar");
+		btnModificarAu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestionBD.updateAudio(textFieldNombreAu.getText(), textFieldDuracionAu.getText(), textFieldNombreAu.getText().replace(" ", "") , comboBoxCancionMo.getSelectedItem().toString());
+				gestionBD.updateCancion(textFieldColaborardorCa.getText(), gestionINF.sacarIdDelAudio(comboBoxCancionMo.getSelectedItem().toString()));
+			}
+		});
+		btnModificarAu.setOpaque(true);
+		btnModificarAu.setForeground(Color.WHITE);
+		btnModificarAu.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnModificarAu.setContentAreaFilled(true);
+		btnModificarAu.setBorderPainted(false);
+		btnModificarAu.setBackground(new Color(198, 122, 206));
+		btnModificarAu.setBounds(730, 450, 136, 35);
+		panelModificarMusica.add(btnModificarAu);
 		
 	}
 }
