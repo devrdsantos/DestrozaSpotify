@@ -40,7 +40,7 @@ public class GestionBD {
 			Class.forName("com.mysql.jdbc.Driver");
 
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
@@ -734,6 +734,7 @@ public class GestionBD {
 
 	}
 	
+	
 	public ArrayList<Episodio> sacarEpisodiosPorPodcasts(int idPodcast) {
 		ImageIcon imagen = new ImageIcon();
 		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
@@ -754,11 +755,11 @@ public class GestionBD {
 			e.printStackTrace();
 		}
 		return episodios;
-
+	
 	}
 
 	/* HECHO!! */
-	public ArrayList<String> sacarArtistaPorGenero(String genero) {
+	/*public ArrayList<String> sacarArtistaPorGenero(String genero) {
 
 		ArrayList<String> artistas = new ArrayList<String>();
 		try {
@@ -776,7 +777,7 @@ public class GestionBD {
 		}
 		return artistas;
 
-	}
+	}*/
 
 	/* HECHO!! */
 
@@ -872,10 +873,11 @@ public class GestionBD {
 			e.printStackTrace();
 		}
 		return albums;
-	}
+	} 
 
 	/* HECHO!! */
-	public void insertPremiun(ArrayList<String> datosUsuario, int id) {
+	public boolean insertPremiun(ArrayList<String> datosUsuario, int id) {
+		boolean insertPremiun = false;
 		gestionINF = new GestionDeLaInformacion();
 		String fechaBaja;
 		try {
@@ -892,6 +894,7 @@ public class GestionBD {
 			consulta.setInt(1, id);
 			consulta.setString(2, fechaBaja);
 			consulta.executeUpdate();
+			insertPremiun = true;
 
 			consulta.close();
 
@@ -899,7 +902,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertPremiun;
 	}
 
 	/* HECHO!! */
@@ -998,7 +1001,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
+	public boolean insertPlaylist(String titulo, String fechaCreacion, int idCliente) {
+		boolean insertPlaylist = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist VALUES (?,?,?,?)");
 			consulta.setString(1, null);
@@ -1007,6 +1011,7 @@ public class GestionBD {
 			consulta.setInt(4, idCliente);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Playlist creado correctamente");
+			insertPlaylist = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1016,7 +1021,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertPlaylist;
 	}
 
 	/* HECHO!! */
@@ -1039,12 +1044,14 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void deletePlaylist(String titulo) {
+	public boolean deletePlaylist(String titulo) {
+		boolean deletePlaylist = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `playlist` WHERE `Titulo` = ? ");
 			consulta.setString(1, titulo);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "La playlist con el " + titulo + " eliminado correctamente");
+			deletePlaylist = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1054,6 +1061,7 @@ public class GestionBD {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return deletePlaylist;
 	}
 
 	/* HECHO!! */

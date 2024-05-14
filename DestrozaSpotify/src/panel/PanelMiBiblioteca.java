@@ -80,6 +80,8 @@ public class PanelMiBiblioteca extends JPanel {
 		}
 		listPlaylist.setModel(modeloPlaylist);
 		listPlaylist.setBounds(800, 175, 300, 400);
+		listPlaylist.setBackground(new Color(44, 44, 44));
+		listPlaylist.setForeground(Color.decode("#FFFFFF"));
 		add(listPlaylist);
 
 		JLabel lblMiPlaylist = new JLabel("Mi playlist:");

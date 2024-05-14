@@ -181,97 +181,106 @@ public class GestionBDTest {
 	public void testDeletePodcaster() {
 		fail("Not yet implemented");
 	}*/
-
+	//HECHO
 	@Test
 	public void testSacarMusicoPorArtista() {
 		String resultadoEsperado = "Artemas";
 		assertEquals(resultadoEsperado, gestionBD.sacarMusicoPorArtista("Artemas").get(0).getNombreArtistico());
 	}
-
-	/*@Test
+	//HECHO
+	@Test
 	public void testSacarAlbumPorArtista() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String testAlbum = "Pretty";
+		assertEquals(testAlbum, gestionBD.sacarAlbumPorArtista("Artemas").get(0).getNombre());
+	}
+	//HECHO
+	@Test
 	public void testSacarCancionPorArtista() {
-		fail("Not yet implemented");
-	}*/
+		
+		String resultadoEsperado = "I Like The Way You Kiss Me";
+		assertEquals(resultadoEsperado, gestionBD.sacarCancionPorArtista("Pretty").get(0).getNombre());
+	}
 
-	/*@Test
-	public void testSacarEpisodiosPorPodcasts() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
-	public void testSacarArtistaPorGenero() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+	//HECHO
+	@Test
 	public void testSacarPodcastPorPodcaster() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "The Joe Rogan Experience";
+		assertEquals(resultadoEsperado, gestionBD.sacarPodcastPorPodcaster(1).get(0));
+	}
+	//HECHO
+	@Test
 	public void testSacarEpisodiosPorPodcast() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "JoeRoganExperienceEpisodio1";
+		assertEquals(resultadoEsperado, gestionBD.sacarEpisodiosPorPodcast(2).get(0));
+	}
+	//HECHO
+	@Test
 	public void testSacarPremiun() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "Premiun";
+		assertEquals(resultadoEsperado, gestionBD.sacarPremiun("IzanRB"));
+	}
+	//HECHO
+	@Test
 	public void testSacarAlbumArtista() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "Indie";
+		assertEquals(resultadoEsperado, gestionBD.sacarAlbumArtista().get(0));
+	}
+	//HECHO
+	@Test
 	public void testInsertPremiun() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		ArrayList<String> datosUsuarios = new ArrayList<String>();
+		
+		assertFalse(gestionBD.insertPremiun(datosUsuarios, 0));
+	}
+	//HECHO
+	@Test
 	public void testIdClienteDeUsuario() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 4;
+		assertEquals(resultadoEsperado, gestionBD.idClienteDeUsuario("IzanRB"));
+	}
+	//HECHO
+	@Test
 	public void testIdMusico() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 1;
+		assertEquals(resultadoEsperado, gestionBD.idMusico("Artemas"));
+	}
+	//HECHO
+	@Test
 	public void testIdAlbum() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 1;
+		assertEquals(resultadoEsperado, gestionBD.idAlbum("Pretty"));
+	}
+	//HECHO
+	@Test
 	public void testIdPodcaster() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 1;
+		assertEquals(resultadoEsperado, gestionBD.idPodcaster("Joe Rogan"));
+	}
+	//HECHO
+	@Test
 	public void testInsertPlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		assertFalse(gestionBD.insertPlaylist("Prueba", "2020-01-01", 55));
+	}
+	//HECHO
+	@Test
 	public void testSacarPlaylistUsuario() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "Clase";
+		assertEquals(resultadoEsperado, gestionBD.sacarPlaylistUsuario(4).get(0).getNombre());
+	}
+	//HECHO
+	@Test
 	public void testDeletePlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+	gestionBD.insertPlaylist("Prueba", "2021-01-01", 4);
+	
+	assertTrue(gestionBD.deletePlaylist("Prueba"));
+	
+	}
+	//HECHO
+	@Test
 	public void testSacarCancionesPorTituloPlaylist() {
-		fail("Not yet implemented");
-	}*/
+		String resultadoEsperado = "Demons";
+		assertEquals(resultadoEsperado, gestionBD.sacarCancionesPorTituloPlaylist("Clase").get(0).getNombre());
+	}
 
 	/*@Test
 	public void testIdPlaylist() {

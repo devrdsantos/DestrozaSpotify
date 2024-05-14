@@ -85,7 +85,7 @@ public class PanelEpisodio extends JPanel {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!arg0.getValueIsAdjusting()) {
 					gestionINF.indiceDeLaCancion(listaEpisodios.getSelectedIndex());
-	 			System.out.println(listaEpisodios.getSelectedValue().split("--")[0]);
+	 			//System.out.println(listaEpisodios.getSelectedValue().split("--")[0]);
 					v.cambiarDePanel(20);
 				}
 			}
@@ -101,6 +101,8 @@ public class PanelEpisodio extends JPanel {
 		}
 		listaEpisodios.setModel(EpisodiosPorPodcast);
 		listaEpisodios.setBounds(100, 300, 1000, 313);
+		listaEpisodios.setBackground(new Color(44, 44, 44));
+		listaEpisodios.setForeground(Color.decode("#FFFFFF"));
 		add(listaEpisodios);
 		
 

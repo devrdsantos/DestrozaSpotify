@@ -111,6 +111,8 @@ public class PanelAlbum extends JPanel {
 	}
 	listAlbums.setModel(modeloAlbums);
 	listAlbums.setBounds(228, 436, 763, 242);
+	listAlbums.setBackground(new Color(44, 44, 44));
+	listAlbums.setForeground(Color.decode("#FFFFFF"));
 	add(listAlbums);
 
 	/**
