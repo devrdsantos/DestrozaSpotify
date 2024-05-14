@@ -14,6 +14,7 @@ import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
+import model.Podcaster;
 
 public class GestionDeLaInformacion {
 
@@ -288,6 +289,10 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<Cancion> cancionPorNombre() {
 		return gestionBD.cancionPorNombre(nombreCancion);
+	}
+	
+	public ArrayList<Podcaster> podcasterPorNombre() {
+		return gestionBD.podcasterPorNombre(podcaster);
 	}
 	
 }
