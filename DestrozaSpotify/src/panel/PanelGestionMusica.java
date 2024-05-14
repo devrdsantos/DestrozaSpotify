@@ -1167,6 +1167,8 @@ public class PanelGestionMusica extends JPanel{
 				
 				v.cambiarDePanel(5);
 				
+				
+				
 			}
 		});
 		btnModificarAlb.setOpaque(true);
