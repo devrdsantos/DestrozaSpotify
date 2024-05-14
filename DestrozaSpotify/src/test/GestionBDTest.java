@@ -281,70 +281,97 @@ public class GestionBDTest {
 		String resultadoEsperado = "Demons";
 		assertEquals(resultadoEsperado, gestionBD.sacarCancionesPorTituloPlaylist("Clase").get(0).getNombre());
 	}
-
-	/*@Test
+	//HECHO
+	@Test
 	public void testIdPlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 1;
+		assertEquals(resultadoEsperado, gestionBD.idPlaylist("Clase"));
+	}
+	//HECHO
+	@Test
 	public void testIdAudio() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 2;
+		assertEquals(resultadoEsperado, gestionBD.idAudio("Demons"));
+	}
+	//HECHO
+	@Test
 	public void testSacarMusicoParaPlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "Neoni";
+		assertEquals(resultadoEsperado, gestionBD.sacarMusicoParaPlaylist("Clase").get(0).getNombreArtistico());
+	}
+	//HECHO
+	@Test
 	public void testInsertCancionEnPlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		assertFalse(gestionBD.insertCancionEnPlaylist(1, 2));
+	}
+	//HECHO
+	@Test
 	public void testDeleteCancionDePlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		gestionBD.insertCancionEnPlaylist(1, 1);
+		assertTrue(gestionBD.deleteCancionDePlaylist(1));
+	}
+	//HECHO
+	@Test
 	public void testInsertEpisodio() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		assertFalse(gestionBD.insertEpisodio(33, 55, "Esto es una prueba"));
+		
+	}
+	//HECHO
+	@Test
 	public void testIdPodcast() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 2;
+		assertEquals(resultadoEsperado, gestionBD.idPodcast("The Joe Rogan Experience"));
+	}
+	//HECHO
+	@Test
 	public void testPodcastInformacion() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "The Joe Rogan Experience";
+		assertEquals(resultadoEsperado, gestionBD.podcastInformacion().get(0).getTitulo());
+	}
+	//HECHO
+	@Test
 	public void testInsertFavoritos() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		assertFalse(gestionBD.insertFavoritos(55, 66));
+	}
+	//HECHO
+	@Test
 	public void testCancionesDeFavoritos() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "I Like The Way You Kiss Me";
+		assertEquals(resultadoEsperado, gestionBD.cancionesDeFavoritos(4).get(0).getNombre());
+	}
+	//HECHO
+	@Test
 	public void testSacarMusicoParaPlaylistFavoritos() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		String resultadoEsperado = "Artemas";
+		assertEquals(resultadoEsperado, gestionBD.sacarMusicoParaPlaylistFavoritos(4).get(0).getNombreArtistico());
+	}
+	//HECHO
+	@Test
 	public void testCapacidadDePlaylist() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		int resultadoEsperado = 2;
+		assertEquals(resultadoEsperado, gestionBD.capacidadDePlaylist(1));
+	}
+	//HECHO
+	@Test
 	public void testSacarIdiomas() {
-		fail("Not yet implemented");
-	}*/
+		String resultadoEsperado = "ES";
+		assertEquals(resultadoEsperado, gestionBD.sacarIdiomas().get(0));
+	}
+	//HECHO
+	@Test
+	public void testUpdateMusico() {
+		assertFalse(gestionBD.updateMusico("hola", "hola", "hola", "hola", "hola"));
+	}
+	//HECHO
+	@Test
+	public void testUpdateAlbum() {
+		assertFalse(gestionBD.updateAlbum("hola", "hola", "hola", "hola", "hola"));
+	}
+	
+	@Test
+	public void testAlbumPorTitulo() {
+		String resultadoEsperado = "Indie";
+		assertEquals(resultadoEsperado, gestionBD.albumPorTitulo("Pretty").get(0).getGenero());
+	}
 
 }

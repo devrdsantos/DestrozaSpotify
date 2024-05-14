@@ -1166,7 +1166,8 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertCancionEnPlaylist(int idPlaylist, int idAudio) {
+	public boolean insertCancionEnPlaylist(int idPlaylist, int idAudio) {
+		boolean insertCancionEnPlaylist = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO playlist_cancion VALUES (?,?,?)");
 			System.out.println(idPlaylist);
@@ -1179,6 +1180,7 @@ public class GestionBD {
 			consulta.setString(3, fechaCreacion);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion añadida!");
+			insertCancionEnPlaylist = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1188,17 +1190,19 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertCancionEnPlaylist;
 	}
 
 	/* HECHO!! */
-	public void deleteCancionDePlaylist(int idAudio) {
+	public boolean deleteCancionDePlaylist(int idAudio) {
+		boolean deleteCancionDePlaylist = false;
 		try {
 			PreparedStatement consulta = conexion
 					.prepareStatement("DELETE FROM `playlist_cancion` WHERE `IDCancion` = ? ");
 			consulta.setInt(1, idAudio);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion eliminada");
+			deleteCancionDePlaylist = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1208,10 +1212,12 @@ public class GestionBD {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return deleteCancionDePlaylist;
 	}
 
 	/* HECHO!! */
-	public void insertEpisodio(int idAudio, int idPodcast, String colaboradores) {
+	public boolean insertEpisodio(int idAudio, int idPodcast, String colaboradores) {
+		boolean insertEpisodio = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO episodio VALUES (?,?,?)");
 			consulta.setInt(1, idAudio);
@@ -1219,6 +1225,7 @@ public class GestionBD {
 			consulta.setString(3, colaboradores);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Episodio creado correctamente");
+			insertEpisodio = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1228,7 +1235,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertEpisodio;
 	}
 
 	/* HECHO!! */
@@ -1277,13 +1284,15 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void insertFavoritos(int idCliente, int idAudio) {
+	public boolean insertFavoritos(int idCliente, int idAudio) {
+		boolean insertFavoritos = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("INSERT INTO gustos VALUES (?,?)");
 			consulta.setInt(1, idCliente);
 			consulta.setInt(2, idAudio);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cancion añadida a favoritos");
+			insertFavoritos = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1293,7 +1302,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return insertFavoritos;
 	}
 
 	/* HECHO!! */
@@ -1389,8 +1398,9 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	public void updateMusico(String nombreArtisticoMo, String imagenMo, String caracteristicasMo,
+	public boolean updateMusico(String nombreArtisticoMo, String imagenMo, String caracteristicasMo,
 			String descripcionMo, String artista) {
+		boolean updateMusico = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement(
 					"UPDATE `musico` SET `NombreArtistico`=?,`Imagen`=?,`Caracteristica`=?,`Descripcion`=? WHERE `NombreArtistico` = ?");
@@ -1403,6 +1413,7 @@ public class GestionBD {
 			consulta.setString(5, artista);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Musico modificado");
+			updateMusico = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1412,11 +1423,13 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return updateMusico;
 	}
 
 	/* HECHO!! */
-	public void updateAlbum(String tituloMo, String añoMo, String generoMo,
+	public boolean updateAlbum(String tituloMo, String añoMo, String generoMo,
 			String imagenMo, String titulo) {
+		boolean updateAlbum = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement(
 					"UPDATE `album` SET `titulo`=?,`año`=?,`genero`=?,`imagen`=? WHERE `titulo` = ?");
@@ -1429,6 +1442,7 @@ public class GestionBD {
 			consulta.setString(5, titulo);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Album modificado");
+			updateAlbum = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1438,6 +1452,7 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return updateAlbum;
 	}
 	
 	/* HECHO!! */
