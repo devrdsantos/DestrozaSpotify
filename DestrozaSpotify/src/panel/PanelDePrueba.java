@@ -244,7 +244,7 @@ public class PanelDePrueba extends JPanel{
 	lblModificarMusico.setBounds(27, 10, 211, 48);
 	panelModificarImagen.add(lblModificarMusico);
 	
-	JLabel lblModificarNombreAu = new JLabel("Nombre artistico:");
+	JLabel lblModificarNombreAu = new JLabel("Titulo:");
 	lblModificarNombreAu.setHorizontalAlignment(SwingConstants.RIGHT);
 	lblModificarNombreAu.setForeground(Color.WHITE);
 	lblModificarNombreAu.setFont(new Font("Verdana", Font.PLAIN, 18));
@@ -272,10 +272,10 @@ public class PanelDePrueba extends JPanel{
 	lblModificarColaboracionCa.setBounds(27, 285, 211, 48);
 	panelModificarImagen.add(lblModificarColaboracionCa);
 	
-	JTextField textFieldNombreArtistico = new JTextField();
-	textFieldNombreArtistico.setColumns(10);
-	textFieldNombreArtistico.setBounds(248, 117, 288, 30);
-	panelModificarImagen.add(textFieldNombreArtistico);
+	JTextField textFieldTituloMo = new JTextField();
+	textFieldTituloMo.setColumns(10);
+	textFieldTituloMo.setBounds(248, 117, 288, 30);
+	panelModificarImagen.add(textFieldTituloMo);
 	
 	JTextField textFieldGenero = new JTextField();
 	textFieldGenero.setColumns(10);
@@ -289,7 +289,7 @@ public class PanelDePrueba extends JPanel{
 	
 	JTextField textFieldImagenPodcasterMo = new JTextField();
 	textFieldImagenPodcasterMo.setColumns(10);
-	textFieldImagenPodcasterMo.setBounds(248, 235, 288, 30);
+	textFieldImagenPodcasterMo.setBounds(248, 175, 288, 30);
 	panelModificarImagen.add(textFieldImagenPodcasterMo);
 	
 	JButton btnModificarPodcaster = new JButton("Modificar");
@@ -306,7 +306,7 @@ public class PanelDePrueba extends JPanel{
 	btnModificarPodcaster.setBounds(730, 450, 136, 35);
 	panelModificarImagen.add(btnModificarPodcaster);
 
-	JComboBox comboBoxPodcasterMo = new JComboBox();
+	JComboBox<String> comboBoxPodcasterMo = new JComboBox<String>();
 	comboBoxPodcasterMo.setBounds(248, 23, 288, 30);
 	panelModificarImagen.add(comboBoxPodcasterMo);
 	
@@ -316,7 +316,7 @@ public class PanelDePrueba extends JPanel{
 		}
 	});
 	btnSubirImagenPodcasterMo.setFont(new Font("Tahoma", Font.BOLD, 13));
-	btnSubirImagenPodcasterMo.setBounds(546, 233, 111, 33);
+	btnSubirImagenPodcasterMo.setBounds(546, 175, 111, 33);
 	panelModificarImagen.add(btnSubirImagenPodcasterMo);
 	
 	JButton btnCambiarPodcaster = new JButton("Cambiar");
