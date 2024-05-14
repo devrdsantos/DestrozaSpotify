@@ -21,8 +21,6 @@ import panel.PanelMiBiblioteca;
 import panel.PanelMisPlaylist;
 import panel.PanelPerfil;
 import panel.PanelPodcast;
-import panel.PanelPruebaLogin;
-import panel.PanelPruebaRegistro;
 import panel.PanelRegistro;
 import panel.PanelReproductorDeMusica;
 import panel.PanelReproductorDePlaylist;
@@ -84,7 +82,7 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelMenuAdministrador(this));
 			break;
 		case 5:
-			setContentPane(new PanelGestionMusica(this, this.gestionBD));
+			setContentPane(new PanelGestionMusica(this, this.gestionBD, this.gestionINF));
 			break;
 		case 6:
 			setContentPane(new PanelGestionPodcast(this, this.gestionBD, this.gestionINF));
@@ -120,15 +118,9 @@ public class VistaPrincipal extends JFrame {
 			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
 			break;
 		case 17:
-			setContentPane (new PanelPruebaLogin(this, this.gestionINF)); 
-			break;
-		case 18:
-			setContentPane (new PanelPruebaRegistro(this, this.controlador)); 
-			break;
-		case 19:
 			setContentPane (new PanelPerfil(this, this.gestionINF)); 
 			break;
-		case 20:
+		case 18:
 			setContentPane (new PanelReproductorDePodcast(this, this.gestionINF)); 
 			break;
 			

@@ -60,6 +60,12 @@ public class PanelMenuCliente extends JPanel {
 		btnPerfil.setBorderPainted(false);
 		btnPerfil.setBackground(new Color(53, 53, 53));
 		btnPerfil.setBounds(1038, 54, 100, 40);
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(17);
+			}
+		});
 		add(btnPerfil);
 
 		/**

@@ -89,8 +89,12 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
-	public ArrayList<Album> mostrarAlbums() {
+	public ArrayList<Album> mostrarAlbumsPorArtista() {
 		return gestionBD.sacarAlbumPorArtista(artista);
+	}
+	
+	public ArrayList<Album> mostrarAlbums() {
+		return null;
 	}
 	
 	public ArrayList<Cancion> mostrarCancion() {
@@ -158,7 +162,6 @@ public class GestionDeLaInformacion {
 		return indiceAlbum;
 	}
 
-	
 	public int devolverIdCliente(String cliente) {
 		return gestionBD.idClienteDeUsuario(cliente);
 	}
@@ -275,5 +278,8 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarEpisodiosPorPodcasts(idPodcast);
 	}
 	
+	public ArrayList<Album> albumPorTitulo(){
+		return gestionBD.albumPorTitulo(album);
+	}
 }
 
