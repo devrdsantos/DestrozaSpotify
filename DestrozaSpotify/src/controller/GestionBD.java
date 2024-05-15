@@ -732,7 +732,8 @@ public class GestionBD {
 				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
 				imagen = new ImageIcon(arrayImagen);
 				episodios.add(new Episodio(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5)));
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
 
 			}
 
@@ -1558,7 +1559,7 @@ public class GestionBD {
 		try {
 			PreparedStatement consulta = conexion
 					.prepareStatement("SELECT * FROM `podcaster` WHERE `NombreArtistico` = ?;");
-
+			consulta.setString(1, podcaster);
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				Blob imagenBlob = resultadoConsulta.getBlob(3);
@@ -1589,7 +1590,7 @@ public class GestionBD {
 
 			consulta.setString(5, artista);
 			consulta.executeUpdate();
-			JOptionPane.showMessageDialog(null, "Musico modificado");
+			JOptionPane.showMessageDialog(null, "Podcaster modificado");
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -1601,4 +1602,119 @@ public class GestionBD {
 		}
 	}
 
+	public ArrayList<Podcast> podcastPorTitulo(String titulo) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Podcast> podcasts = new ArrayList<Podcast>();
+
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM `podcast` WHERE `Titulo` = ?;");
+			consulta.setString(1, titulo);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				podcasts.add(new Podcast(resultadoConsulta.getInt(1), resultadoConsulta.getString(2), imagen,
+						resultadoConsulta.getInt(4)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return podcasts;
+	}
+
+	public void updatePodcast(String tituloMo, String imagenMo, String titulo) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"UPDATE `podcast` SET `Titulo`=?,`Imagen`=? WHERE `Titulo` = ?");
+			consulta.setString(1, titulo);
+			InputStream imagen = new FileInputStream("imagenes/imagenArt/" + imagenMo + ".jpg");
+			consulta.setBlob(2, imagen);
+			
+			consulta.setString(3, titulo);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Podcast modificado");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+	
+	public ArrayList<Episodio> episodioPorNombre(String nombre) {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
+
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Au.IDAudio, Au.Nombre, Au.Duracion, Au.Imagen, Au.Tipo, Ep.IDPodcast, Ep.Colaboradores FROM `audio`Au join episodio Ep on Au.IDAudio = Ep.IDAudio Where nombre = ?;");
+			consulta.setString(1, nombre);
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				episodios.add(new Episodio(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
+	}
+	
+	public ArrayList<Episodio> episodioInformacion() {
+		ImageIcon imagen = new ImageIcon();
+		ArrayList<Episodio> episodios = new ArrayList<Episodio>();
+
+		try {
+			PreparedStatement consulta = conexion.prepareStatement("SELECT Au.IDAudio, Au.Nombre, Au.Duracion, Au.Imagen, Au.Tipo, Ep.IDPodcast, Ep.Colaboradores FROM `audio`Au join episodio Ep on Au.IDAudio = Ep.IDAudio");
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				Blob imagenBlob = resultadoConsulta.getBlob(3);
+				byte[] arrayImagen = imagenBlob.getBytes(1, (int) imagenBlob.length());
+				imagen = new ImageIcon(arrayImagen);
+				episodios.add(new Episodio(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getInt(3), imagen, resultadoConsulta.getString(5),
+						resultadoConsulta.getInt(6), resultadoConsulta.getString(7)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return episodios;
+	}
+
+	public void updateEpisodio(String colaboradores, int idAudio) {
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"UPDATE `episodio` SET `Colaboradores`= ? WHERE `IDAudio` = ?");
+			consulta.setString(1, colaboradores);
+			
+			consulta.setInt(2, idAudio);
+			consulta.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Episodio modificado");
+			// Cambia al Panel para iniciar sesión
+
+			// Cierra la consulta
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+	
 }

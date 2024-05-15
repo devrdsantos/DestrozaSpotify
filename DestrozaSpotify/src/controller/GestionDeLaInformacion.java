@@ -31,7 +31,7 @@ public class GestionDeLaInformacion {
 	private String usuario;
 	private String tituloPlaylist;
 	private boolean favoritos = false;;
-	
+	private String episodio;
 	private Cliente cliente;
 	private String nombreCancion;
 	
@@ -293,6 +293,18 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<Podcaster> podcasterPorNombre() {
 		return gestionBD.podcasterPorNombre(podcaster);
+	}
+	
+	public ArrayList<Podcast> podcastPorTitulo() {
+		return gestionBD.podcastPorTitulo(podcast);
+	}
+	
+	public void episodioSeleccionada(String episodio) {
+		this.episodio = episodio;
+	}
+	
+	public ArrayList<Episodio> episodioPorNombre() {
+		return gestionBD.episodioPorNombre(episodio);
 	}
 	
 }
