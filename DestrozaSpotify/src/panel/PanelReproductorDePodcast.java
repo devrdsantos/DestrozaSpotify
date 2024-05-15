@@ -291,36 +291,13 @@ public class PanelReproductorDePodcast extends JPanel {
 		lblTituloCancion.setBounds(356, 499, 440, 50);
 		add(lblTituloCancion);
 
-		lblNombreArtista = new JLabel();
-		lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
+		lblNombreArtista = new JLabel("");
+		lblNombreArtista.setText("<html>" + gestionINF.mostrarPodcaster() + "</html>");
 		lblNombreArtista.setForeground(Color.decode("#FFB850"));
 		lblNombreArtista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNombreArtista.setBounds(356, 560, 298, 30);
 		add(lblNombreArtista);
 
-		JButton btnMenu = new JButton("Menu");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				JFrame f = new JFrame();
-				String playlist = JOptionPane.showInputDialog(f, "Introduzca el nombre de la playlist:");
-
-				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(playlist)) == 3) {
-					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
-				} else {
-					gestionINF.añadirCancionAPlaylist(
-							gestionINF.sacarIdDelAudio(episodios.get(intinerador).getNombre()),
-							gestionINF.devolverIdPlaylist(playlist));
-				}
-			}
-		});
-		btnMenu.setOpaque(true);
-		btnMenu.setForeground(new Color(255, 170, 67));
-		btnMenu.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnMenu.setBorderPainted(false);
-		btnMenu.setBackground(new Color(63, 61, 61));
-		btnMenu.setBounds(125, 366, 180, 40);
-		add(btnMenu);
 
 		/**
 		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist
@@ -341,15 +318,15 @@ public class PanelReproductorDePodcast extends JPanel {
 		btnFavoritos.setBounds(668, 600, 60, 60);
 		add(btnFavoritos);
 		
-		lblNewLabel = new JLabel("REPRODUCIENDO DESDE ÁLBUM");
+		lblNewLabel = new JLabel("REPRODUCIENDO DESDE PODCAST");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblNewLabel.setBounds(456, 51, 234, 30);
+		lblNewLabel.setBounds(456, 51, 290, 30);
 		add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel(".getNombreAlbum()");
+		lblNewLabel_1 = new JLabel("ALGOOO");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.decode("#FFB850"));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblNewLabel_1.setBounds(356, 77, 391, 41);
 		lblNewLabel_1.setText(gestionINF.devolerAlbum());

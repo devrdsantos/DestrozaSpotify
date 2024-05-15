@@ -149,7 +149,7 @@ public class PanelMenuAdministrador extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// esto lo hay que cambiar!!!!!!!!!
-				//v.cambiarDePanel(3);
+				v.cambiarDePanel(19);
 			}
 		});
 		add(btnVerEstadisticas);
