@@ -20,6 +20,8 @@ public class PanelPerfil extends JPanel {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
+		String esPremium;
+		System.out.println(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getRol());
 
 		/**
 		 * BTN - Inicio
@@ -48,6 +50,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Nombre
 		 */
 		JLabel lblNombre = new JLabel("<dynamic>");
+		lblNombre.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getNombre());
 		lblNombre.setForeground(new Color(255, 255, 255));
 		lblNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblNombre.setBounds(544, 181, 416, 36);
@@ -57,6 +60,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Apellido
 		 */
 		JLabel lblApellido = new JLabel("<dynamic>");
+		lblApellido.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getApellido());
 		lblApellido.setForeground(Color.WHITE);
 		lblApellido.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblApellido.setBounds(544, 225, 416, 36);
@@ -66,6 +70,7 @@ public class PanelPerfil extends JPanel {
 		 * 
 		 */
 		JLabel lblUsuario = new JLabel("<dynamic>");
+		lblUsuario.setText(gestionInformacion.devolverUsuario());
 		lblUsuario.setForeground(Color.WHITE);
 		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblUsuario.setBounds(544, 268, 416, 36);
@@ -75,6 +80,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Fecha de Nacimiento
 		 */
 		JLabel lblFecNacimiento = new JLabel("<dynamic>");
+		lblFecNacimiento.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaNacimiento());
 		lblFecNacimiento.setForeground(Color.WHITE);
 		lblFecNacimiento.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFecNacimiento.setBounds(669, 312, 416, 36);
@@ -85,6 +91,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Fecha de registro
 		 */
 		JLabel lblFecRegistro = new JLabel("<dynamic>");
+		lblFecRegistro.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaRegistro());
 		lblFecRegistro.setForeground(Color.WHITE);
 		lblFecRegistro.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFecRegistro.setBounds(634, 356, 416, 36);
@@ -95,6 +102,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Idioma
 		 */
 		JLabel lblIdioma = new JLabel("<dynamic>");
+		lblIdioma.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getIdioma());
 		lblIdioma.setForeground(Color.WHITE);
 		lblIdioma.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblIdioma.setBounds(531, 400, 416, 36);
@@ -104,6 +112,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Tipo de cuenta
 		 */
 		JLabel lblTipoCuenta = new JLabel("<dynamic>");
+		lblTipoCuenta.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getRol());
 		lblTipoCuenta.setForeground(Color.WHITE);
 		lblTipoCuenta.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblTipoCuenta.setBounds(609, 443, 416, 36);
@@ -113,6 +122,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Fecha de Alta Premium
 		 */
 		JLabel lblFecAltaPremium = new JLabel("<dynamic>");
+		lblFecAltaPremium.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaPremiumAlta());
 		lblFecAltaPremium.setForeground(Color.WHITE);
 		lblFecAltaPremium.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFecAltaPremium.setBounds(684, 487, 416, 36);
@@ -122,6 +132,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Fecha de Baja Premium
 		 */
 		JLabel lblFecBajaPremium = new JLabel("<dynamic>");
+		lblFecBajaPremium.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaPreiumBaja());
 		lblFecBajaPremium.setForeground(Color.WHITE);
 		lblFecBajaPremium.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFecBajaPremium.setBounds(690, 532, 416, 36);

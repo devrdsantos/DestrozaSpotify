@@ -295,5 +295,9 @@ public class GestionDeLaInformacion {
 		return gestionBD.podcasterPorNombre(podcaster);
 	}
 	
+	public ArrayList<Cliente> sacarDatosDelCliente(String usuario) {
+		return gestionBD.sacarDatosCliente(usuario);
+	}
+	
 }
 

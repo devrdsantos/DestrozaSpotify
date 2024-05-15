@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 
 import model.Album;
 import model.Cancion;
+import model.Cliente;
 import model.Episodio;
 import model.Musico;
 import model.Playlist;
@@ -1660,5 +1661,39 @@ public class GestionBD {
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
 	}
+	
+	public ArrayList<Cliente> sacarDatosCliente(String usuario) {
+		ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+		try {
+			PreparedStatement consulta = conexion.prepareStatement(
+					"SELECT * FROM cliente WHERE usuario = ?");
+			consulta.setString(1, usuario);
+			boolean esPremium = false;
+			String columnaEnum;
+			String columnaTipo;
+			String rol;
+			ResultSet resultadoConsulta = consulta.executeQuery();
+			while (resultadoConsulta.next()) {
+				columnaEnum = resultadoConsulta.getString(8);
+				if(columnaEnum.equals("Premiun")) {
+					esPremium = true;
+				}
+				columnaTipo = resultadoConsulta.getString(8);
+				if(columnaTipo.equals("Premiun")){
+					rol = "Premiun";
+				}else rol = "Free";
 
+				cliente.add(new Cliente(resultadoConsulta.getInt(1), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5), resultadoConsulta.getString(2), rol,
+						resultadoConsulta.getString(3), resultadoConsulta.getString(7), esPremium, resultadoConsulta.getString(9), resultadoConsulta.getString(6)));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cliente;
+		
+	}
 }
