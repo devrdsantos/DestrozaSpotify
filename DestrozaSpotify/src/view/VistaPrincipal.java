@@ -12,6 +12,7 @@ import panel.PanelBienvenida;
 import panel.PanelDescubrirMusica;
 import panel.PanelDescubrirPodcast;
 import panel.PanelEpisodio;
+import panel.PanelEstadisticas;
 import panel.PanelGestionMusica;
 import panel.PanelGestionPodcast;
 import panel.PanelLogin;
@@ -123,6 +124,9 @@ public class VistaPrincipal extends JFrame {
 		case 18:
 			setContentPane (new PanelReproductorDePodcast(this, this.gestionINF)); 
 			break;
+		case 19:
+			setContentPane (new PanelEstadisticas(this, this.gestionINF)); 
+			break;
 			
 		}
 			
@@ -143,7 +147,7 @@ public class VistaPrincipal extends JFrame {
 
 
 
-		v.cambiarDePanel(0);
+		v.cambiarDePanel(19);
 
 	}
 
