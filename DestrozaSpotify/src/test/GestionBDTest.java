@@ -97,12 +97,13 @@ public class GestionBDTest {
 		
 		assertEquals(listaPodcaster.get(0), gestionBD.sacarPodcasters().get(0));
 	}
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
-	/*
+	//HECHO
 	@Test
 	public void testInsertMusico() {
+		
 		assertTrue(gestionBD.insertMusico("Joe", "JoeRogan", "Solista", "Cantante calvo"));
-	}*/
+		gestionBD.deleteMusico("Joe");
+	}
 	//HECHO
 	@Test
 	public void testSacarMusicoInformacion() {
@@ -112,10 +113,12 @@ public class GestionBDTest {
 		
 		assertEquals(nombreArtisticoPrueba, gestionBD.sacarMusicoInformacion().get(0).getNombreArtistico());
 	}
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	//HECHO
 	@Test
 	public void testInsertAlbum() {
-	//	assertTrue(gestionBD.insertAlbum("testAlbum", "2000-01-01", "Cumbia", "Pretty", 1));
+		
+		assertTrue(gestionBD.insertAlbum("testAlbum", "2000-01-01", "Cumbia", "Pretty", 1));
+		gestionBD.deleteAlbum("testAlbum");
 	}
 	//HECHO
 	@Test
@@ -126,37 +129,43 @@ public class GestionBDTest {
 	//HECHO
 	@Test
 	public void testInsertCancion() {
-		//assertTrue(gestionBD.insertCancion(17, 1, "Izan y Gontzal"));
+		assertFalse(gestionBD.insertCancion(35, 1, "Izan y Gontzal"));
 	}
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	//HECHO
 		@Test
-		public void testInsertAudioMu() {
-			//assertTrue(gestionBD.insertAudioMu("audiotest", 200, "cancionprueba"));
+	public void testInsertAudioMu() {
+		assertTrue(gestionBD.insertAudioMu("audiotest", 200, "cancionprueba"));
+		gestionBD.deleteAudio("audiotest");
 		}
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	//HECHO
 	@Test
 	public void testInsertAudioEpisodio() {
-	//	assertTrue(gestionBD.insertAudioEpisodio("nombreprueba", 200, "JoeRoganPortada"));
+		assertFalse(gestionBD.insertAudioEpisodio("nombreprueba", 200, "eeeeeeeee"));
+		
 	}
-	/*
+	//HECHO
 	@Test
 	public void testDeleteAudio() {
+		gestionBD.insertAudioMu("audiotest", 200, "cancionprueba");
 		assertTrue(gestionBD.deleteAudio("audiotest"));
-	}*/
-
-	/*@Test
+	}
+	//HECHO
+	@Test
 	public void testDeleteAlbum() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		gestionBD.insertAlbum("albumPrueba", "2020-01-01", "Rock", "Pretty", 1);
+		assertTrue(gestionBD.deleteAlbum("albumPrueba"));
+	}
+	//HECHO
+	@Test
 	public void testDeleteMusico() {
-		fail("Not yet implemented");
-	}*/
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+		gestionBD.insertMusico("musicoPrueba", "Artemas", "Solista", "Algo");
+		assertTrue(gestionBD.deleteMusico("musicoPrueba"));
+	}
+	//HECHO
 	@Test
 	public void testInsertPodcaster() {
-		//assertTrue(gestionBD.insertPodcaster("testPodcaster", "Artemas", "Comedia", "Podcaster de prueba para el test"));
+		assertTrue(gestionBD.insertPodcaster("testPodcaster", "Artemas", "Comedia", "Podcaster de prueba para el test"));
+		gestionBD.deletePodcaster("testPodcaster");
 	}
 	//HECHO
 	@Test
@@ -166,21 +175,24 @@ public class GestionBDTest {
 		
 		assertEquals(listaPodcaster.get(0), gestionBD.sacarPodcasterInformacion().get(0).getNombreArtistico());
 	}
-	//HECHO LO COMENTO PORQUE DA ERROR SI EJECUTAS MAS DE UNA VEZ EL MISMO INSERT
+	//HECHO
 	@Test
 	public void testInsertPodcast() {
-	//	assertTrue(gestionBD.insertPodcast("podcastDePrueba", "DebateGordofobia", 1));
+		assertTrue(gestionBD.insertPodcast("podcastDePrueba", "DebateGordofobia", 1));
+		gestionBD.deletePodcast("podcastDePrueba");
 	}
-
-	/*@Test
+	//HECHO
+	@Test
 	public void testDeletePodcast() {
-		fail("Not yet implemented");
-	}*/
-
-	/*@Test
+		gestionBD.insertPodcast("podcastDePrueba", "DebateGordofobia", 1);
+		assertTrue(gestionBD.deletePodcast("podcastDePrueba"));
+	}
+	//HECHO
+	@Test
 	public void testDeletePodcaster() {
-		fail("Not yet implemented");
-	}*/
+		gestionBD.insertPodcaster("testPodcaster", "Artemas", "Comedia", "Podcaster de prueba para el test");
+		assertTrue(gestionBD.deletePodcaster("testPodcaster"));
+	}
 	//HECHO
 	@Test
 	public void testSacarMusicoPorArtista() {
@@ -210,7 +222,7 @@ public class GestionBDTest {
 	//HECHO
 	@Test
 	public void testSacarEpisodiosPorPodcast() {
-		String resultadoEsperado = "JoeRoganExperienceEpisodio1";
+		String resultadoEsperado = "Joe Rogan Experience Episodio 1";
 		assertEquals(resultadoEsperado, gestionBD.sacarEpisodiosPorPodcast(2).get(0));
 	}
 	//HECHO

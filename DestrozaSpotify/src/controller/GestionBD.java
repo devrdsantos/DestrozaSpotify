@@ -38,7 +38,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
@@ -503,12 +503,14 @@ public class GestionBD {
 	}
 
 	/* HECHO!!! */
-	public void deleteAlbum(String nombre) {
+	public boolean deleteAlbum(String nombre) {
+		boolean deleteAlbum = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `album` WHERE `Titulo` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El album " + nombre + " eliminada correctamente");
+			deleteAlbum = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -518,15 +520,18 @@ public class GestionBD {
 			System.out.println(e);
 //			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return deleteAlbum;
 	}
 
 	/* HECHO!!! */
-	public void deleteMusico(String nombre) {
+	public boolean deleteMusico(String nombre) {
+		boolean deleteMusico = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `musico` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, nombre);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El musico " + nombre + " eliminado correctamente");
+			deleteMusico = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -536,7 +541,7 @@ public class GestionBD {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
-
+		return deleteMusico;
 	}
 
 	/* HECHO!! */
@@ -617,12 +622,14 @@ public class GestionBD {
 	}
 
 	/* HECHO!!! */
-	public void deletePodcast(String podcast) {
+	public boolean deletePodcast(String podcast) {
+		boolean deletePodcast = false;
 		try {
 			PreparedStatement consulta = conexion.prepareStatement("DELETE FROM `podcast` WHERE `Titulo` = ? ");
 			consulta.setString(1, podcast);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcast " + podcast + " eliminado correctamente");
+			deletePodcast = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -632,16 +639,19 @@ public class GestionBD {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return deletePodcast;
 	}
 
 	/* HECHO!!! */
-	public void deletePodcaster(String podcaster) {
+	public boolean deletePodcaster(String podcaster) {
+		boolean deletePodcaster = false;
 		try {
 			PreparedStatement consulta = conexion
 					.prepareStatement("DELETE FROM `podcaster` WHERE `NombreArtistico` = ? ");
 			consulta.setString(1, podcaster);
 			consulta.executeUpdate();
 			JOptionPane.showMessageDialog(null, "El podcaster " + podcaster + " eliminado correctamente");
+			deletePodcaster = true;
 			// Cambia al Panel para iniciar sesión
 
 			// Cierra la consulta
@@ -651,6 +661,7 @@ public class GestionBD {
 			System.out.println(e);
 //				JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
+		return deletePodcaster;
 	}
 
 	/* HECHO!! */
@@ -761,7 +772,7 @@ public class GestionBD {
 	}
 
 	/* HECHO!! */
-	/*public ArrayList<String> sacarArtistaPorGenero(String genero) {
+	public ArrayList<String> sacarArtistaPorGenero(String genero) {
 
 		ArrayList<String> artistas = new ArrayList<String>();
 		try {
@@ -779,7 +790,7 @@ public class GestionBD {
 		}
 		return artistas;
 
-	}*/
+	}
 
 	/* HECHO!! */
 	public ArrayList<String> sacarPodcastPorPodcaster(int idPodcaster) {
