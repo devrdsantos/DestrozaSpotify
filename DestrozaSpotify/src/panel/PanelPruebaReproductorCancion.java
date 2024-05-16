@@ -84,6 +84,7 @@ public class PanelPruebaReproductorCancion extends JPanel {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.parar();
 				v.cambiarDePanel(8);
 			}
 		});

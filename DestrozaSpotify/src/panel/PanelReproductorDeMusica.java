@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -109,6 +111,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.parar();
 				v.cambiarDePanel(8);
 			}
 		});
@@ -132,8 +135,15 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnPerfil.setBorderPainted(false);
 		btnPerfil.setBackground(new Color(53, 53, 53));
 		btnPerfil.setBounds(1009, 34, 136, 48);
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sonido.parar();
+				v.cambiarDePanel(17);
+			}
+		});
 		add(btnPerfil);
-		
+
 
 		/**
 		 * Label donde se muestra la imagen de la portada de la canción
