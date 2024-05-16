@@ -41,7 +41,7 @@ public class GestionBD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
@@ -1671,10 +1671,11 @@ public class GestionBD {
 			PreparedStatement consulta = conexion.prepareStatement(
 					"SELECT cl.IDCliente, Cl.Nombre, Cl.Apellido, Cl.Usuario, Cl.Contraseña, Cl.FechaNacimiento, Cl.FechaRegistro, Cl.Tipo, Cl.IDIdioma, Pr.Fecha_caducidad FROM cliente Cl left join premiun Pr on Cl.IDCliente = Pr.IDCliente Where Cl.Usuario = ?;");
 			consulta.setString(1, usuario);
+			@SuppressWarnings("unused")
 			boolean esPremium = false;
 			String columnaEnum;
+			@SuppressWarnings("unused")
 			String columnaTipo;
-			String rol;
 			ResultSet resultadoConsulta = consulta.executeQuery();
 			while (resultadoConsulta.next()) {
 				columnaEnum = resultadoConsulta.getString(8);

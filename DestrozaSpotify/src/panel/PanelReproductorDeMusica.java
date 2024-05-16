@@ -452,7 +452,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				JFrame f = new JFrame();
 				String playlist = JOptionPane.showInputDialog(f, "Introduzca el nombre de la playlist:");
 
-				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(playlist)) == 3) {
+				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(playlist)) == 3 && !gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
 					JOptionPane.showMessageDialog(null,
 							"Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
 				} else {

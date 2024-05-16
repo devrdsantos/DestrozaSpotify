@@ -33,6 +33,7 @@ public class PanelMisPlaylist extends JPanel {
 		
 		if (gestionINF.devolverFavoritosSeleccionado() == true) {
 			cancionesPlaylist = gestionINF.cancionesDePlaylistFavoritos();
+			
 		} else {
 			cancionesPlaylist = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
 		}
@@ -114,6 +115,11 @@ public class PanelMisPlaylist extends JPanel {
 		add(btnBorrarCancion);
 
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
+		if (gestionINF.devolverFavoritosSeleccionado() == true) {
+			btnAñadirCancion.setVisible(false);
+		} else {
+			btnAñadirCancion.setVisible(true);
+		}
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

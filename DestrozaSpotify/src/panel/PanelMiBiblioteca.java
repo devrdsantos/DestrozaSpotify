@@ -121,9 +121,12 @@ public class PanelMiBiblioteca extends JPanel {
 		JButton btnBorrarPlaylist = new JButton("Borrar playlist");
 		btnBorrarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gestionINF.deletePlaylist(listPlaylist.getSelectedValue());
-
-				v.cambiarDePanel(10);
+				if (listPlaylist.getSelectedValue().equals("Favoritos")) {
+					JOptionPane.showMessageDialog(v, "La playlist favoritos no se puede borrar!");
+				} else {
+					gestionINF.deletePlaylist(listPlaylist.getSelectedValue());
+					v.cambiarDePanel(10);
+				}
 			}
 		});
 		btnBorrarPlaylist.setBounds(50, 276, 188, 40);
