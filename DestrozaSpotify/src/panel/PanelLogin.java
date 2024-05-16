@@ -41,26 +41,26 @@ public class PanelLogin extends JPanel {
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblUsuario.setBounds(398, 430, 100, 28);
+		lblUsuario.setBounds(398, 322, 100, 28);
 		lblUsuario.setForeground(Color.decode("#FFFFFF"));
 		add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Contraseña:");
 		lblPassword.setForeground(Color.decode("#FFFFFF"));
 		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblPassword.setBounds(410, 496, 87, 28);
+		lblPassword.setBounds(410, 390, 87, 28);
 		add(lblPassword);
 
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Verdana", Font.PLAIN, 14));
 		passwordField.setBackground(new Color(239, 237, 237));
-		passwordField.setBounds(508, 496, 266, 28);
+		passwordField.setBounds(508, 390, 266, 28);
 		add(passwordField);
 
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setFont(new Font("Verdana", Font.PLAIN, 14));
 		textFieldUsuario.setBackground(new Color(239, 237, 237));
-		textFieldUsuario.setBounds(508, 430, 266, 28);
+		textFieldUsuario.setBounds(508, 322, 266, 28);
 		add(textFieldUsuario);
 		textFieldUsuario.setColumns(10);
 
@@ -92,7 +92,7 @@ public class PanelLogin extends JPanel {
 		btnIniciarSesion.setForeground(Color.decode("#FFFFFF"));
 		btnIniciarSesion.setBorderPainted(false);
 		btnIniciarSesion.setBackground(Color.decode("#ED028B"));
-		btnIniciarSesion.setBounds(536, 559, 170, 39);
+		btnIniciarSesion.setBounds(536, 456, 170, 39);
 		add(btnIniciarSesion);
 		
 
@@ -107,7 +107,7 @@ public class PanelLogin extends JPanel {
 			}
 		});
 		lblSinCuenta.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblSinCuenta.setBounds(522, 617, 211, 20);
+		lblSinCuenta.setBounds(522, 529, 211, 20);
 		lblSinCuenta.setForeground(new Color(255, 173, 13));
 		add(lblSinCuenta);
 		
