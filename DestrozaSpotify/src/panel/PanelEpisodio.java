@@ -66,6 +66,13 @@ public class PanelEpisodio extends JPanel {
 		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
 		
+		JLabel lblTitulo = new JLabel("Selecciona Episodio");
+		lblTitulo.setBounds(325, 50, 524, 74);
+		lblTitulo.setForeground(new Color(255, 255, 255));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 48));
+		add(lblTitulo);
+		
 								
 		JLabel lblNewLabel = new JLabel("Episodios:");
 		lblNewLabel.setBounds(100, 250, 159, 22);
