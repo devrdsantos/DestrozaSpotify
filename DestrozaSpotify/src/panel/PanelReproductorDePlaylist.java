@@ -20,6 +20,10 @@ import view.VistaPrincipal;
 
 public class PanelReproductorDePlaylist extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int intinerador = 0;
 	private boolean bucle = false;
 	private boolean anuncio = false;

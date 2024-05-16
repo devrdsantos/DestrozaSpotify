@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -16,15 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
 import interfaces.ControladorDeSonido;
-import model.Audio;
 import model.Cancion;
 import view.VistaPrincipal;
-import javax.swing.SwingConstants;
 
 public class PanelReproductorDeMusica extends JPanel {
 	
@@ -37,8 +34,6 @@ public class PanelReproductorDeMusica extends JPanel {
 	private int intinerador = 0;
 	private boolean bucle = false;
 	private boolean anuncio = false;
-
-	private LocalDateTime ultimaCancionReproducida;
 
 	/**
 	 * Declaramos un arraylist de tipo Cancion para almacenar las canciones que

@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import javax.swing.ImageIcon;
 
 public class Album {

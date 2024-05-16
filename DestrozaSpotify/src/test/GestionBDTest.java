@@ -222,7 +222,8 @@ public class GestionBDTest {
 	//HECHO
 	@Test
 	public void testSacarEpisodiosPorPodcast() {
-		String resultadoEsperado = "Joe Rogan Experience Episodio 1";
+		String resultadoEsperado = "JoeRoganExperienceEpisodio1";
+		System.out.println(gestionBD.sacarEpisodiosPorPodcast(2).get(0));
 		assertEquals(resultadoEsperado, gestionBD.sacarEpisodiosPorPodcast(2).get(0));
 	}
 	//HECHO

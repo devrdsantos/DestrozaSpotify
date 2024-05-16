@@ -11,11 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
-import javax.swing.SwingConstants;
 
 public class PanelMenuCliente extends JPanel {
 
@@ -200,7 +199,7 @@ public class PanelMenuCliente extends JPanel {
 		/**
 		 * LBL - Titulo 1
 		 */
-		JLabel lblTitulo1 = new JLabel("<html>dynamic FDDSSSSSSSSSSSSSSSSSSSSS/html>");
+		JLabel lblTitulo1 = new JLabel("<html>Apache - Lo necesario </html>");
 		lblTitulo1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblTitulo1.setForeground(new Color(192, 192, 192));
@@ -235,13 +234,14 @@ public class PanelMenuCliente extends JPanel {
 		lblImagen1.setBackground(Color.decode("#000000"));
 		lblImagen1.setOpaque(true);
 		lblImagen1.setBounds(84, 429, 180, 109);
+		lblImagen1.setIcon(new ImageIcon("imagenes/varios/recomendacion1.jpg"));
 		add(lblImagen1);
 
 		
 		/**
 		 * LBL - Titulo 2
 		 */
-		JLabel lblTitulo2 = new JLabel("<html>dynamic FDDSSSSSSSSSSSSSSSSSSSSS/html>");
+		JLabel lblTitulo2 = new JLabel("<html>Canserbero - Muerte </html>");
 		lblTitulo2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo2.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblTitulo2.setForeground(new Color(192, 192, 192));
@@ -276,6 +276,7 @@ public class PanelMenuCliente extends JPanel {
 		lblImagen2.setBackground(Color.decode("#000000"));
 		lblImagen2.setOpaque(true);
 		lblImagen2.setBounds(364, 429, 180, 109);
+		lblImagen2.setIcon(new ImageIcon("imagenes/varios/recomendacion2.jpg"));
 		add(lblImagen2);
 		
 
@@ -289,13 +290,14 @@ public class PanelMenuCliente extends JPanel {
 		lblImagen3.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblImagen3.setBackground(Color.BLACK);
 		lblImagen3.setBounds(644, 429, 180, 109);
+		lblImagen3.setIcon(new ImageIcon("imagenes/varios/recomendacion3.jpg"));
 		add(lblImagen3);
 		
 		
 		/**
 		 * LBL - Titulo 3
 		 */
-		JLabel lblTitulo3 = new JLabel("<html>dynamic FDDSSSSSSSSSSSSSSSSSSSSS/html>");
+		JLabel lblTitulo3 = new JLabel("<html>Akapellah - Como siempre</html>");
 		lblTitulo3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo3.setForeground(Color.LIGHT_GRAY);
 		lblTitulo3.setFont(new Font("Verdana", Font.PLAIN, 14));
@@ -325,12 +327,13 @@ public class PanelMenuCliente extends JPanel {
 		lblImagen4.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblImagen4.setBackground(Color.BLACK);
 		lblImagen4.setBounds(924, 429, 180, 109);
+		lblImagen4.setIcon(new ImageIcon("imagenes/varios/recomendacion4.jpg"));
 		add(lblImagen4);
 		
 		/**
 		 * LBL - Titulo 4
 		 */
-		JLabel lblTitulo4 = new JLabel("<html>dynamic FDDSSSSSSSSSSSSSSSSSSSSS/html>");
+		JLabel lblTitulo4 = new JLabel("<html>Lil Supa - Serio</html>");
 		lblTitulo4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo4.setForeground(Color.LIGHT_GRAY);
 		lblTitulo4.setFont(new Font("Verdana", Font.PLAIN, 14));

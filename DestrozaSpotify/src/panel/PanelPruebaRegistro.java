@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import controller.ControladorDeEntrada;
 import de.wannawork.jcalendar.JCalendarComboBox;

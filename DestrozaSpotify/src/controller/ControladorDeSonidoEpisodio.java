@@ -1,11 +1,7 @@
 package controller;
 import java.io.File;
 import java.io.IOException;
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -21,8 +17,6 @@ public class ControladorDeSonidoEpisodio implements ControladorDeSonido {
 	private ArrayList<Episodio> episodios;
 	private int cancionEnReproduccion;
 	private Clip cancionEnCurso;
-	private Random random = new Random();
-	private int numeroAleatorioAnterior = -1;
 	private long continuar = 0;
 	private boolean enReproduccion = true;
 	boolean anuncion = false;

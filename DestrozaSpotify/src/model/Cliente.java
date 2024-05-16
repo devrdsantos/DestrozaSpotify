@@ -1,7 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Cliente {
@@ -10,13 +8,11 @@ public class Cliente {
 	private String usuario;
 	private String contraseña;
 	private String nombre;
-	private String rol;
 	private String apellido;
 	private String fechaRegistro;
-	private boolean isPremiun = false;
+	private String tipo;
 	private String idioma;
 	private String fechaNacimiento;
-	private String fechaPremiumAlta;
 	private String fechaPreiumBaja;
 	private ArrayList<Cancion> favoritos;
 
@@ -24,39 +20,26 @@ public class Cliente {
 
 	}
 
-	public Cliente(int IDCliente, String usuario, String contraseña, String nombre, String rol, String apellido, String fechaRegistro,
-			boolean isPremium, String idioma, String fechaNacimiento) {
-		this.IDCliente = IDCliente;
+	public Cliente(int iDCliente, String usuario, String contraseña, String nombre, String apellido,
+			String fechaRegistro, String tipo, String idioma, String fechaNacimiento,
+			String fechaPreiumBaja) {
+		this.IDCliente = iDCliente;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.nombre = nombre;
-		this.rol = rol;
 		this.apellido = apellido;
 		this.fechaRegistro = fechaRegistro;
-		this.isPremiun = isPremium; // ESTE SERIA EL ATRIBUTO DE TIPO QUE ESTA EN LA BASE DE DATOS
+		this.tipo = tipo;
 		this.idioma = idioma;
 		this.fechaNacimiento = fechaNacimiento;
-		favoritos = new ArrayList<Cancion>();;
-
-		if (!isPremium) {
-			LocalDate fechaSinFormatoAlta = LocalDate.now();
-			DateTimeFormatter formatoAlta = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			String fechaAlta = formatoAlta.format(fechaSinFormatoAlta);
-			this.fechaPremiumAlta = fechaAlta;
-
-			LocalDate fechaSinFormatoBaja = LocalDate.now();
-			DateTimeFormatter formatoBaja = DateTimeFormatter.ofPattern("2025-MM-dd");
-			String fechaBaja = formatoBaja.format(fechaSinFormatoBaja);
-			this.fechaPreiumBaja = fechaBaja;
-
-		}
-
+		this.fechaPreiumBaja = fechaPreiumBaja;
+		favoritos = new ArrayList<Cancion>();
 	}
 
 	public int getIDCliente() {
 		return IDCliente;
 	}
-	
+
 	public String getUsuario() {
 		return usuario;
 	}
@@ -81,14 +64,6 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
 	public String getApellido() {
 		return apellido;
 	}
@@ -105,12 +80,16 @@ public class Cliente {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public boolean isPremium() {
-		return isPremiun;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setPremium(boolean isPremium) {
-		this.isPremiun = isPremium;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setIDCliente(int iDCliente) {
+		IDCliente = iDCliente;
 	}
 
 	public String getIdioma() {
@@ -127,14 +106,6 @@ public class Cliente {
 
 	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public String getFechaPremiumAlta() {
-		return fechaPremiumAlta;
-	}
-
-	public void setFechaPremiumAlta(String fechaPremiumAlta) {
-		this.fechaPremiumAlta = fechaPremiumAlta;
 	}
 
 	public String getFechaPreiumBaja() {

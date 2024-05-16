@@ -15,13 +15,14 @@ import view.VistaPrincipal;
 
 public class PanelPerfil extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+
 	public PanelPerfil(VistaPrincipal v, GestionDeLaInformacion gestionInformacion) {
 		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
-		String esPremium;
-		System.out.println(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getRol());
+		System.out.println(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0));
 
 		/**
 		 * BTN - Inicio
@@ -29,7 +30,7 @@ public class PanelPerfil extends JPanel {
 		JButton btnAtras = new JButton("Inicio");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				v.cambiarDePanel(1);
+				v.cambiarDePanel(3);
 			}
 		});
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 14));
@@ -112,7 +113,7 @@ public class PanelPerfil extends JPanel {
 		 * LBL - Tipo de cuenta
 		 */
 		JLabel lblTipoCuenta = new JLabel("<dynamic>");
-		lblTipoCuenta.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getRol());
+		lblTipoCuenta.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getTipo());
 		lblTipoCuenta.setForeground(Color.WHITE);
 		lblTipoCuenta.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblTipoCuenta.setBounds(609, 443, 416, 36);
@@ -121,8 +122,14 @@ public class PanelPerfil extends JPanel {
 		/**
 		 * LBL - Fecha de Alta Premium
 		 */
+		
+		
 		JLabel lblFecAltaPremium = new JLabel("<dynamic>");
-		lblFecAltaPremium.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaPremiumAlta());
+		if (gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaPreiumBaja() == null) {
+			lblFecAltaPremium.setText("");
+		} else {
+			lblFecAltaPremium.setText(gestionInformacion.sacarDatosDelCliente(gestionInformacion.devolverUsuario()).get(0).getFechaRegistro());
+		}
 		lblFecAltaPremium.setForeground(Color.WHITE);
 		lblFecAltaPremium.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFecAltaPremium.setBounds(684, 487, 416, 36);

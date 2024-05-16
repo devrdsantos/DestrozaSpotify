@@ -36,19 +36,19 @@ public class GestionBD {
 	}
 
 	public void iniciarConexion() {
-		System.out.println("Conectando...");
+		//System.out.println("Conectando...");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto4grupo35", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto4grupo35", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
 			System.out.println("Base de Datos no encontrada");
 		}
-		System.out.println("Conexion establecida");
+		//System.out.println("Conexion establecida");
 	}
 
 	public void cerrarConexion() {
@@ -60,7 +60,7 @@ public class GestionBD {
 		} catch (SQLException e) {
 			System.out.println("No hay conexion con la Base de Datos");
 		}
-		System.out.println("Conexion cerrada");
+		//System.out.println("Conexion cerrada");
 	}
 
 	/* HECHO!! */
@@ -1669,7 +1669,7 @@ public class GestionBD {
 		ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 		try {
 			PreparedStatement consulta = conexion.prepareStatement(
-					"SELECT * FROM cliente WHERE usuario = ?");
+					"SELECT cl.IDCliente, Cl.Nombre, Cl.Apellido, Cl.Usuario, Cl.Contraseña, Cl.FechaNacimiento, Cl.FechaRegistro, Cl.Tipo, Cl.IDIdioma, Pr.Fecha_caducidad FROM cliente Cl left join premiun Pr on Cl.IDCliente = Pr.IDCliente Where Cl.Usuario = ?;");
 			consulta.setString(1, usuario);
 			boolean esPremium = false;
 			String columnaEnum;
@@ -1682,14 +1682,12 @@ public class GestionBD {
 					esPremium = true;
 				}
 				columnaTipo = resultadoConsulta.getString(8);
-				if(columnaTipo.equals("Premiun")){
-					rol = "Premiun";
-				}else rol = "Free";
+			
 
 
 				cliente.add(new Cliente(resultadoConsulta.getInt(1), resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5), resultadoConsulta.getString(2), rol,
-						resultadoConsulta.getString(3), resultadoConsulta.getString(7), esPremium, resultadoConsulta.getString(9), resultadoConsulta.getString(6)));
+						resultadoConsulta.getString(5), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(7), resultadoConsulta.getString(8), resultadoConsulta.getString(9), resultadoConsulta.getString(6), resultadoConsulta.getString(10)));
 
 			}
 

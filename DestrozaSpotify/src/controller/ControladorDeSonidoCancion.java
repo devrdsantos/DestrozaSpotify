@@ -2,8 +2,6 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,7 +12,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 import interfaces.ControladorDeSonido;
-import model.Audio;
 import model.Cancion;
 
 public class ControladorDeSonidoCancion implements ControladorDeSonido {

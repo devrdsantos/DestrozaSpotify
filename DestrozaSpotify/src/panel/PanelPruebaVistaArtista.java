@@ -19,6 +19,8 @@ import view.VistaPrincipal;
 
 public class PanelPruebaVistaArtista extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+
 	public PanelPruebaVistaArtista(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
 		// ELIMINARME!!!

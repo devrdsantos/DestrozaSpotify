@@ -8,13 +8,15 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import controller.GestionDeLaInformacion;
 import view.VistaPrincipal;
-import javax.swing.JList;
 
 public class PanelEstadisticas extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	public PanelEstadisticas(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
@@ -55,19 +57,19 @@ public class PanelEstadisticas extends JPanel {
 		btnPerfil.setBounds(1038, 54, 100, 40);
 		add(btnPerfil);
 		
-		JList list = new JList();
+		JList<String> list = new JList<String>();
 		list.setBackground(Color.decode("#222222"));
 		list.setFont(new Font("Verdana", Font.PLAIN, 14));
 		list.setBounds(140, 266, 256, 286);
 		add(list);
 		
-		JList list_1 = new JList();
+		JList<String> list_1 = new JList<String>();
 		list_1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		list_1.setBackground(new Color(34, 34, 34));
 		list_1.setBounds(472, 266, 256, 286);
 		add(list_1);
 		
-		JList list_1_1 = new JList();
+		JList<String> list_1_1 = new JList<String>();
 		list_1_1.setForeground(new Color(255, 255, 255));
 		list_1_1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		list_1_1.setBackground(new Color(34, 34, 34));
