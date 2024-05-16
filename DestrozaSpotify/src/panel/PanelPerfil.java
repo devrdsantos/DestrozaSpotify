@@ -148,3 +148,4 @@ public class PanelPerfil extends JPanel {
 		add(lblImagen);
 	}
 }
+

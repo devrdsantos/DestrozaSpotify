@@ -118,6 +118,7 @@ public class VistaPrincipal extends JFrame {
 		case 16:
 			setContentPane(new PanelReproductorDePlaylist(this, this.gestionINF)); 
 			break;
+		// ESTOS CASOS DE ABAJO HAY QUE ELIMINARLOS
 		case 17:
 			setContentPane (new PanelPerfil(this, this.gestionINF)); 
 			break;
@@ -147,6 +148,7 @@ public class VistaPrincipal extends JFrame {
 
 
 		v.cambiarDePanel(0);
+
 
 	}
 

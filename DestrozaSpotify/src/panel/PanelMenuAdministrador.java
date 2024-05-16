@@ -47,6 +47,19 @@ public class PanelMenuAdministrador extends JPanel{
 		btnAtras.setBackground(Color.decode("#353535"));
 		btnAtras.setBounds(52, 54, 100, 40);
 		add(btnAtras);
+
+		/**
+		 * BTN - Perfil
+		 */
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.setOpaque(true);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnPerfil.setContentAreaFilled(true);
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBackground(new Color(53, 53, 53));
+		btnPerfil.setBounds(1038, 54, 100, 40);
+		add(btnPerfil);
 		
 		
 		/**
@@ -148,8 +161,7 @@ public class PanelMenuAdministrador extends JPanel{
 		btnVerEstadisticas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// esto lo hay que cambiar!!!!!!!!!
-				v.cambiarDePanel(19);
+
 			}
 		});
 		add(btnVerEstadisticas);
