@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Episodio extends Audio {
 
-	private int idAlbum;
+	private int idPodcast;
 	private String colaboradores;
 	private boolean reproduciendo;
 
@@ -12,10 +12,10 @@ public class Episodio extends Audio {
 
 	}
 
-	public Episodio(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, int idAlbum,
+	public Episodio(int iDAudio, String nombre, int duracion, ImageIcon imagen, String tipo, int idPodcast,
 			String colaboradores) {
 		super(iDAudio, nombre, duracion, imagen, tipo);
-		this.idAlbum = idAlbum;
+		this.idPodcast = idPodcast;
 		this.colaboradores = colaboradores;
 	}
 
@@ -28,11 +28,11 @@ public class Episodio extends Audio {
 	}
 
 	public int getIdAlbum() {
-		return idAlbum;
+		return idPodcast;
 	}
 
 	public void setIdAlbum(int idAlbum) {
-		this.idAlbum = idAlbum;
+		this.idPodcast = idAlbum;
 	}
 
 	public boolean sonando() {
