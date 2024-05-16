@@ -149,7 +149,13 @@ public class PanelMiBiblioteca extends JPanel {
 		JButton btnExportar = new JButton("Exportar");
 		btnExportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ficheros.escribirFichero(gestionINF.devolverCancionesPorTituloPlaylist(listPlaylist.getSelectedValue()), listPlaylist.getSelectedValue());
+				if (listPlaylist.getSelectedValue().equals("Favoritos")) {
+					ficheros.escribirFichero(gestionINF.cancionesDePlaylistFavoritos(), "Favoritos");
+					JOptionPane.showMessageDialog(v, "Fichero creado correctamente!");
+				} else {
+					ficheros.escribirFichero(gestionINF.devolverCancionesPorTituloPlaylist(listPlaylist.getSelectedValue()), listPlaylist.getSelectedValue());
+					JOptionPane.showMessageDialog(v, "Fichero creado correctamente!");
+				}
 			}
 		});
 		btnExportar.setBounds(50, 378, 188, 40);

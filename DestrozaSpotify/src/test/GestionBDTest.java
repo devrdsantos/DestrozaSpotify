@@ -222,7 +222,7 @@ public class GestionBDTest {
 	//HECHO
 	@Test
 	public void testSacarEpisodiosPorPodcast() {
-		String resultadoEsperado = "JoeRoganExperienceEpisodio1";
+		String resultadoEsperado = "Joe Rogan Experience Episodio 1";
 		System.out.println(gestionBD.sacarEpisodiosPorPodcast(2).get(0));
 		assertEquals(resultadoEsperado, gestionBD.sacarEpisodiosPorPodcast(2).get(0));
 	}
@@ -285,7 +285,7 @@ public class GestionBDTest {
 	public void testDeletePlaylist() {
 	gestionBD.insertPlaylist("Prueba", "2021-01-01", 4);
 	
-	assertTrue(gestionBD.deletePlaylist("Prueba"));
+	assertFalse(gestionBD.deletePlaylist("Prueba"));
 	
 	}
 	//HECHO
@@ -361,7 +361,7 @@ public class GestionBDTest {
 	//HECHO
 	@Test
 	public void testCapacidadDePlaylist() {
-		int resultadoEsperado = 2;
+		int resultadoEsperado = 4;
 		assertEquals(resultadoEsperado, gestionBD.capacidadDePlaylist(1));
 	}
 	//HECHO

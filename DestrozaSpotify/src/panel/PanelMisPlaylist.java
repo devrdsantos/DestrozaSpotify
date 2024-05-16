@@ -33,7 +33,6 @@ public class PanelMisPlaylist extends JPanel {
 		
 		if (gestionINF.devolverFavoritosSeleccionado() == true) {
 			cancionesPlaylist = gestionINF.cancionesDePlaylistFavoritos();
-			
 		} else {
 			cancionesPlaylist = gestionINF.devolverCancionesPorTituloPlaylist(gestionINF.devolverNombrePlaylist());
 		}
