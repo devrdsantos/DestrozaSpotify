@@ -27,14 +27,29 @@ import view.VistaPrincipal;
 
 public class GestionBD {
 
+	// Variables ////////////////////////////////////////
+	// --------------------------------------------------
 	private Connection conexion;
 	private GestionDeLaInformacion gestionINF;
 //	private ControladorDeEntrada controlador;
 
+	// Métodos //////////////////////////////////////////
+	// --------------------------------------------------
+	
+	/**
+	 * [Controlador] - GestionBD() 
+	 * Vacío. Ejecuta el método iniciarConexion() que conecta con la base de datos. 
+	 */
 	public GestionBD() {
 		iniciarConexion();
 	}
 
+	/**
+	 * [Método] - iniciarConexion()
+	 * Hace uso de la librería JDBC para realizar la conexión.
+	 * Se crea una variable conexión que almacena la dirección donde está alojada la Base de Datos
+	 * Existen dos casos de excepciones si no logra la conexión: que no encuentre la librería o no encuentre la BD.
+	 */
 	public void iniciarConexion() {
 		System.out.println("Conectando...");
 
@@ -46,11 +61,16 @@ public class GestionBD {
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la librería");
 		} catch (SQLException e) {
-			System.out.println("Base de Datos no encontrada");
+			System.out.println("Base de Datos no encontrada.");
 		}
-		System.out.println("Conexion establecida");
+		System.out.println("Conexión establecida");
 	}
 
+	/**
+	 * [Método] - cerrarConexion()
+	 * Si la conexión no está cerrada la cierra. 
+	 * Si no logra probar la conexión entonces captura la excepción como si no hubiese conexión con la BD.
+	 */
 	public void cerrarConexion() {
 		System.out.println("Cerrando...");
 		try {
@@ -58,38 +78,43 @@ public class GestionBD {
 				conexion.close();
 			}
 		} catch (SQLException e) {
-			System.out.println("No hay conexion con la Base de Datos");
+			System.out.println("No hay conexión con la Base de Datos");
 		}
-		System.out.println("Conexion cerrada");
+		System.out.println("Conexión cerrada");
 	}
 
-	/* HECHO!! */
+	/**
+	 * [Método] - verificarLogin(String, String, VistaPrincipal)
+	 * @param usuario
+	 * @param pass
+	 * @param v
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean verificarLogin(String usuario, String pass, VistaPrincipal v) throws Exception {
 
 		boolean verificarLogin = false;
 
 		try {
-			// System.out.println("Iniciando consulta...");
-			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
-			// parámetros
+			// QUERY para verificar el usuario y contraseña de un cliente en la BD dado un determinado usuario. 
+			// El "?" representa el DNI que deberá pasarse por parámetros.
 			String query = "SELECT Usuario, Contraseña FROM cliente WHERE Usuario = ?";
 
-			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
-			// DNI
+			// Prepara la query anterior para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, usuario);
 
 			// Variable que ejecuta la QUERY
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 
-			// Variable que ejecuta sacarPasswordEncriptada pasándole como parámetro el DNI
-			// ingresado
+			// Variable que ejecuta un método para desencriptar la contraseña de un usuario dado.
 			String passDesencriptada = sacarPasswordEncriptada(usuario);
 
-			// Si el DNI y la contraseña desencriptada se corresponden con los datos de la
-			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
+			// Si el usuario y la contraseña desencriptada se corresponden con los datos en la BD 
+			// se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && usuario.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
+				// Si reconoce al usuario hace una comprobación más y verifica que sea "Admin" 
 				if (resultadoConsulta.getString(1).equals("Admin")) {
 					JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión con administrador");
 					v.cambiarDePanel(4);
