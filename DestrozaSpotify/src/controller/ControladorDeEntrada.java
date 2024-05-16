@@ -26,7 +26,7 @@ public class ControladorDeEntrada {
 		gestionBD = new GestionBD();
 //		usuario = new ArrayList<Cliente>();
 	}
-
+	
 	/**
 	 * [FUNCIÓN] validarInformacionFormulario()
 	 * @param usuarioFormulario
