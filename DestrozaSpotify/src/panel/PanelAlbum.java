@@ -20,6 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelAlbum extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int duracionMax;
 	
 	public PanelAlbum (VistaPrincipal v, GestionDeLaInformacion gestionINF) {
@@ -63,6 +68,12 @@ public class PanelAlbum extends JPanel {
 	btnPerfil.setBorderPainted(false);
 	btnPerfil.setBackground(new Color(53, 53, 53));
 	btnPerfil.setBounds(1009, 34, 136, 48);
+	btnPerfil.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			v.cambiarDePanel(19);
+		}
+	});
 	add(btnPerfil);
 	
 	
@@ -85,7 +96,7 @@ public class PanelAlbum extends JPanel {
 	listAlbums.addListSelectionListener(new ListSelectionListener() {
 		public void valueChanged(ListSelectionEvent arg0) {
 			if (!arg0.getValueIsAdjusting()) {
-				gestionINF.indiceAlbum(listAlbums.getSelectedIndex());
+				gestionINF.indiceDeLaCancion(listAlbums.getSelectedIndex());
 // 			System.out.println(listAlbums.getSelectedValue().split("--")[0]);
 				v.cambiarDePanel(12);
 			}
@@ -100,6 +111,8 @@ public class PanelAlbum extends JPanel {
 	}
 	listAlbums.setModel(modeloAlbums);
 	listAlbums.setBounds(228, 436, 763, 242);
+	listAlbums.setBackground(new Color(44, 44, 44));
+	listAlbums.setForeground(Color.decode("#FFFFFF"));
 	add(listAlbums);
 
 	/**
@@ -186,7 +199,7 @@ public class PanelAlbum extends JPanel {
 	lblDatoFecha.setForeground(Color.WHITE);
 	lblDatoFecha.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoFecha.setBounds(421, 201, 239, 28);
-	lblDatoFecha.setText(gestionINF.mostrarAlbums().get(0).getFechaPublicacion());
+	lblDatoFecha.setText(gestionINF.mostrarAlbumsPorArtista().get(0).getFechaPublicacion());
 	add(lblDatoFecha);
 	
 	/**
@@ -197,7 +210,7 @@ public class PanelAlbum extends JPanel {
 	lblDatoGenero.setForeground(Color.WHITE);
 	lblDatoGenero.setFont(new Font("Verdana", Font.PLAIN, 16));
 	lblDatoGenero.setBounds(306, 245, 340, 28);
-	lblDatoGenero.setText(gestionINF.mostrarAlbums().get(0).getGenero());
+	lblDatoGenero.setText(gestionINF.mostrarAlbumsPorArtista().get(0).getGenero());
 	add(lblDatoGenero);
 	
 	/**

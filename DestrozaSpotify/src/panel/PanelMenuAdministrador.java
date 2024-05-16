@@ -161,8 +161,7 @@ public class PanelMenuAdministrador extends JPanel{
 		btnVerEstadisticas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// esto lo hay que cambiar!!!!!!!!!
-				v.cambiarDePanel(3);
+
 			}
 		});
 		add(btnVerEstadisticas);

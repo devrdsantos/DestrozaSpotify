@@ -10,9 +10,11 @@ import javax.crypto.spec.SecretKeySpec;
 import model.Album;
 import model.Cancion;
 import model.Cliente;
+import model.Episodio;
 import model.Musico;
 import model.Playlist;
 import model.Podcast;
+import model.Podcaster;
 
 public class GestionDeLaInformacion {
 
@@ -31,6 +33,7 @@ public class GestionDeLaInformacion {
 	private boolean favoritos = false;;
 	
 	private Cliente cliente;
+	private String nombreCancion;
 	
 	
 	public GestionDeLaInformacion() {
@@ -88,15 +91,18 @@ public class GestionDeLaInformacion {
 		return gestionBD.sacarMusicoPorArtista(artista);
 	}
 	
-	public ArrayList<Album> mostrarAlbums() {
+	public ArrayList<Album> mostrarAlbumsPorArtista() {
 		return gestionBD.sacarAlbumPorArtista(artista);
+	}
+	
+	public ArrayList<Album> mostrarAlbums() {
+		return null;
 	}
 	
 	public ArrayList<Cancion> mostrarCancion() {
 		return gestionBD.sacarCancionPorArtista(album);
 	}
 	
-
 	public ArrayList<Album> mostrarArtistas(){
 		return gestionBD.sacarAlbumInformacion();
 	}
@@ -113,7 +119,7 @@ public class GestionDeLaInformacion {
 		return this.podcaster;
 	}
 	
-	public ArrayList<String> mostrarPodcastPorPodcaster(String podcaster){
+	public ArrayList<String> mostrarPodcastPorPodcaster(int podcaster){
 		return gestionBD.sacarPodcastPorPodcaster(podcaster);
 	}
 	
@@ -125,8 +131,8 @@ public class GestionDeLaInformacion {
 		return this.podcast;
 	}
 	
-	public ArrayList<String> mostrarEpisodiosPorPodcast(String podcast){
-		return gestionBD.sacarEpisodiosPorPodcast(podcast);
+	public ArrayList<String> mostrarEpisodiosPorPodcast(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcast(idPodcast);
 	}
 	
 	public void indiceDeLaCancion(int posicion) {
@@ -150,15 +156,13 @@ public class GestionDeLaInformacion {
 	}
 
 	public void indiceAlbum(int indice) {
-		
-		this.indiceAlbum = indice; 
+		this.indiceAlbum = indice;
 	}
 	
 	public int devolverIndiceAlbum() {
 		return indiceAlbum;
 	}
 
-	
 	public int devolverIdCliente(String cliente) {
 		return gestionBD.idClienteDeUsuario(cliente);
 	}
@@ -261,6 +265,38 @@ public class GestionDeLaInformacion {
 	
 	public int capacidadDePlaylist(int idPlaylist) {
 		return gestionBD.capacidadDePlaylist(idPlaylist);
+	}
+	
+	public ArrayList<String> idiomas() {
+		return gestionBD.sacarIdiomas();
+	}
+
+	public int devolverIdPodcaster(String nombreArtistico) {
+		return gestionBD.idPodcaster(nombreArtistico);
+	}
+	
+	public ArrayList<Episodio> mostrarEpisodioss(int idPodcast){
+		return gestionBD.sacarEpisodiosPorPodcasts(idPodcast);
+	}
+	
+	public ArrayList<Album> albumPorTitulo(){
+		return gestionBD.albumPorTitulo(album);
+	}
+	
+	public void cancionSeleccionada(String nombreCancion) {
+		this.nombreCancion = nombreCancion;
+	} 
+	
+	public ArrayList<Cancion> cancionPorNombre() {
+		return gestionBD.cancionPorNombre(nombreCancion);
+	}
+	
+	public ArrayList<Podcaster> podcasterPorNombre() {
+		return gestionBD.podcasterPorNombre(podcaster);
+	}
+	
+	public ArrayList<Cliente> sacarDatosDelCliente(String usuario) {
+		return gestionBD.sacarDatosCliente(usuario);
 	}
 	
 }

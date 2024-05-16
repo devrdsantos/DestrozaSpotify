@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -12,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import controller.ControladorDeSonidoCancion;
 import controller.GestionDeLaInformacion;
@@ -33,6 +36,8 @@ public class PanelReproductorDeMusica extends JPanel {
 	private boolean bucle = false;
 	private boolean anuncio = false;
 
+	private LocalDateTime ultimaCancionReproducida;
+
 	/**
 	 * Declaramos un arraylist de tipo Cancion para almacenar las canciones que
 	 * queremos reproducir
@@ -53,16 +58,30 @@ public class PanelReproductorDeMusica extends JPanel {
 	private JLabel lblPortadaCancion;
 	private JLabel lblTituloCancion;
 	private JLabel lblNombreArtista;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
+	private JButton btnFavoritos;
+	private JButton btnMenu;
+	private JLabel lblReproduciendo;
+	private JLabel lblAlbum;
 
 	public PanelReproductorDeMusica(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 
+		Timer timerAnuncio = new Timer(34000, new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        btnSiguente.setEnabled(true);
+		        btnAnterior.setEnabled(true);
+		    }
+		});
+		
+		Timer timer = new Timer(180000, new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        btnSiguente.setEnabled(true);
+		    }
+		});
+		
 		/**
 		 * Le asignamos valor al arraylist canciones
 		 */
 		canciones = gestionINF.mostrarCancion();
-		System.out.println(canciones);
 		/**
 		 * Inicializamos la variable sonido y le pasamos como parametro las canciones
 		 */
@@ -71,7 +90,6 @@ public class PanelReproductorDeMusica extends JPanel {
 		/**
 		 * Declaramos un contador
 		 */
-		System.out.println(gestionINF.devolverIndiceDeLaCancion());
 		intinerador = gestionINF.devolverIndiceDeLaCancion();
 
 		setSize(1200, 720);
@@ -217,14 +235,12 @@ public class PanelReproductorDeMusica extends JPanel {
 				 * Verifica si eres premium
 				 */
 				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
-					System.out.println("Premiun");
-
 					sonido.setCancionEnReproduccion(intinerador);
 
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 
 					btnPlay.setVisible(true);
@@ -234,16 +250,27 @@ public class PanelReproductorDeMusica extends JPanel {
 					 * Condicional para ver si anuncio es false, si lo es reproduce un anuncio
 					 */
 					if (!anuncio) {
-//						System.out.println("anuncio");
+						btnSiguente.setEnabled(false);
+						btnAnterior.setEnabled(false);
+						btnBucle.setVisible(false);
+						btnPlay.setVisible(false);
+						btnMenu.setVisible(false);
+						btnFavoritos.setVisible(false);
+						btnPause.setVisible(true);
+						timerAnuncio.restart();
+									
 						sonido.parar();
 						sonido.anuncio();
 						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPause.setVisible(true);
+						btnBucle.setForeground(new Color(255, 255, 255));
 					} else {
+						btnAnterior.setEnabled(false);
+						btnSiguente.setEnabled(false);
+						timer.restart();
+						
 //						System.out.println("no anuncio");
 						/**
 						 * le asignamos un numero random al contador
@@ -258,11 +285,16 @@ public class PanelReproductorDeMusica extends JPanel {
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
+						btnBucle.setForeground(new Color(255, 255, 255));
 						bucle = false;
 						anuncio = false;
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
+						btnSiguente.setEnabled(true);
+						btnAnterior.setEnabled(true);
+						btnBucle.setVisible(true);
+						btnMenu.setVisible(true);
+						btnFavoritos.setVisible(true);
 					}
 
 				}
@@ -286,6 +318,9 @@ public class PanelReproductorDeMusica extends JPanel {
 				/**
 				 * Condicional para saber si es premium
 				 */
+				 
+				 
+				
 				if (gestionINF.devolverPremiun().equalsIgnoreCase("Premiun")) {
 //					System.out.println("Premiun");
 
@@ -293,7 +328,7 @@ public class PanelReproductorDeMusica extends JPanel {
 					sonido.setCancionEnReproduccion(intinerador);
 					lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 					lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
@@ -304,28 +339,45 @@ public class PanelReproductorDeMusica extends JPanel {
 					 */
 					if (!anuncio) {
 //						System.out.println("anuncio");
+						btnSiguente.setEnabled(false);
+						btnAnterior.setEnabled(false);
+						btnBucle.setVisible(false);
+						btnPlay.setVisible(false);
+						btnMenu.setVisible(false);
+						btnFavoritos.setVisible(false);
+						btnPause.setVisible(true);
+						timerAnuncio.restart();
+						
 						sonido.parar();
 						sonido.anuncio();
 						lblPortadaCancion.setIcon(new ImageIcon("anuncio/Anuncio.jpg"));
 						lblTituloCancion.setText("");
 						lblNombreArtista.setText("");
 						anuncio = true;
-						btnPlay.setVisible(false);
-						btnPause.setVisible(true);
+						btnBucle.setForeground(new Color(255, 255, 255));
 					} else {
-//						System.out.println("No Premiun");
+						btnAnterior.setEnabled(false);
+						btnSiguente.setEnabled(false);
+						timer.restart();
+						
+						System.out.println("No Premiun");
 						intinerador = sonido.ramdom();
 						sonido.reproducir(intinerador);
 						lblPortadaCancion.setIcon(canciones.get(intinerador).getImagen());
 						lblTituloCancion.setText("<html>" + canciones.get(intinerador).getNombre() + "</html>");
 						lblNombreArtista.setText("<html>" + gestionINF.devolverArtista() + "</html>");
-						btnBucle.setForeground(new Color(255, 170, 67));
+						btnBucle.setForeground(new Color(255, 255, 255));
 						bucle = false;
+						anuncio = false;
 						btnPlay.setVisible(false);
 						btnPause.setVisible(true);
+						btnSiguente.setEnabled(true);
+						btnAnterior.setEnabled(true);
+						btnBucle.setVisible(true);
+						btnMenu.setVisible(true);
+						btnFavoritos.setVisible(true);
 					}
 				}
-
 			}
 		});
 		btnSiguente.setOpaque(true);
@@ -348,7 +400,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				if (bucle) {
 					btnPlay.setVisible(true);
 					btnPause.setVisible(false);
-					btnBucle.setForeground(new Color(255, 170, 67));
+					btnBucle.setForeground(new Color(255, 255, 255));
 					bucle = false;
 
 					/**
@@ -359,7 +411,7 @@ public class PanelReproductorDeMusica extends JPanel {
 				} else {
 					btnPlay.setVisible(false);
 					btnPause.setVisible(true);
-					btnBucle.setForeground(new Color(0, 255, 0));
+					btnBucle.setForeground(new Color(255, 170, 67));
 					bucle = true;
 					sonido.bucle(bucle, intinerador);
 
@@ -388,7 +440,7 @@ public class PanelReproductorDeMusica extends JPanel {
 		lblNombreArtista.setBounds(356, 560, 298, 30);
 		add(lblNombreArtista);
 
-		JButton btnMenu = new JButton("Menu");
+		btnMenu = new JButton("Menu");
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -396,7 +448,8 @@ public class PanelReproductorDeMusica extends JPanel {
 				String playlist = JOptionPane.showInputDialog(f, "Introduzca el nombre de la playlist:");
 
 				if (gestionINF.capacidadDePlaylist(gestionINF.devolverIdPlaylist(playlist)) == 3) {
-					JOptionPane.showMessageDialog(null, "Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
+					JOptionPane.showMessageDialog(null,
+							"Has llegado a la capacidad maxima de la playlist " + playlist + "!!");
 				} else {
 					gestionINF.añadirCancionAPlaylist(
 							gestionINF.sacarIdDelAudio(canciones.get(intinerador).getNombre()),
@@ -416,7 +469,8 @@ public class PanelReproductorDeMusica extends JPanel {
 		 * Boton favoritos, cuando lo clickeas se añade la cancion actual a la playlist
 		 * favoritos
 		 */
-		JButton btnFavoritos = new JButton("❤");
+		
+		btnFavoritos = new JButton("❤");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestionINF.favoritos(gestionINF.devolverIdCliente(gestionINF.devolverUsuario()),
@@ -431,21 +485,20 @@ public class PanelReproductorDeMusica extends JPanel {
 		btnFavoritos.setBounds(668, 600, 60, 60);
 		add(btnFavoritos);
 		
-		lblNewLabel = new JLabel("REPRODUCIENDO DESDE ÁLBUM");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblNewLabel.setBounds(456, 51, 234, 30);
-		add(lblNewLabel);
+		lblReproduciendo = new JLabel("REPRODUCIENDO DESDE ÁLBUM");
+		lblReproduciendo.setForeground(new Color(255, 255, 255));
+		lblReproduciendo.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblReproduciendo.setBounds(456, 51, 234, 30);
+		add(lblReproduciendo);
 		
-		lblNewLabel_1 = new JLabel(".getNombreAlbum()");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.decode("#FFB850"));
-		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNewLabel_1.setBounds(356, 77, 391, 41);
-		lblNewLabel_1.setText(gestionINF.devolerAlbum());
-		add(lblNewLabel_1);
+		lblAlbum = new JLabel(".getNombreAlbum()");
+		lblAlbum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlbum.setForeground(Color.decode("#FFB850"));
+		lblAlbum.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblAlbum.setBounds(356, 77, 391, 41);
+		lblAlbum.setText(gestionINF.devolerAlbum());
+		add(lblAlbum);
 
 	}
-	
-
 }
+
