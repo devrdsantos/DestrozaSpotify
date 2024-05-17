@@ -71,10 +71,6 @@ public class ControladorDeSonidoCancion implements ControladorDeSonido {
 		cancionEnCurso.stop();
 	}
 
-	@Override
-	public boolean cancionActiva() {
-		return cancionEnCurso.isActive();
-	}
 
 	@Override
 	public void bucle(boolean activo, int cola) {

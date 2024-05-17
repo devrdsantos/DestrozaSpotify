@@ -53,6 +53,9 @@ public class PanelMiBiblioteca extends JPanel {
 		btnAtras.setBounds(52, 34, 136, 48);
 		add(btnAtras);
 		
+		/**
+		 * Boton para ir a perfil
+		 */
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setOpaque(true);
 		btnPerfil.setForeground(Color.WHITE);
@@ -69,6 +72,9 @@ public class PanelMiBiblioteca extends JPanel {
 		});
 		add(btnPerfil);
 
+		/**
+		 * Enseña todas las playlist del cliente + la de Favoritos
+		 */
 		JList<String> listPlaylist = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
 		modeloPlaylist.addElement("Favoritos");
@@ -90,6 +96,9 @@ public class PanelMiBiblioteca extends JPanel {
 		lblMiPlaylist.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(lblMiPlaylist);
 
+		/**
+		 * Boton para crear una nueva playlist
+		 */
 		JButton btnCrearNueva = new JButton("Crear nueva");
 		btnCrearNueva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,6 +127,9 @@ public class PanelMiBiblioteca extends JPanel {
 		btnCrearNueva.setBackground(new Color(63, 61, 61));
 		add(btnCrearNueva);
 
+		/**
+		 * Boton para borrar playlist seleccionada
+		 */
 		JButton btnBorrarPlaylist = new JButton("Borrar playlist");
 		btnBorrarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,6 +158,9 @@ public class PanelMiBiblioteca extends JPanel {
 		btnImportar.setBackground(new Color(63, 61, 61));
 		add(btnImportar);
 
+		/**
+		 * Exportar las canciones de la playlist seleccionada
+		 */
 		JButton btnExportar = new JButton("Exportar");
 		btnExportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -166,8 +181,9 @@ public class PanelMiBiblioteca extends JPanel {
 		btnExportar.setBackground(new Color(63, 61, 61));
 		add(btnExportar);
 
-		
-
+		/**
+		 * Boton para ver el contenido de la playlist seleccionada
+		 */
 		JButton btnVerPlaylist = new JButton("Ver playlist");
 		btnVerPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -31,6 +33,9 @@ public class PanelMisPlaylist extends JPanel {
 	
 	public PanelMisPlaylist(VistaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
+		/**
+		 * Mira si vienes de seleccionado la playlist Favoritos o no
+		 */
 		if (gestionINF.devolverFavoritosSeleccionado() == true) {
 			cancionesPlaylist = gestionINF.cancionesDePlaylistFavoritos();
 		} else {
@@ -83,7 +88,9 @@ public class PanelMisPlaylist extends JPanel {
 
 		JList<String> listCanciones = new JList<String>();
 		DefaultListModel<String> modeloPlaylist = new DefaultListModel<String>();
-	
+		/**
+		 * Añade las canciones de la playlist seleccionada
+		 */
 		for (int i = 0; i < cancionesPlaylist.size(); i++) {
 			modeloPlaylist.addElement(cancionesPlaylist.get(i).getNombre());	
 		}
@@ -97,6 +104,9 @@ public class PanelMisPlaylist extends JPanel {
 		lblMisCanciones.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(lblMisCanciones);
 
+		/**
+		 * Borra la cancion seleccionada
+		 */
 		JButton btnBorrarCancion = new JButton("Borrar cancion");
 		btnBorrarCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,12 +123,10 @@ public class PanelMisPlaylist extends JPanel {
 		btnBorrarCancion.setBackground(new Color(63, 61, 61));
 		add(btnBorrarCancion);
 
+		/**
+		 * Para añadir una cancion a la playlist
+		 */
 		JButton btnAñadirCancion = new JButton("Añadir cancion");
-		if (gestionINF.devolverFavoritosSeleccionado() == true) {
-			btnAñadirCancion.setVisible(false);
-		} else {
-			btnAñadirCancion.setVisible(true);
-		}
 		btnAñadirCancion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -142,6 +150,9 @@ public class PanelMisPlaylist extends JPanel {
 		btnAñadirCancion.setBackground(new Color(63, 61, 61));
 		add(btnAñadirCancion);
 
+		/**
+		 * Boton que te lleva al reproductor de la cancion seleccionada
+		 */
 		JButton btnReproducir = new JButton("Reproducir");
 		btnReproducir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
